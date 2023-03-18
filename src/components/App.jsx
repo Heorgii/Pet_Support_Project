@@ -2,6 +2,7 @@ import { Home } from "pages/Home";
 // import { lazy } from "react";
 // import { HelmetProvider } from "react-helmet-async";
 // import { Route, Routes } from "react-router-dom";
+// import { RestrictedRoute } from "utils/RestrictedRoute";
 // import { SharedLayout } from "./SharedLayout";
 
 // const HomePage = lazy(() => import('../pages/Home'));
@@ -22,21 +23,21 @@ export const App = () => {
             <Route index element={<HomePage />} />
             <Route
               path="/register"
-            // element={
-              //   <RestrictedRoute
-              //     redirectTo="/contacts"
-              //     component={<RegisterPage />}
-              //   />
-              // }
+            element={
+                <RestrictedRoute
+                  redirectTo="/register"
+                  component={<RegisterPage />}
+                />
+              }
               />
               < Route
               path="/login"
-            // element={
-              //   <RestrictedRoute
-              //     redirectTo="/contacts"
-              //     component={<LoginPage />}
-              //   />
-              // }
+            element={
+                <RestrictedRoute
+                  redirectTo="/login"
+                  component={<LoginPage />}
+                />
+              }
               />
               < Route path="*" element={<HomePage />} />
           </Route>
@@ -46,4 +47,3 @@ export const App = () => {
     </div>
   );
 };
-
