@@ -7,7 +7,6 @@ export const baseColor = {
         while: '#FFFFFF',
         orangeLight: '#F59256',
         orange: '#FF6101',
-        textSecondCl: rgba(17, 17, 17, 0.6),
         textDiscr: '#111321',
         blue: '#3091EB',
         error: '#E2001A',
