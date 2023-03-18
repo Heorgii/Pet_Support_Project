@@ -1,13 +1,18 @@
-import { Helmet } from "react-helmet";
-import { OurFriendsComp } from "components/OurFriendsComp/OurFriendsComp";
+import { SEO } from 'utils/SEO';
+import { OurFriendsComp } from 'components/OurFriendsComp/OurFriendsComp';
+import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const OurFriends = () => {
-    return (
-        <div>
-            <Helmet>
-                <title>OurFriends</title>
-            </Helmet>
-            <OurFriendsComp />
-        </div>
-    );
-}
+  return (
+    <main>
+      <SEO
+        title="Our friends"
+        description="You can see all of our company of friends"
+      />
+      <Container>
+        <Title as="h1" hidden>Our Friends Page</Title>
+        <OurFriendsComp />
+      </Container>
+    </main>
+  );
+};
