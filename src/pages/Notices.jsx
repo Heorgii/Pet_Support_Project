@@ -1,5 +1,12 @@
+import { Helmet } from "react-helmet";
+
 export const Notices = () => {
     return (
-        <h1>Notices Page</h1>
+        <div>
+            <Helmet>
+                <title>Find pet</title>
+            </Helmet>
+            <h1>Notices / Find pet page</h1>
+        </div>
     );
 }

@@ -1,5 +1,13 @@
+import { LoginForm } from "components/LoginForm/LoginForm";
+import { Helmet } from "react-helmet";
+
 export const Login = () => {
     return (
-        <h1>Login Page</h1>
+        <div>
+            <Helmet>
+                <title>Log in</title>
+            </Helmet>
+            <LoginForm />
+        </div>
     );
 }

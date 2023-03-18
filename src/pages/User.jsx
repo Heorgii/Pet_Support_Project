@@ -1,5 +1,11 @@
+import { Helmet } from "react-helmet";
+
 export const User = () => {
     return (
-        <h1>User Page</h1>
+        <div>
+            <Helmet>
+                <title>Profile</title>
+            </Helmet>
+        </div>
     );
 }
