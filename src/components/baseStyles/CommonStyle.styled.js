@@ -29,6 +29,7 @@ const Section = styled.section`
 const Title = styled.h1`
   margin: ${props => props.margin || '0 0 28px 0'};
   text-align: ${props => props.position || 'center'};
+  font-family: 'Manrope', sans-serif;
   font-size: ${props => props.size || '24px'};
   font-weight: 700;
   line-height: 1.375;

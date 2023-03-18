@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
  body{
    margin: 0;
-   font-family: 'Manrope Medium', 'Manrope Bold', 'Manrope SemiBold', 
+   font-family: -apple-system, BlinkMacSystemFont, 'Manrope Medium', 'Manrope Bold', 'Manrope SemiBold', 
    'Manrope Regular', 'Poppins Regular','Poppins Bold', 'Inter Regular' ,'Inter Medium', 'Inter Bold',
    'Montserrat Regular', 'Montserrat Medium', sans-serif;
  }
@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
  }
 
- /* body {
+  /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -32,4 +32,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-`;
+`; 
