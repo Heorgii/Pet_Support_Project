@@ -33,6 +33,12 @@ const Title = styled.h1`
   font-weight: 700;
   line-height: 1.375;
   color: #000000;
+
+  @media screen and (min-width: 768px) {
+    margin: ${props => props.margin || '0 0 40px 0'};
+  text-align: ${props => props.position || 'center'};
+  font-size: ${props => props.size || '48px'};
+  }
 `;
 
 export { Container, Section, Title };
