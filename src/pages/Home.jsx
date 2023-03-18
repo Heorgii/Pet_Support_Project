@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import  Register  from "../components/RegisterForm/Register"
+import  Register  from "../components/RegisterForm/RegisterForm"
 
 export const Home = () => {
     return (
