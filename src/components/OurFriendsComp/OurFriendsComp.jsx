@@ -1,5 +1,5 @@
 export const OurFriendsComp = ()=>{
     return(
-        <h1>Our Friends Page</h1>
+        <ul>Our Friends List</ul>
     );
 }
