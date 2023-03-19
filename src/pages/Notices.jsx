@@ -1,7 +1,7 @@
 import { NoticesComp } from "components/NoticesComp/NoticesComp";
 import { Helmet } from "react-helmet";
 
-export const Notices = () => {
+const Notices = () => {
     return (
         <div>
             <Helmet>
@@ -12,3 +12,5 @@ export const Notices = () => {
         </div>
     );
 }
+
+export default Notices;

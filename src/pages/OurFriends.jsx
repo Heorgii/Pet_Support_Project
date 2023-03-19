@@ -1,8 +1,8 @@
 // import { SEO } from 'utils/SEO';
-import { OurFriendsComp } from 'components/OurFriendsComp/OurFriendsComp';
+import OurFriendsComp  from 'components/OurFriendsComp/OurFriendsComp';
 import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
 
-export const OurFriends = () => {
+const OurFriends = () => {
   return (
     <main>
       {/* <SEO
@@ -16,3 +16,5 @@ export const OurFriends = () => {
     </main>
   );
 };
+
+export default OurFriends;
