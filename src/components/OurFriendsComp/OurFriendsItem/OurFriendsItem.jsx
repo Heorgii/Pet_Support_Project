@@ -11,12 +11,12 @@ import {
   Link,
   Image,
 } from './OurFriendsItem.styled';
-import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
+// import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state, setState] = useState({ friend });
-  const [showModal, setShowModal] = useState(false);
-  const [workTime, setWorkTime] = useState('8:00- 19:00');
+  const [state] = useState({ friend });//setState 
+  // const [showModal, setShowModal] = useState(false);
+  // const [workTime, setWorkTime] = useState('8:00- 19:00');
 
   const {
     id,
@@ -25,7 +25,7 @@ export const OurFriendsItem = ({ friend }) => {
     addressUrl,
     imageUrl,
     address,
-    workDays,
+    // workDays,
     phone,
     email,
   } = state.friend;

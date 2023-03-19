@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
-import { Modal, Table, Day, Time } from './OurFriendsItemModal.styled';
+import {  Day, Time } from './OurFriendsItemModal.styled';//Modal, Table,
 
 export const OurFriendsItemModal = workDays => {
   // const { isOpen, from, to } = workDays;
-  const workTime = [
-    {
-      MN: workDays[0],
-      TU: workDays[1],
-      WE: workDays[2],
-      TH: workDays[3],
-      FR: workDays[4],
-      SA: workDays[5],
-      SU: workDays[6],
-    },
-  ];
+  // const workTime = [
+  //   {
+  //     MN: workDays[0],
+  //     TU: workDays[1],
+  //     WE: workDays[2],
+  //     TH: workDays[3],
+  //     FR: workDays[4],
+  //     SA: workDays[5],
+  //     SU: workDays[6],
+  //   },
+  // ];
 
-  const handleOpenTime = () => {};
+  // const handleOpenTime = () => {};
 
-  const handleToogleModal = () => {};
+  // const handleToogleModal = () => {};
 
   return (
     <div>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { OurFriendsItem } from 'components/OurFriendsComp/OurFriendsItem/OurFriendsItem';
-import { List, Notify } from './OurFriendsList.styled';
+import { List } from './OurFriendsList.styled';//Notify
 import sponsors from '../sponsors.json';
 
 export const OurFriendsList = () => {
-  const [friends, setFriends] = useState(sponsors);
+  const [friends] = useState(sponsors);//setFriends
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [isError, setIsError] = useState(false);

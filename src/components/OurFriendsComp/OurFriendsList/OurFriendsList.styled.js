@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+// import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const List = styled.ul`
   display: grid;
