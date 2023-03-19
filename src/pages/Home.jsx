@@ -1,14 +1,16 @@
-import { Helmet } from "react-helmet";
-import  Register  from "../components/RegisterForm/RegisterForm"
+import { Helmet } from 'react-helmet-async';
+import Register from '../components/RegisterForm/RegisterForm';
 
-export const Home = () => {
-    return (
-        <div>
-            <Helmet>
-                <title>Home</title>
-            </Helmet>
-            <h1>Home page</h1>
-            <Register/>
-        </div>
-    );
-}
+const HomePage = () => {
+  return (
+    <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      <h1>Home page</h1>
+      <Register />
+    </div>
+  );
+};
+
+export default HomePage;
