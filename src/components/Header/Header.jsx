@@ -1,14 +1,18 @@
-import { AuthNav } from "components/Header/AuthNav/AuthNav";
-import { Navigation } from "components/Header/Navigation/Navigation";
+import { AuthNav } from './AuthNav/AuthNav';
+import { Navigation } from 'components/Header/Navigation/Navigation';
 // import { UserNav } from "components/UserNav/UserNav";
+import { Logo } from './Elements/Logo';
+import { Menu } from './Elements/Menu';
 
 export const Header = () => {
+  return (
+    <header>
+      <Logo />
 
-    return (
-        <header>
-            <Navigation />
-            <AuthNav />
-            {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-        </header>
-    );
-}
+      <Navigation />
+      <AuthNav />
+      <Menu />
+      {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+    </header>
+  );
+};
