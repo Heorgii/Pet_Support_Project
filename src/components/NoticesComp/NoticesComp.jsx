@@ -3,6 +3,7 @@ import { NoticesCategoriesNav } from "./NoticesCategoriesNav/NoticesCategoriesNa
 import { AddNoticeButton } from "./AddNoticeButton/AddNoticeButton";
 import { NoticesCategoriesList } from "./NoticesCategoriesList/NoticesCategoriesList";
 
+
 export const NoticesComp = () => {
     return (
         <div>
