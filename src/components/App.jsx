@@ -7,7 +7,7 @@ import { SharedLayout } from './SharedLayout';
 
 const HomePage = lazy(() => import('../pages/Home'));
 // const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
-// const NoticesPage = lazy(() => import('../pages/Notices'));
+const NoticesPage = lazy(() => import('../pages/Notices'));
 // const NewsPage = lazy(() => import('../pages/News'));
 // const UserPage = lazy(() => import('../pages/User'));
 // const RegisterPage = lazy(() => import('../pages/Register'));
@@ -46,7 +46,7 @@ export const App = () => {
               }
             />
             <Route path="news" element={<div>news</div>} />
-            | <Route path="notices" element={<div>notices</div>} />
+            <Route path="notices" element={<NoticesPage />} />
             <Route path="friends" element={<div>friends</div>} />
             <Route
               path="user"
