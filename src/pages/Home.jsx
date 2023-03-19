@@ -1,6 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import Register from '../components/RegisterForm/RegisterForm';
-// import { Header } from '../components/Header/Header';
 
 const HomePage = () => {
   return (
@@ -9,8 +7,6 @@ const HomePage = () => {
         <title>Home</title>
       </Helmet>
 
-      {/* <Header /> */}
-      <Register />
     </div>
   );
 };

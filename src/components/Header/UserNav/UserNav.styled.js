@@ -19,7 +19,8 @@ const NavItem = styled.li`
     margin-left: 80px;
   }
 `;
-const NavItemTitle = styled.a`
+
+const NavItemTitle = styled.p`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
