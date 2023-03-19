@@ -1,11 +1,11 @@
-import { Home } from "pages/Home";
-// import { lazy } from "react";
-// import { HelmetProvider } from "react-helmet-async";
-// import { Route, Routes } from "react-router-dom";
-// import { RestrictedRoute } from "utils/RestrictedRoute";
-// import { SharedLayout } from "./SharedLayout";
+import { lazy } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+import { Route, Routes } from 'react-router-dom';
+import { RestrictedRoute } from 'routes/RestrictedRoute';
+import { PrivateRoute } from 'routes/PrivateRoute';
+import { SharedLayout } from './SharedLayout';
 
-// const HomePage = lazy(() => import('../pages/Home'));
+const HomePage = lazy(() => import('../pages/Home'));
 // const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
 // const NoticesPage = lazy(() => import('../pages/Notices'));
 // const NewsPage = lazy(() => import('../pages/News'));
@@ -13,37 +13,59 @@ import { Home } from "pages/Home";
 // const RegisterPage = lazy(() => import('../pages/Register'));
 // const LoginPage = lazy(() => import('../pages/Login'));
 
-
 export const App = () => {
+  //  як буде правцювати бекєнд потрібно оновити дані юзера
+  // const dispatch = useDispatch();
+  // const user = useSelector(selectUser)
+  // useEffect(() => {
+  //   if(user){dispatch(refreshUser(user))};
+  // }, [dispatch, user]);
+
   return (
     <div>
-      {/* <HelmetProvider>
+      <HelmetProvider>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route
-              path="/register"
-            element={
+              path="register"
+              element={
                 <RestrictedRoute
+                  redirectTo="/user"
+                  component={<div>RegisterPage</div>}
+                />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute
+                  redirectTo="/user"
+                  component={<div>LoginPage</div>}
+                />
+              }
+            />
+            <Route path="news" element={<div>news</div>} />
+            | <Route path="notices" element={<div>notices</div>} />
+            <Route path="friends" element={<div>friends</div>} />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute
                   redirectTo="/register"
-                  component={<RegisterPage />}
+                  component={<div>user</div>}
                 />
               }
-              />
-              < Route
-              path="/login"
-            element={
-                <RestrictedRoute
-                  redirectTo="/login"
-                  component={<LoginPage />}
-                />
+            />
+            <Route
+              path="*"
+              element={
+                <RestrictedRoute redirectTo="/" component={<HomePage />} />
               }
-              />
-              < Route path="*" element={<HomePage />} />
+            />
           </Route>
         </Routes>
-      </HelmetProvider> */}
-      <Home />
+      </HelmetProvider>
     </div>
   );
 };
