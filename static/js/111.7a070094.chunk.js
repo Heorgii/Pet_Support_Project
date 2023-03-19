@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_support_project=self.webpackChunkpet_support_project||[]).push([[111],{66111:function(n,e,r){r.r(e),r.d(e,{default:function(){return i}});var t=r(80184),u=function(){return(0,t.jsx)("h1",{children:"Login form"})},c=r(54270),i=function(){return(0,t.jsxs)("div",{children:[(0,t.jsx)(c.q,{children:(0,t.jsx)("title",{children:"Log in"})}),(0,t.jsx)(u,{})]})}}}]);
+//# sourceMappingURL=111.7a070094.chunk.js.map
