@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import NewsComp from '../components/NewsComp/NewsComp';
+import { NewsComp } from '../components/NewsComp/NewsComp';
 
 export const News = () => {
     return (

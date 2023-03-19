@@ -1,5 +1,6 @@
 import 'modern-normalize';
 import { createGlobalStyle } from 'styled-components';
+import { baseColor } from "components/baseStyles/Variables.styled"; 
 
 export const GlobalStyle = createGlobalStyle`
  body{
@@ -7,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
    font-family: -apple-system, BlinkMacSystemFont, 'Manrope Medium', 'Manrope Bold', 'Manrope SemiBold', 
    'Manrope Regular', 'Poppins Regular','Poppins Bold', 'Inter Regular' ,'Inter Medium', 'Inter Bold',
    'Montserrat Regular', 'Montserrat Medium', sans-serif;
+   background-color: ${baseColor.colors.mainBg};
  }
 
  h1,h2,h3,h4,h5,h6,p{
@@ -17,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
  ul{
     padding: 0;
     margin: 0;
+    list-style: none;
  }
 
   /* body {
@@ -32,4 +35,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-`; 
+`;

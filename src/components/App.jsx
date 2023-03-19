@@ -5,6 +5,11 @@ import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from './SharedLayout';
 import { ApiDocs } from './ApiDocs/ApiDocs';
+import { Notices } from 'pages/Notices';
+import { Register } from 'pages/Register';
+import { Login } from 'pages/Login';
+import { News } from 'pages/News';
+import { OurFriends } from 'pages/OurFriends';
 
 const HomePage = lazy(() => import('../pages/Home'));
 // const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
@@ -29,26 +34,51 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route
-              path="register"
+              path="/register"
               element={
                 <RestrictedRoute
                   redirectTo="/user"
-                  component={<div>RegisterPage</div>}
+                  component={<Register />}
                 />
               }
             />
             <Route
-              path="login"
+              path="/login"
               element={
                 <RestrictedRoute
                   redirectTo="/user"
-                  component={<div>LoginPage</div>}
+                  component={<Login />}
                 />
               }
             />
-            <Route path="news" element={<div>news</div>} />
-            | <Route path="notices" element={<div>notices</div>} />
-            <Route path="friends" element={<div>friends</div>} />
+            <Route path="/news"
+              element={
+                <RestrictedRoute
+                  redirectTo="/news"
+                  component={<News />}
+                />
+              }
+            />
+
+            <Route
+              path="/notices"
+              element={
+                <RestrictedRoute
+                  redirectTo="/notices"
+                  component={<Notices />}
+                />
+              }
+            />
+            <Route path="/friends"
+              element={
+                <RestrictedRoute
+                  redirectTo="/friends"
+                  component={<OurFriends />}
+                />
+              }
+            />
+
+            <Route path="/friends" element={<div>friends</div>} />
             {/* added kadulin */}
             <Route path="api-docs" element={<ApiDocs />} />
             <Route
@@ -60,12 +90,8 @@ export const App = () => {
                 />
               }
             />
-            <Route
-              path="*"
-              element={
-                <RestrictedRoute redirectTo="/" component={<HomePage />} />
-              }
-            />
+
+              <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>
       </HelmetProvider>

@@ -1,12 +1,15 @@
-import { NavLink } from "react-router-dom"
+// import { NavLink } from 'react-router-dom';
+import { LoginBTN } from '../Elements/loginBTN/LoginBTN';
+import { RegistrationBTN } from '../Elements/registrationBTN/RegistrationBTN';
+import { Container } from './AuthNav.styled';
 
 export const AuthNav = () => {
-    <div>
-        <NavLink to="/register">
-            Register
-        </NavLink>
-        <NavLink to="/login">
-            Log In
-        </NavLink>
-    </div >
-}
+  return (
+    <Container>
+      <LoginBTN>{/* <NavLink to="/login">login</NavLink> */}</LoginBTN>
+      <RegistrationBTN>
+        {/* <NavLink to="/register">register</NavLink> */}
+      </RegistrationBTN>
+    </Container>
+  );
+};
