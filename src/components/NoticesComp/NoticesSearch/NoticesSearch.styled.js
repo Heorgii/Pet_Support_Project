@@ -1,20 +1,19 @@
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import { Field, Form } from "formik";
-import { ReactComponent as iconSearch} from '../../../images/svg/icon_search.svg'
+import { Field, Form } from 'formik';
+import { ReactComponent as iconSearch } from '../../../images/svg/icon_search.svg';
 
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-font-family: "Manrope", sans-serif;
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 1.375;
-text-align: center;
-color: ${baseColor.colors.blackText};
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.375;
+  text-align: center;
+  color: ${baseColor.colors.blackText};
 
-margin-top: 42px;
-margin-bottom: 28px;
+  margin-bottom: 28px;
 
   @media screen and (min-width: 768px) {
   }
@@ -24,20 +23,18 @@ margin-bottom: 28px;
 `;
 
 export const ButtonStyled = styled.button`
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-
-        background: none repeat scroll 0 0 transparent;
-        border: medium none;
-        border-spacing: 0;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-        text-decoration: none;
-        text-indent: 0;
-
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  border-spacing: 0;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
 
   @media screen and (min-width: 768px) {
   }
@@ -47,9 +44,9 @@ justify-content: center;
 `;
 
 export const FormStyled = styled(Form)`
-margin-bottom: 28px;
+  margin-bottom: 28px;
 
-width: 100%;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
   }
@@ -59,16 +56,16 @@ width: 100%;
 `;
 
 export const FieldStyled = styled(Field)`
-all: unset;
+  all: unset;
 
-font-family: "Manrope", sans-serif;
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 1.375;
-align-items: center;
-letter-spacing: 0.04em;
-color: ${baseColor.colors.inpText};
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.375;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: ${baseColor.colors.inpText};
 
   @media screen and (min-width: 768px) {
   }
@@ -78,22 +75,21 @@ color: ${baseColor.colors.inpText};
 `;
 
 export const LabelStyled = styled.label`
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-width: 100%;
-height: 40px;
+  width: 100%;
+  height: 40px;
 
-margin-left: 0;
-margin-right: 0;
-padding: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
 
+  background: ${baseColor.colors.white};
 
-background: ${baseColor.colors.white};
-
-box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-border-radius: 20px;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 20px;
 
   @media screen and (min-width: 768px) {
   }
@@ -103,16 +99,13 @@ border-radius: 20px;
 `;
 
 export const IconSearch = styled(iconSearch)`
-cursor: pointer;
-width: 20px;
-height: 20px;
-display: block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: block;
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1280px) {
   }
 `;
-
-
-
