@@ -74,7 +74,7 @@ export const OurFriendsItem = ({ friend }) => {
             <Text>Address:</Text>
             {address ? (
               <Link href={addressUrl} aria-label="address">
-                <EllipsisText text={address} length={'25'} />
+                <EllipsisText text={address} length={25} />
               </Link>
             ) : (
               <Text>-------------------------</Text>
@@ -84,7 +84,7 @@ export const OurFriendsItem = ({ friend }) => {
             <Text>Email:</Text>
             {email ? (
               <Link href={hrefEmail} aria-label="email">
-                <EllipsisText text={email} length={'25'} />
+                <EllipsisText text={email} length={25} />
               </Link>
             ) : (
               <Text>-------------------------</Text>
