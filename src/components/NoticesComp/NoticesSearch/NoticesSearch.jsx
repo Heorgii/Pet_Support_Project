@@ -8,31 +8,25 @@ export const NoticesSearch = () => {
    <div>
      <Title>Find your favorite pet</Title>
      <Formik
-       initialValues={{ email: '', password: '' }}
-       validate={values => {
-         const errors = {};
-         if (!values.email) {
-           errors.email = 'Required';
-         } else if (
-           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-         ) {
-           errors.email = 'Invalid email address';
-         }
-         return errors;
+       initialValues={{ search: '' }}
+       validate={value => {
+         const error = {};
+         if (!value.search) {
+           error.search = 'Required';
+         } 
+         return error;
        }}
-       onSubmit={(values, { setSubmitting }) => {
+       onSubmit={(value, { setSubmitting }) => {
          setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
+           alert(JSON.stringify(value, null, 2));
            setSubmitting(false);
          }, 400);
        }}
      >
        {({ isSubmitting }) => (
          <Form>
-           <Field type="email" name="email" />
-           <ErrorMessage name="email" component="div" />
-           <Field type="password" name="password" />
-           <ErrorMessage name="password" component="div" />
+           <Field type="search" name="search"/>
+           <ErrorMessage name="search" component="div" />
            <button type="submit" disabled={isSubmitting}>
              Submit
            </button>
