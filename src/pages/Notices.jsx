@@ -7,7 +7,6 @@ export const Notices = () => {
             <Helmet>
                 <title>Find pet</title>
             </Helmet>
-            <h1>Notices / Find pet page</h1>
             <NoticesComp />
         </div>
     );

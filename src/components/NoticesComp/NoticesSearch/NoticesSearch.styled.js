@@ -1,4 +1,5 @@
 import { baseColor } from 'components/baseStyles/Variables.styled';
+import { Field, Form } from "formik";
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -24,3 +25,41 @@ margin-bottom: 28px;
     padding: 0 16px;
   }
 `;
+
+export const ErrorMessage = styled.div`
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const ButtonStyled = styled.button`
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const FormStyled = styled(Form)`
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const FieldStyled = styled(Field)`
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+

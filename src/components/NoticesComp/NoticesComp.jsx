@@ -7,7 +7,6 @@ import { NoticesCategoriesList } from "./NoticesCategoriesList/NoticesCategories
 export const NoticesComp = () => {
     return (
         <div>
-            <h1>NoticesComp/ Find pet</h1>
             <NoticesSearch />
             <NoticesCategoriesNav />
             <NoticesCategoriesList />

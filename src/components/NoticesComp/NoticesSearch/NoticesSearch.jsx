@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Formik, Field, Form } from "formik";
-import {Title} from './NoticesSearch.styled';
+import { Formik } from "formik";
+import {Title, ErrorMessage, ButtonStyled, FormStyled, FieldStyled} from './NoticesSearch.styled';
 
 export const NoticesSearch = () => {
     return(
@@ -24,13 +23,13 @@ export const NoticesSearch = () => {
        }}
      >
        {({ isSubmitting }) => (
-         <Form>
-           <Field type="search" name="search"/>
+         <FormStyled>
+           <FieldStyled type="search" name="search"/>
            <ErrorMessage name="search" component="div" />
-           <button type="submit" disabled={isSubmitting}>
+           <ButtonStyled type="submit" disabled={isSubmitting}>
              Submit
-           </button>
-         </Form>
+           </ButtonStyled>
+         </FormStyled>
        )}
      </Formik>
    </div>
