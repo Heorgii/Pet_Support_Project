@@ -36,27 +36,19 @@ export const App = () => {
             <Route
               path="/register"
               element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<Register />}
-                />
+                <RestrictedRoute redirectTo="/user" component={<Register />} />
               }
             />
             <Route
               path="/login"
               element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<Login />}
-                />
+                <RestrictedRoute redirectTo="/user" component={<Login />} />
               }
             />
-            <Route path="/news"
+            <Route
+              path="/news"
               element={
-                <RestrictedRoute
-                  redirectTo="/news"
-                  component={<News />}
-                />
+                <RestrictedRoute redirectTo="/news" component={<News />} />
               }
             />
 
@@ -69,7 +61,8 @@ export const App = () => {
                 />
               }
             />
-            <Route path="/friends"
+            <Route
+              path="/friends"
               element={
                 <RestrictedRoute
                   redirectTo="/friends"
@@ -91,7 +84,7 @@ export const App = () => {
               }
             />
 
-              <Route path="*" element={<HomePage />} />
+            <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>
       </HelmetProvider>
