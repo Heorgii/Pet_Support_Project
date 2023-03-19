@@ -1,14 +1,11 @@
-import { NavLink } from "react-router-dom"
-import { AuthNav } from "../AuthNav/AuthNav"
-import { UserNav } from "../UserNav/UserNav"
-
+import { AuthNav } from '../AuthNav/AuthNav';
+import { UserNav } from '../UserNav/UserNav';
+import { NavContainer } from './Navigation.styled';
 export const Navigation = () => {
-    <nav>
-        <NavLink to="/news">
-            News
-        </NavLink>
-        
-        <AuthNav />
-        <UserNav />
-    </nav>
-}
+  return (
+    <NavContainer>
+      <UserNav />
+      <AuthNav />
+    </NavContainer>
+  );
+};
