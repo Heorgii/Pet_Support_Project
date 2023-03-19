@@ -1,7 +1,7 @@
 import { UserComp } from "components/UserComp/UserComp";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
-export const User = () => {
+const User = () => {
     return (
         <div>
             <Helmet>
@@ -12,3 +12,5 @@ export const User = () => {
         </div>
     );
 }
+
+export default User;

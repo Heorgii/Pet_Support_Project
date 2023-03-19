@@ -2,7 +2,7 @@ import { SEO } from 'utils/SEO';
 import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';
 import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
 
-export const OurFriends = () => {
+const OurFriends = () => {
   return (
     <main>
       <SEO
@@ -16,3 +16,5 @@ export const OurFriends = () => {
     </main>
   );
 };
+
+export default OurFriends;

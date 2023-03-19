@@ -1,7 +1,7 @@
 import RegisterForm from "components/RegisterForm/RegisterForm";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
-export const Register = () => {
+const Register = () => {
     return (
         <div>
             <Helmet>
@@ -11,3 +11,5 @@ export const Register = () => {
         </div>
     );
 }
+
+export default Register;
