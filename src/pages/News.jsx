@@ -1,7 +1,7 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { NewsComp } from '../components/NewsComp/NewsComp';
 
-export const News = () => {
+const News = () => {
     return (
         <div>
             <Helmet>
@@ -12,3 +12,5 @@ export const News = () => {
         </div>
     );
 }
+
+export default News;
