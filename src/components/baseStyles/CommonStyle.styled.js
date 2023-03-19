@@ -11,9 +11,9 @@ const Container = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 0 32px;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: ${props => props.flexDirection || 'column'};
+    align-items: ${props => props.alignItems || 'center'};
+    justify-content: c ${props => props.justifyContent || 'center'};
   }
 
   @media screen and (min-width: 1280px) {
@@ -37,8 +37,8 @@ const Title = styled.h1`
 
   @media screen and (min-width: 768px) {
     margin: ${props => props.margin || '0 0 40px 0'};
-  text-align: ${props => props.position || 'center'};
-  font-size: ${props => props.size || '48px'};
+    text-align: ${props => props.position || 'center'};
+    font-size: ${props => props.size || '48px'};
   }
 `;
 

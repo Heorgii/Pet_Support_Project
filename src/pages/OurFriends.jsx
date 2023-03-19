@@ -1,17 +1,17 @@
-// import { SEO } from 'utils/SEO';
-import OurFriendsComp  from 'components/OurFriendsComp/OurFriendsComp';
+import { SEO } from 'utils/SEO';
+import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';
 import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
 
 const OurFriends = () => {
   return (
     <main>
-      {/* <SEO
+      <SEO
         title="Our friends"
         description="You can see all of our company of friends"
-      /> */}
+      />
       <Container>
-        <Title as="h1" hidden>Our Friends Page</Title>
-        <OurFriendsComp />
+        <Title as="h1">Our Friends Page</Title>
+        <OurFriendsList />
       </Container>
     </main>
   );

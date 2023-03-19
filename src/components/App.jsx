@@ -40,19 +40,13 @@ export const App = () => {
             <Route
               path="/login"
               element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<LoginPage />}
-                />
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
               }
             />
-
-            <Route path="/news"
+            <Route
+              path="/news"
               element={
-                <RestrictedRoute
-                  redirectTo="/news"
-                  component={<NewsPage />}
-                />
+                <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
               }
             />
 
@@ -66,7 +60,8 @@ export const App = () => {
               }
             />
 
-            <Route path="/friends"
+            <Route
+              path="/friends"
               element={
                 <RestrictedRoute
                   redirectTo="/friends"
@@ -77,14 +72,11 @@ export const App = () => {
 
             {/* added kadulin */}
             <Route path="api-docs" element={<ApiDocs />} />
-            
+
             <Route
               path="user"
               element={
-                <PrivateRoute
-                  redirectTo="/register"
-                  component={<UserPage />}
-                />
+                <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }
             />
 
