@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
  ul{
     padding: 0;
     margin: 0;
+    list-style: none;
  }
 
   /* body {
@@ -32,4 +33,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-`; 
+`;
