@@ -1,0 +1,1 @@
+export const queryValue = state => state.query.value;
