@@ -1,8 +1,8 @@
 import { SEO } from 'utils/SEO';
-import { OurFriendsComp } from 'components/OurFriendsComp/OurFriendsComp';
+import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';
 import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
 
-export const OurFriends = () => {
+const OurFriends = () => {
   return (
     <main>
       <SEO
@@ -10,9 +10,11 @@ export const OurFriends = () => {
         description="You can see all of our company of friends"
       />
       <Container>
-        <Title as="h1" hidden>Our Friends Page</Title>
-        <OurFriendsComp />
+        <Title as="h1">Our Friends Page</Title>
+        <OurFriendsList />
       </Container>
     </main>
   );
 };
+
+export default OurFriends;

@@ -7,12 +7,12 @@ import { SharedLayout } from './SharedLayout';
 // import { ApiDocs } from './ApiDocs/ApiDocs';
 
 const HomePage = lazy(() => import('../pages/Home'));
-// const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
-// const NoticesPage = lazy(() => import('../pages/Notices'));
-// const NewsPage = lazy(() => import('../pages/News'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
+const NoticesPage = lazy(() => import('../pages/Notices'));
+const NewsPage = lazy(() => import('../pages/News'));
 const UserPage = lazy(() => import('../pages/User'));
-// const RegisterPage = lazy(() => import('../pages/Register'));
-// const LoginPage = lazy(() => import('../pages/Login'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
 
 export const App = () => {
   //  як буде правцювати бекєнд потрібно оновити дані юзера
@@ -29,43 +29,58 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route
-              path="register"
+              path="/register"
               element={
                 <RestrictedRoute
                   redirectTo="/user"
-                  component={<div>RegisterPage</div>}
+                  component={<RegisterPage />}
                 />
               }
             />
             <Route
-              path="login"
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              }
+            />
+            <Route
+              path="/news"
+              element={
+                <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
+              }
+            />
+
+            <Route
+              path="/notices"
               element={
                 <RestrictedRoute
-                  redirectTo="/user"
-                  component={<div>LoginPage</div>}
+                  redirectTo="/notices"
+                  component={<NoticesPage />}
                 />
               }
             />
-            <Route path="news" element={<div>news</div>} />
-            | <Route path="notices" element={<div>notices</div>} />
-            <Route path="friends" element={<div>friends</div>} />
+
+            <Route
+              path="/friends"
+              element={
+                <RestrictedRoute
+                  redirectTo="/friends"
+                  component={<OurFriendsPage />}
+                />
+              }
+            />
+
             {/* added kadulin */}
-            {/* <Route path="api-docs" element={<ApiDocs />} /> */}
+            <Route path="api-docs" element={<ApiDocs />} />
+
             <Route
               path="user"
               element={
-                <PrivateRoute
-                  redirectTo="/register"
-                  component={<div>user</div>}
-                />
+                <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }
             />
-            <Route
-              path="*"
-              element={
-                <RestrictedRoute redirectTo="/" component={<HomePage />} />
-              }
-            />
+
+            <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>
       </HelmetProvider>
