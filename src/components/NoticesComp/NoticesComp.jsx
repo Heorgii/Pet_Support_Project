@@ -8,9 +8,12 @@ export const NoticesComp = () => {
         <div>
             <h1>NoticesComp/ Find pet</h1>
             <NoticesSearch />
+<div>
             <NoticesCategoriesNav />
-            <NoticesCategoriesList />
             <AddNoticeButton />
+</div>
+
+            <NoticesCategoriesList />
         </div>
     );
 }
