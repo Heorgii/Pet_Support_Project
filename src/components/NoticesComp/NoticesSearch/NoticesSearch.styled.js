@@ -16,9 +16,9 @@ export const Title = styled.h1`
   margin-bottom: 28px;
 
   @media screen and (min-width: 768px) {
-  }
+    font-size: 48px;
 
-  @media screen and (min-width: 1280px) {
+    margin-bottom: 40px;
   }
 `;
 
@@ -35,12 +35,6 @@ export const ButtonStyled = styled.button`
   text-align: left;
   text-decoration: none;
   text-indent: 0;
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const FormStyled = styled(Form)`
@@ -49,9 +43,7 @@ export const FormStyled = styled(Form)`
   width: 100%;
 
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    margin-bottom: 40px;
   }
 `;
 
@@ -68,9 +60,7 @@ export const FieldStyled = styled(Field)`
   color: ${baseColor.colors.inpText};
 
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    font-size: 20px;
   }
 `;
 
@@ -79,7 +69,6 @@ export const LabelStyled = styled.label`
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
   height: 40px;
 
   margin-left: 0;
@@ -92,9 +81,16 @@ export const LabelStyled = styled.label`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
+    margin-left: 48px;
+    margin-right: 48px;
+    height: 44px;
+    padding: 8px 20px 8px 20px;
+    border-radius: 40px;
   }
 
   @media screen and (min-width: 1280px) {
+    margin-left: 320px;
+    margin-right: 320px;
   }
 `;
 
@@ -104,8 +100,7 @@ export const IconSearch = styled(iconSearch)`
   height: 20px;
   display: block;
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    width: 24px;
+    height: 24px;
   }
 `;
