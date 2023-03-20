@@ -1,14 +1,50 @@
-import { UserComp } from "components/UserComp/UserComp";
-import { Helmet } from "react-helmet";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { PetData } from 'components/UserComp/PetsData';
+import { UserData } from 'components/UserComp/UserData';
+import { useAuth } from 'hooks/useAuth';
 
-export const User = () => {
-    return (
-        <div>
-            <Helmet>
-                <title>Profile</title>
-            </Helmet>
-            <h1>Profile</h1>
-            <UserComp />
-        </div>
-    );
-}
+export const UserComp = () => {
+  //   const dispatch = useDispatch();
+  const { user } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(state => !state);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      document.body.style.overflow = '';
+    }
+  }, [isModalOpen]);
+
+  //   useEffect(() => {
+  //     dispatch();
+  //   }, [dispatch]);
+
+  return (
+    <>
+      <UserPageWrapper>
+        <UserDataWrapper>
+          <UserDataTitle title="My information:" />
+          <UserDataContainer>
+            <UserData />
+            <Logout />
+          </UserDataContainer>
+        </UserDataWrapper>
+        <UserAboutWrapper>
+          <TopContainer>
+            <MyPetContainer>
+              <MyPetTitle title="My pets" />
+            </MyPetContainer>
+            {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
+          </TopContainer>
+          {toShow === 'pets' && <PetsData />}
+        </UserAboutWrapper>
+      </UserPageWrapper>
+      {isModalOpen && (
+        <Modal setShow={toggleModal}>
+          <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
+        </Modal>
+      )}
+    </>
+  );
+};
