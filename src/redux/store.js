@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { noticesReducer } from './notices/slice';
+import { querySlice } from './query/slice';
 import { authReducer } from "./auth/slice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,6 +15,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     notices: noticesReducer,
+    query: querySlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

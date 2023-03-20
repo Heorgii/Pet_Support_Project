@@ -4,9 +4,9 @@ import axios from 'axios';
 // GET @ /notices/:categoryName
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices',
-  async (categoryName, thunkAPI) => {
+  async ({categoryName, params}, thunkAPI) => {
     try {
-      const res = await axios.get(`/contacts/${categoryName}`);
+      const res = await axios.get(`/contacts/${categoryName}`, params);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -14,7 +14,7 @@ export const fetchNoticesByCategory = createAsyncThunk(
   }
 );
 
-// DET @ /notices/favorite
+// GET @ /notices/favorite
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/favorite',
   async (_, thunkAPI) => {
@@ -27,12 +27,38 @@ export const fetchFavoriteNotices = createAsyncThunk(
   }
 );
 
+// POST @ /notices/favorite/:noticeId
+export const toggleFavoriteNotices = createAsyncThunk(
+  'notices/toggleFavorite',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(`/notices/favorite/${noticeId}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 // GET @ /notices/own
 export const fetchOwnNotices = createAsyncThunk(
   'notices/own',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.delete('/notices/own');
+      const response = await axios.get('/notices/own');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+// POST @ /notices/own
+export const addOwnNotice = createAsyncThunk(
+  'notices/addNotice',
+  async (objNotice, thunkAPI) => {
+    try {
+      const response = await axios.post('/notices/own', objNotice);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
