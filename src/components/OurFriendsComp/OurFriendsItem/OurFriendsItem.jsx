@@ -11,10 +11,11 @@ import {
   Link,
   Image,
 } from './OurFriendsItem.styled';
-// import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
+import defaultImg from 'images/defaultPets.png';
+import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state] = useState({ friend });//setState 
+  const [state] = useState({ friend }); //setState
   // const [showModal, setShowModal] = useState(false);
   // const [workTime, setWorkTime] = useState('8:00- 19:00');
 
@@ -25,13 +26,15 @@ export const OurFriendsItem = ({ friend }) => {
     addressUrl,
     imageUrl,
     address,
-    // workDays,
+    workDays,
     phone,
     email,
   } = state.friend;
 
   const hrefEmail = `mailto:${email}`;
   const hrefPhone = `tel:${phone}`;
+
+  const time = workDays => {};
 
   // const handleModal = workDays => {
   //   setWorkTime(workDays);
@@ -48,19 +51,29 @@ export const OurFriendsItem = ({ friend }) => {
     <Item key={id} id={id}>
       <Title href={url}>{title}</Title>
       <Info>
-        <Image
-          src={imageUrl}
-          alt={title}
-          width="110"
-          height="78"
-          loading="lazy"
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={title}
+            width="110"
+            height="78"
+            loading="lazy"
+          />
+        ) : (
+          <Image
+            src={defaultImg}
+            alt={title}
+            width="110"
+            height="78"
+            loading="lazy"
+          />
+        )}
         <InfoWrapper>
           <TextWrapper>
             <Text>Time:</Text>
             <Text>-------------------------</Text>
             {/* {workDays ? (
-              <Link aria-label="work days" onClick={handleModal(workDays)}>
+              <Link aria-label="work days" onClick={handleModal()}>
                 {workTime}
               </Link>
             ) : (
@@ -73,7 +86,7 @@ export const OurFriendsItem = ({ friend }) => {
           <TextWrapper>
             <Text>Address:</Text>
             {address ? (
-              <Link href={addressUrl} aria-label="address">
+              <Link href={addressUrl} aria-label="address" target="blank">
                 <EllipsisText text={address} length={25} />
               </Link>
             ) : (
