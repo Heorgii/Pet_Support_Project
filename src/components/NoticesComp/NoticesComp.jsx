@@ -1,16 +1,17 @@
-import { NoticesSearch } from "./NoticesSearch/NoticesSearch";
-import { NoticesCategoriesNav } from "./NoticesCategoriesNav/NoticesCategoriesNav";
-import { AddNoticeButton } from "./AddNoticeButton/AddNoticeButton";
-import { NoticesCategoriesList } from "./NoticesCategoriesList/NoticesCategoriesList";
+import { NoticesSearch } from './NoticesSearch/NoticesSearch';
+import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNav';
+import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';
+import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
+import { Wrapper } from './NoticesComp.styled';
 
 export const NoticesComp = () => {
-    return (
-        <div>
-            <h1>NoticesComp/ Find pet</h1>
-            <NoticesSearch />
-            <NoticesCategoriesNav />
-            <NoticesCategoriesList />
-            <AddNoticeButton />
-        </div>
-    );
-}
+  console.log();
+  return (
+    <Wrapper>
+      <NoticesSearch />
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList />
+      <AddNoticeButton />
+    </Wrapper>
+  );
+};
