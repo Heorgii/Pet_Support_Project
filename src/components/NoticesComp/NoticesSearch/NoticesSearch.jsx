@@ -24,6 +24,7 @@ export const NoticesSearch = () => {
         onSubmit={(values, { setSubmitting }) => {
           if (values.search === '') {
             Notiflix.Notify.warning('Fill the field!');
+            setSubmitting(false);
           } else {
             dispatch(addQuery(values.search));
             setSubmitting(false);
