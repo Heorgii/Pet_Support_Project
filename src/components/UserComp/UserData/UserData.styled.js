@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as EditCamera } from '../../images/icons/userData/camera.svg';
+import { ReactComponent as EditCamera } from '../../../images/svg/userData/camera.svg';
 
 export const UserDataContainer = styled.div`
   margin-bottom: 42px;

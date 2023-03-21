@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { LogoutBtn, LogoutBtnText, LogoutIconStyled } from './Logout.styled';
 
 export const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,11 +18,11 @@ export const Logout = () => {
         <LogoutBtnText>Log Out</LogoutBtnText>
       </LogoutBtn>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal setShow={toggleModal}>
           <ModalLogout onClose={toggleModal} onCloseBtn={toggleModal} />
         </Modal>
-      )}
+      )} */}
     </>
   );
 };

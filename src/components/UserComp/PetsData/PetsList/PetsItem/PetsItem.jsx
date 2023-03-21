@@ -1,4 +1,13 @@
 import { useEffect, useState } from 'react';
+import {
+  DeleteIcon,
+  PetsItemDeleteBtn,
+  PetsItemDesc,
+  PetsItemImg,
+  PetsItemInfoBlock,
+  PetsItemSpan,
+  PetsItemWrapper,
+} from './PetsItem.styled';
 
 export const PetsItem = ({ pet, profile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,7 +50,7 @@ export const PetsItem = ({ pet, profile }) => {
         </PetsItemInfoBlock>
       </PetsItemWrapper>
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal setShow={toggleModal}>
           <ModalConfirmDelete
             _id={_id}
@@ -49,7 +58,7 @@ export const PetsItem = ({ pet, profile }) => {
             onCloseBtn={toggleModal}
           />
         </Modal>
-      )}
+      )} */}
     </>
   );
 };

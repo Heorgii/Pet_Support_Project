@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Delete } from '../../../images/icons/petsItem/delete.svg';
+import { ReactComponent as Delete } from '../../../../../images/svg/petsitem/delete.svg';
 
 export const PetsItemWrapper = styled.li`
   position: relative;

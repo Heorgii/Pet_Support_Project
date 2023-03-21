@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Pencil } from '../../../images/icons/userData/pencil.svg';
-import { ReactComponent as CheckMark } from '../../../images/icons/userData/checkMark.svg';
+import { ReactComponent as Pencil } from '../../../../images/svg/userData/pencil.svg';
+import { ReactComponent as CheckMark } from '../../../../images/svg/userData/checkMark.svg';
 
 export const UserDataItemWrapper = styled.li`
   display: flex;

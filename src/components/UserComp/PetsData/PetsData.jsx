@@ -1,5 +1,11 @@
-import { PetList } from './PetsList/PetsList';
+import { PetsList } from './PetsList/PetsList';
 import { useAuth } from 'hooks/useAuth';
+import {
+  AddPetDiv,
+  AddPetWrapper,
+  PetDataInfo,
+  PetDataWrapper,
+} from './PetsData.styled';
 
 export const PetData = props => {
   let { pets } = useAuth();

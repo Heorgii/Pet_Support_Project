@@ -1,6 +1,19 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { authSignUpUser } from 'redux/auth/operations';
+import { updateUserProfile } from 'redux/auth/operations';
+import {
+  CheckMarkStyle,
+  Error,
+  InputWrapper,
+  PensilStyle,
+  UserDataItemBtn,
+  UserDataItemInput,
+  UserDataItemInputBtnWrapper,
+  UserDataItemLabel,
+  UserDataItemWrapper,
+} from './UserDataItem.styled';
 
 export const UserDataItem = ({
   name,
@@ -21,6 +34,14 @@ export const UserDataItem = ({
   const [inputValue, setInputValue] = useState(defaultValue ?? '');
   const [isError, setIsError] = useState('');
 
+  const userData = useSelector(state => state.userData);
+
+  useEffect(() => {
+    if (userData[name]) {
+      setInputValue(userData[name]);
+    }
+  }, [userData, name]);
+
   const handleChange = e => {
     const { name, value } = e.currentTarget;
 
@@ -34,7 +55,7 @@ export const UserDataItem = ({
     } else if (name === 'phone') {
       setInputValue(value);
     } else if (name === 'city') {
-      setInputValue;
+      setInputValue(value);
     }
   };
 
@@ -50,16 +71,16 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ name: inputValue }));
+      dispatch(updateUserProfile({ name: inputValue }));
     } else if (name === 'email') {
-      setActiv('email');
+      setActive('email');
       if (!inputValue.match(emailRegExp)) {
         setIsError('please type valid email');
         return;
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ email: inputValue }));
+      dispatch(updateUserProfile({ email: inputValue }));
     } else if (name === 'birthday') {
       setActive('birthday');
       if (inputValue > dayToday) {
@@ -72,7 +93,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ birthday: inputValue }));
+      dispatch(updateUserProfile({ birthday: inputValue }));
     } else if (name === 'phone') {
       setActive('phone');
       if (inputValue.slice(0, 4) !== '+380') {
@@ -85,7 +106,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ phone: inputValue }));
+      dispatch(updateUserProfile({ phone: inputValue }));
     } else if (name === 'city') {
       setActive('city');
       if (!inputValue.match(cityRegex)) {
@@ -94,7 +115,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ city: inputValue }));
+      dispatch(updateUserProfile({ city: inputValue }));
     }
   };
 
@@ -139,15 +160,15 @@ export const UserDataItem = ({
   );
 };
 
-const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
-  try {
-    const result = await api.update(updateData);
-    return result;
-  } catch ({ response }) {
-    return thunkAPI.rejectWithValue(response.data.message);
-  }
-});
+// const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
+//   try {
+//     const result = await api.update(updateData);
+//     return result;
+//   } catch ({ response }) {
+//     return thunkAPI.rejectWithValue(response.data.message);
+//   }
+// });
 
-const authOperations = {
-  update,
-};
+// const authOperations = {
+//   update,
+// };
