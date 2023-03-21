@@ -50,6 +50,8 @@ export const FormStyled = styled(Form)`
 export const FieldStyled = styled(Field)`
   all: unset;
 
+  width: 100%;
+
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -58,6 +60,20 @@ export const FieldStyled = styled(Field)`
   align-items: center;
   letter-spacing: 0.04em;
   color: ${baseColor.colors.inpText};
+  margin-right: 10px;
+  padding-right: 10px;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHBhdGggZmlsbD0iIzExMSIgZD0iTTE2IDI2LjY2NlYxNnYxMC42NjZaTTE2IDE2VjUuMzMzIDE2Wm0wIDBoMTAuNjY2SDE2Wm0wIDBINS4zMzMgMTZaIi8+CiAgPHBhdGggc3Ryb2tlPSIjMTExIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTguNDYyIDIzLjU0NyAxNiAxNm0wIDAgNy41MzctNy41NDdNMTYgMTZsNy41NDcgNy41MzdNMTYgMTYgOC40NTIgOC40NjIiLz4KPC9zdmc+);
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
