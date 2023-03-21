@@ -5,7 +5,7 @@ const Container = styled.div`
   display: ${props => props.display || 'flex'};
   flex-direction: ${props => props.flexDirection || 'column'};
   align-items: ${props => props.alignItems || 'center'};
-  justify-content: c ${props => props.justifyContent || 'center'};
+  justify-content: ${props => props.justifyContent || 'center'};
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
 import {
@@ -29,8 +29,20 @@ export const OurFriendsItem = ({ friend }) => {
     email,
   } = state;
 
-  useEffect(() => {}, []);
+  // find address card for render modal window
+  const cardElementRef = useRef();
+  const [position, setPosition] = useState('');
+  useEffect(() => {
+    try {
+      const position = cardElementRef.current.getBoundingClientRect();
+      setPosition(position);
+      console.log(position);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }, []);
 
+  // toggle modal window
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(state => !state);
 
@@ -77,14 +89,22 @@ export const OurFriendsItem = ({ friend }) => {
           <TextWrapper>
             <Text>Time:</Text>
             {workDays !== null ? (
-              <Link aria-label="work days" onClick={toggleModal}>
+              <Link
+                aria-label="work days"
+                onClick={toggleModal}
+                ref={cardElementRef}
+              >
                 {workTime}
               </Link>
             ) : (
               <Text>-------------------------</Text>
             )}
             {showModal && (
-              <OurFriendsItemModal onClose={toggleModal} workDays={workDays} />
+              <OurFriendsItemModal
+                onClose={toggleModal}
+                workDays={workDays}
+                position={position}
+              />
             )}
           </TextWrapper>
           <TextWrapper>

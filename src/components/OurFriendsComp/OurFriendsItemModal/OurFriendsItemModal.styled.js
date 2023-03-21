@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+`;
+
 const Modal = styled.div`
-  /* position: absolute;
-  bottom: -3px;
-  left: 0; */
+  position: absolute;
+  top: ${props => props.top || '0'};
+  left: ${props => props.left || '0'};
 
   display: flex;
   align-items: center;
 
-  width: 100%;
+  max-width: 135px;
   padding: 12px;
 
   background-color: ${baseColor.colors.white};
@@ -48,4 +57,4 @@ const Time = styled.td`
   cursor: pointer;
 `;
 
-export { Modal, Table, Line, Day, Time };
+export { Overlay, Modal, Table, Line, Day, Time };
