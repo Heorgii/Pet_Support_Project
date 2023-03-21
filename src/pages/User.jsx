@@ -11,6 +11,8 @@ import {
   UserDataContainer,
   UserDataWrapper,
   UserPageWrapper,
+  MyPetContainer,
+  MyPetTitle,
 } from './UserPage.styled';
 
 export const UserPage = () => {
@@ -40,12 +42,12 @@ export const UserPage = () => {
           </UserDataContainer>
         </UserDataWrapper>
         <UserAboutWrapper>
-          {/* <TopContainer>
+          <TopContainer>
             <MyPetContainer>
               <MyPetTitle title="My pets" />
             </MyPetContainer>
-            {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
-          </TopContainer> */}
+            {/* {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />} */}
+          </TopContainer>
           {/* {toShow === 'pets' && <PetsData />} */}
         </UserAboutWrapper>
       </UserPageWrapper>
@@ -57,3 +59,5 @@ export const UserPage = () => {
     </>
   );
 };
+
+export default UserPage;

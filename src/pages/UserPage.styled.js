@@ -4,7 +4,7 @@ import { IoReloadCircle } from 'react-icons/io5';
 export const UserPageWrapper = styled.div`
   @media (min-width: 320px) {
     width: 100%;
-    padding-bottom: ${p => p.theme.space[13]}px;
+    padding-bottom: ${p => p.theme.space[12]}px;
     padding-left: ${p => p.theme.space[6]}px;
     padding-right: ${p => p.theme.space[6]}px;
   }
@@ -96,7 +96,7 @@ export const TopContainer = styled.div`
     }  */
 `;
 
-export const NavBtnsContainer = styled.div`
+export const MyPetContainer = styled.div`
   display: flex;
   width: 80%;
   border-bottom: none;
@@ -111,7 +111,7 @@ export const NavBtnsContainer = styled.div`
   }
 `;
 
-export const NavBtn = styled.button`
+export const MyPetTitle = styled.button`
   outline: none;
   font-family: ${p => p.theme.fonts.body};
   border-top: ${p => p.theme.borders.normal}
