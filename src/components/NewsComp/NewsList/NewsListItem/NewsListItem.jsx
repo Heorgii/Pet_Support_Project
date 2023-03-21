@@ -1,8 +1,60 @@
-export const NewsListItem = () => {
-    return (
-        <div>
-            <h1>News List Item</h1>
-        </div>
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-    );
-}
+import {
+  Item,
+  Title,
+  Info,
+  TextWrapper,
+  InfoWrapper,
+  Text,
+  Link,
+  Ractangle,
+  Date,
+ 
+} from './NewsListItem.styled';
+
+
+export const NewsListItem = ({ data }) => {
+  const [state] = useState({ data});
+
+  const {
+    id,
+    title,
+    description,
+    date,
+    url,
+
+    
+  } = state.data;
+  return (
+    <Item key={id} id={id}>
+        <Ractangle></Ractangle>
+      <Title>{title}</Title>
+      <Info>
+        <InfoWrapper>
+          <TextWrapper>
+            <Text>{description}</Text>
+            <Date>{date}
+            <Link target="_blank" href={url}>Read More</Link>
+            </Date>
+          </TextWrapper>
+          
+        </InfoWrapper>
+      </Info>
+    </Item>
+    
+  );
+};
+
+NewsListItem.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      descriptiom: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      date:PropTypes.number.isRequired,
+    }),
+  ),
+};

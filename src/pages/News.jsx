@@ -7,7 +7,7 @@ const News = () => {
             <Helmet>
                 <title>News</title>
             </Helmet>
-            <h1>News</h1>
+            
             <NewsComp />
         </div>
     );
