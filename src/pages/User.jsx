@@ -5,6 +5,7 @@ import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
 import { useAuth } from 'hooks/useAuth';
 import { Logout } from 'components/UserComp/Logout/Logout';
+import { AddPetButton } from 'components/UserComp/PetsData/AddPetButton/AddPetButton';
 import {
   TopContainer,
   UserAboutWrapper,
@@ -18,6 +19,7 @@ import {
 export const UserPage = () => {
   //   const dispatch = useDispatch();
   // const { user } = useAuth();
+  const [toShow, setToShow] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
 
@@ -46,7 +48,7 @@ export const UserPage = () => {
             <MyPetContainer>
               <MyPetTitle title="My pets" />
             </MyPetContainer>
-            {/* {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />} */}
+            {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
           </TopContainer>
           {/* {toShow === 'pets' && <PetsData />} */}
         </UserAboutWrapper>
