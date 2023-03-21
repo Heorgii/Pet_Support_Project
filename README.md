@@ -1,5 +1,5 @@
 
-# Project Filmoteka
+# Project Pet Support
 
 The final project for the **React.Js and Node.Js** course of Full Stack Developer students (IT school **GoIT**).
 
