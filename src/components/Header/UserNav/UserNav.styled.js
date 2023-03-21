@@ -3,9 +3,6 @@ import styled from 'styled-components';
 
 const NavList = styled.ul`
   display: none;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -23,10 +20,22 @@ const NavItem = styled.li`
 const NavItemTitle = styled.p`
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
   letter-spacing: 0.04em;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 66px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+  }
 
   color: ${baseColor.colors.textUserNav};
 
