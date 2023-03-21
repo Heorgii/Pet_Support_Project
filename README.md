@@ -52,6 +52,7 @@ The final project for the **React.Js and Node.Js** course of Full Stack Develope
     - /user - приватний, переадресує на сторінку UserPage
     
 **Registration**
+
   The component contains a form with the first part of the form fields and the Next button and the Login navigation element
   the Next button - activates the check for the validity of the information entered by the user. If they are valid, the form displays the next part of the form         fields, as well as the Register and Back buttons. If the user enters invalid values, display this to him in the form of a message
   the Back button - returns the user to the previous fields of the form, filled with information that the user entered before
@@ -61,6 +62,7 @@ The final project for the **React.Js and Node.Js** course of Full Stack Develope
   After registration, the user should be redirected to the UserPage. If a registration error was received from the backend, the user must display the relevant         information and form of notification
     
  **Login**
+ 
    The component is rendered via the /login route
    The login page contains an AuthForm component
    The component contains a form with login fields and a Login button and a Register navigation element
@@ -70,11 +72,13 @@ The final project for the **React.Js and Node.Js** course of Full Stack Develope
    After authorization, the user should be redirected to the UserPage. If an authorization error was received from the backend, the user must display the relevant      information and form of notification
     
 **Our Friends**
+
   The component renders to the /friends route
   Receives data from the backend and displays a list of contact information about partners
   Clicking on the element with working hours should open a window with a list of working hours. Elements with contact information (address, email, phone) should be     implemented in the form of links with the addition of the :hover effect. Clicking on a link with an address should redirect the user to a resource with a map in a   separate browser tab
   
 **News**
+
   The component renders to the /news route
   The render component:
    - field for searching news by keyword
@@ -84,14 +88,15 @@ The final project for the **React.Js and Node.Js** course of Full Stack Develope
   Click on the ReadMore link on the news card to redirect the user to the news resource on a separate browser tab
   
 **Notices/Find Pet**
+
   The component renders to the /notices/:categoryName route
   The component renders:
    - NoticesSearch search form
    - NoticesCategoriesNav navigation block
    - list of announcements NoticesCategoriesList
    - a button to open a modal for creating an AddNoticeButton announcement
-
   During the first login to the page, the user should be redirected to the route /notices/sell and a list of sales announcements should be rendered
+  
   **NoticesSearch**
     The component renders a field for searching (filtering) the ad in the category by the content of the keyword in the ad title. If the search field is full,           instead of the icon with a magnifying glass, a button with a cross icon should appear, after clicking on which, the search field is cleared. The search               (filtering) of news by the content of the keyword in the news title takes place by submission.
   **NoticesCategoriesNav**
