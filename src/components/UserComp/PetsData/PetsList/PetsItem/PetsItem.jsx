@@ -13,7 +13,7 @@ export const PetsItem = ({ pet, profile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
 
-  const { _id, name, birthday, breed, photoUrl, comments } = pet;
+  const { name, birthday, breed, photoUrl, comments } = pet;
 
   useEffect(() => {
     if (!isModalOpen) {

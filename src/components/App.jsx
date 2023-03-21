@@ -74,7 +74,7 @@ export const App = () => {
             <Route path="api-docs" element={<ApiDocs />} />
 
             <Route
-              path="user"
+              path="/user"
               element={
                 <PrivateRoute redirectTo="/register" component={<UserPage />} />
               }

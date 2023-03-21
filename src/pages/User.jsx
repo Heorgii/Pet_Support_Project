@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 import { Logout } from 'components/UserComp/Logout/Logout';
 import { AddPetButton } from 'components/UserComp/PetsData/AddPetButton/AddPetButton';
 import {
@@ -46,11 +46,14 @@ export const UserPage = () => {
         <UserAboutWrapper>
           <TopContainer>
             <MyPetContainer>
-              <MyPetTitle title="My pets" />
+              {/* <MyPetTitle title="My pets" /> */}
+              <MyPetTitle active={toShow} onClick={() => setToShow('pets')}>
+                My pets
+              </MyPetTitle>
             </MyPetContainer>
             {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
           </TopContainer>
-          {/* {toShow === 'pets' && <PetsData />} */}
+          {toShow === 'pets' && <PetsData />}
         </UserAboutWrapper>
       </UserPageWrapper>
       {/* {isModalOpen && (

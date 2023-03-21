@@ -7,7 +7,7 @@ import {
   PetDataWrapper,
 } from './PetsData.styled';
 
-export const PetData = props => {
+export const PetsData = props => {
   let { pets } = useAuth();
   let profile = false;
   if (props.pets) {
