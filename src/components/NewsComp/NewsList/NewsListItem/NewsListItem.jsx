@@ -15,8 +15,8 @@ import {
 } from './NewsListItem.styled';
 
 
-export const NewsListItem = ({ data }) => {
-  const [state] = useState({ data});
+export const NewsListItem = ({ newsItem}) => {
+  const [state] = useState({ newsItem});
 
   const {
     id,
@@ -26,7 +26,7 @@ export const NewsListItem = ({ data }) => {
     url,
 
     
-  } = state.data;
+  } = state.newsItem;
   return (
     <Item key={id} id={id}>
         <Ractangle></Ractangle>
@@ -48,7 +48,7 @@ export const NewsListItem = ({ data }) => {
 };
 
 NewsListItem.propTypes = {
-  data: PropTypes.arrayOf(
+  newsItem: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
