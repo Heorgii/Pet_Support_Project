@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
 import {
@@ -15,10 +15,8 @@ import defaultImg from 'images/defaultPets.png';
 import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state] = useState({ friend }); //setState
-  // const [showModal, setShowModal] = useState(false);
-  // const [workTime, setWorkTime] = useState('8:00- 19:00');
-
+  const [state, setState] = useState(friend);
+  const [workTime, setWorkTime] = useState('8:00- 17:00');
   const {
     id,
     title,
@@ -29,23 +27,30 @@ export const OurFriendsItem = ({ friend }) => {
     workDays,
     phone,
     email,
-  } = state.friend;
+  } = state;
+
+  useEffect(() => {}, []);
+
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(state => !state);
 
   const hrefEmail = `mailto:${email}`;
   const hrefPhone = `tel:${phone}`;
 
-  const time = workDays => {};
-
-  // const handleModal = workDays => {
-  //   setWorkTime(workDays);
-  //   toggleModal();
-  // };
-
-  // const toggleModal = () => {
-  //   setShowModal(({ showModal }) => ({
-  //     showModal: !showModal,
-  //   }));
-  // };
+  // (() => {
+  //   try {
+  //     // debugger;
+  //     workDays.forEach(day => {
+  //       if (day.isOpen) {
+  //         const time = day.from + ' - ' + day.to;
+  //         return setWorkTime(time);
+  //       }
+  //       return;
+  //     });
+  //   } catch (e) {
+  //     console.log(`Error message: ${e.message}`);
+  //   }
+  // })();
 
   return (
     <Item key={id} id={id}>
@@ -71,17 +76,16 @@ export const OurFriendsItem = ({ friend }) => {
         <InfoWrapper>
           <TextWrapper>
             <Text>Time:</Text>
-            <Text>-------------------------</Text>
-            {/* {workDays ? (
-              <Link aria-label="work days" onClick={handleModal()}>
+            {workDays !== null ? (
+              <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
               </Link>
             ) : (
               <Text>-------------------------</Text>
             )}
             {showModal && (
-              <OurFriendsItemModal onClick={toggleModal} workDays={workDays} />
-            )} */}
+              <OurFriendsItemModal onClose={toggleModal} workDays={workDays} />
+            )}
           </TextWrapper>
           <TextWrapper>
             <Text>Address:</Text>
@@ -126,9 +130,9 @@ OurFriendsItem.propTypes = {
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
       addressUrl: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
       address: PropTypes.string,
-      workDays: PropTypes.array,
+      workDays: PropTypes.any,
       phone: PropTypes.string,
       email: PropTypes.string,
     }),

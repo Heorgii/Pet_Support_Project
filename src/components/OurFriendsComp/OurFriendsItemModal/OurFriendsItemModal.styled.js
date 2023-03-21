@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Modal = styled.div`
-  position: absolute;
+  /* position: absolute;
   bottom: -3px;
-  left: 0;
+  left: 0; */
 
   display: flex;
   align-items: center;

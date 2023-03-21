@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Modal, Table, Line, Day, Time } from './OurFriendsItemModal.styled';
 
-const modalRoot = document.querySelector('#worktime-root');
+const modalRoot = document.querySelector('#modal-root');
 
 export const OurFriendsItemModal = ({ onClose, workDays }) => {
   useEffect(() => {
