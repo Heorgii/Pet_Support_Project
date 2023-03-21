@@ -6,7 +6,9 @@ import { selectIsStateChange } from "redux/auth/selectors";
 import Notiflix from "notiflix";
 
 export const AddNoticeButton = () => {
-    const isLogin = useSelector(selectIsStateChange);
+    // const isLogin = useSelector(selectIsStateChange);
+
+const isLogin = true;
 
   const [showModalAddNotice, setShowModalAddNotice] = useState(false);
 
