@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock, FaUnlockAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { authSignUpUser } from 'redux/auth/operations';
-import { openModalWindow } from '../../hooks/modalWindow';
+
 import css from './RegisterForm.module.css';
 
 function Register() {
@@ -108,9 +108,6 @@ function Register() {
           </button>
         </div>
       </form>
-      <button type="button" onClick={e => openModalWindow(e, null)}>
-        modal window
-      </button>
     </>
   );
 }
