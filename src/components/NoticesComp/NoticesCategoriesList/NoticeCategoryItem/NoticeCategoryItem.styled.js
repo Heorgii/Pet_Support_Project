@@ -11,20 +11,19 @@ const BackDrop = styled.div`
   height: 100%;
 `;
 const NoticesContainerItem = styled.div`
+  position: relative;
   display: block;
   width: 280px;
-  padding: 60px 20px 40px;
+  padding: 17px 20px 43px 20px;
   background-color: #ffffff;
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    padding: 24px 32px 0px 32px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    padding: 16px 20px 0px 20px;
+    width: 704px;
+    padding: 32px 20px 32px 20px;
   }
 `;
+
 const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;
@@ -34,8 +33,17 @@ const ContainerCloseModal = styled.div`
   height: 34px;
   background: #fdf7f2;
   backdrop-filter: blur(2px);
+  margin-bottom: 6px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+  }
 `;
+
 const ContainerStatus = styled.div`
+  position: absolute;
+  top: 77px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,16 +52,38 @@ const ContainerStatus = styled.div`
   background: #fdf7f2;
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+`;
+
+const ContainerInfo = styled.div`
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 670px;
+    display: flex;
+  }
 `;
 const ImgItem = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
   outline: unset;
+  @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 328px;
+    margin-right: 20px;
+  }
 `;
 const NoticeItemTitle = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   font-family: 'Manrope';
   font-style: normal;
@@ -62,15 +92,33 @@ const NoticeItemTitle = styled.div`
   line-height: 33px;
   letter-spacing: -0.01em;
   color: #000000;
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+`;
+
+const NoticeContainerButtom = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    justify-content: end;
+    flex-direction: row-reverse;
+    margin-top: 32px;
+  }
 `;
 const BtnContact = styled.button`
   cursor: pointer;
-  width: 95px;
-  height: 35px;
+  width: 240px;
+  height: 40px;
   border-radius: 40px;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
+  margin: 40px 0 12px;
 
   &:hover {
     color: #fff;
@@ -80,12 +128,16 @@ const BtnContact = styled.button`
     color: #fff;
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
+  }
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    margin: 0 0 0 0;
   }
 `;
 const BtnAddFavorits = styled.button`
   cursor: pointer;
-  width: 95px;
-  height: 35px;
+  width: 240px;
+  height: 40px;
   border-radius: 40px;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
@@ -100,14 +152,72 @@ const BtnAddFavorits = styled.button`
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
+  @media screen and (min-width: 768px) {
+    width: 160px;
+    margin: 0 12px 0 0;
+  }
+`;
+const TdTable = styled.td`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  overflow: hidden;
+  min-width: 115px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 115px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+const TdTable2 = styled.td`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  overflow: hidden;
+  min-width: 115px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 115px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+const Table = styled.table`
+  width: 240px;
+  display: flex;
+  overflow: hidden;
+  margin-top: 26px;
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+`;
+const Comments = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+`;
+const ContainerComments = styled.div`
+  margin-top: 28px;
 `;
 export {
   NoticesContainerItem,
   ContainerCloseModal,
+  ContainerInfo,
   ImgItem,
   ContainerStatus,
   NoticeItemTitle,
   BtnContact,
   BtnAddFavorits,
   BackDrop,
+  Table,
+  TdTable,
+  TdTable2,
+  Comments,
+  ContainerComments,
+  NoticeContainerButtom,
 };
