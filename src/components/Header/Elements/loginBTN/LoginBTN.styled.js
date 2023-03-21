@@ -2,23 +2,19 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const LoginButton = styled.button`
-  cursor: pointer;
+  position: relative;
+  margin-left: 12px;
   width: 95px;
   height: 35px;
-  border-radius: 40px;
+  letter-spacing: 0.07em;
   border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border-radius: 40px;
 
-  &:hover {
-    color: #fff;
-    background-color: ${baseColor.colors.orangeLight};
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    height: 44px;
   }
-  &:focus {
-    color: #fff;
-    background-color: ${baseColor.colors.orangeLight};
-
-    outline: none;
+  @media screen and (min-width: 1280px) {
+    height: 48px;
   }
 `;
 

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { LoginButton } from './LoginBTN.styled';
+import { AccountButton } from 'components/Header/Elements/accountBTN/AccountBTN.styled';
 import { NavLink } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
-export const LoginBTN = () => {
+export const AccountBTN = () => {
   const [hover, setHover] = useState(false);
 
   const onMouse = () => (hover ? setHover(false) : setHover(true));
 
   const setActive = ({ isActive }) => ({
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    // position: 'absolute',
+    // top: 0,
+    // left: 0,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -27,25 +27,15 @@ export const LoginBTN = () => {
   });
 
   return (
-    <LoginButton>
+    <AccountButton>
       <NavLink
-        to="/login"
+        to="/user"
         style={setActive}
         onMouseOver={onMouse}
         onMouseOut={onMouse}
       >
-        Login
+        Account
       </NavLink>
-    </LoginButton>
+    </AccountButton>
   );
 };
-
-// {
-//   "terminal.integrated.automationProfile.linux": {},
-//   "terminal.integrated.defaultProfile.windows": "Git Bash",
-//   "editor.defaultFormatter": "esbenp.prettier-vscode",
-//   "editor.formatOnSave": true,
-//   "files.autoSave": "onFocusChange",
-//   "workbench.iconTheme": "material-icon-theme",
-//   "workbench.startupEditor": "none"
-// }
