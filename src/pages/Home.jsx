@@ -1,76 +1,49 @@
 import { Helmet } from 'react-helmet-async';
 import React from 'react';
-import { Container } from 'components/baseStyles/CommonStyle.styled';
-import { Title } from './Home.styled';
+// import { Container } from 'components/baseStyles/CommonStyle.styled';
+import {
+  Container,
+  Title,
+  Images,
+  DogMobile,
+  DogTab,
+  DogDesk,
+  WaveMobile,
+  WaveTab,
+  WaveDesk,
+  WaveDesk2,
+  Heart,
+} from './Home.styled';
 import labrador from '../../src/images/labrador.png';
-import wave from '../../src/images/Vector1.png';
+import labradorTab from '../../src/images/labrador-tab.png';
+import labradorDesk from '../../src/images/labradorDesk.png';
+
+import wave from '../../src/images/wave.png';
+import waveTab from '../../src/images/waveTab.png';
+import waveDesk from '../../src/images/wave1-desk.png';
+import waveDesk2 from '../../src/images/wave2-desk.png';
+import heart from '../../src/images/heart.png';
+
 const HomePage = () => {
   return (
-    <Container
-      style={{
-        position: 'relative',
-        // display: 'flex',
-        // flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div>
+    <Container>
+      <div style={{ width: 620 }}>
         <Helmet>
           <title>Home</title>
         </Helmet>
         <Title>Take good care of your small pets</Title>
       </div>
-      {/* <div
-        style={{
-          backgroundImage: `url(${wave})`,
-          width: 620,
-          height: 470,
 
-          // backgroundSize: 700,
-          // minWidth: 390,
-
-          // minHeight: 500,
-          position: 'absolute',
-          // top: 0,
-          left: -100,
-
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-
-          // width: 280,
-          // height: 564,
-        }}
-      ></div> */}
-      <div>
-        <div
-          style={{
-            // backgroundColor: 'red',
-            // position: 'absolute',
-            // marginTop: 140,
-            // marginLeft: 20,
-            overflow: 'hidden',
-            backgroundImage: `url(${wave})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            width: 380,
-            height: 500,
-          }}
-        ></div>
-        <div
-          style={{
-            // backgroundColor: 'red',
-            position: 'absolute',
-            // marginTop: 140,
-            // marginLeft: 20,
-            overflow: 'hidden',
-            backgroundImage: `url(${labrador})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            width: 380,
-            height: 500,
-          }}
-        ></div>
-      </div>
+      <Images>
+        <WaveMobile src={wave} alt="Wave"></WaveMobile>
+        <WaveTab src={waveTab} alt="Wave"></WaveTab>
+        <WaveDesk src={waveDesk} alt="Wave"></WaveDesk>
+        <WaveDesk2 src={waveDesk2} alt="Wave"></WaveDesk2>
+        <Heart src={heart} alt="Wave"></Heart>
+        <DogMobile src={labrador} alt="Dog"></DogMobile>
+        <DogTab src={labradorTab} alt="Dog"></DogTab>
+        <DogDesk src={labradorDesk} alt="Dog"></DogDesk>
+      </Images>
     </Container>
   );
 };
