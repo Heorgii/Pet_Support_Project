@@ -14,6 +14,7 @@ export const NoticesComp = () => {
         <AddNoticeButton />
       </WrapperNav>
       <NoticesCategoriesList />
+      <AddNoticeButton />
     </Wrapper>
   );
 };

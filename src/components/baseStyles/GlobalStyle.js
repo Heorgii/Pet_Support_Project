@@ -1,6 +1,6 @@
 import 'modern-normalize';
 import { createGlobalStyle } from 'styled-components';
-import { baseColor } from "components/baseStyles/Variables.styled"; 
+import { baseColor } from 'components/baseStyles/Variables.styled';
 
 export const GlobalStyle = createGlobalStyle`
  body{
@@ -21,7 +21,23 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     list-style: none;
  }
-
+#popup-root {
+    z-index: 45;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    background-color: #0000006b;
+    transition: opacity .3s linear 50ms, visibility .3s linear 50ms;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+}
+#popup-root.is-hide{
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
   /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

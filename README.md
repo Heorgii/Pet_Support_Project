@@ -1,113 +1,192 @@
-# React homework template
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+# Project Pet Support
 
-## Создание репозитория по шаблону
+The final project for the **React.Js and Node.Js** course of Full Stack Developer students (IT school **GoIT**).
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+## Developers
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+- [Heorgii Rushchak](https://github.com/Heorgii)
+- [Julia Golban](https://github.com/JuliaGolban)
+- [Yurii Senenko](https://github.com/YuriiSenenko)
+- [Rudenko Serhii](https://github.com/rudenkoserhii)
+- [Vladislav Popov](https://github.com/StudentVlad5)
+- [Aleksandr Kadulin](https://github.com/NilKad)
+- [Roman Kashirin](https://github.com/RomanKashyrin)
+- [Ihor Malyuga](https://github.com/IhorMal)
+- [Roman Vikulov](https://github.com/RomanVikulov)
+- [Ivan Bokhvalov](https://github.com/bokhvalov)
+- [Pavel Lesovoy](https://github.com/PavelLesovoy)
+- [Yaroslav Ostrovskiy](https://github.com/ReddenUA)
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## Project preparation
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+## Technical task
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
-
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
-
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
-
-## Подготовка к работе
-
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
-
-## Деплой
-
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
-
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
-
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
-
-![GitHub Pages settings](./assets/repo-settings.png)
-
-### Статус деплоя
-
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
-
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
-
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
-
-![Deployment status](./assets/deploy-status.png)
-
-### Живая страница
-
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
-
-### Маршрутизация
-
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Как это работает
-
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+**SharedLayout**
+  The component renders to the "/" route. Contains a Header and wraps nested routes with their corresponding pages
+  
+**Header**
+  The Header component renders:
+   - Logo
+   - Navigation with components:
+       - Nav - general navigation
+       - UserNav - navigation for an AUTHORIZED user
+       - AuthNav - navigation for UNAUTHORIZED user
+       
+  It is necessary to implement a navigation block with the following routes:
+     - /news - public unlimited, redirects to NewsPage,
+     - /notices - public unlimited, redirects to NoticesPage
+     - /friends - public unlimited, redirects to OurFriendsPage
+  On tablets and mobile versions, the component must be displayed in the burger menu
+  A component that displays an app logo redirects to "/"
+  
+  **AuthNav**
+    The component renders a navigation block with routes:
+    - /register - public-restricted, redirects to RegisterPage
+    - /login - public-restricted, redirects to LoginPage
+   
+  **UserNav**
+    Компонент рендерить блок навігації з маршрутами:
+    - /user - приватний, переадресує на сторінку UserPage
+    
+**Registration**
+  The component contains a form with the first part of the form fields and the Next button and the Login navigation element
+  the Next button - activates the check for the validity of the information entered by the user. If they are valid, the form displays the next part of the form         fields, as well as the Register and Back buttons. If the user enters invalid values, display this to him in the form of a message
+  the Back button - returns the user to the previous fields of the form, filled with information that the user entered before
+  the Register button - activates a check for the validity of the information entered by the user. If they are valid - registers the user. If the user enters           invalid values, display this to him in the form of a message
+  Login navigation element - redirects the user to the LoginPage
+  All form fields are validated and appropriate information is displayed to the user if the entered value is invalid
+  After registration, the user should be redirected to the UserPage. If a registration error was received from the backend, the user must display the relevant         information and form of notification
+    
+ **Login**
+   The component is rendered via the /login route
+   The login page contains an AuthForm component
+   The component contains a form with login fields and a Login button and a Register navigation element
+   the Login button - activates the check for the validity of the information entered by the user. If they are valid - sends a request to the backend regarding user    authorization. If the user enters invalid values, display this to him in the form of a message
+   the Register navigation element - redirects the user to the RegisterPage
+   All fields of the form are validated and display the appropriate information to the user if the entered value is not valid
+   After authorization, the user should be redirected to the UserPage. If an authorization error was received from the backend, the user must display the relevant      information and form of notification
+    
+**Our Friends**
+  The component renders to the /friends route
+  Receives data from the backend and displays a list of contact information about partners
+  Clicking on the element with working hours should open a window with a list of working hours. Elements with contact information (address, email, phone) should be     implemented in the form of links with the addition of the :hover effect. Clicking on a link with an address should redirect the user to a resource with a map in a   separate browser tab
+  
+**News**
+  The component renders to the /news route
+  The render component:
+   - field for searching news by keyword
+   - a list of news received from the backend
+  If the search field is full, instead of the icon with a magnifying glass, a button with a cross icon should appear, clicking on which clears the search field. The   search (filtering) of news by the content of the keyword in the news title takes place by submission.
+  News should be sorted by date, new news at the beginning of the list.
+  Click on the ReadMore link on the news card to redirect the user to the news resource on a separate browser tab
+  
+**Notices/Find Pet**
+  The component renders to the /notices/:categoryName route
+  The component renders:
+   - NoticesSearch search form
+   - NoticesCategoriesNav navigation block
+   - list of announcements NoticesCategoriesList
+   - a button to open a modal for creating an AddNoticeButton announcement
+  During the first login to the page, the user should be redirected to the route /notices/sell and a list of sales announcements should be rendered
+  
+  **NoticesSearch**
+  
+    The component renders a field for searching (filtering) the ad in the category by the content of the keyword in the ad title. If the search field is full,           instead of the icon with a magnifying glass, a button with a cross icon should appear, after clicking on which, the search field is cleared. The search               (filtering) of news by the content of the keyword in the news title takes place by submission.
+    
+  **NoticesCategoriesNav**
+  
+    The component renders a navigation block with routes:
+    - /notices/sell - opens the NoticesCategoryList component on the page with a list of sales announcements
+    - /notices/lost-found - opens the NoticesCategoryList component on the page with a list of found/searched announcements
+    - /notices/for-free - opens the NoticesCategoryList component on the page with a list of free announcements
+    
+  **NoticesCategoriesList**
+  
+    The component renders a list of all announcements of the corresponding category - NoticeCategoryItem, data on which it receives from the backend
+    
+  **NoticeCategoryItem** 
+  
+    The component renders an ad list element, a single ad card with a heart icon (AddToFavorite) and LearnMore buttons
+    Click on:
+      - heart icons (AddToFavorite):
+      - if the user is AUTHORIZED - depending on whether the corresponding ad is added to the favorites, the user adds or removes the ad from the favorites by             clicking
+      - if the user is UNAUTHORIZED, a notification type message should be displayed to the user with information that the user needs to be authorized to use this         functionality
+      - LearnMore - opens a modal to the user with a detailed description of this announcement - NoticeModal
+      
+  **ModalNotice**
+  
+    The component will render a modal window with the full description of the corresponding ad and the AddToFavorite and Contact components
+    Elements with contact information (e-mail, phone) of the author of the ad must be implemented in the form of a link with the addition of the :hover effect.           Click the AddToFavorite button:
+          - if the user is AUTHORIZED - depending on whether the corresponding ad is added to favorites, by clicking the user adds the ad to favorites or removes               them from them
+          - if the user is UNAUTHORIZED, the user should display a message like the message that the user needs to be authorized to use this function
+         The Contact button must be implemented as a link, when clicking on which the user must be redirected to a mobile device to make a phone call to the number            of the user who created the ad
+         The modal should be closed by the button to close the modal, by backdrop, and also by Escape
+         
+   **AddNoticeButton**
+   
+     The component renders a button.
+     For an AUTHORIZED user, clicking the button opens the AddNoticeModal component
+     For an UNAUTHORIZED user, clicking on the button displays a notification type message with information that authorization is required to use this functionality
+     
+   **For an authorized user**
+   
+   **NoticesCategoriesNav**
+   
+     The component renders a navigation block with routes:
+     - /notices/favorite - opens the NoticesCategoryList component on the page with a list of announcements added to favorites
+     - /notices/own - opens the NoticesCategoryList component on the page with a list of announcements created by the user
+     
+   **ModalNotice**
+   
+     The component renders a button to remove the ad if this ad was created by this user.
+     Clicking on the button removes the ad
+     
+   **ModalAddNotice**
+   
+     The component renders a modal to create a new ad with the first part of the form fields and Next and Cancel buttons.
+     - the Cancel button should close the modal window. Also, the window must be closed modally by clicking on the close button of the modal, clicking on the              beddrop, and also clicking on Escape
+     - the Next button - activates the check for the validity of the entered user information. If they are valid, display the next part of the form fields in the          composition, as well as the Back and Done buttons. If users enter invalid values, display this to them in the form of a message
+     - the Back button - returns the user to the previous field of the form, filled with information that the user entered before
+     - the Done button - activates a check for the validity of the entered user information. If they are valid - sends a request to the backend to create an ad. If        users enter invalid values, display this to them in the form of a message
+     All fields of the form are mandatory
+     After successfully creating a notice, the modal window should be closed and the user redirected to /notices/own. If an error was received from the backend when      creating an ad - the user must display the relevant information and the form of the notification
+     
+**User/Profile**
+  The component renders to the /user route
+  The component renders a page with UserData, Logout, and PetsData components.
+  The UserData and Logout components must be implemented in a shared container.
+  
+  **UserData**
+  
+    The component renders the user's contact information in UserDataItem fields with the ability to edit the data in the fields
+    
+  **UserDataItem**
+  
+    The component renders an element that displays user data and a button for editing that data.
+    A click on the edit button renders an input field filled with data from the element at the location of the given element, and a button for sending the data           entered into the input field at the location of the edit button. Only one field can be in the editing state, all other fields are not available for editing at       this time
+    
+  **Logout**
+  
+    The component displays a button to exit the user from the account request
+    
+  **PetsData**
+  
+    The component renders a button for adding a card with an animal and a list of corresponding cards - PetsList
+    A click on the button opens a modal with a form for creating an animal card - ModalAddsPet
+    
+  **ModalAddsPet**
+  
+    The component renders a modal to create a card with data about the user's animal with the first part of the form fields and Cancel and Next buttons.
+    - the Cancel button should close the modal window. Also, the window should be closed modally by clicking on the modal close button, clicking on Backdrop, and         also clicking on Escape
+    - the Next button - activates the check for the validity of the information entered by the user. If they are valid - displays the next part of the form fields in     the form, as well as the Back and Done buttons. If the user enters invalid values, display this to him in the form of a message
+    - the Back button - returns the user to the previous fields of the form, filled with information that the user entered before
+    - button Done - activates the check for the validity of the information entered by the user. If they are valid - sends a request to the backend to create a card     with data about the user's animal. If the user enters invalid values, display this to him in the form of a message
+    All fields of the form are mandatory
+    After the successful creation of the card, the modal window should close, and the user will be presented with up-to-date information about his animals. If an         error was received from the backend when creating a card - the user must display the relevant information and a notification form
+    
+  **PetsList**
+  
+    The component renders cards with a description of the animal. The card has a delete button.
