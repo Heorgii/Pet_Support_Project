@@ -60,7 +60,7 @@ export const OurFriendsItemModal = ({
       workDays[6].isOpen ? workDays[6].from + ' - ' + workDays[6].to : '',
     ];
     if (dayClosed !== null) {
-      const workingTime = time.splice(dayClosed, 1, 'closed');
+      // const workingTime = time.splice(dayClosed, 1, 'closed');
       setWorkTime(time);
     }
     setWorkTime(time);

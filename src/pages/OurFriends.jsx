@@ -1,11 +1,11 @@
 // import axios from 'axios';
 // import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';//useEffect
 import { SEO } from 'utils/SEO';
 import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';
 import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
-import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+// import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
+// import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 
 import sponsors from 'components/OurFriendsComp/sponsors.json';
 
@@ -23,9 +23,9 @@ import sponsors from 'components/OurFriendsComp/sponsors.json';
 // }
 
 const OurFriends = () => {
-  const [friends, setFriends] = useState(sponsors);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [friends] = useState(sponsors);//setFriends
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
   // useEffect(() => {
   //   async function getData() {
