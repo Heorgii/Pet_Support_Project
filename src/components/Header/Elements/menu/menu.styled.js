@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-const Container = styled.button`
+
+const Container = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -19,7 +20,7 @@ const Container = styled.button`
 `;
 const Burger = styled.div`
   position: relative;
-  align-item: center;
+  align-items: center;
   display: block;
   width: 30px;
   height: 20px;
@@ -53,4 +54,5 @@ const Span = styled.div`
   height: 3px;
   top: 8px;
 `;
+
 export { Container, Burger, Span };

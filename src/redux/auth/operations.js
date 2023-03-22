@@ -5,14 +5,14 @@ export const authSignUpUser = (userSignIn) => async (dispatch, getState) => {
   try {
     const userId = uuidv4();
     const { nickName, email } = userSignIn;
-    const stateChange = true;
+    const stateIsLoggedIn = true;
     const isRefreshing = true;
     await dispatch(
       authSlice.actions.updateUserProfile({
         userId,
         nickName,
         email,
-        stateChange,
+        stateIsLoggedIn,
         isRefreshing,
       })
     );
@@ -26,14 +26,14 @@ export const logIn = (userSignIn) => async (dispatch, getState) => {
   try {
     const userId = uuidv4();
     const { nickName, email } = userSignIn;
-    const stateChange = true;
+    const stateIsLoggedIn = true;
     const isRefreshing = true;
     await dispatch(
       authSlice.actions.updateUserProfile({
         userId,
         nickName,
         email,
-        stateChange,
+        stateIsLoggedIn,
         isRefreshing,
       })
     );
