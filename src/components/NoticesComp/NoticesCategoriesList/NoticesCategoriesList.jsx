@@ -1,6 +1,7 @@
 import { NoticesCategoriesItem } from './NoticeCategoryItem/NoticeCategoryItem';
 import { ModalNotices } from '../ModalNotice/ModalNotice';
 import { ContainerStatus } from './NoticesCategoriesList.styled';
+
 import data from './pets.json';
 import { v4 as uuidv4 } from 'uuid';
 

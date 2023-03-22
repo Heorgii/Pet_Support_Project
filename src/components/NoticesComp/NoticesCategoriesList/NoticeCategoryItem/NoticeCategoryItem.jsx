@@ -1,6 +1,7 @@
 import akar_icons_heart from '../../../../images/svg/akar-icons_heart.svg';
 import delBack from '../../../../images/svg/icon_delete.svg';
 import no_Photo from '../../../../images/No-image-available.webp';
+import { openModalWindow } from 'hooks/modalWindow';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -20,7 +21,7 @@ import {
 export const NoticesCategoriesItem = ({ data }) => {
   return (
     <ItemContainer>
-      <NoticesContainerItem>
+      <NoticesContainerItem onClick={e => openModalWindow(e, null)}>
         <div style={{ display: 'flex', justifyContent: 'end' }}></div>
         <ContainerInfo>
           <ContainerStatus>{data.status}</ContainerStatus>
