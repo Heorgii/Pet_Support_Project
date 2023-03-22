@@ -5,6 +5,7 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 
   height: 100%;
   min-height: 192px;
@@ -138,9 +139,6 @@ const Link = styled.a`
 `;
 
 const Image = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 
   @media screen and (min-width: 320px) {

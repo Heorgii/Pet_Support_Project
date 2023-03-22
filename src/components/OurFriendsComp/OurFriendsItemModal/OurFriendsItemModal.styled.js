@@ -47,7 +47,10 @@ const Time = styled.td`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.black};
+  color: ${props =>
+    props.accent
+      ? `${baseColor.colors.orangeLight}`
+      : `${baseColor.colors.black}`};
   cursor: pointer;
 `;
 

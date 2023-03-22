@@ -8,6 +8,9 @@ export const GlobalStyle = createGlobalStyle`
    font-family: -apple-system, BlinkMacSystemFont, 'Manrope Medium', 'Manrope Bold', 'Manrope SemiBold', 
    'Manrope Regular', 'Poppins Regular','Poppins Bold', 'Inter Regular' ,'Inter Medium', 'Inter Bold',
    'Montserrat Regular', 'Montserrat Medium', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+
    background-color: ${baseColor.colors.mainBg};
  }
 
@@ -21,6 +24,13 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     list-style: none;
  }
+
+ img{
+    display:block;
+    max-width: 100%;
+    height: auto;
+ }
+
 #popup-root {
     z-index: 45;
     width: 100vw;

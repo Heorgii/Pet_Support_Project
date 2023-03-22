@@ -26,7 +26,7 @@ export const OurFriendsItem = ({ friend }) => {
     phone,
     email,
   } = friend;
-  const [workTime, setWorkTime] = useState('');
+  const [workTime, setWorkTime] = useState('-------------------------');
   const [dayClosed, setDayClosed] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -37,8 +37,8 @@ export const OurFriendsItem = ({ friend }) => {
 
   // gets user time and compare with workDays
   const userDay = new Date().getDay() - 1;
-  // const userHours = new Date().getHours();
-  const userHours = 20;
+  const userHours = new Date().getHours();
+  // const userHours = 20;
 
   useEffect(() => {
     try {
