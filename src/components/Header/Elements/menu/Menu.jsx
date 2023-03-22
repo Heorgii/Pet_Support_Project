@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container, Burger, Span } from './menu.styled';
+import { Burger, Span } from './menu.styled';//Container,
 
 const Navigation = styled.header`
   .btn {
@@ -58,14 +58,13 @@ export const Menu = () => {
     e.preventDefault();
     setIsExpanded(!isExpanded);
   }
-  {/* 
-   <Container>
+
+  {/*  <Container>
    <Burger aria-hidden="true"
         onClick={e => handleToggle(e)}>
         <Span />
       </Burger> 
-      </Container>
-    */}
+</Container> */}
   return (
 
     <div>
@@ -87,7 +86,7 @@ export const Menu = () => {
             onClick={e => handleToggle(e)}>
             <Span />
           </Burger>
-          
+
           {/* 
             <NavLink activeClassName="active" to="/">
               <li>home</li>
