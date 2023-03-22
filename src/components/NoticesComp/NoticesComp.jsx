@@ -3,7 +3,6 @@ import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNa
 import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';
 import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { Wrapper, WrapperNav } from './NoticesComp.styled';
-import { openModalWindow } from '../../hooks/modalWindow';
 
 export const NoticesComp = () => {
   console.log();
@@ -15,12 +14,7 @@ export const NoticesComp = () => {
         <AddNoticeButton />
       </WrapperNav>
       <NoticesCategoriesList />
-
-      <button type="button" onClick={e => openModalWindow(e, null)}>
-        modal window
-      </button>
       <AddNoticeButton />
-
     </Wrapper>
   );
 };

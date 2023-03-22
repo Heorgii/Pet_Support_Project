@@ -18,6 +18,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   padding: 0px 20px;
+  margin-top: 60px;
   font-family: Manrope;
   font-style: normal;
   font-weight: 700;
@@ -25,52 +26,37 @@ const Title = styled.h1`
   line-height: 44px;
   color: ${baseColor.colors.blackText};
   // width: 100%;
-  margin-top: 60px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-top: 88px;
     font-size: 68px;
     line-height: 100px;
-    margin-top: 88px;
   }
 
   @media screen and (min-width: 1280px) {
+    margin-top: 92px;
     font-size: 68px;
     line-height: 100px;
-    margin-top: 92px;
   }
 `;
 const Images = styled.div`
   position: relative;
-  // width: 100%;
-  // overflow: clip;
+  //     width: 100%;
+  //   overflow: hidden;
 `;
 const DogMobile = styled.img`
   position: absolute;
   overflow: clip;
   left: 20px;
-  top: 161px;
+  top: 128px;
   width: 280px;
-  // height: 564;
+  //   height: 564;
   display: block;
   min-width: 100%;
   height: auto;
+
   @media screen and (min-width: 768px) {
     display: none;
-  }
-`;
-const DogTab = styled(DogMobile)`
-  display: none;
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    display: block;
-    // width: 636px;
-  }
-`;
-const DogDesk = styled(DogMobile)`
-  display: none;
-  @media screen and (min-width: 1280px) {
-    display: block;
-    width: 524px;
-    left: 130px;
   }
 `;
 
@@ -93,31 +79,47 @@ const WaveMobile = styled.img`
   //   padding: 16px 20px 0px 20px;
   // }
 `;
+const DogTab = styled(DogMobile)`
+  display: none;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    width: 636px;
+    // overflow: hidden;
+  }
+`;
 
 const WaveTab = styled(WaveMobile)`
   display: none;
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    display: flex;
-  }
+  //   @media screen and (min-width: 768px) and (max-width: 1279px) {
+  //     display: block;
+  //   }
+`;
+const DogDesk = styled(DogMobile)`
+  display: none;
+  //   @media screen and (min-width: 1280px) {
+  //     display: block;
+  //     width: 524px;
+  //     left: 130px;
+  //   }
 `;
 
 const WaveDesk = styled(WaveMobile)`
   display: none;
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    width: 1178px;
-    top: 335px;
-    left: -650px;
-  }
+  //   @media screen and (min-width: 1280px) {
+  //     display: flex;
+  //     width: 1178px;
+  //     top: 335px;
+  //     left: -650px;
+  //   }
 `;
 const WaveDesk2 = styled(WaveMobile)`
   display: none;
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    width: 425px;
-    top: 324px;
-    left: 236px;
-  }
+  //   @media screen and (min-width: 1280px) {
+  //     display: flex;
+  //     width: 425px;
+  //     top: 324px;
+  //     left: 236px;
+  //   }
 `;
 const Heart = styled(WaveMobile)`
   display: none;

@@ -22,19 +22,21 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
  }
 #popup-root {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0,0,0,0.5);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items:center;
+    z-index: 45;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    background-color: #0000006b;
+    transition: opacity .3s linear 50ms, visibility .3s linear 50ms;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
 }
 #popup-root.is-hide{
-  display: none
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
 }
   /* body {
   margin: 0;
