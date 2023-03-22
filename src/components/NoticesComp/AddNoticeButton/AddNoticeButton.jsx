@@ -1,17 +1,16 @@
 import { AddNoticeModal } from './AddNoticeModal/AddNoticeModal';
 import { ButtonStyled, PlusIcon } from './AddNoticeButton.styled';
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { selectIsStateChange } from 'redux/auth/selectors';
 import Notiflix from 'notiflix';
+import { useAuth } from 'hooks/useAuth';
 
 export const AddNoticeButton = () => {
-  const isLogin = useSelector(selectIsStateChange);
+  const { isLoggedIn } = useAuth();
 
   const [showModalAddNotice, setShowModalAddNotice] = useState(false);
 
   const toggleModalAddNotice = () => {
-    isLogin
+    isLoggedIn
       ? setShowModalAddNotice(!showModalAddNotice)
       : Notiflix.Notify.warning('You must be loggined!');
   };

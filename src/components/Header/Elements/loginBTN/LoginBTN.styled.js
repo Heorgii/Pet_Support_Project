@@ -6,7 +6,6 @@ const LoginButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 12px;
   width: 95px;
   height: 35px;
   border-radius: 40px;
