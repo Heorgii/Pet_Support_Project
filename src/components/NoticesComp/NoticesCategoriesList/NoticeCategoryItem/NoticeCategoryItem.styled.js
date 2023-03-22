@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
-const BackDrop = styled.div`
+const ItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,41 +9,36 @@ const BackDrop = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
+  margin-bottom: 32px;
 `;
 const NoticesContainerItem = styled.div`
   position: relative;
   display: block;
+  object-fit: cover;
   width: 280px;
-  padding: 17px 20px 43px 20px;
+  padding: 0 0 12px 0;
   background-color: #ffffff;
-  border-radius: 20px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 32px 20px 32px 20px;
+  border-radius: 0px 0px 20px 20px;
+  transition: box-shadow 250ms linear;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    box-shadow: 0 1px 4px ${baseColor.colors.orange},
+      -23px 0 20px -23px ${baseColor.colors.orange},
+      23px 0 20px -23px ${baseColor.colors.orange},
+      inset 0 0 40px ${baseColor.colors.orange};
   }
-`;
 
-const ContainerCloseModal = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  background: #fdf7f2;
-  backdrop-filter: blur(2px);
-  margin-bottom: 6px;
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 12px;
-    right: 20px;
+  @media screen and (min-width: 768px) and (max-width: 1279.5px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1279.5px) {
+    width: 288px;
   }
 `;
 
 const ContainerStatus = styled.div`
   position: absolute;
-  top: 77px;
+  top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +52,26 @@ const ContainerStatus = styled.div`
   line-height: 16px;
   letter-spacing: 0.04em;
 `;
+const BtnForFavorite = styled.button`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  top: 12px;
+  right: 12px;
 
+  @media screen and (min-width: 768px) {
+    /* width: 670px;
+    display: flex; */
+  }
+`;
 const ContainerInfo = styled.div`
   position: relative;
   display: block;
@@ -66,19 +80,17 @@ const ContainerInfo = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 670px;
-    display: flex;
+    /* width: 670px;
+    display: flex; */
   }
 `;
 const ImgItem = styled.img`
-  width: 240px;
-  height: 240px;
-  border-radius: 0px 0px 40px 40px;
+  width: 280px;
+  height: 288px;
   outline: unset;
   @media screen and (min-width: 768px) {
-    width: 288px;
-    height: 328px;
-    margin-right: 20px;
+    width: 100%;
+    object-fit: contain;
   }
 `;
 const NoticeItemTitle = styled.div`
@@ -92,28 +104,29 @@ const NoticeItemTitle = styled.div`
   line-height: 33px;
   letter-spacing: -0.01em;
   color: #000000;
+  margin: 20px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
   }
 `;
 
-const NoticeContainerButtom = styled.div`
+const NoticeContainerButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
-    justify-content: end;
+    /* justify-content: end;
     flex-direction: row-reverse;
-    margin-top: 32px;
+    margin-top: 32px; */
   }
 `;
-const BtnContact = styled.button`
+const BtnLearnMore = styled.button`
   cursor: pointer;
-  width: 240px;
-  height: 40px;
+  width: 248px;
+  height: 38px;
   border-radius: 40px;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
@@ -130,18 +143,21 @@ const BtnContact = styled.button`
     outline: none;
   }
   @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 0 0 0;
+    /* width: 160px;
+    margin: 0 0 0 0; */
   }
 `;
-const BtnAddFavorits = styled.button`
+const BtnDelete = styled.button`
   cursor: pointer;
-  width: 240px;
-  height: 40px;
+  width: 248px;
+  height: 38px;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
+  border: 2px solid ${baseColor.colors.orange};
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     color: #fff;
@@ -153,8 +169,8 @@ const BtnAddFavorits = styled.button`
     outline: none;
   }
   @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 12px 0 0;
+    /* width: 160px;
+    margin: 0 12px 0 0; */
   }
 `;
 const TdTable = styled.td`
@@ -191,33 +207,24 @@ const Table = styled.table`
   width: 240px;
   display: flex;
   overflow: hidden;
-  margin-top: 26px;
+  padding: 0 20px;
   @media screen and (min-width: 768px) {
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 `;
-const Comments = styled.span`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
-`;
-const ContainerComments = styled.div`
-  margin-top: 28px;
-`;
+
 export {
   NoticesContainerItem,
-  ContainerCloseModal,
   ContainerInfo,
   ImgItem,
   ContainerStatus,
   NoticeItemTitle,
-  BtnContact,
-  BtnAddFavorits,
-  BackDrop,
+  BtnLearnMore,
+  BtnDelete,
+  ItemContainer,
   Table,
   TdTable,
   TdTable2,
-  Comments,
-  ContainerComments,
-  NoticeContainerButtom,
+  NoticeContainerButton,
+  BtnForFavorite,
 };

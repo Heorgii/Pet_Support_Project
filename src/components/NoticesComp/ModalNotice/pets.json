@@ -9,5 +9,6 @@
   "location": "Kiev",
   "sex": "man",
   "phone": "555-55-55",
-  "email": "example@com.ua"
+  "email": "example@com.ua",
+  "animal": "cat"
 }
