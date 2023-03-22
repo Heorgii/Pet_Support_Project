@@ -66,7 +66,8 @@ export const OurFriendsItem = ({ friend }) => {
   // })();
 
   const userDay = new Date().getDay() - 1;
-  const userHours = new Date().getHours();
+  // const userHours = new Date().getHours();
+  const userHours = 20;
 
   useEffect(() => {
     try {

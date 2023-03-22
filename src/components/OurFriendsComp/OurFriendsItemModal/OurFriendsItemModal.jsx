@@ -28,7 +28,12 @@ export const OurFriendsItemModal = ({
 */
 
   useEffect(() => {
-    document.querySelector('#root').addEventListener('click', onClose());
+    const handleBackdropClick = e => {
+      onClose();
+    };
+    document
+      .querySelector('#root')
+      .addEventListener('click', handleBackdropClick);
 
     const handleKeyDown = e => {
       if (e.code === 'Escape') onClose();
@@ -38,16 +43,11 @@ export const OurFriendsItemModal = ({
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      document
+        .querySelector('#root')
+        .removeEventListener('click', handleBackdropClick);
     };
   }, [onClose]);
-
-  /* 
-  const handleBackdropClick = e => {
-     if (e.currentTarget === e.target) {
-       onClose();
-     }
-   };
-*/
 
   useEffect(() => {
     const time = [
@@ -59,10 +59,10 @@ export const OurFriendsItemModal = ({
       workDays[5].isOpen ? workDays[5].from + ' - ' + workDays[5].to : '',
       workDays[6].isOpen ? workDays[6].from + ' - ' + workDays[6].to : '',
     ];
-    if (dayClosed !== null) {
-      // const workingTime = time.splice(dayClosed, 1, 'closed');
-      setWorkTime(time);
-    }
+    // if (dayClosed !== null) {
+    //   time.splice(dayClosed, 1, 'closed');
+    //   setWorkTime(time);
+    // }
     setWorkTime(time);
   }, [dayClosed, workDays]);
 
