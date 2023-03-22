@@ -1,24 +1,15 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100vw;
-  height: 100vh;
-`;
-
 const Modal = styled.div`
-  display: ${props => props.display || 'none'};
   position: absolute;
-  top: 39%; //75px;
-  left: 45%; //126px;
+  bottom: -3px;
+  left: 0;
+  transform: translateY(100%);
 
   display: flex;
   align-items: center;
-
+  inline-size: max-content;
   max-width: 145px;
   padding: 12px;
 
@@ -26,16 +17,7 @@ const Modal = styled.div`
   border: 1px solid ${baseColor.colors.orangeLight};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  z-index: 10;
-
-  @media screen and (min-width: 768px) {
-    top: 39%; //96px;
-    left: 40%; //135px;
-  }
-  @media screen and (min-width: 1280px) {
-    top: 39%; //107px
-    left: 45%; //178px
-  }
+  z-index: 20;
 `;
 
 const Table = styled.tbody`
@@ -51,6 +33,7 @@ const Line = styled.tr`
 `;
 
 const Day = styled.th`
+  width: 20px; // deletes different position
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 12px;
@@ -68,4 +51,4 @@ const Time = styled.td`
   cursor: pointer;
 `;
 
-export { Overlay, Modal, Table, Line, Day, Time };
+export { Modal, Table, Line, Day, Time };

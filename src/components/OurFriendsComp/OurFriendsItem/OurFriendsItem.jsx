@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'; // useRef
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
+import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 import {
   Item,
   Title,
@@ -12,12 +13,8 @@ import {
   Image,
 } from './OurFriendsItem.styled';
 import defaultImg from 'images/defaultPets.png';
-import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state] = useState(friend); //, setState
-  const [workTime, setWorkTime] = useState('');
-  const [dayClosed, setDayClosed] = useState(null);
   const {
     id,
     title,
@@ -28,20 +25,9 @@ export const OurFriendsItem = ({ friend }) => {
     workDays,
     phone,
     email,
-  } = state;
-
-  // find address card for render modal window
-  // const cardElementRef = useRef();
-  // const [position, setPosition] = useState('');
-
-  // useEffect(() => {
-  //   try {
-  //     const position = cardElementRef.current.getBoundingClientRect();
-  //     setPosition(position);
-  //   } catch (e) {
-  //     console.log(e.message);
-  //   }
-  // }, []);
+  } = friend;
+  const [workTime, setWorkTime] = useState('');
+  const [dayClosed, setDayClosed] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(state => !state);
@@ -49,22 +35,7 @@ export const OurFriendsItem = ({ friend }) => {
   const hrefEmail = `mailto:${email}`;
   const hrefPhone = `tel:${phone}`;
 
-  // get user time and compare with workDays
-
-  // (() => {
-  // try {
-  //   workDays.forEach(day => {
-  //     if (day.isOpen) {
-  //       const time = day.from + ' - ' + day.to;
-  //       return setWorkTime(time);
-  //     }
-  //     return;
-  //   });
-  // } catch (e) {
-  //   console.log(`Error message: ${e.message}`);
-  // }
-  // })();
-
+  // gets user time and compare with workDays
   const userDay = new Date().getDay() - 1;
   // const userHours = new Date().getHours();
   const userHours = 20;
@@ -77,12 +48,12 @@ export const OurFriendsItem = ({ friend }) => {
         const finish = Number(day.to.split(':')[0]);
 
         if (userHours < start) {
-          setWorkTime('now closed');
+          setWorkTime('closed');
           setDayClosed(userDay);
           return;
         }
         if (userHours > finish) {
-          setWorkTime('now closed');
+          setWorkTime('closed');
           setDayClosed(userDay);
           return;
         }
@@ -120,11 +91,7 @@ export const OurFriendsItem = ({ friend }) => {
           <TextWrapper>
             <Text>Time:</Text>
             {workDays !== null ? (
-              <Link
-                aria-label="work days"
-                onClick={toggleModal}
-                // ref={cardElementRef}
-              >
+              <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
               </Link>
             ) : (
@@ -135,8 +102,6 @@ export const OurFriendsItem = ({ friend }) => {
                 onClose={toggleModal}
                 workDays={workDays}
                 dayClosed={dayClosed}
-                display="flex"
-                // position={position}
               />
             )}
           </TextWrapper>

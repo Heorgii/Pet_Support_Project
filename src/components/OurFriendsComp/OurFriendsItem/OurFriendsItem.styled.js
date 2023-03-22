@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Item = styled.li`
-  position: relative; //for modal
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   height: 100%;
   min-height: 192px;
   padding: 12px 4px;
+
   background-color: ${baseColor.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
@@ -28,10 +29,12 @@ const Item = styled.li`
     min-height: 287px;
   }
 
-  /* &:hover,
+  &:hover,
   &:focus {
+    position: relative;
+    z-index: 10;
     scale: 1.05;
-  } */
+  }
 `;
 
 const Info = styled.div`
@@ -58,8 +61,11 @@ const InfoWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
+  position: relative; //for modal
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 `;
 
 const Title = styled.a`

@@ -1,33 +1,12 @@
 import { useState, useEffect } from 'react';
-// import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-  // Overlay,
-  Modal,
-  Table,
-  Line,
-  Day,
-  Time,
-} from './OurFriendsItemModal.styled';
+import { Modal, Table, Line, Day, Time } from './OurFriendsItemModal.styled';
 
-// const modalRoot = document.querySelector('#modal-root');
-
-export const OurFriendsItemModal = ({
-  workDays,
-  dayClosed,
-  onClose,
-  position,
-}) => {
+export const OurFriendsItemModal = ({ workDays, dayClosed, onClose }) => {
   const [workTime, setWorkTime] = useState('');
 
-  // add position and behavior of the modal window
-  /* 
-  const { x, y } = position;
-  const left = x + 'px';
-  const top = y + 16 + 'px';
-*/
-
   useEffect(() => {
+    // closes modal with a click on the root
     const handleBackdropClick = e => {
       onClose();
     };
@@ -35,12 +14,13 @@ export const OurFriendsItemModal = ({
       .querySelector('#root')
       .addEventListener('click', handleBackdropClick);
 
+    // closes modal with a click on the Escape
     const handleKeyDown = e => {
       if (e.code === 'Escape') onClose();
     };
-
     window.addEventListener('keydown', handleKeyDown);
 
+    // removes all event listener
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document
@@ -66,10 +46,7 @@ export const OurFriendsItemModal = ({
     setWorkTime(time);
   }, [dayClosed, workDays]);
 
-  // return createPortal(
   return (
-    // <Overlay onClick={handleBackdropClick}>
-    // <Modal onClick={() => onClose()} left={left} top={top}>
     <Modal onClick={() => onClose()}>
       <table>
         <Table>
@@ -104,8 +81,6 @@ export const OurFriendsItemModal = ({
         </Table>
       </table>
     </Modal>
-    // </Overlay>,
-    // modalRoot,
   );
 };
 
@@ -119,5 +94,4 @@ OurFriendsItemModal.propTypes = {
   ),
   dayClosed: PropTypes.any,
   onClose: PropTypes.func.isRequired,
-  // position: PropTypes.any,
 };
