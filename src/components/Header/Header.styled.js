@@ -10,25 +10,8 @@ const HeaderContainer = styled.div`
 
   @media screen and (min-width: 1280px) {
     padding: 16px 20px 0px 20px;
+    width: 1280px;
   }
 `;
-const LeftContainer = styled.div`
-  display: flex;
-  align-items: center;
-  // @media screen and (min-width: 768px) {
-  // }
 
-  // @media screen and (min-width: 1280px) {
-  // }
-`;
-const RightContainer = styled.div`
-  display: flex;
-  align-items: center;
-  // @media screen and (min-width: 768px) {
-  // }
-
-  // @media screen and (min-width: 1280px) {
-  // }
-`;
-
-export { HeaderContainer, LeftContainer, RightContainer };
+export { HeaderContainer };
