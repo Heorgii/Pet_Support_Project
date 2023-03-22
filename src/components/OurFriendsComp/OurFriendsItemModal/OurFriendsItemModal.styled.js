@@ -11,20 +11,31 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
+  display: ${props => props.display || 'none'};
   position: absolute;
-  top: ${props => props.top || '0'};
-  left: ${props => props.left || '0'};
+  top: 39%; //75px;
+  left: 45%; //126px;
 
   display: flex;
   align-items: center;
 
-  max-width: 135px;
+  max-width: 145px;
   padding: 12px;
 
   background-color: ${baseColor.colors.white};
   border: 1px solid ${baseColor.colors.orangeLight};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+  z-index: 10;
+
+  @media screen and (min-width: 768px) {
+    top: 39%; //96px;
+    left: 40%; //135px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 39%; //107px
+    left: 45%; //178px
+  }
 `;
 
 const Table = styled.tbody`

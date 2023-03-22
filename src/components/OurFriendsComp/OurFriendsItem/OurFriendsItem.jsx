@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react'; // useRef
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
 import {
@@ -15,8 +15,9 @@ import defaultImg from 'images/defaultPets.png';
 import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state, setState] = useState(friend);
-  const [workTime, setWorkTime] = useState('8:00- 17:00');
+  const [state] = useState(friend); //, setState
+  const [workTime, setWorkTime] = useState('');
+  const [dayClosed, setDayClosed] = useState(null);
   const {
     id,
     title,
@@ -30,39 +31,68 @@ export const OurFriendsItem = ({ friend }) => {
   } = state;
 
   // find address card for render modal window
-  const cardElementRef = useRef();
-  const [position, setPosition] = useState('');
-  useEffect(() => {
-    try {
-      const position = cardElementRef.current.getBoundingClientRect();
-      setPosition(position);
-      console.log(position);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, []);
+  // const cardElementRef = useRef();
+  // const [position, setPosition] = useState('');
 
-  // toggle modal window
+  // useEffect(() => {
+  //   try {
+  //     const position = cardElementRef.current.getBoundingClientRect();
+  //     setPosition(position);
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // }, []);
+
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(state => !state);
 
   const hrefEmail = `mailto:${email}`;
   const hrefPhone = `tel:${phone}`;
 
+  // get user time and compare with workDays
+
   // (() => {
-  //   try {
-  //     // debugger;
-  //     workDays.forEach(day => {
-  //       if (day.isOpen) {
-  //         const time = day.from + ' - ' + day.to;
-  //         return setWorkTime(time);
-  //       }
-  //       return;
-  //     });
-  //   } catch (e) {
-  //     console.log(`Error message: ${e.message}`);
-  //   }
+  // try {
+  //   workDays.forEach(day => {
+  //     if (day.isOpen) {
+  //       const time = day.from + ' - ' + day.to;
+  //       return setWorkTime(time);
+  //     }
+  //     return;
+  //   });
+  // } catch (e) {
+  //   console.log(`Error message: ${e.message}`);
+  // }
   // })();
+
+  const userDay = new Date().getDay() - 1;
+  const userHours = new Date().getHours();
+
+  useEffect(() => {
+    try {
+      const day = workDays[userDay];
+      if (day.isOpen) {
+        const start = Number(day.from.split(':')[0]);
+        const finish = Number(day.to.split(':')[0]);
+
+        if (userHours < start) {
+          setWorkTime('now closed');
+          setDayClosed(userDay);
+          return;
+        }
+        if (userHours > finish) {
+          setWorkTime('now closed');
+          setDayClosed(userDay);
+          return;
+        }
+        setWorkTime(day.from + ' - ' + day.to);
+      }
+      if (!day.isOpen) return setWorkTime('not working today');
+      return;
+    } catch (e) {
+      console.log(`Error message: ${e.message}`);
+    }
+  }, [userDay, userHours, workDays]);
 
   return (
     <Item key={id} id={id}>
@@ -92,7 +122,7 @@ export const OurFriendsItem = ({ friend }) => {
               <Link
                 aria-label="work days"
                 onClick={toggleModal}
-                ref={cardElementRef}
+                // ref={cardElementRef}
               >
                 {workTime}
               </Link>
@@ -103,7 +133,9 @@ export const OurFriendsItem = ({ friend }) => {
               <OurFriendsItemModal
                 onClose={toggleModal}
                 workDays={workDays}
-                position={position}
+                dayClosed={dayClosed}
+                display="flex"
+                // position={position}
               />
             )}
           </TextWrapper>
