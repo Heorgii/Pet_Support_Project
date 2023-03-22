@@ -39,9 +39,9 @@ export const ButtonStyled = styled.button`
   color: ${baseColor.colors.white};
 
   &:focus {
-  outline: none;
-  box-shadow: none;
-}
+    outline: none;
+    box-shadow: none;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
