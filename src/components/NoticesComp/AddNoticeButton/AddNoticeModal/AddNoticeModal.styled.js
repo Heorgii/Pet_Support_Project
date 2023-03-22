@@ -10,20 +10,19 @@ export const ModalAddNoticeStyled = styled.div`
   position: relative;
 
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 280px;
 
-  margin-top: 160px;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 160px 20px 160px 20px;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
   background: ${baseColor.colors.white};
 
   @media screen and (min-width: 768px) {
-    margin-top: 260px;
-    margin-right: 80px;
-    margin-left: 80px;
+    max-width: 600px;
+
+    margin: 260px 80px 260px 80px;
     border-radius: 40px;
     padding: 40px 80px 40px 80px;
 
@@ -36,9 +35,7 @@ export const ModalAddNoticeStyled = styled.div`
     }
   }
   @media screen and (min-width: 1280px) {
-    margin-top: 330px;
-    margin-right: 340px;
-    margin-left: 340px;
+    margin: 330px 340px 330px 340px;
   }
 `;
 
@@ -286,7 +283,9 @@ export const LabelRadio = styled.label`
 `;
 
 export const FieldRadio = styled(Field)`
-opacity: 0;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
 
   &:checked + ${LabelRadio} {
     color: ${baseColor.colors.white};
@@ -304,9 +303,9 @@ export const FieldItem = styled(Field)`
   text-align: left;
   color: ${baseColor.colors.inpText};
 
-&::placeholder {
-  color: rgba(27, 27, 27, 0.6);
-}
+  &::placeholder {
+    color: rgba(27, 27, 27, 0.6);
+  }
   padding: 10px 15px 10px 15px;
   height: 40px;
   width: 100%;
@@ -328,13 +327,12 @@ export const FieldItem = styled(Field)`
 
   &:focus {
     outline: 3px solid ${baseColor.colors.orangeLight};
-
   }
 
-&::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        display: none;
-}
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
   @media screen and (min-width: 768px) {
     font-size: 16px;
     height: 48px;
@@ -421,7 +419,6 @@ export const FieldItemFile = styled(Field)`
     outline: none;
   }
 
-
   &::file-selector-button {
     display: none;
   }
@@ -431,7 +428,8 @@ export const FieldItemFile = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 28px;
+    height: 140px;
+    width: 140px;
   }
 `;
 
@@ -440,12 +438,25 @@ export const IconMale = styled(iconMale)`
   width: 40px;
   margin-top: 16px;
   margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    height: 60px;
+    width: 60px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
 `;
 export const IconFemale = styled(iconFemale)`
   height: 40px;
   width: 40px;
   margin-top: 16px;
   margin-bottom: 12px;
+  @media screen and (min-width: 768px) {
+    height: 60px;
+    width: 60px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const LabelRadioSex = styled.label`
@@ -467,16 +478,18 @@ export const LabelRadioSex = styled.label`
     }
   }
   @media screen and (min-width: 768px) {
-    height: 47px;
-    &:not(:last-child) {
-      margin-right: 12px;
-      margin-bottom: 16px;
-    }
+
+  &:not(:last-child) {
+    margin-right: 80px;
   }
+
+
 `;
 
 export const FieldRadioSex = styled(Field)`
   opacity: 0;
+  width: 0px;
+  height: 0px;
 
   &:checked + ${LabelRadioSex} {
     & span {
@@ -518,7 +531,9 @@ export const FieldsRadioSex = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 20px;
+    margin-bottom: 40px;
+
+    font-size: 24px;
   }
 `;
 
@@ -538,9 +553,7 @@ export const LabelItemTextArea = styled.label`
 
   color: ${baseColor.colors.inpText};
 
-  &:first-child {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
 
   & span {
     display: block;
@@ -561,9 +574,7 @@ export const LabelItemTextArea = styled.label`
   @media screen and (min-width: 768px) {
     font-size: 24px;
 
-    &:first-child {
-      margin-top: 12px;
-    }
+    margin-top: 28px;
 
     & span {
       display: block;
@@ -573,7 +584,6 @@ export const LabelItemTextArea = styled.label`
 `;
 
 export const FieldItemTextArea = styled(Field)`
-
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -583,9 +593,9 @@ export const FieldItemTextArea = styled(Field)`
   text-align: left;
   color: ${baseColor.colors.inpText};
 
-&::placeholder {
-  color: rgba(27, 27, 27, 0.6);
-}
+  &::placeholder {
+    color: rgba(27, 27, 27, 0.6);
+  }
 
   padding: 10px 15px 10px 15px;
   height: 40px;
@@ -608,17 +618,18 @@ export const FieldItemTextArea = styled(Field)`
 
   &:focus {
     outline: 3px solid ${baseColor.colors.orangeLight};
-height: 137px;
-border-radius: 20px;
+    height: 137px;
+    border-radius: 20px;
   }
 
-&::-webkit-scrollbar{
- display: none;
-}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    height: 48px;
-    margin-bottom: 28px;
+    height: 113px;
+    margin-bottom: 40px;
+    border-radius: 20px;
   }
 `;

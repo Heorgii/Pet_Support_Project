@@ -6,11 +6,11 @@ const state = {
                 name: '',
                 date: '',
                 breed: '',
-                sex: '',
+                radioSex: '',
                 location: '',
                 price: '',
                 image: '',
-                comments: '',
+                comment: '',
 };
 
 export const noticeSlice = createSlice({
@@ -19,16 +19,16 @@ export const noticeSlice = createSlice({
   reducers: {
     addNotice: (state, { payload }) => ({
       ...state,
-                radio: payload.userId,
+                radio: payload.radio,
                 title: payload.title,
                 name: payload.name,
                 date: payload.date,
                 breed: payload.breed,
-                sex: payload.sex,
+                radioSex: payload.radioSex,
                 location: payload.location,
                 price: payload.price,
                 image: payload.image,
-                comments: payload.comments,
+                comment: payload.comment,
     }),
     cleanNotice: () => state,
   },

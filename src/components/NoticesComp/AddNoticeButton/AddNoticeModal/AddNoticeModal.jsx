@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Formik } from 'formik';
 import { createPortal } from 'react-dom';
 import {
@@ -28,23 +29,26 @@ import {
 } from './AddNoticeModal.styled';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNotice, cleanNotice } from 'redux/notice/slice';
+import { noticeSlice } from 'redux/notice/slice';
 import { noticeState } from 'redux/notice/selectors';
+import { addOwnNotice } from 'redux/notices/operations';
 
 const modalAddNoticeRoot = document.querySelector('#modalAddNotice-root');
 
 export const AddNoticeModal = ({ onClose }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     radio,
     title,
     name,
     date,
     breed,
-    sex,
+    radioSex,
     location,
     price,
     image,
-    comments,
+    comment,
   } = useSelector(noticeState);
 
   const [formQueue, setFormQueue] = useState('true');
@@ -74,15 +78,18 @@ export const AddNoticeModal = ({ onClose }) => {
     setFormQueue(!formQueue);
   }
 
-  function setImage() {
+  function setImage(e) {
+    // console.log(e.target)
     const input = document.querySelector('.file');
     const preview = document.querySelector('.preview');
-
     const reader = new FileReader();
+    e.target.style = '';
 
     reader.onload = function () {
+      e.target.style = `background-image: url(${reader.result}); background-size: 116px, 116px; background-position: center; background-repeat: no-repeat;
+`;
+
       preview.src = reader.result;
-      console.log(preview.src);
     };
     if (input.files[0]) {
       reader.readAsDataURL(input.files[0]);
@@ -92,9 +99,20 @@ export const AddNoticeModal = ({ onClose }) => {
     }
   }
 
-  function submitForm() {}
+  function submitForm(values) {
+    console.log(values);
+    dispatch(noticeSlice.actions.addNotice(values));
+  }
 
-  function onClean() {}
+  function onClean() {
+    dispatch(noticeSlice.actions.cleanNotice());
+  }
+
+  function pushNotice(values) {
+    dispatch(addOwnNotice(values));
+    onClose();
+    navigate('/notices/own');
+  }
 
   return createPortal(
     <Overlay onClick={onClickBackdrop}>
@@ -111,18 +129,19 @@ export const AddNoticeModal = ({ onClose }) => {
               name: name,
               date: date,
               breed: breed,
-              sex: sex,
+              radioSex: radioSex,
               location: location,
               price: price,
               image: image,
-              comments: comments,
-            }}
-            onSubmit={values => {
-              console.log({ values });
+              comment: comment,
             }}
           >
             {({ values, handleChange, handleSubmit }) => (
-              <FormStyled onSubmit={handleSubmit}>
+              <FormStyled
+                onSubmit={handleSubmit}
+                onChange={handleChange}
+                required={true}
+              >
                 <div>
                   {formQueue ? (
                     <div>
@@ -159,7 +178,6 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="radio"
                           value="sell"
                           checked={values.radio === 'sell'}
-                          required={true}
                         />
                         <LabelRadio htmlFor="radioThree" key={nanoid()}>
                           sell
@@ -176,14 +194,9 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="title"
                           placeholder="Type name"
                           value={values.title}
-                          required={true}
                         />
 
-                        <LabelItem
-                          htmlFor="name"
-                          onChange={handleChange}
-                          key={nanoid()}
-                        >
+                        <LabelItem htmlFor="name" key={nanoid()}>
                           <span>Name pet</span>
                         </LabelItem>
 
@@ -193,15 +206,9 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="name"
                           placeholder="Type name pet"
                           value={values.name}
-
-                          required={true}
                         />
 
-                        <LabelItem
-                          htmlFor="date"
-                          onChange={handleChange}
-                          key={nanoid()}
-                        >
+                        <LabelItem htmlFor="date" key={nanoid()}>
                           <span>Date of birth</span>
                         </LabelItem>
 
@@ -211,15 +218,9 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="date"
                           placeholder="Type date of birth"
                           value={values.date}
-
-                          required={true}
                         />
 
-                        <LabelItem
-                          htmlFor="breed"
-                          onChange={handleChange}
-                          key={nanoid()}
-                        >
+                        <LabelItem htmlFor="breed" key={nanoid()}>
                           <span>Breed</span>
                         </LabelItem>
 
@@ -229,36 +230,33 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="breed"
                           placeholder="Type breed"
                           value={values.breed}
-
-                          required={true}
                         />
                       </FieldList>
                     </div>
                   ) : (
                     <div>
-                      <FieldsRadioSex role="group" required={true}>
+                      <FieldsRadioSex role="group">
                         <span>The sex</span>
                         <FieldRadioSex
                           type="radio"
-                          id="radioOne"
-                          name="radio"
+                          id="radioOneSex"
+                          name="radioSex"
                           value="male"
-                          checked={values.radio === 'male'}
+                          checked={values.radioSex === 'male'}
                         />
-                        <LabelRadioSex htmlFor="radioOne" key={nanoid()}>
+                        <LabelRadioSex htmlFor="radioOneSex" key={nanoid()}>
                           <IconMale />
                           <span>Male</span>
                         </LabelRadioSex>
 
                         <FieldRadioSex
                           type="radio"
-                          id="radioTwo"
-                          name="radio"
+                          id="radioTwoSex"
+                          name="radioSex"
                           value="female"
-                          checked={values.radio === 'female'}
-                          required={true}
+                          checked={values.radioSex === 'female'}
                         />
-                        <LabelRadioSex htmlFor="radioTwo" key={nanoid()}>
+                        <LabelRadioSex htmlFor="radioTwoSex" key={nanoid()}>
                           <IconFemale />
                           <span>Female</span>
                         </LabelRadioSex>
@@ -274,28 +272,24 @@ export const AddNoticeModal = ({ onClose }) => {
                           name="location"
                           placeholder="Type location"
                           value={values.location}
-
-                          required={true}
                         />
+                        {values.radio === 'sell' ? (
+                          <div>
+                            <LabelItem htmlFor="price" key={nanoid()}>
+                              <span>Price</span>
+                            </LabelItem>
 
-                        <LabelItem
-                          htmlFor="price"
-                          onChange={handleChange}
-                          key={nanoid()}
-                        >
-                          <span>Price</span>
-                        </LabelItem>
-
-                        <FieldItem
-                          type="number"
-                          id="price"
-                          name="price"
-                          placeholder="Type price"
-                          value={values.price}
-
-                          required={true}
-                        />
-
+                            <FieldItem
+                              type="number"
+                              id="price"
+                              name="price"
+                              placeholder="Type price"
+                              value={values.price}
+                            />
+                          </div>
+                        ) : (
+                          ''
+                        )}
                         <LabelItem htmlFor="image" key={nanoid()}>
                           <span>Load the pet’s image</span>
                           <img
@@ -315,16 +309,10 @@ export const AddNoticeModal = ({ onClose }) => {
                           id="image"
                           name="image"
                           onChange={e => {
-                            handleChange(e);
-                            // setImage()
+                            handleChange(e, setImage(e));
                           }}
-                          required={true}
                         />
-                        <LabelItemTextArea
-                          htmlFor="comment"
-                          onChange={handleChange}
-                          key={nanoid()}
-                        >
+                        <LabelItemTextArea htmlFor="comment" key={nanoid()}>
                           <span>Comments</span>
                         </LabelItemTextArea>
 
@@ -337,8 +325,8 @@ export const AddNoticeModal = ({ onClose }) => {
                           id="comment"
                           name="comment"
                           placeholder="Type comment"
-                          value={values.comment}
-                          required={true}
+                          onChange={e => handleChange(e)}
+                          defaultValue={values.comment}
                         />
                       </FieldList>
                     </div>
@@ -346,14 +334,32 @@ export const AddNoticeModal = ({ onClose }) => {
                   <div className="btns">
                     <ButtonFirst
                       type="submit"
-                      onClick={formQueue ? toggleForm : (submitForm, onClean)}
+                      onClick={
+                        formQueue
+                          ? () => {
+                              toggleForm();
+                              submitForm(values);
+                            }
+                          : () => {
+                              submitForm(values);
+                              pushNotice(values);
+                              onClean();
+                            }
+                      }
                       key={nanoid()}
                     >
                       {formQueue ? 'Next' : 'Done'}
                     </ButtonFirst>
                     <ButtonSecond
                       type="button"
-                      onClick={formQueue ? (onClose, onClean) : toggleForm}
+                      onClick={
+                        formQueue
+                          ? () => {
+                              onClean();
+                              onClose();
+                            }
+                          : toggleForm
+                      }
                       key={nanoid()}
                     >
                       {formQueue ? 'Cancel' : 'Back'}

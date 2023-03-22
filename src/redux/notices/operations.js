@@ -55,7 +55,7 @@ export const fetchOwnNotices = createAsyncThunk(
 
 // POST @ /notices/own
 export const addOwnNotice = createAsyncThunk(
-  'notices/addNotice',
+  'notices/addNotices',
   async (objNotice, thunkAPI) => {
     try {
       const response = await axios.post('/notices/own', objNotice);
