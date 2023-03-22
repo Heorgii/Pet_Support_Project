@@ -1,0 +1,1 @@
+export const noticeState = state => state.notice;
