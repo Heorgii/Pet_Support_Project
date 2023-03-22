@@ -27,7 +27,7 @@ export const NoticesCategoriesItem = ({ data }) => {
           <BtnForFavorite>
             <img src={akar_icons_heart} alt="Add to favorite" />
           </BtnForFavorite>
-          <ImgItem src={no_Photo} />
+          <ImgItem src={no_Photo} loading="lazy" />
           <div>
             <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
             <div>
@@ -61,7 +61,12 @@ export const NoticesCategoriesItem = ({ data }) => {
           <BtnLearnMore>Learn more</BtnLearnMore>
           <BtnDelete>
             Delete{' '}
-            <img src={delBack} alt="heard" style={{ marginLeft: '12px' }} />
+            <img
+              loading="lazy"
+              src={delBack}
+              alt="heard"
+              style={{ marginLeft: '12px' }}
+            />
           </BtnDelete>
         </NoticeContainerButton>
       </NoticesContainerItem>

@@ -14,20 +14,31 @@ const ItemContainer = styled.div`
 const NoticesContainerItem = styled.div`
   position: relative;
   display: block;
+  object-fit: cover;
   width: 280px;
   padding: 0 0 12px 0;
   background-color: #ffffff;
   border-radius: 0px 0px 20px 20px;
+  transition: box-shadow 250ms linear;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    box-shadow: 0 1px 4px ${baseColor.colors.orange},
+      -23px 0 20px -23px ${baseColor.colors.orange},
+      23px 0 20px -23px ${baseColor.colors.orange},
+      inset 0 0 40px ${baseColor.colors.orange};
+  }
 
-  @media screen and (min-width: 768px) {
-    /* width: 704px;
-    padding: 32px 20px 32px 20px; */
+  @media screen and (min-width: 768px) and (max-width: 1279.5px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1279.5px) {
+    width: 288px;
   }
 `;
 
 const ContainerStatus = styled.div`
   position: absolute;
-  top: 77px;
+  top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,8 +80,8 @@ const ContainerInfo = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 670px;
-    display: flex;
+    /* width: 670px;
+    display: flex; */
   }
 `;
 const ImgItem = styled.img`
@@ -78,9 +89,8 @@ const ImgItem = styled.img`
   height: 288px;
   outline: unset;
   @media screen and (min-width: 768px) {
-    /* width: 288px;
-    height: 328px;
-    margin-right: 20px; */
+    width: 100%;
+    object-fit: contain;
   }
 `;
 const NoticeItemTitle = styled.div`
@@ -108,9 +118,9 @@ const NoticeContainerButton = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
-    justify-content: end;
+    /* justify-content: end;
     flex-direction: row-reverse;
-    margin-top: 32px;
+    margin-top: 32px; */
   }
 `;
 const BtnLearnMore = styled.button`
@@ -133,8 +143,8 @@ const BtnLearnMore = styled.button`
     outline: none;
   }
   @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 0 0 0;
+    /* width: 160px;
+    margin: 0 0 0 0; */
   }
 `;
 const BtnDelete = styled.button`
@@ -159,8 +169,8 @@ const BtnDelete = styled.button`
     outline: none;
   }
   @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 12px 0 0;
+    /* width: 160px;
+    margin: 0 12px 0 0; */
   }
 `;
 const TdTable = styled.td`
