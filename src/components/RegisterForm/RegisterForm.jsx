@@ -30,7 +30,7 @@ import {
   BoxText,
   SpinerWrapper,
 } from './RegisterForm.styled';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 
 
 
@@ -141,11 +141,11 @@ const RegisterForm = () => {
   };
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <SpinerWrapper>
           {/* <Spinner /> */}
-        </SpinerWrapper>
-      ) : (
+        {/* </SpinerWrapper> */}
+      {/* ) : (  */}
         <FormContainer>
           <Formik validationSchema={registerSchema}>
             <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
@@ -287,7 +287,7 @@ const RegisterForm = () => {
           </Formik>
           {/* <Background></Background> */}
         </FormContainer>
-      )}
+      {/*  )} */}
     </>
   );
 };
