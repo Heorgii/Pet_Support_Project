@@ -229,6 +229,7 @@ export const FormStyled = styled(Form)`
 `;
 
 export const FieldsRadio = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -250,6 +251,7 @@ export const FieldsRadio = styled.div`
 `;
 
 export const LabelRadio = styled.label`
+  position: relative;
   cursor: pointer;
 
   display: flex;
@@ -515,7 +517,8 @@ export const FieldsRadioSex = styled.div`
   letter-spacing: 0.04em;
   color: ${baseColor.colors.inpText};
 
-  & span {
+  & p {
+position: relative;
     display: block;
     width: 100%;
 
@@ -534,6 +537,10 @@ export const FieldsRadioSex = styled.div`
     margin-bottom: 40px;
 
     font-size: 24px;
+
+  & p {
+    font-size: 24px;
+  }
   }
 `;
 
@@ -631,5 +638,38 @@ export const FieldItemTextArea = styled(Field)`
     height: 113px;
     margin-bottom: 40px;
     border-radius: 20px;
+
+  &:focus {
+    height: 113px;
+  }
+
+  }
+`;
+
+export const Error = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+z-index: 99;
+background: rgba(245, 146, 86, 0.5);
+border: 1px solid ${baseColor.colors.white};
+border-radius: 20px;
+padding: 6px 12px 6px 12px;
+
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.white};
+
+
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+
   }
 `;

@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const state = {
-                radio: '',
+                category: '',
                 title: '',
                 name: '',
-                date: '',
+                birthday: '',
                 breed: '',
-                radioSex: '',
+                sex: '',
                 location: '',
                 price: '',
                 image: '',
-                comment: '',
+                comments: '',
 };
 
 export const noticeSlice = createSlice({
@@ -19,16 +19,16 @@ export const noticeSlice = createSlice({
   reducers: {
     addNotice: (state, { payload }) => ({
       ...state,
-                radio: payload.radio,
+                category: payload.category,
                 title: payload.title,
                 name: payload.name,
-                date: payload.date,
+                birthday: payload.birthday,
                 breed: payload.breed,
-                radioSex: payload.radioSex,
+                sex: payload.sex,
                 location: payload.location,
                 price: payload.price,
                 image: payload.image,
-                comment: payload.comment,
+                comments: payload.comments,
     }),
     cleanNotice: () => state,
   },

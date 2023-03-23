@@ -7,6 +7,7 @@ export const ButtonStyled = styled.button`
   position: absolute;
   top: 100px;
   right: 0px;
+  z-index: 99;
 
   display: flex;
   align-items: center;

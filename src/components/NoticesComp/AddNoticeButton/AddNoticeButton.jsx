@@ -5,7 +5,10 @@ import Notiflix from 'notiflix';
 import { useAuth } from 'hooks/useAuth';
 
 export const AddNoticeButton = () => {
-  const { isLoggedIn } = useAuth();
+
+  // const { isLoggedIn } = useAuth();
+
+const isLoggedIn = true;
 
   const [showModalAddNotice, setShowModalAddNotice] = useState(false);
 
