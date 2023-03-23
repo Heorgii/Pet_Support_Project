@@ -29,22 +29,12 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, (state, action) => {
-        state.user = {
-          userName: null,
-          email: null,
-          location: null,
-          phone: null,
-        };
+        state.user = initialState.user;
         state.token = null;
         state.isLoggedIn = false;
       })
       .addCase(logOut.fulfilled, state => {
-        state.user = {
-          userName: null,
-          email: null,
-          location: null,
-          phone: null,
-        };
+        state.user = initialState.user;
         state.token = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
@@ -58,12 +48,7 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
-        state.user = {
-          userName: null,
-          email: null,
-          location: null,
-          phone: null,
-        };
+        state.user = initialState.user;
         state.isLoggedIn = false;
         state.isRefreshing = false;
       });
