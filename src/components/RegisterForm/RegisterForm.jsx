@@ -30,12 +30,9 @@ import {
   BoxText,
   // SpinerWrapper,
 } from './RegisterForm.styled';
-import { useAuth } from 'hooks/useAuth';
-
 
 
 // const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const {isLoggedIn} = useAuth();
 const phoneNumberMask = [
   '+',
   /\d/,
@@ -89,6 +86,7 @@ const RegisterForm = () => {
   // const loading = useSelector(selectIsLoading);
   // const {is}= useAuth();
   const dispatch = useDispatch();
+  const register = useState(false);
 
   const showForm = () => {
     setIsShown(false);                            
@@ -100,7 +98,7 @@ const RegisterForm = () => {
   const onSubmit = values => {
     const { name, email, password, phone, city } = values;
     dispatch(
-      isLoggedIn({
+      register({
         name,
         email,
         password,
