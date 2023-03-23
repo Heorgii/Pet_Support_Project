@@ -15,7 +15,7 @@ const NoticesContainerItem = styled.div`
   display: block;
   width: 280px;
   padding: 17px 20px 43px 20px;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -63,7 +63,7 @@ const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -92,7 +92,7 @@ const NoticeItemTitle = styled.div`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: #000000;
+  color: ${baseColor.colors.black};
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
@@ -122,11 +122,11 @@ const BtnContact = styled.button`
   margin: 40px 0 12px;
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
@@ -145,11 +145,11 @@ const BtnAddFavorits = styled.button`
   color: ${baseColor.colors.blackText};
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
