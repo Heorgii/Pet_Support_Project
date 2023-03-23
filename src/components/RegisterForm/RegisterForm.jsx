@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock, FaUnlockAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { authSignUpUser } from 'redux/auth/operations';
+import { register } from 'redux/auth/operations';
 
 import css from './RegisterForm.module.css';
 
@@ -11,6 +11,8 @@ function Register() {
   const [passwordInput, setPasswordInput] = useState('');
   const [nameInput, setNameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
+  const [phoneInput, setPhoneInput] = useState('');
+  const [locationInput, setLocationInput] = useState('');
 
   const handlePasswordChange = evnt => {
     setPasswordInput(evnt.target.value);
@@ -20,6 +22,12 @@ function Register() {
   };
   const handleEmailChange = evnt => {
     setEmailInput(evnt.target.value);
+  };
+  const handlePhoneChange = evnt => {
+    setPhoneInput(evnt.target.value);
+  };
+  const handleLocationChange = evnt => {
+    setLocationInput(evnt.target.value);
   };
 
   const togglePassword = e => {
@@ -34,10 +42,12 @@ function Register() {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      authSignUpUser({
-        nickName: form.elements.name.value,
+      register({
+        userName: form.elements.userName.value,
         email: form.elements.email.value,
         password: form.elements.password.value,
+        phone: form.elements.phone.value,
+        location: form.elements.location.value,
       }),
     );
     form.reset();
@@ -56,7 +66,7 @@ function Register() {
                   <FaUser size="25" />
                   <input
                     className={css.input_active}
-                    name="name"
+                    name="userName"
                     type="text"
                     onChange={handleNameChange}
                     value={nameInput}
@@ -98,6 +108,38 @@ function Register() {
                     type={passwordType}
                     onChange={handlePasswordChange}
                     value={passwordInput}
+                  />
+                </div>
+              </div>
+            </label>
+          </div>
+          <div className={css.flexrow}>
+            <label className={css.title__label}>
+              <div>
+                Phone
+                <div className={css.item__container}>
+                  <input
+                    className={css.input_active}
+                    name="phone"
+                    type="text"
+                    onChange={handlePhoneChange}
+                    value={phoneInput}
+                  />
+                </div>
+              </div>
+            </label>
+          </div>
+          <div className={css.flexrow}>
+            <label className={css.title__label}>
+              <div>
+                Location
+                <div className={css.item__container}>
+                  <input
+                    className={css.input_active}
+                    name="location"
+                    type="text"
+                    onChange={handleLocationChange}
+                    value={locationInput}
                   />
                 </div>
               </div>
