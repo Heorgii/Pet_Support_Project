@@ -1,6 +1,10 @@
 import React from 'react';
 import { LoginButton } from './LoginBTN.styled';
 
-export const LoginBTN = () => {
-  return <LoginButton to="/login">Login</LoginButton>;
+export const LoginBTN = onClick => {
+  return (
+    <LoginButton to="/login" onClick={onClick}>
+      Login
+    </LoginButton>
+  );
 };

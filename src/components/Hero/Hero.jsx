@@ -20,17 +20,19 @@ import heart from '../../images/heart.png';
 
 export const Hero = () => {
   return (
-    <Container>
-      <Title>Take good care of your small pets</Title>
+    <>
+      <Container>
+        <Title>Take good care of your small pets</Title>
 
-      <Images>
-        <DogMobile src={labrador} alt="Dog"></DogMobile>
-        <WaveMobile src={wave} alt="Wave"></WaveMobile>
-        <WaveTab src={waveTab} alt="Wave"></WaveTab>
-      </Images>
-      <Heart src={heart} alt="Wave"></Heart>
-      <WaveDesk2 src={waveDesk2} alt="Wave"></WaveDesk2>
-      <WaveDesk src={waveDesk} alt="Wave"></WaveDesk>
-    </Container>
+        <Images>
+          <DogMobile src={labrador} alt="Dog"></DogMobile>
+          <WaveMobile src={wave} alt="Wave"></WaveMobile>
+          <WaveTab src={waveTab} alt="Wave"></WaveTab>
+        </Images>
+        <Heart src={heart} alt="Wave"></Heart>
+        <WaveDesk2 src={waveDesk2} alt="Wave"></WaveDesk2>
+        <WaveDesk src={waveDesk} alt="Wave"></WaveDesk>
+      </Container>
+    </>
   );
 };
