@@ -23,67 +23,65 @@ export const App = () => {
   // }, [dispatch, user]);
 
   return (
-    <div>
-      <HelmetProvider>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/user"
-                  component={<RegisterPage />}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
-              }
-            />
-            <Route
-              path="/news"
-              element={
-                <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
-              }
-            />
+    <HelmetProvider>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/news"
+            element={
+              <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
+            }
+          />
 
-            <Route
-              path="/notices"
-              element={
-                <RestrictedRoute
-                  redirectTo="/notices"
-                  component={<NoticesPage />}
-                />
-              }
-            />
+          <Route
+            path="/notices"
+            element={
+              <RestrictedRoute
+                redirectTo="/notices"
+                component={<NoticesPage />}
+              />
+            }
+          />
 
-            <Route
-              path="/friends"
-              element={
-                <RestrictedRoute
-                  redirectTo="/friends"
-                  component={<OurFriendsPage />}
-                />
-              }
-            />
+          <Route
+            path="/friends"
+            element={
+              <RestrictedRoute
+                redirectTo="/friends"
+                component={<OurFriendsPage />}
+              />
+            }
+          />
 
-            {/* added kadulin */}
-            <Route path="api-docs" element={<ApiDocs />} />
+          {/* added kadulin */}
+          <Route path="api-docs" element={<ApiDocs />} />
 
-            <Route
-              path="user"
-              element={
-                <PrivateRoute redirectTo="/register" component={<UserPage />} />
-              }
-            />
+          <Route
+            path="user"
+            element={
+              <PrivateRoute redirectTo="/register" component={<UserPage />} />
+            }
+          />
 
-            <Route path="*" element={<HomePage />} />
-          </Route>
-        </Routes>
-      </HelmetProvider>
-    </div>
+          <Route path="*" element={<HomePage />} />
+        </Route>
+      </Routes>
+    </HelmetProvider>
   );
 };
