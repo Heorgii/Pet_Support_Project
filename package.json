@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^10.6.1",
     "modern-normalize": "^1.1.0",
+    "nanoid": "^4.0.1",
     "notiflix": "^3.2.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
