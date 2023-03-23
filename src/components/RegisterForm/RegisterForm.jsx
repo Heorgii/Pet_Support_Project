@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';//useSelector
 import { useFormik, Formik } from 'formik';
 import { object, string, ref } from 'yup';
 // import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
-import { selectIsLoading } from '../../redux/auth/selectors';
+// import { selectIsLoading } from '../../redux/auth/selectors';
 import { register } from '../../redux/auth/operations';
 
 // import {
@@ -30,6 +30,7 @@ import {
   BoxText,
   SpinerWrapper,
 } from './RegisterForm.styled';
+import { useAuth } from 'hooks/useAuth';
 
 
 
@@ -85,7 +86,8 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  const loading = useSelector(selectIsLoading);
+  // const loading = useSelector(selectIsLoading);
+  // const {is}= useAuth();
   const dispatch = useDispatch();
 
   const showForm = () => {
