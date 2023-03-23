@@ -52,6 +52,7 @@ export const logOut = async (dispatch, getState) => {
   }
 };
 
+// додав для роботи User page
 export const getUserProfile = () => {
   const userProfile = localStorage.getItem('userProfile');
   if (userProfile) {
@@ -65,3 +66,5 @@ export const updateUserProfile = userData => {
   const updatedUserProfile = { ...userProfile, ...userData };
   localStorage.setItem('userProfile', JSON.stringify(updatedUserProfile));
 };
+
+//

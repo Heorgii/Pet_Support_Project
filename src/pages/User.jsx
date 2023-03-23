@@ -46,10 +46,8 @@ export const UserPage = () => {
         <UserAboutWrapper>
           <TopContainer>
             <MyPetContainer>
-              {/* <MyPetTitle title="My pets" /> */}
-              <MyPetTitle active={toShow} onClick={() => setToShow('pets')}>
-                My pets
-              </MyPetTitle>
+              <MyPetTitle title="My pets" />
+              <MyPetTitle>My pets</MyPetTitle>
             </MyPetContainer>
             {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
           </TopContainer>
