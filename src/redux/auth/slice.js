@@ -4,7 +4,7 @@ const state = {
   userId: null,
   nickName: null,
   email: null,
-  stateChange: false,
+  stateIsLoggedIn: false,
   isRefreshing: false,
 };
 
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
       userId: payload.userId,
       nickName: payload.nickName,
       email: payload.email,
-      stateChange: payload.stateChange,
+      stateIsLoggedIn: payload.stateIsLoggedIn,
       isRefreshing: payload.isRefreshing,
     }),
     authSignOut: () => state,
