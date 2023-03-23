@@ -89,7 +89,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const showForm = () => {
-    setIsShown(false);
+    setIsShown(false);                            
   };
   const hideForm = () => {
     setIsShown(true);
@@ -141,7 +141,7 @@ const RegisterForm = () => {
     <>
       {loading ? (
         <SpinerWrapper>
-          <Spinner />
+          {/* <Spinner /> */}
         </SpinerWrapper>
       ) : (
         <FormContainer>
