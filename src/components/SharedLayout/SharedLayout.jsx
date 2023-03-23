@@ -5,19 +5,13 @@ import { PageContainer } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <PageContainer>
-        <Header />
+    <PageContainer>
+      <Header />
+      <main>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
-      </PageContainer>
-    </div>
+      </main>
+    </PageContainer>
   );
 };

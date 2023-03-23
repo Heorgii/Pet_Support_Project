@@ -57,7 +57,7 @@ const OurFriends = () => {
       />
       <Section>
         <Container>
-          <Title as="h1">Our Friends Page</Title>
+          <Title as="h1">Our Friends</Title>
           <OurFriendsList friends={friends} />
           {/* {isLoading ? onLoading() : onLoaded()}
         {error && onFetchError('Whoops, something went wrong')}

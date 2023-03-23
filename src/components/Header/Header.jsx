@@ -1,3 +1,4 @@
+import React from 'react';
 import { Logo } from './Elements/logo/Logo';
 import { Navigation } from 'components/Header/Navigation/Navigation';
 
