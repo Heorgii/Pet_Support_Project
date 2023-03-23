@@ -6,7 +6,7 @@ import { object, string, ref } from 'yup';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 
 // import { selectIsLoading } from '../../redux/auth/selectors';
-import { register } from '../../redux/auth/operations';
+// import { register } from '../../redux/auth/operations';
 
 // import {
 //   emailRegex,
@@ -28,14 +28,14 @@ import {
   ShowPassword,
   StyledLink,
   BoxText,
-  SpinerWrapper,
+  // SpinerWrapper,
 } from './RegisterForm.styled';
-// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 
 
 // const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
+const {isLoggedIn} = useAuth();
 const phoneNumberMask = [
   '+',
   /\d/,
@@ -100,7 +100,7 @@ const RegisterForm = () => {
   const onSubmit = values => {
     const { name, email, password, phone, city } = values;
     dispatch(
-      register({
+      isLoggedIn({
         name,
         email,
         password,
