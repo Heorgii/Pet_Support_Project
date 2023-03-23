@@ -34,8 +34,8 @@ import { noticeSlice } from 'redux/notice/slice';
 import { noticeState } from 'redux/notice/selectors';
 import { addOwnNotice } from 'redux/notices/operations';
 import * as Yup from 'yup';
-import { Notify } from 'components/NewsComp/NewsList/NewsList.styled';
-import Notiflix from 'notiflix';
+// import { Notify } from 'components/NewsComp/NewsList/NewsList.styled';
+// import Notiflix from 'notiflix';
 
 const modalAddNoticeRoot = document.querySelector('#modalAddNotice-root');
 
