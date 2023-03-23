@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Container = styled.div`
   display: ${props => props.display || 'flex'};
   flex-direction: ${props => props.flexDirection || 'column'};
   align-items: ${props => props.alignItems || 'center'};
-  justify-content: c ${props => props.justifyContent || 'center'};
+  justify-content: ${props => props.justifyContent || 'center'};
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
@@ -23,7 +24,8 @@ const Container = styled.div`
 `;
 
 const Section = styled.section`
-  margin: ${props => props.margin || '60px 0 0 0'};
+  margin: ${props => props.margin || '0 0 0 0'};
+  width: 100vw;
 `;
 
 const Title = styled.h1`
@@ -33,7 +35,7 @@ const Title = styled.h1`
   font-size: ${props => props.size || '24px'};
   font-weight: 700;
   line-height: 1.375;
-  color: #000000;
+  color: ${baseColor.colors.black};
 
   @media screen and (min-width: 768px) {
     margin: ${props => props.margin || '0 0 40px 0'};

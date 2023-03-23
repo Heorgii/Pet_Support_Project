@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 export const NoticesCategoriesList = () => {
   return (
     <section>
-      <h1>Notices Categories List</h1>
       <div
         style={{
           display: 'flex',
