@@ -3,6 +3,7 @@ import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 // import MaskedInput from 'react-text-mask';
 import { baseColor } from 'components/baseStyles/Variables.styled';
+import MaskedInput from 'react-text-mask';
 
 export const FormContainer = styled.div`
   width: 100%;
