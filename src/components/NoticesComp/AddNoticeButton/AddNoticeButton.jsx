@@ -1,22 +1,28 @@
-import { AddNoticeModal } from "./AddNoticeModal/AddNoticeModal";
-import { ButtonStyled, PlusIcon } from "./AddNoticeButton.styled";
-import { useSelector } from 'react-redux';
-import { useState } from "react";
-import { selectIsStateChange } from "redux/auth/selectors";
-import Notiflix from "notiflix";
+import { AddNoticeModal } from './AddNoticeModal/AddNoticeModal';
+import { ButtonStyled, PlusIcon } from './AddNoticeButton.styled';
+import { useState } from 'react';
+import Notiflix from 'notiflix';
+import { useAuth } from 'hooks/useAuth';
 
 export const AddNoticeButton = () => {
-    const isLogin = useSelector(selectIsStateChange);
+  const { isLoggedIn } = useAuth();
 
   const [showModalAddNotice, setShowModalAddNotice] = useState(false);
 
   const toggleModalAddNotice = () => {
-isLogin ? setShowModalAddNotice(!showModalAddNotice) : Notiflix.Notify.warning('You must be loggined!');
+    isLoggedIn
+      ? setShowModalAddNotice(!showModalAddNotice)
+      : Notiflix.Notify.warning('You must be loggined!');
   };
-    return (
-        <div style={{marginLeft: 'auto', position: 'relative'}}>
-            <ButtonStyled onClick={toggleModalAddNotice}><div><PlusIcon/></div>Add pet</ButtonStyled>
-            {(showModalAddNotice) && <AddNoticeModal onClose={toggleModalAddNotice}/>}
+  return (
+    <div style={{ marginLeft: 'auto', position: 'relative' }}>
+      <ButtonStyled onClick={toggleModalAddNotice}>
+        <div>
+          <PlusIcon />
         </div>
-    );
-}
+        Add pet
+      </ButtonStyled>
+      {showModalAddNotice && <AddNoticeModal onClose={toggleModalAddNotice} />}
+    </div>
+  );
+};
