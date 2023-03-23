@@ -4,16 +4,20 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { Nav } from 'components/Header/Nav/Nav';
 import { AuthNav } from 'components/Header/AuthNav/AuthNav';
 import { UserNav } from 'components/Header/UserNav/UserNav';
-import { NavigationContainer } from './Navigation.styled';
+import { NavBlock, Container } from './Navigation.styled';
 import { Menu } from '../Elements/menu/Menu';
 
 export const Navigation = () => {
+  const viewPort = document.documentElement.clientWidth;
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
-    <NavigationContainer>
-      <Nav />
-      {isLoggedIn ? <UserNav /> : <AuthNav />}
+    <Container>
+      <NavBlock>
+        {viewPort < 1280 ? null : <Nav />}
+        {viewPort < 768 ? null : isLoggedIn ? <UserNav /> : <AuthNav />}
+      </NavBlock>
       <Menu />
-    </NavigationContainer>
+    </Container>
   );
 };
