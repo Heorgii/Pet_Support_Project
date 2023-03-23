@@ -1,9 +1,9 @@
 import data from './pets.json';
 import ReactDOM from 'react-dom';
 import { MdClose } from 'react-icons/md';
-import { closeModalWindow } from '../../../hooks/modalWindow';
-import heard from '../../../images/svg/heard.png';
-import no_Photo from '../../../images/No-image-available.webp';
+import { closeModalWindow } from 'hooks/modalWindow';
+import heard from 'images/svg/heard.png';
+import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
   ContainerCloseModal,

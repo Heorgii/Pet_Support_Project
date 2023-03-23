@@ -31,17 +31,13 @@ const BtnCategory = styled.button`
   padding: 0 28px;
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    /* width: 160px;
-    margin: 0 0 0 0; */
   }
 `;
 export { BtnCategory, ContainerCategoryBtn };

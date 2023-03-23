@@ -1,6 +1,6 @@
-import akar_icons_heart from '../../../../images/svg/akar-icons_heart.svg';
-import delBack from '../../../../images/svg/icon_delete.svg';
-import no_Photo from '../../../../images/No-image-available.webp';
+import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
+import delBack from 'images/svg/icon_delete.svg';
+import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
 import {
   NoticesContainerItem,

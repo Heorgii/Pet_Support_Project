@@ -20,12 +20,26 @@ const Container = styled.div`
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
     padding: 0 16px;
-  }zz
+  }
 `;
 
 const Section = styled.section`
   margin: ${props => props.margin || '0 0 0 0'};
-  width: 100vw;
+  padding-top: ${props => props.paddingTop || '42px'};
+  padding-bottom: ${props => props.paddingBottom || '100px'};
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    margin: ${props => props.margin || '0 0 0 0'};
+    padding-top: ${props => props.paddingTop || '88px'};
+    padding-bottom: ${props => props.paddingBottom || '100px'};
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: ${props => props.margin || '0 0 0 0'};
+    padding-top: ${props => props.paddingTop || '60px'};
+    padding-bottom: ${props => props.paddingBottom || '100px'};
+  }
 `;
 
 const Title = styled.h1`
