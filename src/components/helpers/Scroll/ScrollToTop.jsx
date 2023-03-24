@@ -14,15 +14,15 @@ const ScrollToTop = () => {
   );
 };
 
-const ScrollBy = () => {
-  const { height: cardHeight } = document
-    .querySelector('list')
-    .firstElementChild.getBoundingClientRect();
+// const ScrollBy = () => {
+//   const { height: cardHeight } = document
+//     .querySelector('main')
+//     .firstElementChild.getBoundingClientRect();
 
-  return window.scrollBy({
-    top: cardHeight * 2,
-    behavior: 'smooth',
-  });
-};
+//   return window.scrollBy({
+//     top: cardHeight * 2,
+//     behavior: 'smooth',
+//   });
+// };
 
-export { ScrollToTop, ScrollBy };
+export { ScrollToTop }; // ScrollBy

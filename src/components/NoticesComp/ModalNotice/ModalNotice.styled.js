@@ -140,6 +140,10 @@ const BtnAddFavorits = styled.button`
   width: 240px;
   height: 40px;
   border-radius: 40px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};

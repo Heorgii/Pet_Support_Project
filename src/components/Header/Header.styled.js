@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-const HeaderContainer = styled.div`
-  display: flex;
+import { Container } from 'components/baseStyles/CommonStyle.styled';
+
+const HeaderContainer = styled(Container)`
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 16px 20px 0px 20px;
 
   @media screen and (min-width: 768px) {
@@ -10,7 +13,6 @@ const HeaderContainer = styled.div`
 
   @media screen and (min-width: 1280px) {
     padding: 16px 20px 0px 20px;
-    width: 1280px;
   }
 `;
 

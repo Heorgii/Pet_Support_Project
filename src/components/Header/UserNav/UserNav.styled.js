@@ -3,10 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as iconUser } from 'images/svg/icon_user.svg';
 
-const AccountButton = styled(NavLink)`
+const MobileAccountButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 46px;
+
   width: 164px;
   height: 35px;
   border-radius: 40px;
@@ -21,26 +23,31 @@ const AccountButton = styled(NavLink)`
   line-height: 19px;
   letter-spacing: 0.04em;
 
-  // :hover,
-  // :focus {
-  //   background-color: ${baseColor.colors.orangeLight};
-  //   color: ${baseColor.colors.white};
-  // }
-  // &.active {
-  //   background-color: ${baseColor.colors.orangeLight};
-  //   color: ${baseColor.colors.white};
-  // }
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+    width: 164px;
+    height: 44px;
+    display: none;
+  }
+`;
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+const AccountButton = styled(MobileAccountButton)`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 164px;
     height: 44px;
     font-size: 20px;
     line-height: 27px;
   }
-  @media screen and (min-width: 1280px) {
-    height: 48px;
-    font-size: 20px;
-    line-height: 27px;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   display: flex;
+  //   width: 164px;
+  //   height: 44px;
+  //   font-size: 20px;
+  //   line-height: 27px;
+  // }
 `;
 
 const IconUser = styled(iconUser)`
@@ -55,4 +62,4 @@ const IconUser = styled(iconUser)`
     height: 28px;
   }
 `;
-export { AccountButton, IconUser };
+export { MobileAccountButton, AccountButton, IconUser };
