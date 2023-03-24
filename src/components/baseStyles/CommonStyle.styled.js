@@ -35,7 +35,7 @@ const Section = styled.section`
     padding-bottom: ${props => props.paddingBottom || '100px'};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     margin: ${props => props.margin || '0 0 0 0'};
     padding-top: ${props => props.paddingTop || '60px'};
     padding-bottom: ${props => props.paddingBottom || '100px'};
