@@ -29,36 +29,24 @@ export const UserPage = () => {
     }
   }, [isModalOpen]);
 
-  //   useEffect(() => {
-  //     dispatch();
-  //   }, [dispatch]);
-
   return (
     <>
       <UserPageWrapper>
         <UserDataWrapper>
           <UserDataTitle title="My information:" />
           <UserDataContainer>
-            <UserData />
+            {/* <UserData /> */}
             <Logout />
           </UserDataContainer>
         </UserDataWrapper>
         <UserAboutWrapper>
           <TopContainer>
-            <MyPetContainer>
-              <MyPetTitle title="My pets" />
-              <MyPetTitle>My pets</MyPetTitle>
-            </MyPetContainer>
-            {toShow === 'pets' && <AddPetButton onOpenAddsPet={toggleModal} />}
+            <MyPetTitle>My pets</MyPetTitle>
+            <AddPetButton onOpenAddsPet={toggleModal} />
           </TopContainer>
           {toShow === 'pets' && <PetsData />}
         </UserAboutWrapper>
       </UserPageWrapper>
-      {/* {isModalOpen && (
-        <Modal setShow={toggleModal}>
-          <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
-        </Modal>
-      )} */}
     </>
   );
 };

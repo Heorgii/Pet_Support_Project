@@ -12,6 +12,9 @@ export const baseColor = {
     error: '#E2001A',
     success: '#3CBC81',
     textUserNav: '#181C27',
+    //add fro UserPage
+    inpitColor: '#fac9ab',
+    logout: '#707070',
   },
 };
 
