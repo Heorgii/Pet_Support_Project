@@ -8,14 +8,13 @@ import { NavBlock, Container } from './Navigation.styled';
 import { Menu } from '../Elements/menu/Menu';
 
 export const Navigation = () => {
-  const viewPort = document.documentElement.clientWidth;
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <Container>
       <NavBlock>
-        {viewPort < 1280 ? null : <Nav />}
-        {viewPort < 768 ? null : isLoggedIn ? <UserNav /> : <AuthNav />}
+        <Nav />
+        {isLoggedIn ? <UserNav /> : <AuthNav />}
       </NavBlock>
       <Menu />
     </Container>

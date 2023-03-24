@@ -2,7 +2,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NavList = styled.ul`
+const MobileNavList = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,10 +11,18 @@ const NavList = styled.ul`
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-top: 88px;
-    // justify-content: end;
   }
 
   @media screen and (min-width: 1280px) {
+    display: none;
+  }
+`;
+
+const NavList = styled(MobileNavList)`
+  display: none;
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
     flex-direction: row;
     justify-content: start;
     margin: 0px;
@@ -69,4 +77,4 @@ const NavItem = styled(NavLink)`
   }
 `;
 
-export { NavList, NavItem };
+export { MobileNavList, NavList, NavItem };
