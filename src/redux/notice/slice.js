@@ -9,7 +9,7 @@ const state = {
                 sex: '',
                 location: '',
                 price: '',
-                image: '',
+                imageUrl: '',
                 comments: '',
 };
 
@@ -22,12 +22,12 @@ export const noticeSlice = createSlice({
                 category: payload.category,
                 title: payload.title,
                 name: payload.name,
-                birthday: payload.birthday,
+                birthday: new Date(payload.birthday).toISOString().slice(10),
                 breed: payload.breed,
                 sex: payload.sex,
                 location: payload.location,
                 price: payload.price,
-                image: payload.image,
+                imageUrl: payload.imageUrl,
                 comments: payload.comments,
     }),
     cleanNotice: () => state,

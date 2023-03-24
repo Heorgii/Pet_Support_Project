@@ -58,7 +58,9 @@ export const addOwnNotice = createAsyncThunk(
   'notices/addNotices',
   async (objNotice, thunkAPI) => {
     try {
-      const response = await axios.post('/notices/own', objNotice);
+      const category = objNotice.category;
+      delete objNotice.category;
+      const response = await axios.post(`/notices/${category}`, objNotice);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Formik } from 'formik';
 import {
-  Title,
   ButtonStyled,
   FormStyled,
   FieldStyled,
   LabelStyled,
   IconSearch,
 } from './NoticesSearch.styled';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
 import { addQuery } from 'redux/query/slice';
@@ -41,13 +41,13 @@ export const NoticesSearch = () => {
                 placeholder="Search"
                 value={values.search}
               />
-              <ButtonStyled
+              <div><ButtonStyled
                 type="submit"
                 disabled={isSubmitting}
                 onSubmit={handleSubmit}
               >
                 <IconSearch />
-              </ButtonStyled>
+              </ButtonStyled></div>
             </LabelStyled>
           </FormStyled>
         )}
