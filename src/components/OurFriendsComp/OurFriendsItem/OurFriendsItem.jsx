@@ -26,7 +26,7 @@ export const OurFriendsItem = ({ friend }) => {
     phone,
     email,
   } = friend;
-  const [workTime, setWorkTime] = useState('-------------------------');
+  const [workTime, setWorkTime] = useState('');
   const [dayClosed, setDayClosed] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -90,7 +90,7 @@ export const OurFriendsItem = ({ friend }) => {
         <InfoWrapper>
           <TextWrapper>
             <Text>Time:</Text>
-            {workDays !== null ? (
+            {workDays !== null && workDays ? (
               <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
               </Link>
