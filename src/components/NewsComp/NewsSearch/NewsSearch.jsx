@@ -1,5 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
+import Notiflix from 'notiflix';
+import { useDispatch } from 'react-redux';
+import { addQuery } from 'redux/query/slice';
 import {
   Title,
   ButtonStyled,
@@ -8,9 +11,6 @@ import {
   LabelStyled,
   IconSearch,
 } from './NewsSearch.styled';
-import Notiflix from 'notiflix';
-import { useDispatch } from 'react-redux';
-import { addQuery } from 'redux/query/slice';
 
 export const NewsSearch = () => {
   const dispatch = useDispatch();
@@ -55,3 +55,4 @@ export const NewsSearch = () => {
     </div>
   );
 };
+export default NewsSearch;
