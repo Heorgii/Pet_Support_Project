@@ -2,6 +2,7 @@ import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
 import delBack from 'images/svg/icon_delete.svg';
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -17,15 +18,27 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
 } from './NoticeCategoryItem.styled';
+import Notiflix from 'notiflix';
+import { useSelector } from 'react-redux';
 
 export const NoticesCategoriesItem = ({ data }) => {
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+
+  const addToFavorite = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    !isLoggedIn
+      ? Notiflix.Notify.warning('You must be loggined!')
+      : Notiflix.Notify.success('You add pet to the favorite!');
+  };
+
   return (
     <ItemContainer>
       <NoticesContainerItem onClick={e => openModalWindow(e, null)}>
         <div style={{ display: 'flex', justifyContent: 'end' }}></div>
         <ContainerInfo>
           <ContainerStatus>{data.status}</ContainerStatus>
-          <BtnForFavorite>
+          <BtnForFavorite onClick={addToFavorite}>
             <img src={akar_icons_heart} alt="Add to favorite" />
           </BtnForFavorite>
           <ImgItem src={no_Photo} loading="lazy" />
