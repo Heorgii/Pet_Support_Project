@@ -1,5 +1,21 @@
 import React from 'react';
-import { NavList, NavItem } from './Nav.styled';
+import { MobileNavList, NavList, NavItem } from './Nav.styled';
+
+export const MobileNav = onClick => {
+  return (
+    <MobileNavList>
+      <NavItem to="/news" onClick={onClick}>
+        News
+      </NavItem>
+      <NavItem to="/notices" onClick={onClick}>
+        Find pet
+      </NavItem>
+      <NavItem to="/friends" onClick={onClick}>
+        Our friends
+      </NavItem>
+    </MobileNavList>
+  );
+};
 
 export const Nav = onClick => {
   return (
