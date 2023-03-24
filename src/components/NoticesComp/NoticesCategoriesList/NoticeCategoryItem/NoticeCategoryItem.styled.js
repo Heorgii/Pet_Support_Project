@@ -17,7 +17,7 @@ const NoticesContainerItem = styled.div`
   object-fit: cover;
   width: 280px;
   padding: 0 0 12px 0;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 0px 0px 20px 20px;
   transition: box-shadow 250ms linear;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -66,23 +66,13 @@ const BtnForFavorite = styled.button`
   border: none;
   top: 12px;
   right: 12px;
-
-  @media screen and (min-width: 768px) {
-    /* width: 670px;
-    display: flex; */
-  }
 `;
 const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 20px;
-
-  @media screen and (min-width: 768px) {
-    /* width: 670px;
-    display: flex; */
-  }
 `;
 const ImgItem = styled.img`
   width: 280px;
@@ -103,25 +93,18 @@ const NoticeItemTitle = styled.div`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: #000000;
+  color: ${baseColor.colors.black};
   margin: 20px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
   }
 `;
-
 const NoticeContainerButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  @media screen and (min-width: 768px) {
-    /* justify-content: end;
-    flex-direction: row-reverse;
-    margin-top: 32px; */
-  }
 `;
 const BtnLearnMore = styled.button`
   cursor: pointer;
@@ -134,17 +117,13 @@ const BtnLearnMore = styled.button`
   margin: 40px 0 12px;
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    /* width: 160px;
-    margin: 0 0 0 0; */
   }
 `;
 const BtnDelete = styled.button`
@@ -160,17 +139,13 @@ const BtnDelete = styled.button`
   align-items: center;
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    /* width: 160px;
-    margin: 0 12px 0 0; */
   }
 `;
 const TdTable = styled.td`
@@ -208,9 +183,6 @@ const Table = styled.table`
   display: flex;
   overflow: hidden;
   padding: 0 20px;
-  @media screen and (min-width: 768px) {
-    /* margin-top: 20px; */
-  }
 `;
 
 export {

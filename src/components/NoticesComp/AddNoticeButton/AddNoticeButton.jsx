@@ -2,10 +2,13 @@ import { AddNoticeModal } from './AddNoticeModal/AddNoticeModal';
 import { ButtonStyled, PlusIcon } from './AddNoticeButton.styled';
 import { useState } from 'react';
 import Notiflix from 'notiflix';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 
 export const AddNoticeButton = () => {
-  const { isLoggedIn } = useAuth();
+
+  // const { isLoggedIn } = useAuth();
+
+const isLoggedIn = true;
 
   const [showModalAddNotice, setShowModalAddNotice] = useState(false);
 

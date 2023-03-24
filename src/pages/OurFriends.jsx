@@ -1,9 +1,13 @@
 // import axios from 'axios';
 // import PropTypes from 'prop-types';
-import { useState } from 'react';//useEffect
+import { useState } from 'react'; //useEffect
 import { SEO } from 'utils/SEO';
 import { OurFriendsList } from 'components/OurFriendsComp/OurFriendsList/OurFriendsList';
-import { Container, Title } from 'components/baseStyles/CommonStyle.styled';
+import {
+  Container,
+  Section,
+  Title,
+} from 'components/baseStyles/CommonStyle.styled';
 // import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 // import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 
@@ -23,7 +27,7 @@ import sponsors from 'components/OurFriendsComp/sponsors.json';
 // }
 
 const OurFriends = () => {
-  const [friends] = useState(sponsors);//setFriends
+  const [friends] = useState(sponsors); //setFriends
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(null);
 
@@ -51,13 +55,15 @@ const OurFriends = () => {
         title="Our friends"
         description="You can see all of our company of friends"
       />
-      <Container>
-        <Title as="h1">Our Friends Page</Title>
-        <OurFriendsList friends={friends} />
-        {/* {isLoading ? onLoading() : onLoaded()}
+      <Section>
+        <Container>
+          <Title as="h1">Our Friends</Title>
+          <OurFriendsList friends={friends} />
+          {/* {isLoading ? onLoading() : onLoaded()}
         {error && onFetchError('Whoops, something went wrong')}
         {friends.length > 0 && !error && <OurFriendsList friends={friends} />} */}
-      </Container>
+        </Container>
+      </Section>
     </main>
   );
 };
