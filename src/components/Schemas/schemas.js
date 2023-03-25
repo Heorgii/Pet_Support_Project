@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { object, string } from 'yup';
+// import { object, string } from 'yup';
 
 const registerSchema = Yup.object().shape({
   email: Yup.string()

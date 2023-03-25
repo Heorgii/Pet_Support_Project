@@ -5,7 +5,7 @@ import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import registerSchema from '../Schemas/schemas';
 
 // import { selectIsLoading } from '../../redux/auth/selectors';
-import { register } from '../../redux/auth/operations';
+// import { register } from '../../redux/auth/operations';
 
 import {
   FormRegister,
@@ -15,7 +15,7 @@ import {
   Title,
   ErrBox,
   BackButton,
-  PhoneInput,
+  // PhoneInput,
   ShowPassword,
   StyledLink,
   BoxText,
