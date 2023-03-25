@@ -1,23 +1,30 @@
+import React from 'react';
+
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { useSelector } from 'react-redux';
-import { Navigation } from './MobileMenu.styled';
+import { MobileHeader, IconClose } from './MobileMenu.styled';
 import { MobileAuthNav } from 'components/Header/AuthNav/AuthNav';
 import { MobileUserNav } from 'components/Header/UserNav/UserNav';
 import { MobileNav } from 'components/Header/Nav/Nav';
-// import { Header } from 'components/Header/Header';
+import { Logo } from 'components/Header/Elements/logo/Logo';
 
-export const MobileMenu = onClick => {
+export const MobileMenu = ({ toggleMenu }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log(toggleMenu);
 
   return (
-    <Navigation>
-      {/* <Header /> */}
+    <>
+      <MobileHeader>
+        <Logo to="/" />
+        <IconClose onClick={toggleMenu} />
+      </MobileHeader>
+
       {isLoggedIn ? (
-        <MobileUserNav onClick={onClick} />
+        <MobileUserNav toggleMenu={toggleMenu} />
       ) : (
-        <MobileAuthNav onClick={onClick} />
+        <MobileAuthNav toggleMenu={toggleMenu} />
       )}
-      <MobileNav onClick={onClick} />
-    </Navigation>
+      <MobileNav toggleMenu={toggleMenu} />
+    </>
   );
 };
