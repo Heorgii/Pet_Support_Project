@@ -11,18 +11,18 @@ export const ModalAddNoticeStyled = styled.div`
 
   width: 100%;
   height: auto;
-  max-width: 280px;
+  width: 280px;
 
-  margin: 160px 20px 160px 20px;
+  margin-left auto;
+margin-right: auto;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
   background: ${baseColor.colors.white};
 
   @media screen and (min-width: 768px) {
-    max-width: 600px;
+    width: 600px;
 
-    margin: 260px 80px 260px 80px;
     border-radius: 40px;
     padding: 40px 80px 40px 80px;
 
@@ -34,9 +34,6 @@ export const ModalAddNoticeStyled = styled.div`
       gap: 20px;
     }
   }
-  @media screen and (min-width: 1280px) {
-    margin: 330px 340px 330px 340px;
-  }
 `;
 
 export const Overlay = styled.div`
@@ -45,9 +42,8 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 160px;
+
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 1200;
@@ -56,6 +52,14 @@ export const Overlay = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 260px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 340px;
   }
 `;
 
@@ -172,6 +176,11 @@ export const ButtonFirst = styled.button`
   &:focus {
     outline: 2px solid ${baseColor.colors.orangeLight};
   }
+
+&:disabled {
+opacity: 0.7;
+pointer-events: none;
+}
 
   @media screen and (min-width: 768px) {
     height: 44px;
@@ -473,12 +482,11 @@ export const LabelRadioSex = styled.label`
     margin-right: 40px;
   }
 
-  & span {
     &:hover,
     &:focus {
       color: ${baseColor.colors.orangeLight};
-    }
   }
+
   @media screen and (min-width: 768px) {
 
   &:not(:last-child) {
@@ -518,7 +526,7 @@ export const FieldsRadioSex = styled.div`
   color: ${baseColor.colors.inpText};
 
   & p {
-position: relative;
+    position: relative;
     display: block;
     width: 100%;
 
@@ -538,9 +546,9 @@ position: relative;
 
     font-size: 24px;
 
-  & p {
-    font-size: 24px;
-  }
+    & p {
+      font-size: 24px;
+    }
   }
 `;
 
@@ -639,37 +647,29 @@ export const FieldItemTextArea = styled(Field)`
     margin-bottom: 40px;
     border-radius: 20px;
 
-  &:focus {
-    height: 113px;
-  }
-
+    &:focus {
+      height: 113px;
+    }
   }
 `;
 
-export const Error = styled.div`
+export const Error = styled.span`
   position: absolute;
-  top: 0px;
+  top: 20px;
   right: 0px;
 
-z-index: 99;
-background: rgba(245, 146, 86, 0.5);
-border: 1px solid ${baseColor.colors.white};
-border-radius: 20px;
-padding: 6px 12px 6px 12px;
+  z-index: 99;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.white};
-
-
+  color: ${baseColor.colors.orangeLight};
 
   @media screen and (min-width: 768px) {
-    font-size: 16px;
-
+    font-size: 12px;
   }
 `;

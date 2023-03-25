@@ -34,8 +34,6 @@ import { noticeSlice } from 'redux/notice/slice';
 import { noticeState } from 'redux/notice/selectors';
 import { addOwnNotice } from 'redux/notices/operations';
 import * as Yup from 'yup';
-// import { Notify } from 'components/NewsComp/NewsList/NewsList.styled';
-// import Notiflix from 'notiflix';
 
 const modalAddNoticeRoot = document.querySelector('#modalAddNotice-root');
 
@@ -51,7 +49,7 @@ export const AddNoticeModal = ({ onClose }) => {
     sex,
     location,
     price,
-    image,
+    imageUrl,
     comments,
   } = useSelector(noticeState);
 
@@ -85,7 +83,7 @@ export const AddNoticeModal = ({ onClose }) => {
           .moreThan('0')
           .positive()
           .integer()
-          .required('Required'),
+          .required('Price is Required!'),
       });
     }
 
@@ -125,31 +123,31 @@ export const AddNoticeModal = ({ onClose }) => {
   }
 
   const FormSchemaFirst = Yup.object().shape({
-    category: Yup.string().required('Required'),
+    category: Yup.string().required('Categori is Required!'),
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(48, 'Too Long!')
-      .required('Required'),
+      .required('Title is Required!'),
     name: Yup.string()
       .min(2, 'Too Short!')
       .max(16, 'Too Long!')
-      .required('Required'),
-    birthday: Yup.date().required('Required'),
+      .required('Name is Required!'),
+    birthday: Yup.date().required('BirthDay is Required!'),
     breed: Yup.string()
       .min(2, 'Too Short!')
       .max(24, 'Too Long!')
-      .required('Required'),
+      .required('Breed is Required!'),
   });
   const FormSchemaSecond = Yup.object().shape({
-    sex: Yup.string().required('Required'),
+    sex: Yup.string().required('Sex is Required!'),
     location: Yup.string()
-      .matches(/^[A-Za-z-]+, +[A-Za-z-]/i)
-      .required('Required'),
-    image: Yup.string().required('Required'),
+      .matches(/^[A-Za-z-]+, +[A-Za-z-]/i, 'Example: Brovary, Kyiv')
+      .required('Location is Required!'),
+    imageUrl: Yup.string().required('Image is Required!'),
     comments: Yup.string()
       .min(8, 'Too Short!')
       .max(120, 'Too Long!')
-      .required('Required'),
+      .required('Comments are Required!'),
   });
 
   return createPortal(
@@ -170,18 +168,19 @@ export const AddNoticeModal = ({ onClose }) => {
               sex: sex,
               location: location,
               price: price,
-              image: image,
+              imageUrl: imageUrl,
               comments: comments,
             }}
             onSubmit={values => {
               if (!formQueue) {
                 submitForm(values);
-                console.log(values);
               } else {
                 toggleForm();
               }
             }}
             validationSchema={formQueue ? FormSchemaFirst : FormSchemaSecond}
+
+
           >
             {({ values, handleChange, handleSubmit, errors, touched }) => (
               <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
@@ -194,7 +193,7 @@ export const AddNoticeModal = ({ onClose }) => {
                       </Paragraph>
                       <FieldsRadio role="group" id="category">
                         {errors.category && touched.category ? (
-                          <Error>{errors.category}</Error>
+                          <Error style={{ top: '-20px'}}>{errors.category}</Error>
                         ) : null}
                         <FieldRadio
                           type="radio"
@@ -232,9 +231,9 @@ export const AddNoticeModal = ({ onClose }) => {
                       <FieldList>
                         <LabelItem htmlFor="title" key={nanoid()}>
                           <span>Title of ad</span>
-                        {errors.title && touched.title ? (
-                          <Error>{errors.title}</Error>
-                        ) : null}
+                          {errors.title && touched.title ? (
+                            <Error>{errors.title}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItem
@@ -246,9 +245,9 @@ export const AddNoticeModal = ({ onClose }) => {
                         />
                         <LabelItem htmlFor="name" key={nanoid()}>
                           <span>Name pet</span>
-                        {errors.name && touched.name ? (
-                          <Error>{errors.name}</Error>
-                        ) : null}
+                          {errors.name && touched.name ? (
+                            <Error>{errors.name}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItem
@@ -260,13 +259,19 @@ export const AddNoticeModal = ({ onClose }) => {
                         />
                         <LabelItem htmlFor="birthday" key={nanoid()}>
                           <span>Date of birth</span>
-                        {errors.birthday && touched.birthday ? (
-                          <Error>{errors.birthday}</Error>
-                        ) : null}
+                          {errors.birthday && touched.birthday ? (
+                            <Error>{errors.birthday}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItem
-                          type="date"
+                          onFocus={e => {
+                            e.target.setAttribute('type', 'date');
+                          }}
+                          onBlur={e => {
+                            e.target.setAttribute('type', 'text');
+                          }}
+                          type="text"
                           id="birthday"
                           name="birthday"
                           placeholder="Type day of birth"
@@ -274,9 +279,9 @@ export const AddNoticeModal = ({ onClose }) => {
                         />
                         <LabelItem htmlFor="breed" key={nanoid()}>
                           <span>Breed</span>
-                        {errors.breed && touched.breed ? (
-                          <Error>{errors.breed}</Error>
-                        ) : null}
+                          {errors.breed && touched.breed ? (
+                            <Error>{errors.breed}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItem
@@ -291,12 +296,12 @@ export const AddNoticeModal = ({ onClose }) => {
                   ) : (
                     <div>
                       <FieldsRadioSex role="group" id="sex">
-                        <p>The sex
-
-                        {errors.sex && touched.sex ? (
-                          <Error>{errors.sex}</Error>
-                        ) : null}
-</p>
+                        <p>
+                          The sex
+                          {errors.sex && touched.sex ? (
+                            <Error>{errors.sex}</Error>
+                          ) : null}
+                        </p>
                         <FieldRadioSex
                           type="radio"
                           id="radioOneSex"
@@ -324,9 +329,9 @@ export const AddNoticeModal = ({ onClose }) => {
                       <FieldList>
                         <LabelItem htmlFor="location" key={nanoid()}>
                           <span>Location</span>
-                        {errors.location && touched.location ? (
-                          <Error>{errors.location}</Error>
-                        ) : null}
+                          {errors.location && touched.location ? (
+                            <Error>{errors.location}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItem
@@ -340,9 +345,9 @@ export const AddNoticeModal = ({ onClose }) => {
                           <div>
                             <LabelItem htmlFor="price" key={nanoid()}>
                               <span>Price</span>
-                            {errors.price && touched.price ? (
-                              <Error>{errors.price}</Error>
-                            ) : null}
+                              {errors.price && touched.price ? (
+                                <Error>{errors.price}</Error>
+                              ) : null}
                             </LabelItem>
 
                             <FieldItem
@@ -356,7 +361,7 @@ export const AddNoticeModal = ({ onClose }) => {
                         ) : (
                           ''
                         )}
-                        <LabelItem htmlFor="image" key={nanoid()}>
+                        <LabelItem htmlFor="imageUrl" key={nanoid()}>
                           <span>Load the pet’s image</span>
                           <img
                             className="preview"
@@ -367,25 +372,25 @@ export const AddNoticeModal = ({ onClose }) => {
                               transition: 'all 500ms ease',
                             }}
                           />
-                        {errors.image && touched.image ? (
-                          <Error>{errors.image}</Error>
-                        ) : null}
+                          {errors.imageUrl && touched.imageUrl ? (
+                            <Error>{errors.imageUrl}</Error>
+                          ) : null}
                         </LabelItem>
 
                         <FieldItemFile
                           className="file"
                           type="file"
-                          id="image"
-                          name="image"
+                          id="imageUrl"
+                          name="imageUrl"
                           onChange={e => {
                             handleChange(e, setImage(e));
                           }}
                         />
                         <LabelItemTextArea htmlFor="comments" key={nanoid()}>
                           <span>Comments</span>
-                        {errors.comments && touched.comments ? (
-                          <Error>{errors.comments}</Error>
-                        ) : null}
+                          {errors.comments && touched.comments ? (
+                            <Error>{errors.comments}</Error>
+                          ) : null}
                         </LabelItemTextArea>
 
                         <FieldItemTextArea
@@ -404,10 +409,7 @@ export const AddNoticeModal = ({ onClose }) => {
                     </div>
                   )}
                   <div className="btns">
-                    <ButtonFirst
-                      type="submit"
-                      key={nanoid()}
-                    >
+                    <ButtonFirst className='btn__submit' type="submit" key={nanoid()}>
                       {formQueue ? 'Next' : 'Done'}
                     </ButtonFirst>
                     <ButtonSecond

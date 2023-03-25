@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import registerSchema from '../Schemas/schemas';
+import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
   FormRegister,
@@ -41,18 +41,10 @@ import {
 // ];
 
 const RegisterForm = () => {
-  const [isShown, setIsShown] = useState(true); //
+  const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
-
-  const showForm = () => {
-    setIsShown(false);
-  };
-
-  const hideForm = () => {
-    setIsShown(true);
-  };
 
   // const onSubmit = values => {
   //   const { name, email, password, phone, location } = values;
@@ -70,7 +62,9 @@ const RegisterForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+
     const form = e.currentTarget;
+    console.log(form);
 
     const name = form.elements.name;
     const email = form.elements.email;
@@ -78,6 +72,7 @@ const RegisterForm = () => {
     const confirmPassword = form.elements.confirmPassword;
     const phone = form.elements.phone;
     const location = form.elements.location;
+
 
     const newUser = {
       name: name,
@@ -93,6 +88,14 @@ const RegisterForm = () => {
     form.reset();
   }
 
+  const showForm = () => {
+    setIsShown(false);
+  };
+
+  const hideForm = () => {
+    setIsShown(true);
+  };
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -102,7 +105,7 @@ const RegisterForm = () => {
       phone: '',
       location: '',
     },
-    validationSchema: registerSchema,
+    validationSchema: schemas.registerSchema,
     onSubmit,
   });
 
@@ -130,7 +133,7 @@ const RegisterForm = () => {
       {/* </SpinerWrapper> */}
       {/* ) : (  */}
       <FormContainer>
-        <Formik validationSchema={registerSchema}>
+        <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
             <Title>Register</Title>
             {isShown && (
@@ -140,7 +143,7 @@ const RegisterForm = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    validate={registerSchema.email}
+                    validate={schemas.registerSchema.email}
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
