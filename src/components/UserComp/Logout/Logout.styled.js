@@ -9,7 +9,7 @@ export const LogoutBtn = styled.button`
   border: none;
   cursor: pointer;
   margin-left: auto;
-  padding-right: 40px;
+  padding-right: 12px;
   transform: all 150ms linear;
 
   :hover svg {
@@ -24,8 +24,8 @@ export const LogoutBtn = styled.button`
 
   @media screen and (min-width: 1280px) {
     position: static;
-    margin-left: 32px;
-    padding-right: 100px;
+    margin-left: 16px;
+    padding-right: 0px;
   }
 `;
 
@@ -46,7 +46,7 @@ export const LogoutBtnText = styled.span`
   line-height: 1.37;
   letter-spacing: 0.04em;
   color: ${baseColor.colors.logout};
-  margin-left: 50px;
+  margin-left: 8px;
   transition: all 150ms linear;
 
   &:hover,

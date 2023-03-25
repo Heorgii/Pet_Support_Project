@@ -44,7 +44,7 @@ export const UserData = props => {
       <UserDataContainer>
         <UserDataImgWrapper>
           <UserDataImg
-            // src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto}
+            src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto}
             alt="User"
           />
           {!props.user && (

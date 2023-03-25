@@ -7,16 +7,16 @@ export const UserDataItemWrapper = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 32px;
-  padding-right: 40px;
+  padding-left: 16px;
+  padding-right: 12px;
 
   &:not(:last-child) {
-    margin-bottom: 50px;
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: 768px) {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 `;
 
@@ -28,20 +28,20 @@ export const UserDataItemInputBtnWrapper = styled.div`
 export const UserDataItemLabel = styled.label`
   display: block;
   font-family: Manrope, sans-serif;
-  font-size: 68px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0.04em;
 
   @media screen and (min-width: 768px) {
-    font-size: 32px;
+    font-size: 18px;
     line-height: 1.8;
   }
 `;
 
 export const UserDataItemInput = styled.input`
   box-sizing: border-box;
-  font-size: 68px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.33;
   letter-spacing: 0.04em;
@@ -60,12 +60,12 @@ export const UserDataItemInput = styled.input`
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 32px;
+    font-size: 18px;
     line-height: 1.8;
     width: 216px;
     height: 32px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 `;
 
@@ -81,7 +81,7 @@ export const Error = styled.div`
   border: 1px solid ${baseColor.colors.orange};
   background-color: ${baseColor.colors.mainBg};
 
-  padding: 1px, 50px;
+  padding: 1px, 8px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
   border-radius: 40px;
@@ -92,7 +92,7 @@ export const Error = styled.div`
   z-index: 2;
 
   @media screen and (min-width: 768px) {
-    font-size: 68px;
+    font-size: 12px;
   }
 `;
 
@@ -137,8 +137,8 @@ export const PensilStyle = styled(Pencil)`
   transform: all 150ms linear;
 
   @media screen and (min-width: 768px) {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
   }
 `;
 

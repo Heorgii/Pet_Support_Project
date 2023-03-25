@@ -9,7 +9,7 @@ export const UserDataContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    margin-bottom: 100px;
+    margin-bottom: 0px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -19,10 +19,10 @@ export const UserDataContainer = styled.div`
 `;
 
 export const UserDataImgWrapper = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
   }
   @media screen and (min-width: 1280px) {
     position: relative;
@@ -44,15 +44,15 @@ export const UserDataImg = styled.img`
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: 12px;
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 50px;
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -68,7 +68,7 @@ export const EditPhotoLabel = styled.label`
   cursor: pointer;
   padding-right: 24px;
   font-family: Manrope, sans-serif;
-  font-size: 68px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.8;
   transition: all 150ms linear;
@@ -83,12 +83,12 @@ export const EditPhotoLabel = styled.label`
   }
 
   @media screen and (min-width: 768px) {
-    padding-right: 100px;
+    padding-right: 0px;
   }
 `;
 
 export const EditCameraStyle = styled(EditCamera)`
-  margin-right: 60px;
+  margin-right: 4px;
   fill: ${baseColor.colors.orangeLight};
   transition: all 150ms linear;
 
@@ -108,19 +108,19 @@ export const EditPhotoInput = styled.input`
 
 export const UserDataList = styled.ul`
   @media screen and (min-width: 768px) {
-    padding-top: 32px;
+    padding-top: 16px;
     padding-bottom: 55px;
     width: 379px;
   }
 
   @media screen and (min-width: 768px) {
-    margin-left: 16px;
+    margin-left: 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    margin-left: 32px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 16px;
   }
 `;
 
@@ -128,11 +128,11 @@ export const UserDataFormItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 32px;
-  padding-right: 40px;
+  padding-left: 16px;
+  padding-right: 12px;
 
   &:not(:last-child) {
-    margin-bottom: 50px;
+    margin-bottom: 8px;
   }
 `;
 

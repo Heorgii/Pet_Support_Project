@@ -4,28 +4,29 @@ import styled from 'styled-components';
 export const UserPageWrapper = styled.div`
   @media (min-width: 320px) {
     width: 100%;
-    padding-bottom: 2px;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 0px;
+    padding-bottom: 100px;
     padding-left: 0px;
-    padding-right: 16px;
+    padding-right: 32px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 12px;
-    padding-right: 32px;
+    padding-bottom: 40px;
+    padding-right: 16px;
+    margin-top: 60px;
   }
 `;
 
 export const UserDataWrapper = styled.div`
   @media screen and (min-width: 1280px) {
-    margin-right: 16px;
+    margin-right: 32px;
   }
 `;
 
@@ -33,16 +34,16 @@ export const UserDataContainer = styled.div`
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  margin-bottom: 12px;
+  margin-bottom: 40px;
   margin-top: 18px;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     position: relative;
-    margin-bottom: 12px;
-    margin-top: 12px;
-    padding-right: 12px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding-right: 40px;
     padding-top: 24px;
     padding-bottom: 24px;
     border-bottom-left-radius: 0px;
@@ -52,11 +53,11 @@ export const UserDataContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
     margin-top: 24px;
-    padding-right: 32px;
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-right: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 `;
 
@@ -97,12 +98,12 @@ export const MyPetTitle = styled.h2`
   outline: none;
   font-family: Manrope, sans-serif;
   color: ${baseColor.colors.blackText}
-  font-size: 32px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.37;
   letter-spacing: 0.04em;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 8px;
+  padding-right: 8px;
   padding-bottom: 0px;
 
 
@@ -114,8 +115,8 @@ export const MyPetTitle = styled.h2`
   }
 
   @media (min-width: 768px) {
-    font-size: 20px;
-    padding-bottom: 60px;
+    font-size: 28px;
+    padding-bottom: 4px;
 
   }
 `;

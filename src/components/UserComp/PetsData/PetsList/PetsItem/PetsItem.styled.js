@@ -7,23 +7,20 @@ export const PetsItemWrapper = styled.li`
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 32px;
-  padding-bottom: 12px;
+  padding: 16px 20px 40px
 
   &:not(:last-child) {
-    margin-bottom: 6px;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: 768px) {
     display: flex;
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-right: 20px;
+    padding-right: 28px;
 
     &:not(:last-child) {
       margin-bottom: 22px;
@@ -42,15 +39,15 @@ export const PetsItemImg = styled.img`
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
     width: 161px;
     height: 161px;
-    margin-bottom: 100px;
-    margin-left: 100px;
-    margin-right: 16px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 32px;
   }
 `;
 
@@ -69,16 +66,16 @@ export const PetsItemInfoBlock = styled.div`
 export const PetsItemDeleteBtn = styled.button`
   position: absolute;
   top: 270px;
-  right: 28px;
+  right: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 0px;
   background: ${baseColor.colors.white};
   border-color: transparent;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   transition: all 150ms linear;
 
@@ -87,8 +84,8 @@ export const PetsItemDeleteBtn = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    top: 32px;
-    right: 28px;
+    top: 16px;
+    right: 20px;
     width: 44px;
     height: 44px;
     background: ${baseColor.colors.mainBg};
@@ -96,8 +93,8 @@ export const PetsItemDeleteBtn = styled.button`
 `;
 
 export const DeleteIcon = styled(Delete)`
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   fill: ${baseColor.colors.logout};
   transition: all 150ms linear;
 
@@ -114,25 +111,25 @@ export const DeleteIcon = styled(Delete)`
 
 export const PetsItemDesc = styled.p`
   color: ${baseColor.colors.black};
-  font-size: 48px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.04em;
 
   &:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 120 px;
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 48px;
+    font-size: 14px;
     line-height: 1.37;
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 32px;
+    font-size: 18px;
 
     &:not(:last-child) {
-      margin-bottom: 32px;
+      margin-bottom: 16px;
     }
   }
 `;

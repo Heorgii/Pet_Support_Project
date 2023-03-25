@@ -41,7 +41,7 @@ export const UserPage = () => {
         </UserDataWrapper>
         <UserAboutWrapper>
           <TopContainer>
-            <MyPetTitle>My pets</MyPetTitle>
+            <MyPetTitle>My pets:</MyPetTitle>
             <AddPetButton onOpenAddsPet={toggleModal} />
           </TopContainer>
           {toShow === 'pets' && <PetsData />}
