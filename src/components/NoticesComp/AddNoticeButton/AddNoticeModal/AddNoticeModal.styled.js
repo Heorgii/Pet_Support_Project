@@ -177,6 +177,11 @@ export const ButtonFirst = styled.button`
     outline: 2px solid ${baseColor.colors.orangeLight};
   }
 
+&:disabled {
+opacity: 0.7;
+pointer-events: none;
+}
+
   @media screen and (min-width: 768px) {
     height: 44px;
     width: 180px;

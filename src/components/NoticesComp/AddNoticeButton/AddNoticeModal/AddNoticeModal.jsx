@@ -34,7 +34,6 @@ import { noticeSlice } from 'redux/notice/slice';
 import { noticeState } from 'redux/notice/selectors';
 import { addOwnNotice } from 'redux/notices/operations';
 import * as Yup from 'yup';
-import { type } from '@testing-library/user-event/dist/type';
 
 const modalAddNoticeRoot = document.querySelector('#modalAddNotice-root');
 
@@ -183,7 +182,7 @@ export const AddNoticeModal = ({ onClose }) => {
 
 
           >
-            {({ values, handleChange, handleSubmit, errors, touched, isValid }) => (
+            {({ values, handleChange, handleSubmit, errors, touched }) => (
               <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
                 <div>
                   {formQueue ? (
@@ -410,7 +409,7 @@ export const AddNoticeModal = ({ onClose }) => {
                     </div>
                   )}
                   <div className="btns">
-                    <ButtonFirst type="submit" key={nanoid()} desabled={!isValid}>
+                    <ButtonFirst className='btn__submit' type="submit" key={nanoid()}>
                       {formQueue ? 'Next' : 'Done'}
                     </ButtonFirst>
                     <ButtonSecond
