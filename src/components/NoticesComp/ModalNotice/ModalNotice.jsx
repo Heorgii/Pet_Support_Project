@@ -1,4 +1,4 @@
-import data from './pets.json';
+// import data from './pets.json';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
@@ -26,6 +26,7 @@ import {
   ContainerComments,
   NoticeContainerButtom,
 } from './ModalNotice.styled';
+import { useEffect, useState } from 'react';
 
 export const ModalNotices = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,34 @@ export const ModalNotices = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
+  const [data, setData] = useState([]);
+  const [status, setStatus] = useState('idle');
+  let itemForFetch = `http://localhost:3030/api/notices/byid/${modal.id}`;
 
+  useEffect(() => {
+    setStatus('pending');
+    async function fetchNoticesList() {
+      await fetch(itemForFetch)
+        .then(res => {
+          if (res.ok) {
+            setStatus('resolved');
+            return res.json();
+          }
+          return Promise.reject(new Error(`Can't find anything`));
+        })
+        .then(value => setData(value))
+        .catch(error => {
+          setStatus('reject');
+        });
+    }
+    if (modal.id !== null) {
+      fetchNoticesList();
+    }
+  }, [itemForFetch, modal.id]);
+  if (status === 'pending') {
+    console.log('LOADING...');
+  }
+  console.log(data);
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -59,7 +87,7 @@ export const ModalNotices = () => {
                   </tr>
                   <tr>
                     <TdTable>Birthday:</TdTable>
-                    <TdTable2>{data.date}</TdTable2>
+                    <TdTable2>{data.birthday}</TdTable2>
                   </tr>
                   <tr>
                     <TdTable>Breed:</TdTable>

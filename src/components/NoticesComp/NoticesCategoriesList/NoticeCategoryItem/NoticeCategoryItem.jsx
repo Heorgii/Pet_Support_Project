@@ -1,8 +1,11 @@
-import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
-import delBack from 'images/svg/icon_delete.svg';
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
+import { useSelector, useDispatch } from 'react-redux';
+import { addModal } from 'redux/modal/operation';
+import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
+import delBack from 'images/svg/icon_delete.svg';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -18,9 +21,6 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
 } from './NoticeCategoryItem.styled';
-import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { useSelector, useDispatch } from 'react-redux';
-import { addModal } from 'redux/modal/operation';
 
 export const NoticesCategoriesItem = ({ data }) => {
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
@@ -36,19 +36,35 @@ export const NoticesCategoriesItem = ({ data }) => {
 
   const openModalForItemPet = e => {
     e.preventDefault();
-    dispatch(addModal(e.currentTarget.dataset.modal));
+    dispatch(
+      addModal({
+        modal: e.currentTarget.dataset.modal,
+        id: e.currentTarget.dataset.id,
+      }),
+    );
     openModalWindow(e, null);
   };
 
   return (
     <ItemContainer>
-      <NoticesContainerItem onClick={openModalForItemPet} data-modal="itemPet">
+      <NoticesContainerItem
+        onClick={openModalForItemPet}
+        data-modal="itemPet"
+        data-id={data._id}
+      >
         <ContainerInfo>
-          <ContainerStatus>{data.status}</ContainerStatus>
+          <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavorite}>
             <img src={akar_icons_heart} alt="Add to favorite" />
           </BtnForFavorite>
-          <ImgItem src={no_Photo} loading="lazy" />
+          <ImgItem
+            src={
+              data.imageUrl === '' || data.imageUrl === undefined
+                ? no_Photo
+                : data.imageUrl
+            }
+            loading="lazy"
+          />
           <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
           <Table>
             <tbody>
@@ -64,7 +80,7 @@ export const NoticesCategoriesItem = ({ data }) => {
                 <TdTable>Age:</TdTable>
                 <TdTable2>
                   {Math.round(
-                    (Date.now() - Date.parse(data.date)) / 31536000 / 1000,
+                    (Date.now() - Date.parse(data.createdAt)) / 31536000 / 1000,
                   )}{' '}
                   years
                 </TdTable2>
