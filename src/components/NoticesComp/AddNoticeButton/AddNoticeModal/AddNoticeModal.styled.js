@@ -56,12 +56,11 @@ export const Overlay = styled.div`
 
   @media screen and (min-width: 768px) {
     padding-top: 260px;
-}
+  }
 
   @media screen and (min-width: 1280px) {
     padding-top: 340px;
   }
-
 `;
 
 export const Title = styled.h1`
@@ -478,12 +477,11 @@ export const LabelRadioSex = styled.label`
     margin-right: 40px;
   }
 
-  & span {
     &:hover,
     &:focus {
       color: ${baseColor.colors.orangeLight};
-    }
   }
+
   @media screen and (min-width: 768px) {
 
   &:not(:last-child) {
@@ -523,7 +521,7 @@ export const FieldsRadioSex = styled.div`
   color: ${baseColor.colors.inpText};
 
   & p {
-position: relative;
+    position: relative;
     display: block;
     width: 100%;
 
@@ -543,9 +541,9 @@ position: relative;
 
     font-size: 24px;
 
-  & p {
-    font-size: 24px;
-  }
+    & p {
+      font-size: 24px;
+    }
   }
 `;
 
@@ -644,10 +642,9 @@ export const FieldItemTextArea = styled(Field)`
     margin-bottom: 40px;
     border-radius: 20px;
 
-  &:focus {
-    height: 113px;
-  }
-
+    &:focus {
+      height: 113px;
+    }
   }
 `;
 
@@ -656,7 +653,7 @@ export const Error = styled.span`
   top: 20px;
   right: 0px;
 
-z-index: 99;
+  z-index: 99;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -667,10 +664,7 @@ z-index: 99;
   text-align: left;
   color: ${baseColor.colors.orangeLight};
 
-
-
   @media screen and (min-width: 768px) {
     font-size: 12px;
-
   }
 `;

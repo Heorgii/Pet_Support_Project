@@ -40,11 +40,15 @@ export const ButtonStyled = styled.button`
 
 export const FormStyled = styled(Form)`
   margin-bottom: 28px;
+margin-left: auto;
+margin-right: auto;
 
   width: 100%;
+max-width: 280px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;
+max-width: 608px;
   }
 `;
 
@@ -79,6 +83,7 @@ export const FieldStyled = styled(Field)`
 
 
   @media screen and (min-width: 768px) {
+
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration,
   &::-webkit-search-results-button,
