@@ -24,19 +24,19 @@ const Container = styled.div`
 `;
 
 const Section = styled.section`
-  margin: ${props => props.margin || '0 0 0 0'};
+  margin: ${props => props.margin || '0 auto'};
   padding-top: ${props => props.paddingTop || '42px'};
   padding-bottom: ${props => props.paddingBottom || '100px'};
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    margin: ${props => props.margin || '0 0 0 0'};
+    margin: ${props => props.margin || '0 auto'};
     padding-top: ${props => props.paddingTop || '88px'};
     padding-bottom: ${props => props.paddingBottom || '100px'};
   }
 
-  @media screen and (min-width: 768px) {
-    margin: ${props => props.margin || '0 0 0 0'};
+  @media screen and (min-width: 1280px) {
+    margin: ${props => props.margin || '0 auto'};
     padding-top: ${props => props.paddingTop || '60px'};
     padding-bottom: ${props => props.paddingBottom || '100px'};
   }

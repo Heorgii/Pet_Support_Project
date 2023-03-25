@@ -18,7 +18,7 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
 } from './NoticeCategoryItem.styled';
-import Notiflix from 'notiflix';
+import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useSelector } from 'react-redux';
 
 export const NoticesCategoriesItem = ({ data }) => {
@@ -28,48 +28,41 @@ export const NoticesCategoriesItem = ({ data }) => {
     e.preventDefault();
     e.stopPropagation();
     !isLoggedIn
-      ? Notiflix.Notify.warning('You must be loggined!')
-      : Notiflix.Notify.success('You add pet to the favorite!');
+      ? onInfo('You must be loggined!')
+      : onSuccess('You add pet to the favorite!');
   };
 
   return (
     <ItemContainer>
       <NoticesContainerItem onClick={e => openModalWindow(e, null)}>
-        <div style={{ display: 'flex', justifyContent: 'end' }}></div>
         <ContainerInfo>
           <ContainerStatus>{data.status}</ContainerStatus>
           <BtnForFavorite onClick={addToFavorite}>
             <img src={akar_icons_heart} alt="Add to favorite" />
           </BtnForFavorite>
           <ImgItem src={no_Photo} loading="lazy" />
-          <div>
-            <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
-            <div>
-              <Table>
-                <thead></thead>
-                <tbody>
-                  <tr>
-                    <TdTable>Breed:</TdTable>
-                    <TdTable2>{data.breed}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Place:</TdTable>
-                    <TdTable2>{data.location}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Age:</TdTable>
-                    <TdTable2>
-                      {Math.round(
-                        (Date.now() - Date.parse(data.date)) / 31536000 / 1000,
-                      )}{' '}
-                      years
-                    </TdTable2>
-                  </tr>
-                </tbody>
-                <tfoot></tfoot>
-              </Table>
-            </div>
-          </div>
+          <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+          <Table>
+            <tbody>
+              <tr>
+                <TdTable>Breed:</TdTable>
+                <TdTable2>{data.breed}</TdTable2>
+              </tr>
+              <tr>
+                <TdTable>Place:</TdTable>
+                <TdTable2>{data.location}</TdTable2>
+              </tr>
+              <tr>
+                <TdTable>Age:</TdTable>
+                <TdTable2>
+                  {Math.round(
+                    (Date.now() - Date.parse(data.date)) / 31536000 / 1000,
+                  )}{' '}
+                  years
+                </TdTable2>
+              </tr>
+            </tbody>
+          </Table>
         </ContainerInfo>
         <NoticeContainerButton>
           <BtnLearnMore>Learn more</BtnLearnMore>
