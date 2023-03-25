@@ -41,18 +41,10 @@ import {
 // ];
 
 const RegisterForm = () => {
-  const [isShown, setIsShown] = useState(true); //
+  const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
-
-  const showForm = () => {
-    setIsShown(false);
-  };
-
-  const hideForm = () => {
-    setIsShown(true);
-  };
 
   // const onSubmit = values => {
   //   const { name, email, password, phone, location } = values;
@@ -70,7 +62,9 @@ const RegisterForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+
     const form = e.currentTarget;
+    console.log(form);
 
     const name = form.elements.name;
     const email = form.elements.email;
@@ -78,6 +72,7 @@ const RegisterForm = () => {
     const confirmPassword = form.elements.confirmPassword;
     const phone = form.elements.phone;
     const location = form.elements.location;
+
 
     const newUser = {
       name: name,
@@ -92,6 +87,14 @@ const RegisterForm = () => {
     console.log(newUser);
     form.reset();
   }
+
+  const showForm = () => {
+    setIsShown(false);
+  };
+
+  const hideForm = () => {
+    setIsShown(true);
+  };
 
   const formik = useFormik({
     initialValues: {
