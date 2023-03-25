@@ -10,12 +10,11 @@ import { Logo } from 'components/Header/Elements/logo/Logo';
 
 export const MobileMenu = ({ toggleMenu }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(toggleMenu);
 
   return (
     <>
       <MobileHeader>
-        <Logo to="/" />
+        <Logo to="/" onClick={toggleMenu} />
         <IconClose onClick={toggleMenu} />
       </MobileHeader>
 
