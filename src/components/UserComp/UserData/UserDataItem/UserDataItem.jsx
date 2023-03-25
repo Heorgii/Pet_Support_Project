@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { authSignUpUser } from 'redux/auth/operations';
-import { updateUserProfile } from 'redux/auth/operations';
+// import { updateUserProfile } from 'redux/auth/operations';
+import authOperations from 'redux/UserPage/auth/authOperations';
 import {
   CheckMarkStyle,
   Error,
@@ -34,13 +35,13 @@ export const UserDataItem = ({
   const [inputValue, setInputValue] = useState(defaultValue ?? '');
   const [isError, setIsError] = useState('');
 
-  const userData = useSelector(state => state.userData);
+  // const userData = useSelector(state => state.userData);
 
-  useEffect(() => {
-    if (userData[name]) {
-      setInputValue(userData[name]);
-    }
-  }, [userData, name]);
+  // useEffect(() => {
+  //   if (userData[name]) {
+  //     setInputValue(userData[name]);
+  //   }
+  // }, [userData, name]);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -71,7 +72,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(updateUserProfile({ name: inputValue }));
+      dispatch(authOperations.update({ name: inputValue }));
     } else if (name === 'email') {
       setActive('email');
       if (!inputValue.match(emailRegExp)) {
@@ -80,7 +81,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(updateUserProfile({ email: inputValue }));
+      dispatch(authOperations.update({ email: inputValue }));
     } else if (name === 'birthday') {
       setActive('birthday');
       if (inputValue > dayToday) {
@@ -93,7 +94,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(updateUserProfile({ birthday: inputValue }));
+      dispatch(authOperations.update({ birthday: inputValue }));
     } else if (name === 'phone') {
       setActive('phone');
       if (inputValue.slice(0, 4) !== '+380') {
@@ -106,7 +107,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(updateUserProfile({ phone: inputValue }));
+      dispatch(authOperations.update({ phone: inputValue }));
     } else if (name === 'city') {
       setActive('city');
       if (!inputValue.match(cityRegex)) {
@@ -115,7 +116,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(updateUserProfile({ city: inputValue }));
+      dispatch(authOperations.update({ city: inputValue }));
     }
   };
 
