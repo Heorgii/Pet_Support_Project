@@ -2,7 +2,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MobileNavList = styled.ul`
+const MobileNavList = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;

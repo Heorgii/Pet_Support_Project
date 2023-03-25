@@ -4,20 +4,20 @@ import { RegistrationBTN } from '../Elements/registrationBTN/RegistrationBTN';
 
 import { MobileContainer, Container } from './AuthNav.styled';
 
-export const MobileAuthNav = onClick => {
+export const MobileAuthNav = toggleMenu => {
   return (
     <MobileContainer>
-      <LoginBTN onClick={onClick} />
-      <RegistrationBTN onClick={onClick} />
+      <LoginBTN onClick={toggleMenu} />
+      <RegistrationBTN onClick={toggleMenu} />
     </MobileContainer>
   );
 };
 
-export const AuthNav = onClick => {
+export const AuthNav = toggleMenu => {
   return (
     <Container>
-      <LoginBTN onClick={onClick} />
-      <RegistrationBTN onClick={onClick} />
+      <LoginBTN onClick={toggleMenu} />
+      <RegistrationBTN onClick={toggleMenu} />
     </Container>
   );
 };

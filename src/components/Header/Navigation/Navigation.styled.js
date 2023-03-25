@@ -8,6 +8,7 @@ const Container = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 100%;
+    margin-left: 80px;
   }
 `;
 
@@ -24,7 +25,7 @@ const NavBlock = styled.div`
     display: flex;
     justify-content: start;
     width: 100%;
-    margin-left: 80px;
+    // margin-left: 80px;
   }
 `;
 export { Container, NavBlock };

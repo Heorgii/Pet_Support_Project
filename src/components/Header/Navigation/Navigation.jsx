@@ -12,10 +12,10 @@ export const Navigation = () => {
 
   return (
     <Container>
-      <NavBlock>
-        <Nav />
-        {isLoggedIn ? <UserNav /> : <AuthNav />}
-      </NavBlock>
+      {/* <NavBlock> */}
+      <Nav />
+      {isLoggedIn ? <UserNav /> : <AuthNav />}
+      {/* </NavBlock> */}
       <Menu />
     </Container>
   );
