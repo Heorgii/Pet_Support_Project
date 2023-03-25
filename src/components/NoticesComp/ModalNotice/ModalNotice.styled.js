@@ -23,7 +23,10 @@ const NoticesContainerItem = styled.div`
     padding: 32px 20px 32px 20px;
   }
 `;
-
+const ContainerPositionForCloseModal = styled.div`
+  display: flex;
+  justify-content: end;
+`;
 const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;
@@ -206,12 +209,18 @@ const Comments = styled.span`
   font-size: 14px;
   line-height: 19px;
 `;
+const MainComments = styled.span`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+`;
 const ContainerComments = styled.div`
   margin-top: 28px;
 `;
 export {
   NoticesContainerItem,
   ContainerCloseModal,
+  ContainerPositionForCloseModal,
   ContainerInfo,
   ImgItem,
   ContainerStatus,
@@ -223,6 +232,7 @@ export {
   TdTable,
   TdTable2,
   Comments,
+  MainComments,
   ContainerComments,
   NoticeContainerButtom,
 };
