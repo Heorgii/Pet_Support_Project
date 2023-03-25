@@ -36,17 +36,20 @@ export const GlobalStyle = createGlobalStyle`
     width: 100vw;
     height: 100vh;
     opacity: 1;
+    visibility: visible;
     background-color: #0000006b;
-    transition: opacity .3s linear 50ms, visibility .3s linear 50ms;
+    transition: opacity .3s linear 50ms, visibility .3s linear 50ms; 
     position: fixed;
     top: 0;
     left: 0;
-    display: block;
 }
 #popup-root.is-hide{
   pointer-events: none;
+  /* display: none; */
   opacity: 0;
   visibility: hidden;
+  width: 0;
+  height: 0;
 }
   /* body {
   margin: 0;
