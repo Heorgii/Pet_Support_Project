@@ -1,14 +1,19 @@
 import React from 'react';
-import { NavList, NavItem } from './UserNav.styled';
+import { MobileAccountButton, AccountButton, IconUser } from './UserNav.styled';
 
+export const MobileUserNav = () => {
+  return (
+    <MobileAccountButton to="/user">
+      <IconUser />
+      Account
+    </MobileAccountButton>
+  );
+};
 export const UserNav = () => {
   return (
-    <NavList>
-      <NavItem to="/news"> News </NavItem>
-
-      <NavItem to="/notices">Find pet</NavItem>
-
-      <NavItem to="/friends">Our friends</NavItem>
-    </NavList>
+    <AccountButton to="/user">
+      <IconUser />
+      Account
+    </AccountButton>
   );
 };

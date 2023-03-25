@@ -2,65 +2,56 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Modal = styled.div`
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transform: translateY(100%);
+
   display: flex;
-  flex-direction: row;
   align-items: center;
-  align-items: flex-start;
-  gap: 16px;
+  inline-size: max-content;
+  max-width: 145px;
+  padding: 12px;
+
+  background-color: ${baseColor.colors.white};
+  border: 1px solid ${baseColor.colors.orangeLight};
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  z-index: 20;
 `;
 
-const Table = styled.div`
+const Table = styled.tbody`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 4px;
+`;
+
+const Line = styled.tr`
+  display: flex;
   gap: 12px;
 `;
 
-const Day = styled.span`
+const Day = styled.th`
+  width: 20px; // deletes different position
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.blackText};
+  color: ${baseColor.colors.black};
   cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
-
-  &:hover,
-  &:focus {
-    color: #f59256;
-  }
 `;
-const Time = styled.span`
+
+const Time = styled.td`
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.blackText};
+  color: ${props =>
+    props.accent
+      ? `${baseColor.colors.orangeLight}`
+      : `${baseColor.colors.black}`};
   cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
-
-  &:hover,
-  &:focus {
-    color: ${baseColor.colors.orangeLight};
-  }
 `;
 
-export { Modal, Table, Day, Time };
+export { Modal, Table, Line, Day, Time };

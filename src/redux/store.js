@@ -1,13 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import { noticesReducer } from './notices/slice';
 import { querySlice } from './query/slice';
-import { authReducer } from "./auth/slice";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { noticeReducer } from './notice/slice';
+import { authReducer } from './auth/slice';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { modalReducer } from './modal/slice';
 
 // Persisting token field from auth slice to localstorage
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
 };
 
@@ -16,8 +18,10 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     notices: noticesReducer,
     query: querySlice.reducer,
+    notice: noticeReducer,
+    modal: modalReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

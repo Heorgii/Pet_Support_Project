@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
+import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
 import {
   Item,
   Title,
@@ -11,13 +12,9 @@ import {
   Link,
   Image,
 } from './OurFriendsItem.styled';
-// import { OurFriendsItemModal } from '../OurFriendsItemModal/OurFriendsItemModal';
+import defaultImg from 'images/defaultPets.png';
 
 export const OurFriendsItem = ({ friend }) => {
-  const [state] = useState({ friend });//setState 
-  // const [showModal, setShowModal] = useState(false);
-  // const [workTime, setWorkTime] = useState('8:00- 19:00');
-
   const {
     id,
     title,
@@ -25,55 +22,93 @@ export const OurFriendsItem = ({ friend }) => {
     addressUrl,
     imageUrl,
     address,
-    // workDays,
+    workDays,
     phone,
     email,
-  } = state.friend;
+  } = friend;
+  const [workTime, setWorkTime] = useState('');
+  const [dayClosed, setDayClosed] = useState(null);
+
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(state => !state);
 
   const hrefEmail = `mailto:${email}`;
   const hrefPhone = `tel:${phone}`;
 
-  // const handleModal = workDays => {
-  //   setWorkTime(workDays);
-  //   toggleModal();
-  // };
+  // gets user time and compare with workDays
+  const userDay = new Date().getDay() - 1;
+  const userHours = new Date().getHours();
+  // const userHours = 20;
 
-  // const toggleModal = () => {
-  //   setShowModal(({ showModal }) => ({
-  //     showModal: !showModal,
-  //   }));
-  // };
+  useEffect(() => {
+    try {
+      const day = workDays[userDay];
+      if (day.isOpen) {
+        const start = Number(day.from.split(':')[0]);
+        const finish = Number(day.to.split(':')[0]);
+
+        if (userHours < start) {
+          setWorkTime('closed');
+          setDayClosed(userDay);
+          return;
+        }
+        if (userHours > finish) {
+          setWorkTime('closed');
+          setDayClosed(userDay);
+          return;
+        }
+        setWorkTime(day.from + ' - ' + day.to);
+      }
+      if (!day.isOpen) return setWorkTime('not working today');
+      return;
+    } catch (e) {
+      console.log(`Error message: ${e.message}`);
+    }
+  }, [userDay, userHours, workDays]);
 
   return (
     <Item key={id} id={id}>
       <Title href={url}>{title}</Title>
       <Info>
-        <Image
-          src={imageUrl}
-          alt={title}
-          width="110"
-          height="78"
-          loading="lazy"
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={title}
+            width="110"
+            height="78"
+            loading="lazy"
+          />
+        ) : (
+          <Image
+            src={defaultImg}
+            alt={title}
+            width="110"
+            height="78"
+            loading="lazy"
+          />
+        )}
         <InfoWrapper>
           <TextWrapper>
             <Text>Time:</Text>
-            <Text>-------------------------</Text>
-            {/* {workDays ? (
-              <Link aria-label="work days" onClick={handleModal(workDays)}>
+            {workDays !== null && workDays ? (
+              <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
               </Link>
             ) : (
               <Text>-------------------------</Text>
             )}
             {showModal && (
-              <OurFriendsItemModal onClick={toggleModal} workDays={workDays} />
-            )} */}
+              <OurFriendsItemModal
+                onClose={toggleModal}
+                workDays={workDays}
+                dayClosed={dayClosed}
+              />
+            )}
           </TextWrapper>
           <TextWrapper>
             <Text>Address:</Text>
             {address ? (
-              <Link href={addressUrl} aria-label="address">
+              <Link href={addressUrl} aria-label="address" target="blank">
                 <EllipsisText text={address} length={25} />
               </Link>
             ) : (
@@ -113,9 +148,9 @@ OurFriendsItem.propTypes = {
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
       addressUrl: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
       address: PropTypes.string,
-      workDays: PropTypes.array,
+      workDays: PropTypes.any,
       phone: PropTypes.string,
       email: PropTypes.string,
     }),

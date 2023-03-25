@@ -13,14 +13,13 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperNav = styled.div`
-width: 100%;
+  width: 100%;
   @media screen and (min-width: 768px) {
-display: flex;
-align-items: center;
-justify-content: space-beyween;
+    display: flex;
+    align-items: center;
+    justify-content: space-beyween;
   }
 
   @media screen and (min-width: 1280px) {
   }
 `;
-

@@ -1,23 +1,23 @@
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../../redux/auth/selectors';
+import React from 'react';
 import { LoginBTN } from '../Elements/loginBTN/LoginBTN';
 import { RegistrationBTN } from '../Elements/registrationBTN/RegistrationBTN';
-import { AccountBTN } from '../Elements/accountBTN/AccountBTN';
-import { Container } from './AuthNav.styled';
 
-export const AuthNav = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+import { MobileContainer, Container } from './AuthNav.styled';
 
+export const MobileAuthNav = toggleMenu => {
+  return (
+    <MobileContainer>
+      <LoginBTN onClick={toggleMenu} />
+      <RegistrationBTN onClick={toggleMenu} />
+    </MobileContainer>
+  );
+};
+
+export const AuthNav = toggleMenu => {
   return (
     <Container>
-      {!isLoggedIn ? (
-        <>
-          <LoginBTN />
-          <RegistrationBTN />
-        </>
-      ) : (
-        <AccountBTN />
-      )}
+      <LoginBTN onClick={toggleMenu} />
+      <RegistrationBTN onClick={toggleMenu} />
     </Container>
   );
 };

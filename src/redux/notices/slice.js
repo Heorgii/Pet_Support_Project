@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchNoticesByCategory,
   fetchFavoriteNotices,
-toggleFavoriteNotices,
+  toggleFavoriteNotices,
   fetchOwnNotices,
-addOwnNotice,
+  addOwnNotice,
 } from './operations';
 
 const handlePending = state => {
@@ -50,7 +50,7 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(
-            notice => notice.id === action.payload.id
+          notice => notice.id === action.payload.id,
         );
         state.items[index].favorite = !state.items[index].favorite;
       })
@@ -63,7 +63,7 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
-      })
+      });
     // .addCase(logOut.fulfilled, (state) => {
     //     state.items = [];
     //     state.error = null;

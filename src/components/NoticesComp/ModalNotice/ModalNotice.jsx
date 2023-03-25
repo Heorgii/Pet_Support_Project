@@ -1,12 +1,16 @@
 import data from './pets.json';
 import ReactDOM from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
-import { closeModalWindow } from '../../../hooks/modalWindow';
-import heard from '../../../images/svg/heard.png';
-import no_Photo from '../../../images/No-image-available.webp';
+import { closeModalWindow } from 'hooks/modalWindow';
+import { cleanModal } from 'redux/modal/operation';
+import { modalComponent } from 'redux/modal/selectors';
+import heard from 'images/svg/heard.png';
+import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
   ContainerCloseModal,
+  ContainerPositionForCloseModal,
   ContainerInfo,
   ImgItem,
   ContainerStatus,
@@ -18,27 +22,36 @@ import {
   TdTable2,
   Table,
   Comments,
+  MainComments,
   ContainerComments,
   NoticeContainerButtom,
 } from './ModalNotice.styled';
 
 export const ModalNotices = () => {
+  const dispatch = useDispatch();
+  const modal = useSelector(modalComponent);
+
+  const closeModalForItemPet = e => {
+    e.preventDefault();
+    dispatch(cleanModal());
+    closeModalWindow(e);
+  };
+
   return ReactDOM.createPortal(
-    <BackDrop onClick={e => closeModalWindow(e)}>
-      <NoticesContainerItem onClick={e => e.stopPropagation()}>
-        <div style={{ display: 'flex', justifyContent: 'end' }}>
-          <ContainerCloseModal onClick={e => closeModalWindow(e)}>
-            <MdClose style={{ width: '15.5px', height: '15.5px' }} />
-          </ContainerCloseModal>
-        </div>
-        <ContainerInfo>
-          <ContainerStatus>{data.status}</ContainerStatus>
-          <ImgItem src={no_Photo} />
-          <div>
-            <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+    Object.values(modal)[0] === 'itemPet' && (
+      <BackDrop onClick={closeModalForItemPet}>
+        <NoticesContainerItem onClick={e => e.stopPropagation()}>
+          <ContainerPositionForCloseModal>
+            <ContainerCloseModal onClick={closeModalForItemPet}>
+              <MdClose style={{ width: '15.5px', height: '15.5px' }} />
+            </ContainerCloseModal>
+          </ContainerPositionForCloseModal>
+          <ContainerInfo>
+            <ContainerStatus>{data.status}</ContainerStatus>
+            <ImgItem src={no_Photo} />
             <div>
+              <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
               <Table>
-                <thead></thead>
                 <tbody>
                   <tr>
                     <TdTable>Name:</TdTable>
@@ -69,24 +82,23 @@ export const ModalNotices = () => {
                     <TdTable2>{data.phone}</TdTable2>
                   </tr>
                 </tbody>
-                <tfoot></tfoot>
               </Table>
             </div>
-          </div>
-        </ContainerInfo>
-        <ContainerComments>
-          <span style={{ fontWeight: 600 }}>Comments: </span>
-          {data.comments}
-          <Comments></Comments>
-        </ContainerComments>
-        <NoticeContainerButtom>
-          <BtnContact>Contacts</BtnContact>
-          <BtnAddFavorits>
-            Add to <img src={heard} alt="heard" />
-          </BtnAddFavorits>
-        </NoticeContainerButtom>
-      </NoticesContainerItem>
-    </BackDrop>,
+          </ContainerInfo>
+          <ContainerComments>
+            <MainComments>Comments: </MainComments>
+            <Comments>{data.comments}</Comments>
+          </ContainerComments>
+          <NoticeContainerButtom>
+            <BtnContact>Contacts</BtnContact>
+            <BtnAddFavorits>
+              Add to{' '}
+              <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
+            </BtnAddFavorits>
+          </NoticeContainerButtom>
+        </NoticesContainerItem>
+      </BackDrop>
+    ),
     document.querySelector('#popup-root'),
   );
 };

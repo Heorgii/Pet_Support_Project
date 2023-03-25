@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-const HeaderContainer = styled.div`
+
+const HeaderContainer = styled.header`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 16px 20px 0px 20px;
 
   @media screen and (min-width: 768px) {
@@ -12,23 +15,5 @@ const HeaderContainer = styled.div`
     padding: 16px 20px 0px 20px;
   }
 `;
-const LeftContainer = styled.div`
-  display: flex;
-  align-items: center;
-  // @media screen and (min-width: 768px) {
-  // }
 
-  // @media screen and (min-width: 1280px) {
-  // }
-`;
-const RightContainer = styled.div`
-  display: flex;
-  align-items: center;
-  // @media screen and (min-width: 768px) {
-  // }
-
-  // @media screen and (min-width: 1280px) {
-  // }
-`;
-
-export { HeaderContainer, LeftContainer, RightContainer };
+export { HeaderContainer };

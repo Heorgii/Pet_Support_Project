@@ -15,7 +15,7 @@ const NoticesContainerItem = styled.div`
   display: block;
   width: 280px;
   padding: 17px 20px 43px 20px;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -23,7 +23,10 @@ const NoticesContainerItem = styled.div`
     padding: 32px 20px 32px 20px;
   }
 `;
-
+const ContainerPositionForCloseModal = styled.div`
+  display: flex;
+  justify-content: end;
+`;
 const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;
@@ -63,7 +66,7 @@ const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${baseColor.colors.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -92,7 +95,7 @@ const NoticeItemTitle = styled.div`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: #000000;
+  color: ${baseColor.colors.black};
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
@@ -122,11 +125,11 @@ const BtnContact = styled.button`
   margin: 40px 0 12px;
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
@@ -140,16 +143,20 @@ const BtnAddFavorits = styled.button`
   width: 240px;
   height: 40px;
   border-radius: 40px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
 
   &:hover {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: #fff;
+    color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
@@ -202,12 +209,18 @@ const Comments = styled.span`
   font-size: 14px;
   line-height: 19px;
 `;
+const MainComments = styled.span`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+`;
 const ContainerComments = styled.div`
   margin-top: 28px;
 `;
 export {
   NoticesContainerItem,
   ContainerCloseModal,
+  ContainerPositionForCloseModal,
   ContainerInfo,
   ImgItem,
   ContainerStatus,
@@ -219,6 +232,7 @@ export {
   TdTable,
   TdTable2,
   Comments,
+  MainComments,
   ContainerComments,
   NoticeContainerButtom,
 };

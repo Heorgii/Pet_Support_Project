@@ -1,7 +1,24 @@
+import { useAuth } from 'hooks/useAuth';
+import {
+  BtnCategory,
+  ContainerCategoryBtn,
+} from './NoticesCategoriesNav.styled';
+
 export const NoticesCategoriesNav = () => {
-    return (
-        <div>
-            <h1>Notices Categories Nav</h1>
-        </div>
-    );
-}
+  const { isLoggedIn } = useAuth();
+
+
+  return (
+    <ContainerCategoryBtn>
+      <BtnCategory>lost/find</BtnCategory>
+      <BtnCategory>in good hand</BtnCategory>
+      <BtnCategory>sell</BtnCategory>
+      {isLoggedIn && (
+        <>
+          <BtnCategory>fivorite pets</BtnCategory>
+          <BtnCategory>my pet</BtnCategory>
+        </>
+      )}
+    </ContainerCategoryBtn>
+  );
+};

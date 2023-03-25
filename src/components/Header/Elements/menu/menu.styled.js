@@ -1,56 +1,42 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-const Container = styled.button`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  color: ${baseColor.colors.blackText};
-  font-size: 28px;
-  border: none;
-  background-color: transparent;
+
+import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
+
+const Burger = styled(iconMenu)`
   margin-left: 20px;
 
   @media screen and (min-width: 1280px) {
     display: none;
   }
 `;
-const Burger = styled.div`
-  position: relative;
-  align-item: center;
-  display: block;
-  width: 30px;
-  height: 20px;
 
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    background-color: ${baseColor.colors.blackText};
-    border: 1px solid ${baseColor.colors.blackText};
-    border-radius: 10px;
-
-    width: 100%;
-    height: 3px;
-  }
-  &:before {
-    top: 0;
-    left: 0;
-  }
-  &:after {
-    bottom: 0;
-    left: 0;
-  }
-`;
-const Span = styled.div`
-  position: absolute;
-  background-color: ${baseColor.colors.blackText};
-  border: 1px solid ${baseColor.colors.blackText};
-  border-radius: 10px;
+const MobileMenuSection = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0;
   width: 100%;
-  height: 3px;
-  top: 8px;
+  height: 100%;
+  // min-height: 100%;
+  z-index: 999;
+  // padding: 35px;
+  transform: translateX(100%);
+  transition: transform 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background-color: ${baseColor.colors.mainBg};
+
+  &.is-expanded {
+    // max-height: 50%;
+    transform: translateX(0);
+  }
+  // @media screen and (min-width: 768px) {
+  //   top: 72px;
+  // }
+
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
-export { Container, Burger, Span };
+
+export { Burger, MobileMenuSection };
