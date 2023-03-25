@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import registerSchema from '../Schemas/schemas';
+import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
   FormRegister,
@@ -102,7 +102,7 @@ const RegisterForm = () => {
       phone: '',
       location: '',
     },
-    validationSchema: registerSchema,
+    validationSchema: schemas.registerSchema,
     onSubmit,
   });
 
@@ -130,7 +130,7 @@ const RegisterForm = () => {
       {/* </SpinerWrapper> */}
       {/* ) : (  */}
       <FormContainer>
-        <Formik validationSchema={registerSchema}>
+        <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
             <Title>Register</Title>
             {isShown && (
@@ -140,7 +140,7 @@ const RegisterForm = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    validate={registerSchema.email}
+                    validate={schemas.registerSchema.email}
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
