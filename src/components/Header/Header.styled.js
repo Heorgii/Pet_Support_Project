@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Container } from 'components/baseStyles/CommonStyle.styled';
 
-const HeaderContainer = styled(Container)`
+const HeaderContainer = styled.header`
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

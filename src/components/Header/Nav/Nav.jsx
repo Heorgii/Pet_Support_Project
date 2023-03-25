@@ -1,32 +1,32 @@
 import React from 'react';
 import { MobileNavList, NavList, NavItem } from './Nav.styled';
 
-export const MobileNav = onClick => {
+export const MobileNav = togleMenu => {
   return (
     <MobileNavList>
-      <NavItem to="/news" onClick={onClick}>
+      <NavItem to="/news" onClick={togleMenu}>
         News
       </NavItem>
-      <NavItem to="/notices" onClick={onClick}>
+      <NavItem to="/notices" onClick={togleMenu}>
         Find pet
       </NavItem>
-      <NavItem to="/friends" onClick={onClick}>
+      <NavItem to="/friends" onClick={togleMenu}>
         Our friends
       </NavItem>
     </MobileNavList>
   );
 };
 
-export const Nav = onClick => {
+export const Nav = togleMenu => {
   return (
     <NavList>
-      <NavItem to="/news" onClick={onClick}>
+      <NavItem to="/news" onClick={togleMenu}>
         News
       </NavItem>
-      <NavItem to="/notices" onClick={onClick}>
+      <NavItem to="/notices" onClick={togleMenu}>
         Find pet
       </NavItem>
-      <NavItem to="/friends" onClick={onClick}>
+      <NavItem to="/friends" onClick={togleMenu}>
         Our friends
       </NavItem>
     </NavList>

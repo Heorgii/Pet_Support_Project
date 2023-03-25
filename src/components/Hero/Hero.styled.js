@@ -1,32 +1,20 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-const Container = styled.div`
-position: relative;  
-// outline: 2px solid red;  
-    display: flex;
-  flex-direction: column;
-  justifycontent: space-between;
-  width: 100vw:
-  height: 100vh;
+import { Container } from 'components/baseStyles/CommonStyle.styled';
 
-  @media screen and (min-width: 1280px) {
-    position: relative;
-    flex-direction: row;
-    height: 100vh;
-    max-width: 1280px;
-  }
-`;
+const HeroSection = styled(Container)``;
 
-const Title = styled.h1`
-  // outline: 2px solid green;
-  padding: 0px 20px;
+const HeroTitle = styled.h1`
+  outline: 2px solid green;
   margin-top: 60px;
+  align-item: start;
+
   font-family: Manrope;
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 44px;
-  text-aling: center;
+  text-align: center;
 
   color: ${baseColor.colors.blackText};
 
@@ -40,36 +28,35 @@ const Title = styled.h1`
     width: 630px;
   }
 `;
-const Images = styled.div`
-  // outline: 1px solid black;
-  // position: relative;
-  display: flex;
-  margin-top: 29px;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-top: 80px;
-  }
-  @media screen and (min-width: 1280px) {
-    // margin-top: 92px;
-    // align-items: end;
+const DogMobile = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
-const DogMobile = styled.img`
-  position: relative;
-  display: block;
-  margin: 0 0 0 10vw;
-  width: 90vw;
+const DogTab = styled(DogMobile)`
+  // display: none;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    // display: none;
-    max-width: 90vw;
+    display: block;
+    width: 100%;
+    max-width: 636px;
   }
+`;
+const DogDesk = styled(DogMobile)`
+  display: none;
+
   @media screen and (min-width: 1280px) {
+    display: block;
     position: absolute;
     left: 750px;
-    top: 124px;
-    width: 524px;
-    margin: 0px;
+    bottom: 0;
+    max-width: 524px;
   }
 `;
 
@@ -101,7 +88,7 @@ const WaveDesk = styled(WaveMobile)`
     min-width: 1000px;
     position: absolute;
     z-index: -10;
-    top: 323px;
+    bottom: 0;
     left: 0px;
   }
 `;
@@ -112,7 +99,7 @@ const WaveDesk2 = styled(WaveMobile)`
     min-width: 380px;
     position: absolute;
     z-index: -10;
-    top: 335px;
+    bottom: 0;
     left: 900px;
   }
 `;
@@ -129,10 +116,11 @@ const Heart = styled(WaveMobile)`
 `;
 
 export {
-  Container,
-  Title,
-  Images,
+  HeroSection,
+  HeroTitle,
   DogMobile,
+  DogTab,
+  DogDesk,
   WaveMobile,
   WaveTab,
   WaveDesk,

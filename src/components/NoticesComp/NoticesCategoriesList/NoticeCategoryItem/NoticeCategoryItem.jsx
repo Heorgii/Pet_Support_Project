@@ -19,10 +19,12 @@ import {
   BtnForFavorite,
 } from './NoticeCategoryItem.styled';
 import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addModal } from 'redux/modal/operation';
 
 export const NoticesCategoriesItem = ({ data }) => {
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
 
   const addToFavorite = e => {
     e.preventDefault();
@@ -32,9 +34,15 @@ export const NoticesCategoriesItem = ({ data }) => {
       : onSuccess('You add pet to the favorite!');
   };
 
+  const openModalForItemPet = e => {
+    e.preventDefault();
+    dispatch(addModal(e.currentTarget.dataset.modal));
+    openModalWindow(e, null);
+  };
+
   return (
     <ItemContainer>
-      <NoticesContainerItem onClick={e => openModalWindow(e, null)}>
+      <NoticesContainerItem onClick={openModalForItemPet} data-modal="itemPet">
         <ContainerInfo>
           <ContainerStatus>{data.status}</ContainerStatus>
           <BtnForFavorite onClick={addToFavorite}>
