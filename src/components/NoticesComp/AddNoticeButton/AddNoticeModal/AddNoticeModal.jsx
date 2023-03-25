@@ -180,6 +180,16 @@ export const AddNoticeModal = ({ onClose }) => {
               }
             }}
             validationSchema={formQueue ? FormSchemaFirst : FormSchemaSecond}
+
+  const isValid =
+    // (errors.category && touched.email) ||
+    //   (errors.password && touched.password) ||
+    //   (errors.confirmPassword && touched.confirmPassword) ||
+    //   values.email === '' ||
+    //   values.confirmPassword === ''
+    //   ? true
+    //   : false;
+
           >
             {({ values, handleChange, handleSubmit, errors, touched }) => (
               <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
@@ -408,7 +418,7 @@ export const AddNoticeModal = ({ onClose }) => {
                     </div>
                   )}
                   <div className="btns">
-                    <ButtonFirst type="submit" key={nanoid()}>
+                    <ButtonFirst type="submit" key={nanoid()} desabled={errors && touched}>
                       {formQueue ? 'Next' : 'Done'}
                     </ButtonFirst>
                     <ButtonSecond
