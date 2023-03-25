@@ -3,10 +3,7 @@ import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import registerSchema from '../Schemas/schemas';
-
-// import { selectIsLoading } from '../../redux/auth/selectors';
-// import { register } from '../../redux/auth/operations';
-
+import { register } from 'redux/auth/operations';
 import {
   FormRegister,
   FormContainer,
@@ -47,10 +44,7 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  // const loading = useSelector(selectIsLoading);
-  // const {is}= useAuth();
   const dispatch = useDispatch();
-  const register = useState(false);
 
   const showForm = () => {
     setIsShown(false);
@@ -60,19 +54,45 @@ const RegisterForm = () => {
     setIsShown(true);
   };
 
-  const onSubmit = values => {
-    const { name, email, password, phone, location } = values;
-    dispatch(
-      register({
-        name,
-        email,
-        password,
-        phone,
-        location,
-      }),
-      hideForm(),
-    );
-  };
+  // const onSubmit = values => {
+  //   const { name, email, password, phone, location } = values;
+  //   dispatch(
+  //     register({
+  //       name,
+  //       email,
+  //       password,
+  //       phone,
+  //       location,
+  //     }),
+  //     hideForm(),
+  //   );
+  // };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    const name = form.elements.name;
+    const email = form.elements.email;
+    const password = form.elements.password;
+    const confirmPassword = form.elements.confirmPassword;
+    const phone = form.elements.phone;
+    const location = form.elements.location;
+
+    const newUser = {
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      phone: phone,
+      location: location,
+    }
+
+    dispatch(register(newUser));
+    console.log(newUser);
+    form.reset();
+  }
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -88,10 +108,10 @@ const RegisterForm = () => {
 
   const isValid =
     (formik.errors.email && formik.touched.email) ||
-    (formik.errors.password && formik.touched.password) ||
-    (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
-    formik.values.email === '' ||
-    formik.values.confirmPassword === ''
+      (formik.errors.password && formik.touched.password) ||
+      (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
+      formik.values.email === '' ||
+      formik.values.confirmPassword === ''
       ? true
       : false;
 
@@ -101,6 +121,7 @@ const RegisterForm = () => {
   const showConfirmPassword = () => {
     setShowConfirmPass(!showConfirmPass);
   };
+
   return (
     <>
       {/* {loading ? (
@@ -110,25 +131,25 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={registerSchema}>
-          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+          <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <>
                 <div>
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  validate={registerSchema.email}
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur}
-                />
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    validate={registerSchema.email}
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    onBlur={formik.handleBlur}
+                  />
 
-                {formik.errors.email || formik.touched.email ? (
-                  <ErrBox>{formik.errors.email}</ErrBox>
+                  {formik.errors.email || formik.touched.email ? (
+                    <ErrBox>{formik.errors.email}</ErrBox>
                   ) : null}
-                  </div>
+                </div>
               </>
             )}
 
@@ -168,7 +189,7 @@ const RegisterForm = () => {
                     {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
                   {formik.errors.confirmPassword &&
-                  formik.touched.confirmPassword ? (
+                    formik.touched.confirmPassword ? (
                     <ErrBox>{formik.errors.confirmPassword}</ErrBox>
                   ) : null}
                 </div>
