@@ -31,8 +31,8 @@ export const Hero = () => {
       <DogTab src={labradorTab} alt="Dog" width="636"></DogTab>
       <DogDesk src={labradorDesk} alt="Dog" width="524"></DogDesk>
 
-      <WaveMobile src={wave} alt="Wave" width="636"></WaveMobile>
-      <WaveTab src={waveTab} alt="Wave" width="524"></WaveTab>
+      <WaveMobile src={wave} alt="Wave" width="768"></WaveMobile>
+      <WaveTab src={waveTab} alt="Wave" width="1280"></WaveTab>
 
       <Heart src={heart} alt="Wave"></Heart>
       <WaveDesk2 src={waveDesk2} alt="Wave"></WaveDesk2>
