@@ -39,7 +39,7 @@ export const ModalNotices = () => {
   };
   const [data, setData] = useState([]);
   const [status, setStatus] = useState('idle');
-  let itemForFetch = `http://localhost:3030/api/notices/byid/${modal.id}`;
+  let itemForFetch = `http://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
 
   useEffect(() => {
     setStatus('pending');
