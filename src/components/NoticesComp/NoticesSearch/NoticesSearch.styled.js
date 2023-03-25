@@ -42,13 +42,13 @@ export const FormStyled = styled(Form)`
   margin-bottom: 28px;
 margin-left: auto;
 margin-right: auto;
-
-  width: 100%;
 max-width: 280px;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
 max-width: 608px;
+
+    margin-bottom: 40px;
   }
 `;
 
@@ -100,10 +100,9 @@ export const LabelStyled = styled.label`
   align-items: center;
   justify-content: space-between;
 
+  width: 100%;
   height: 40px;
 
-  margin-left: 0;
-  margin-right: 0;
   padding: 10px;
 
   background: ${baseColor.colors.white};
@@ -112,16 +111,12 @@ export const LabelStyled = styled.label`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    margin-left: 48px;
-    margin-right: 48px;
     height: 44px;
     padding: 8px 20px 8px 20px;
     border-radius: 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-left: 320px;
-    margin-right: 320px;
   }
 `;
 
