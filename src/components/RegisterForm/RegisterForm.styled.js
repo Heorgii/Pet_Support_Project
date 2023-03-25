@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
-// import MaskedInput from 'react-text-mask';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import MaskedInput from 'react-text-mask';
+// import MaskedInput from 'react-text-mask';
+
+import mobileBackground from '../../images/register/bg-register-mobile.png';
+import tabletBackground from '../../images/register/bg-register-tablet.png';
+import desktopBackground from '../../images/register/bg-register-desktop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
@@ -14,7 +17,7 @@ export const FormContainer = styled.div`
     padding-top: 50px;
   }
 `;
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 40px;
@@ -55,8 +58,8 @@ export const FormRegister = styled(Form)`
 export const ShowPassword = styled.span`
   display: inline-block;
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   right: 15px;
   top: 50%;
   transform: translateY(-80%);
@@ -90,7 +93,7 @@ export const Input = styled(Field)`
     width: 458px;
   }
 `;
-export const PhoneInput = styled(MaskedInput)`
+export const PhoneInput = styled.div`
   width: 280px;
   padding: 11px 0 12px 14px;
   background: ${baseColor.colors.mainBg};
@@ -220,11 +223,39 @@ export const StyledLink = styled(Link)`
   }
 `;
 export const BoxText = styled.div`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
   display: flex;
   align-items: center;
   text-align: center;
-  font-size: 12px;
+  letter-spacing: 0.04em;
+
+  color: rgba(17, 17, 17, 0.6);
 `;
+
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+  @media screen and (min-width: 768px) {
+    background-image: url(${tabletBackground});
+  }
+  @media screen and (min-width: 1280px) {
+    background-image: url(${desktopBackground});
+  }
+`;
+
 export const SpinerWrapper = styled.div`
   position: absolute;
   top: 50%;

@@ -82,7 +82,7 @@ export const ModalNotices = () => {
         <NoticeContainerButtom>
           <BtnContact>Contacts</BtnContact>
           <BtnAddFavorits>
-            Add to <img src={heard} alt="heard" />
+            Add to <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
           </BtnAddFavorits>
         </NoticeContainerButtom>
       </NoticesContainerItem>

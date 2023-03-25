@@ -15,7 +15,7 @@ const List = styled.ul`
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: calc(100vw - 32px);
+    max-width: 1280px;
     grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
   }
 `;

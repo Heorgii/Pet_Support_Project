@@ -17,7 +17,7 @@ import sponsors from 'components/OurFriendsComp/sponsors.json';
 // const BASE_URL = 'http://localhost:3000/Pet_Support_Project';
 // const pathParams = '/friends';
 
-// async function fetchData() {
+// async function fetchData(pathParams) {
 //   const axiosInstance = axios.create({
 //     baseURL: `${BASE_URL}${pathParams}`,
 //     headers: { 'Content-Type': 'application/json' },
@@ -50,7 +50,7 @@ const OurFriends = () => {
   // }, []);
 
   return (
-    <main>
+    <>
       <SEO
         title="Our friends"
         description="You can see all of our company of friends"
@@ -64,7 +64,7 @@ const OurFriends = () => {
         {friends.length > 0 && !error && <OurFriendsList friends={friends} />} */}
         </Container>
       </Section>
-    </main>
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const List = styled.ul`
   display: grid;
   max-width: calc(100vw - 40px);
@@ -20,7 +19,7 @@ const List = styled.ul`
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: calc(100vw - 128px);
+    max-width: 1280px;
     grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
   }
 `;

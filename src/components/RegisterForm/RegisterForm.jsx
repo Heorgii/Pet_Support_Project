@@ -1,21 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';//useSelector
+import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
-import { object, string, ref } from 'yup';
-// import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-
-// import { selectIsLoading } from '../../redux/auth/selectors';
-// import { register } from '../../redux/auth/operations';
-
-// import {
-//   emailRegex,
-//   phoneRegexp,
-//   cityRegexp,
-//   userNameRegexp,
-//   passwordRegexp,
-// } from '../../helpers/regExpsHelpers';
-
+import registerSchema from '../Schemas/schemas';
+import { register } from 'redux/auth/operations';
 import {
   FormRegister,
   FormContainer,
@@ -24,92 +12,87 @@ import {
   Title,
   ErrBox,
   BackButton,
-  PhoneInput,
+  // PhoneInput,
   ShowPassword,
   StyledLink,
   BoxText,
+  Background,
   // SpinerWrapper,
 } from './RegisterForm.styled';
 
+// const phoneNumberMask = [
+//   '+',
+//   /\d/,
+//   /\d/,
+//   /\d/,
 
-// const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const phoneNumberMask = [
-  '+',
-  /\d/,
-  /\d/,
-  /\d/,
+//   /\d/,
+//   /\d/,
 
-  /\d/,
-  /\d/,
+//   /\d/,
+//   /\d/,
+//   /\d/,
 
-  /\d/,
-  /\d/,
-  /\d/,
+//   /\d/,
+//   /\d/,
 
-  /\d/,
-  /\d/,
-
-  /\d/,
-  /\d/,
-];
-
-const registerSchema = object().shape({
-  password: string()
-    .min(7, 'Password must be at least 7 characters')
-    .max(32, 'Password must be at most 32 characters')
-    .matches('Must not contain spaces')
-    .required('Password is required'),
-  confirmPassword: string()
-    .required('Please confirm your password')
-    .oneOf([ref('password')], 'Passwords do not match'),
-  email: string()
-    .email('Invalid email address')
-    .matches('Invalid email address')
-    .required('Email is required'),
-  name: string()
-    .min(2, 'Min 2 symbols')
-    .matches('Only letters')
-    .required('Name is required'),
-  phone: string()
-    .min(13, 'Too Short!')
-    .matches('Bad phone number')
-    .required('Phone is required'),
-  city: string()
-    .matches('Error. Example: Brovary, Kyiv')
-    .required('City is required'),
-});
+//   /\d/,
+//   /\d/,
+// ];
 
 const RegisterForm = () => {
-  const [isShown, setIsShown] = useState(true);//
+  const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  // const loading = useSelector(selectIsLoading);
-  // const {is}= useAuth();
   const dispatch = useDispatch();
-  const register = useState(false);
 
   const showForm = () => {
-    setIsShown(false);                            
+    setIsShown(false);
   };
 
   const hideForm = () => {
     setIsShown(true);
   };
 
-  const onSubmit = values => {
-    const { name, email, password, phone, city } = values;
-    dispatch(
-      register({
-        name,
-        email,
-        password,
-        phone,
-        city,
-      }),
-      hideForm()
-    );
+  // const onSubmit = values => {
+  //   const { name, email, password, phone, location } = values;
+  //   dispatch(
+  //     register({
+  //       name,
+  //       email,
+  //       password,
+  //       phone,
+  //       location,
+  //     }),
+  //     hideForm(),
+  //   );
+  // };
 
-  };
+  const onSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    const name = form.elements.name;
+    const email = form.elements.email;
+    const password = form.elements.password;
+    const confirmPassword = form.elements.confirmPassword;
+    const phone = form.elements.phone;
+    const location = form.elements.location;
+
+    const newUser = {
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      phone: phone,
+      location: location,
+    }
+
+    dispatch(register(newUser));
+    console.log(newUser);
+    form.reset();
+  }
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -117,7 +100,7 @@ const RegisterForm = () => {
       password: '',
       confirmPassword: '',
       phone: '',
-      city: '',
+      location: '',
     },
     validationSchema: registerSchema,
     onSubmit,
@@ -138,6 +121,7 @@ const RegisterForm = () => {
   const showConfirmPassword = () => {
     setShowConfirmPass(!showConfirmPass);
   };
+
   return (
     <>
       {/* {loading ? (
@@ -147,7 +131,7 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={registerSchema}>
-          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+          <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <>
@@ -238,16 +222,16 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
-                    name="city"
+                    name="location"
                     type="text"
-                    placeholder="City, region"
+                    placeholder="Location, region"
                     onChange={formik.handleChange}
-                    value={formik.values.city}
+                    value={formik.values.location}
                     onBlur={formik.handleBlur}
                   />
 
-                  {formik.errors.city && formik.touched.city ? (
-                    <ErrBox>{formik.errors.city}</ErrBox>
+                  {formik.errors.location && formik.touched.location ? (
+                    <ErrBox>{formik.errors.location}</ErrBox>
                   ) : null}
                 </div>
               </>
@@ -255,8 +239,8 @@ const RegisterForm = () => {
             {!isShown && (
               <>
                 <div>
-                  <PhoneInput
-                    mask={phoneNumberMask}
+                  <Input
+                    // mask={phoneNumberMask}
                     id="phone"
                     type="phone"
                     placeholder="Mobile phone"
@@ -284,7 +268,7 @@ const RegisterForm = () => {
             </BoxText>
           </FormRegister>
         </Formik>
-        {/* <Background></Background> */}
+        <Background></Background>
       </FormContainer>
       {/*  )} */}
     </>

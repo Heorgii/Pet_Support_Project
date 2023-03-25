@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const NoticesCategoriesList = () => {
   return (
-    <section>
+    <>
       <div
         style={{
           display: 'flex',
@@ -23,6 +23,6 @@ export const NoticesCategoriesList = () => {
         </ContainerStatus>
       </div>
       <ModalNotices />
-    </section>
+    </>
   );
 };
