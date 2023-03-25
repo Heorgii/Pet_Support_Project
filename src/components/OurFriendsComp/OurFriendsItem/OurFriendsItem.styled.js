@@ -46,7 +46,7 @@ const Info = styled.div`
   gap: 16px;
 `;
 
-const InfoWrapper = styled.div`
+const InfoWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -61,7 +61,7 @@ const InfoWrapper = styled.div`
   }
 `;
 
-const TextWrapper = styled.div`
+const TextWrapper = styled.li`
   position: relative; //for modal
   display: flex;
   flex-direction: column;

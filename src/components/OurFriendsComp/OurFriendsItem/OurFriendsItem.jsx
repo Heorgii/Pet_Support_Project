@@ -16,7 +16,7 @@ import defaultImg from 'images/defaultPets.png';
 
 export const OurFriendsItem = ({ friend }) => {
   const {
-    id,
+    _id,
     title,
     url,
     addressUrl,
@@ -67,8 +67,10 @@ export const OurFriendsItem = ({ friend }) => {
   }, [userDay, userHours, workDays]);
 
   return (
-    <Item key={id} id={id}>
-      <Title href={url}>{title}</Title>
+    <Item key={_id} id={_id}>
+      <Title href={url} target="blank">
+        {title}
+      </Title>
       <Info>
         {imageUrl ? (
           <Image
