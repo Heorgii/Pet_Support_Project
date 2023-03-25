@@ -50,10 +50,10 @@ export const UserDataItemInput = styled.input`
   padding: 4px 18px;
   border-radius: 40px;
   background-color: ${p =>
-    p.disabled ? p.baseColor.colors.white : p.baseColor.colors.mainBg};
+    p.disabled ? `${baseColor.colors.white}` : `${baseColor.colors.mainBg}`};
   border: ${p => (p.disabled ? '1px solid' : 'none')};
   border-color: ${p =>
-    p.disabled ? 'transparent' : p.baseColor.colors.inputColor};
+    p.disabled ? 'transparent' : `${baseColor.colors.inputColor}`};
 
   :focus {
     outline-color: ${baseColor.colors.inpitColor};
@@ -112,12 +112,14 @@ export const UserDataItemBtn = styled.button`
 
   :hover svg {
     fill: ${p =>
-      p.disabled ? p.baseColor.colors.orangeLight : p.baseColor.colors.orange};
+      p.disabled
+        ? `${baseColor.colors.orangeLight}`
+        : `${baseColor.colors.orange}`};
   }
 
   :disabled {
     svg {
-      fill: ${p => p.baseColor.colors.inputColor};
+      fill: ${baseColor.colors.inputColor};
     }
   }
 

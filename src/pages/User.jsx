@@ -35,7 +35,7 @@ export const UserPage = () => {
         <UserDataWrapper>
           <UserDataTitle title="My information:" />
           <UserDataContainer>
-            {/* <UserData /> */}
+            <UserData />
             <Logout />
           </UserDataContainer>
         </UserDataWrapper>

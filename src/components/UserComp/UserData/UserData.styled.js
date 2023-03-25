@@ -162,10 +162,10 @@ export const UserDataInput = styled.input`
   padding: 4px 18px;
   border-radius: 40px;
   background-color: ${p =>
-    p.disabled ? p.baseColor.colors.white : p.baseColor.colors.mainBg};
-  border: ${p => (p.disabled ? '1px solid' : 'none')};
+    p.disabled ? `${baseColor.colors.white}` : `${baseColor.colors.mainBg}`};
+  // border: ${p => (p.disabled ? '1px solid' : 'none')};
   border-color: ${p =>
-    p.disabled ? 'transparent' : p.baseColor.colors.inputColor};
+    p.disabled ? 'transparent' : `${baseColor.colors.inputColor}`};
 
   :focus {
     outline-color: transparent;
