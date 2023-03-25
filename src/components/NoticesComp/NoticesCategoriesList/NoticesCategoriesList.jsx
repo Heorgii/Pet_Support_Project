@@ -9,7 +9,7 @@ import { useState } from 'react';
 export const NoticesCategoriesList = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState('idle');
-  let itemForFetch = 'http://localhost:3030/api/notices/sell';
+  let itemForFetch = `http://petsapi.cyclic.app/api/notices/sell`;
 
   useEffect(() => {
     setStatus('pending');
