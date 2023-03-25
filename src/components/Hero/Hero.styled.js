@@ -64,8 +64,6 @@ const DogTab = styled(DogMobile)`
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
     display: block;
-    // width: 100%;
-    // max-width: 750px;
   }
 `;
 const WaveTab = styled(WaveMobile)`
@@ -84,7 +82,6 @@ const DogDesk = styled.img`
     position: absolute;
     left: 750px;
     bottom: 0;
-    // max-width: 524px;
   }
 `;
 
