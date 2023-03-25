@@ -3,7 +3,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const onLoading = () => {
   return Loading.circle('Loading...', {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'transparent',
     svgSize: '160px',
     svgColor: `${baseColor.colors.orangeLight}`,
     messageFontSize: '20px',
