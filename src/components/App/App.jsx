@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
-// import { ApiDocs } from '../ApiDocs/ApiDocs';
+import { ApiDocs } from '../ApiDocs/ApiDocs';
 
 const HomePage = lazy(() => import('../../pages/Home'));
 const OurFriendsPage = lazy(() => import('../../pages/OurFriends'));
@@ -69,8 +69,8 @@ export const App = () => {
             }
           />
 
-          {/* added kadulin
-          <Route path="api-docs" element={<ApiDocs />} /> */}
+          {/* added kadulin */}
+          <Route path="api-docs" element={<ApiDocs />} />
 
           <Route
             path="user"
