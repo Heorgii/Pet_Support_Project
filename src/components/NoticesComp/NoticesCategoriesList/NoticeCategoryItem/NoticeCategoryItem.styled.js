@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,6 @@ const ItemContainer = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
-  margin-bottom: 32px;
 `;
 const NoticesContainerItem = styled.div`
   position: relative;
@@ -28,11 +27,13 @@ const NoticesContainerItem = styled.div`
       inset 0 0 40px ${baseColor.colors.orange};
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1279.5px) {
+  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
     width: 336px;
+    padding: 0 0 32px 0;
   }
-  @media screen and (min-width: 1279.5px) {
+  @media screen and (min-width: 1280px) {
     width: 288px;
+    padding: 0 0 32px 0;
   }
 `;
 
