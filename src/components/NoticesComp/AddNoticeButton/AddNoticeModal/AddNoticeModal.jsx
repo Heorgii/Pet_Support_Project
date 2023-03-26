@@ -36,6 +36,11 @@ import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
