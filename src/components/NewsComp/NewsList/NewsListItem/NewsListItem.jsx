@@ -1,46 +1,40 @@
 import PropTypes from 'prop-types';
+import EllipsisText from 'react-ellipsis-text';
 import {
   Item,
   Title,
-  Info,
   TextWrapper,
-  InfoWrapper,
   Text,
   Link,
   Ractangle,
   Date,
 } from './NewsListItem.styled';
+
 export const NewsListItem = ({ newsItem }) => {
   const { _id, title, description, date, url } = newsItem;
   return (
     <Item key={_id} id={_id}>
-      <Ractangle></Ractangle>
+      <Ractangle />
 
-      <Title>{title}</Title>
+      <Title>
+        <EllipsisText text={title} length={50} />
+      </Title>
 
-      <Info>
-        <InfoWrapper>
-          <TextWrapper>
-            <Text>{description}</Text>
-            <Date>
-              {date}
-              <Link target="_blank" href={url}>
-                Read More
-              </Link>
-            </Date>
-          </TextWrapper>
-        </InfoWrapper>
-      </Info>
+      <TextWrapper>
+        <Text>
+          <EllipsisText text={description} length={200} />
+        </Text>
+        <Date>
+          {date}
+          <Link target="_blank" href={url}>
+            Read More
+          </Link>
+        </Date>
+      </TextWrapper>
     </Item>
   );
 };
 
 NewsListItem.propTypes = {
-  newsItem: PropTypes.shape({
-    _id: PropTypes.any.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    date: PropTypes.string,
-  }),
+  newsItem: PropTypes.object.isRequired,
 };

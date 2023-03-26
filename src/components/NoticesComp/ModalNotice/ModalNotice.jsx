@@ -5,8 +5,8 @@ import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+// import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
+// import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import heard from 'images/svg/heard.png';
 import no_Photo from 'images/No-image-available.webp';
 import {
@@ -38,13 +38,14 @@ export const ModalNotices = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [status, setStatus] = useState('idle');
-  
-  let itemForFetch = `http://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
+  // const [status, setStatus] = useState('idle');
+  console.log(isLoading, error);
+
+  let itemForFetch = `https://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
 
   useEffect(() => {
     setIsLoading(true);

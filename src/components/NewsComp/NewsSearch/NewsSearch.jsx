@@ -50,4 +50,3 @@ export const NewsSearch = ({ onSubmit }) => {
     </Formik>
   );
 };
-export default NewsSearch;

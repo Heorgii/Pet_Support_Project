@@ -4,7 +4,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 const Item = styled.li`
   display: flex;
   flex-direction: column;
-
+  justify-content: space-between;
   align-content: center;
   padding: 12px 0;
 
@@ -24,101 +24,47 @@ const Item = styled.li`
   }
 `;
 
-const Info = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 16px;
-`;
-
-const InfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-
-  @media screen and (min-width: 768px) {
-    gap: 8px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    gap: 12px;
-  }
-`;
-
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const Title = styled.h2`
-  white-space: nowrap;
   margin-bottom: 12px;
   font-family: 'Manrope';
   font-weight: 700;
-  font-size: 12px;
-  line-height: 1.333;
+  font-size: 24px;
+  line-height: 33px;
   color: ${baseColor.colors.blackText};
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 1.375;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    line-height: 1.35;
-  }
 `;
 
 const Text = styled.span`
   font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.333;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
   color: ${baseColor.colors.blackText};
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
 `;
-const Date = styled.div`
+
+const Date = styled.span`
   display: flex;
   margin-top: 40px;
   justify-content: space-between;
   font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.333;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375;
   color: ${baseColor.colors.blackText};
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
 `;
 
 const Link = styled.a`
+  text-decoration: none;
   font-family: 'Manrope';
   font-weight: 500;
-  font-size: 12px;
-  line-height: 1.333;
+  font-size: 16px;
+  line-height: 1.375;
   color: ${baseColor.colors.orangeLight};
   cursor: pointer;
-  text-decoration: none;
-  paddin-top: 40px;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -155,14 +101,4 @@ const Ractangle = styled.span`
   }
 `;
 
-export {
-  Item,
-  Title,
-  Info,
-  TextWrapper,
-  InfoWrapper,
-  Text,
-  Link,
-  Ractangle,
-  Date,
-};
+export { Item, Title, TextWrapper, Text, Link, Ractangle, Date };
