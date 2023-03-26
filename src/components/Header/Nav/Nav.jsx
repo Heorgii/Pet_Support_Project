@@ -7,7 +7,7 @@ export const MobileNav = togleMenu => {
       <NavItem to="/news" onClick={togleMenu}>
         News
       </NavItem>
-      <NavItem to="/notices" onClick={togleMenu}>
+      <NavItem to="/notices/sell" onClick={togleMenu}>
         Find pet
       </NavItem>
       <NavItem to="/friends" onClick={togleMenu}>
@@ -23,7 +23,7 @@ export const Nav = togleMenu => {
       <NavItem to="/news" onClick={togleMenu}>
         News
       </NavItem>
-      <NavItem to="/notices" onClick={togleMenu}>
+      <NavItem to="/notices/sell" onClick={togleMenu}>
         Find pet
       </NavItem>
       <NavItem to="/friends" onClick={togleMenu}>

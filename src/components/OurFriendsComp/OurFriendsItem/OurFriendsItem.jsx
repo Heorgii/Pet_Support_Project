@@ -146,7 +146,7 @@ export const OurFriendsItem = ({ friend }) => {
 OurFriendsItem.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      _id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
       addressUrl: PropTypes.string.isRequired,
