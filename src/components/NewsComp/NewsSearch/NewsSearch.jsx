@@ -4,13 +4,14 @@ import Notiflix from 'notiflix';
 import { useDispatch } from 'react-redux';
 import { addQuery } from 'redux/query/slice';
 import {
-  Title,
+ 
   ButtonStyled,
   FormStyled,
   FieldStyled,
   LabelStyled,
   IconSearch,
 } from './NewsSearch.styled';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const NewsSearch = () => {
   const dispatch = useDispatch();
@@ -55,4 +56,3 @@ export const NewsSearch = () => {
     </div>
   );
 };
-export default NewsSearch;

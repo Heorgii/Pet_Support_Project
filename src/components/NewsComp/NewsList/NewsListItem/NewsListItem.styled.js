@@ -52,62 +52,34 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  white-space: nowrap;
   margin-bottom: 12px;
   font-family: 'Manrope';
   font-weight: 700;
-  font-size: 12px;
-  line-height: 1.333;
+  font-size: 24px;
+  line-height: 33px;
   color: ${baseColor.colors.blackText};
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 1.375;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    line-height: 1.35;
-  }
 `;
 
 const Text = styled.span`
   font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.333;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
   color: ${baseColor.colors.blackText};
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
 `;
-const Date = styled.div`
+const Date = styled.span`
   display: flex;
   margin-top: 40px;
   justify-content: space-between;
   font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.333;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
   color: ${baseColor.colors.blackText};
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
+ 
 `;
 
 const Link = styled.a`

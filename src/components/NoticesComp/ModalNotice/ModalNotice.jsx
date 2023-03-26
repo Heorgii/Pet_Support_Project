@@ -1,10 +1,12 @@
-// import data from './pets.json';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
+// import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
+// import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import heard from 'images/svg/heard.png';
 import no_Photo from 'images/No-image-available.webp';
 import {
@@ -26,7 +28,6 @@ import {
   ContainerComments,
   NoticeContainerButtom,
 } from './ModalNotice.styled';
-import { useEffect, useState } from 'react';
 
 export const ModalNotices = () => {
   const dispatch = useDispatch();
@@ -37,34 +38,36 @@ export const ModalNotices = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
+
   const [data, setData] = useState([]);
-  const [status, setStatus] = useState('idle');
-  let itemForFetch = `http://localhost:3030/api/notices/byid/${modal.id}`;
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  // const [status, setStatus] = useState('idle');
+  console.log(isLoading, error);
+  
+  let itemForFetch = `https://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
 
   useEffect(() => {
-    setStatus('pending');
+    setIsLoading(true);
     async function fetchNoticesList() {
       await fetch(itemForFetch)
         .then(res => {
+          setIsLoading(false);
           if (res.ok) {
-            setStatus('resolved');
             return res.json();
           }
           return Promise.reject(new Error(`Can't find anything`));
         })
         .then(value => setData(value))
         .catch(error => {
-          setStatus('reject');
+          setError(error);
         });
     }
     if (modal.id !== null) {
       fetchNoticesList();
     }
   }, [itemForFetch, modal.id]);
-  if (status === 'pending') {
-    console.log('LOADING...');
-  }
-  console.log(data);
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
