@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { NewsListItem } from '../NewsListItem/NewsListItem';
+import { NewsListItem } from './NewsListItem/NewsListItem';
 import { List } from './NewsList.styled';
 
 export const NewsList = ({ news }) => {

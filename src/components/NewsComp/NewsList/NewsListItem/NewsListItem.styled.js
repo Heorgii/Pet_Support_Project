@@ -46,7 +46,7 @@ const Text = styled.span`
   color: ${baseColor.colors.blackText};
 `;
 
-const Date = styled.span`
+const Dates = styled.span`
   display: flex;
   margin-top: 40px;
   justify-content: space-between;
@@ -101,4 +101,4 @@ const Ractangle = styled.span`
   }
 `;
 
-export { Item, Title, TextWrapper, Text, Link, Ractangle, Date };
+export { Item, Title, TextWrapper, Text, Link, Ractangle, Dates };

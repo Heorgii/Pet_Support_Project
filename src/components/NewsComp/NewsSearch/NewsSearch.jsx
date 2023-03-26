@@ -22,7 +22,7 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-          onSubmit(values.search.toLowerCase());
+          onSubmit(values.search);
           setSubmitting(false);
         }
       }}
