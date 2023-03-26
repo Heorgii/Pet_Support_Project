@@ -41,7 +41,7 @@ const RegisterForm = () => {
       }),
       // hideForm(),
     );
-  };
+};
 
   const showForm = () => {
     setIsShown(false);
@@ -92,7 +92,7 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
-          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+          <FormRegister onSubmit={onSubmit} autoComplete="off">
             {' '}
             {/* formik. */}
             <Title>Register</Title>

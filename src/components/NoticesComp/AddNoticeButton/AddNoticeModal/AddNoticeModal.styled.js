@@ -13,8 +13,8 @@ export const ModalAddNoticeStyled = styled.div`
   height: auto;
   width: 280px;
 
-  margin-left auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
@@ -485,15 +485,14 @@ export const LabelRadioSex = styled.label`
     &:hover,
     &:focus {
       color: ${baseColor.colors.orangeLight};
-  }
+    }
 
   @media screen and (min-width: 768px) {
 
   &:not(:last-child) {
     margin-right: 80px;
   }
-
-
+}
 `;
 
 export const FieldRadioSex = styled(Field)`
@@ -671,5 +670,45 @@ export const Error = styled.span`
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
+  }
+`;
+
+export const Li = styled.li`
+cursor: pointer;
+
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.inpText};
+
+  padding: 10px 15px 10px 15px;
+  width: 100%;
+
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 40px;
+  }
+
+  background: ${baseColor.colors.mainBg};
+  border: 1px solid ${baseColor.colors.orangeLight};
+  border-radius: 40px;
+  outline: none;
+
+  &:hover {
+    outline: 2px solid ${baseColor.colors.orangeLight};
+  }
+
+  &:focus {
+    outline: 3px solid ${baseColor.colors.orangeLight};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    margin-bottom: 10px;
   }
 `;

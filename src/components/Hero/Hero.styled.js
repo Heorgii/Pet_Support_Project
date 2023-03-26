@@ -1,18 +1,50 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
+import waveMobile from 'images/hero/waveMobileFull.png';
+import DogFull from 'images/hero/dogFull-X1.png';
+import waveTabFull from 'images/hero/waveTabFull.png';
+import waveLeftDesk from 'images/hero/wave1-desk.png';
+import waveRightDesk from 'images/hero/wave2Full.png';
+import heart from 'images/hero/heart.png';
 
-const HeroSection = styled(Container)`
+const HeroSection = styled.section`
+  display: flex;
   height: 100vh;
-  position: relative;
   justify-content: start;
+  align-items: start;
+
+  @media screen and (max-width: 767.9px) {
+    background-image: url(${DogFull}), url(${waveMobile});
+    background-repeat: no-repeat;
+
+    background-size: 330px 564px, 620px 540px;
+    background-position: top 180px left 50%, top 80px left 25%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
+    background-image: url(${DogFull}), url(${waveTabFull});
+    background-repeat: no-repeat;
+    background-size: 636px 1142px, 1300px 1150px;
+    background-position: top 450px left 50%, top 140px left 30%;
+  }
+`;
+
+const HeroContainer = styled(Container)`
+  height: 100vh;
+  justify-content: start;
+  align-items: start;
   @media screen and (min-width: 1280px) {
-    align-items: start;
+    background-image: url(${DogFull}), url(${waveRightDesk}),
+      url(${waveLeftDesk}), url(${heart});
+    background-repeat: no-repeat;
+    background-size: 524px 918px, 425px 393px, 1178px 450px, 91px 89px;
+    background-position: top 150px left 92%, top 375px right 0px,
+      top 318px left 0px, top 80px left 650px;
   }
 `;
 
 const HeroTitle = styled.h1`
-  // display: block;
+  // display: flex;
   // outline: 2px solid green;
   margin-top: 60px;
   text-align: left;
@@ -35,100 +67,4 @@ const HeroTitle = styled.h1`
     max-width: 630px;
   }
 `;
-
-const DogMobile = styled.img`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  max-width: 550px;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-const WaveMobile = styled.img`
-  position: absolute;
-  z-index: -10;
-  left: 0px;
-  top: 100px;
-  height: 88.1vh;
-  object-fit: fill;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const DogTab = styled(DogMobile)`
-  display: none;
-
-  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    display: block;
-  }
-`;
-const WaveTab = styled(WaveMobile)`
-  display: none;
-  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    display: block;
-    height: 91.5%;
-  }
-`;
-
-const DogDesk = styled.img`
-  display: none;
-
-  @media screen and (min-width: 1280px) {
-    display: block;
-    position: absolute;
-    left: 750px;
-    bottom: 0;
-  }
-`;
-
-const WaveDesk = styled.img`
-  display: none;
-  @media screen and (min-width: 1280px) {
-    display: block;
-    min-width: 1000px;
-    position: absolute;
-    z-index: -10;
-    bottom: 0;
-    left: 0;
-  }
-`;
-const WaveDesk2 = styled.img`
-  display: none;
-  @media screen and (min-width: 1280px) {
-    display: block;
-    min-width: 380px;
-    position: absolute;
-    z-index: -10;
-    bottom: 0;
-    left: 900px;
-  }
-`;
-const Heart = styled.img`
-  display: none;
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    display: flex;
-    width: 10px;
-
-    left: 670px;
-    bottom: 500px;
-    min-width: 91px;
-  }
-`;
-
-export {
-  HeroSection,
-  HeroTitle,
-  DogMobile,
-  DogTab,
-  DogDesk,
-  WaveMobile,
-  WaveTab,
-  WaveDesk,
-  WaveDesk2,
-  Heart,
-};
+export { HeroSection, HeroContainer, HeroTitle };

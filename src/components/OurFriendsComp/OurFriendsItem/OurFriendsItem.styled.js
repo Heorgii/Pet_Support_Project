@@ -7,7 +7,8 @@ const Item = styled.li`
   align-items: flex-start;
   justify-content: space-between;
 
-  height: 100%;
+  width: 100%;
+  height: auto;
   min-height: 192px;
   padding: 12px 4px;
 
@@ -26,7 +27,7 @@ const Item = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 395px;
+    max-width: 394px;
     min-height: 287px;
   }
 
@@ -112,7 +113,7 @@ const Text = styled.span`
 `;
 
 const Link = styled.a`
-  text-align: center;
+  text-align: left;
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 12px;

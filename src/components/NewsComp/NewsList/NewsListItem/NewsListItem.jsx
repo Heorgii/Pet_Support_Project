@@ -1,4 +1,5 @@
-
+import PropTypes from 'prop-types';
+import EllipsisText from 'react-ellipsis-text';
 import {
   Item,
   Title,
@@ -6,40 +7,42 @@ import {
   Text,
   Link,
   Ractangle,
-  Date,
+  Dates,
 } from './NewsListItem.styled';
-export const NewsListItem = ({ data }) => {
-  const { id, title, description, date, url } = data;
+
+export const NewsListItem = ({ newsItem }) => {
+  const { _id, title, description, date, url } = newsItem;
+
   return (
-    <Item key={id} id={id}>
-      <Ractangle></Ractangle>
-
-      <Title>{title}</Title>
-
-          <TextWrapper>
-            <Text>{description}</Text>
-            <Date>
-              {date}
-              <Link target="_blank" href={url}>
-                Read More
-              </Link>
-            </Date>
-          </TextWrapper>
-       
-      
+    <Item key={_id} id={_id}>
+      <Ractangle />
+      <Title>
+        <EllipsisText text={title} length={38} />
+      </Title>
+      <TextWrapper>
+        <Text>
+          <EllipsisText text={description} length={200} />
+        </Text>
+        {date !== null ? (
+          <Dates>
+            {new Date(date).toLocaleDateString('en-AU')}
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </Dates>
+        ) : (
+          <Dates>
+            -------/----/----
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </Dates>
+        )}
+      </TextWrapper>
     </Item>
   );
 };
-export const NewsList = ({ NewsList }) => {
-  const sortedNewsList = NewsList.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
-  });
 
-  return (
-    <div>
-      {sortedNewsList.map((news) => (
-        <NewsListItem key={news.id} data={news} />
-      ))}
-    </div>
-  );
-}
+NewsListItem.propTypes = {
+  newsItem: PropTypes.object.isRequired,
+};
