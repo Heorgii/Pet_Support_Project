@@ -1,4 +1,5 @@
 import { useAuth } from 'hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 import {
   BtnCategory,
   ContainerCategoryBtn,
@@ -6,17 +7,31 @@ import {
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
+  let navigate = useNavigate();
 
-
+  const handleClick = href => {
+    navigate(href);
+  };
   return (
     <ContainerCategoryBtn>
-      <BtnCategory>lost/find</BtnCategory>
-      <BtnCategory>in good hand</BtnCategory>
-      <BtnCategory>sell</BtnCategory>
+      <BtnCategory onClick={() => handleClick('/notices/lost-found')}>
+        lost/find
+      </BtnCategory>
+      <BtnCategory onClick={() => handleClick('/notices/for-free')}>
+        in good hand
+      </BtnCategory>
+      <BtnCategory type="button" onClick={() => handleClick('/notices/sell')}>
+        sell
+      </BtnCategory>
       {isLoggedIn && (
         <>
-          <BtnCategory>fivorite pets</BtnCategory>
-          <BtnCategory>my pet</BtnCategory>
+          <BtnCategory onClick={() => handleClick('/notices/favorite')}>
+            fivorite pets
+          </BtnCategory>
+          <BtnCategory onClick={() => handleClick('/notices/own')}>
+            {' '}
+            my pet
+          </BtnCategory>
         </>
       )}
     </ContainerCategoryBtn>

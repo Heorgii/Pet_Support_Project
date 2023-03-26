@@ -44,7 +44,6 @@ const RegisterForm = () => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    console.log(form);
 
     const name = form.elements.name;
     const email = form.elements.email;
@@ -113,7 +112,7 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
-          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+          <FormRegister onSubmit={onSubmit} autoComplete="off">
             {' '}
             {/* formik. */}
             <Title>Register</Title>
