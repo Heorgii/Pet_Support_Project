@@ -9,22 +9,15 @@ export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
   let navigate = useNavigate();
 
-  function handleClick(href) {
-    console.log('click');
+  const handleClick = href => {
     navigate(href);
-  }
+  };
   return (
     <ContainerCategoryBtn>
-      <BtnCategory
-        type="button"
-        onClick={() => handleClick('/notices/lost-found')}
-      >
+      <BtnCategory onClick={() => handleClick('/notices/lost-found')}>
         lost/find
       </BtnCategory>
-      <BtnCategory
-        type="button"
-        onClick={() => handleClick('/notices/for-free')}
-      >
+      <BtnCategory onClick={() => handleClick('/notices/for-free')}>
         in good hand
       </BtnCategory>
       <BtnCategory type="button" onClick={() => handleClick('/notices/sell')}>
@@ -32,16 +25,11 @@ export const NoticesCategoriesNav = () => {
       </BtnCategory>
       {isLoggedIn && (
         <>
-          <BtnCategory
-            type="button"
-            onClick={() => handleClick('/notices/favorite')}
-          >
+          <BtnCategory onClick={() => handleClick('/notices/favorite')}>
             fivorite pets
           </BtnCategory>
-          <BtnCategory
-            type="button"
-            onClick={() => handleClick('/notices/own')}
-          >
+          <BtnCategory onClick={() => handleClick('/notices/own')}>
+            {' '}
             my pet
           </BtnCategory>
         </>
