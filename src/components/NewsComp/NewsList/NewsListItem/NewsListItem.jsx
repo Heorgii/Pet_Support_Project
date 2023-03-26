@@ -11,9 +11,9 @@ import {
   Date,
 } from './NewsListItem.styled';
 export const NewsListItem = ({ newsItem }) => {
-  const { id, title, description, date, url } = newsItem;
+  const { _id, title, description, date, url } = newsItem;
   return (
-    <Item key={id} id={id}>
+    <Item key={_id} id={_id}>
       <Ractangle></Ractangle>
 
       <Title>{title}</Title>
@@ -37,10 +37,10 @@ export const NewsListItem = ({ newsItem }) => {
 
 NewsListItem.propTypes = {
   newsItem: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.any.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.string,
   }),
 };
