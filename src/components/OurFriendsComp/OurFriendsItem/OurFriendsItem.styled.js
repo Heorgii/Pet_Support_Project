@@ -8,7 +8,7 @@ const Item = styled.li`
   justify-content: space-between;
 
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 192px;
   padding: 12px 4px;
 
