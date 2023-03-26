@@ -28,8 +28,9 @@ import {
   ContainerComments,
   NoticeContainerButtom,
 } from './ModalNotice.styled';
+import axios from 'axios';
 
-export const ModalNotices = () => {
+export const ModalNotices = async () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
 
@@ -44,7 +45,9 @@ export const ModalNotices = () => {
   const [error, setError] = useState(null);
   // const [status, setStatus] = useState('idle');
   console.log(isLoading, error);
-  
+  const getNotices = await axios('/notices/sell');
+  console.log('getNotices: ', getNotices);
+
   let itemForFetch = `https://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
 
   useEffect(() => {
