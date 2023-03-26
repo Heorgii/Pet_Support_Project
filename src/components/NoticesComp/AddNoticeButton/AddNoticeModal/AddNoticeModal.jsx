@@ -95,9 +95,9 @@ export const AddNoticeModal = () => {
     }
   }
   const {
-    ready,
-    suggestions: { status, data },
-    setValue,
+    // ready,
+    suggestions: { data },//status
+    // setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
@@ -111,25 +111,25 @@ export const AddNoticeModal = () => {
     clearSuggestions();
   });
 
-  const handleInput = (e) => {
-    setValue(e.target.value);
-  };
+  // const handleInput = (e) => {
+  //   setValue(e.target.value);
+  // };
 
 
-  const renderSuggestions = (setFieldValue) =>
-    data.map((suggestion) => {
-      const {
-        place_id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
+  // const renderSuggestions = (setFieldValue) =>
+  //   data.map((suggestion) => {
+  //     const {
+  //       place_id,
+  //       structured_formatting: { main_text, secondary_text },
+  //     } = suggestion;
 
-      return (
-        <Li key={place_id} onClick={() => {setFieldValue('location', suggestion.description);
-      clearSuggestions();}}>
-          {main_text}{', '}{secondary_text}
-        </Li>
-      );
-    });
+  //     return (
+  //       <Li key={place_id} onClick={() => {setFieldValue('location', suggestion.description);
+  //     clearSuggestions();}}>
+  //         {main_text}{', '}{secondary_text}
+  //       </Li>
+  //     );
+  //   });
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
