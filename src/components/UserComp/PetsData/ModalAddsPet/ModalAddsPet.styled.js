@@ -10,6 +10,7 @@ const BackDrop = styled.div`
   width: 100%;
   height: 100%;
 `;
+
 const UserPetContainerItem = styled.div`
   position: relative;
   display: block;
@@ -19,14 +20,16 @@ const UserPetContainerItem = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 32px 20px 32px 20px;
+    width: 608px;
+    padding: 40px 20px 40px 20px;
   }
 `;
+
 const ContainerPositionForCloseModal = styled.div`
   display: flex;
   justify-content: end;
 `;
+
 const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;
@@ -63,43 +66,126 @@ const ContainerStatus = styled.div`
 `;
 
 const ContainerInfo = styled.div`
-  position: relative;
-  display: block;
-  width: 100%;
-  background-color: ${baseColor.colors.white};
-  border-radius: 20px;
-
-  @media screen and (min-width: 768px) {
-    width: 670px;
-    display: flex;
-  }
-`;
-const ImgItem = styled.img`
-  width: 240px;
-  height: 240px;
-  border-radius: 0px 0px 40px 40px;
-  outline: unset;
-  @media screen and (min-width: 768px) {
-    width: 288px;
-    height: 328px;
-    margin-right: 20px;
-  }
-`;
-const NoticeItemTitle = styled.div`
   display: flex;
-  justify-content: start;
+  flex-direction: column;
   align-items: center;
+`;
+
+const InfoList = styled.ul`
+  width: 240px;
+  overflow: hidden;
+  margin-top: 28px;
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+`;
+
+const InfoListText = styled.p`
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  font-family: 'Manrope';
+  margin-bottom: 8px;
+  color: ${baseColor.colors.blackText};
+
+  @media screen and (min-width: 768px){
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+`;
+
+const InfoListInput = styled.input`
+  background: #FDF7F2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  width: 100%;
+  padding: 11px 20px 11px 14px; 
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 28px;
+    width: 100%;
+    padding: 11px 323px 11px 16px; 
+  }
+
+  &:hover,
+  &:focus{
+    border-color: rgb(255, 97, 1);
+    outline: none;
+  }
+
+  &:last-child{
+    margin-bottom: 0px;
+  }
+`;
+
+const PetsItemTitle = styled.div`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
   font-size: 24px;
   line-height: 33px;
-  letter-spacing: -0.01em;
   color: ${baseColor.colors.black};
+
   @media screen and (min-width: 768px) {
-    font-size: 28px;
-    line-height: 38px;
+    font-size: 36px;
+    line-height: 49px;;
   }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ButtonFirst = styled.button`
+  background: ${baseColor.colors.orangeLight};
+  border-radius: 40px;
+  border-color: transparent;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  transform: scale(1);
+  transition: transform 0.5s ease 0s;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.05);
+    transition: transform 0.5s ease 0s;
+  }
+`;
+
+const ButtonSecond = styled.button`
+  background: ${baseColor.colors.white};
+  border: 2px solid ${baseColor.colors.orangeLight};
+  border-radius: 40px;
+  transform: scale(1);
+  transition: transform 0.5s ease 0s;
+  cursor: pointer;
+  position: relative;
+    overflow: hidden;
+  &:hover{
+    transform: scale(1.05);
+    transition: transform 0.5s ease 0s;
+  }
+`;
+
+const ButtonText = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  padding: 9px 101px;
+  color: ${baseColor.colors.white};
+`;
+const ButtonText2 = styled.p`
+  padding: 9px 92px;
+  color: ${baseColor.colors.black};
 `;
 
 const NoticeContainerButtom = styled.div`
@@ -114,106 +200,19 @@ const NoticeContainerButtom = styled.div`
     margin-top: 32px;
   }
 `;
-const BtnContact = styled.button`
-  cursor: pointer;
-  width: 240px;
-  height: 40px;
-  border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
-  margin: 40px 0 12px;
 
-  &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
-  }
-  &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
-    outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 0 0 0;
-  }
-`;
-const BtnAddFavorits = styled.button`
-  cursor: pointer;
-  width: 240px;
-  height: 40px;
-  border-radius: 40px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
-
-  &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
-  }
-  &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
-    outline: none;
-  }
-  @media screen and (min-width: 768px) {
-    width: 160px;
-    margin: 0 12px 0 0;
-  }
-`;
-const TdTable = styled.td`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-  overflow: hidden;
-  min-width: 115px;
-
-  @media screen and (min-width: 768px) {
-    min-width: 115px;
-    font-size: 16px;
-    line-height: 22px;
-  }
-`;
-const TdTable2 = styled.td`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  overflow: hidden;
-  min-width: 115px;
-
-  @media screen and (min-width: 768px) {
-    min-width: 115px;
-    font-size: 16px;
-    line-height: 22px;
-  }
-`;
-const Table = styled.table`
-  width: 240px;
-  display: flex;
-  overflow: hidden;
-  margin-top: 26px;
-  @media screen and (min-width: 768px) {
-    margin-top: 20px;
-  }
-`;
 const Comments = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
 `;
+
 const MainComments = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
 `;
+
 const ContainerComments = styled.div`
   margin-top: 28px;
 `;
@@ -223,17 +222,19 @@ export {
   ContainerCloseModal,
   ContainerPositionForCloseModal,
   ContainerInfo,
-  ImgItem,
   ContainerStatus,
-  NoticeItemTitle,
-  BtnContact,
-  BtnAddFavorits,
+  PetsItemTitle,
   BackDrop,
-  Table,
-  TdTable,
-  TdTable2,
+  InfoList,
+  InfoListInput,
+  InfoListText,
   Comments,
+  ButtonBox,
+  ButtonText,
+  ButtonText2,
   MainComments,
   ContainerComments,
   NoticeContainerButtom,
+  ButtonFirst,
+  ButtonSecond,
 };
