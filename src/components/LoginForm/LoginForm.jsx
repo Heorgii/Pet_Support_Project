@@ -48,8 +48,8 @@ export const LoginForm = () => {
 
   const isValid =
     (formik.errors.email && formik.touched.email) ||
-      (formik.errors.password && formik.touched.password) ||
-      formik.values.email === ''
+    (formik.errors.password && formik.touched.password) ||
+    formik.values.email === ''
       ? true
       : false;
 
@@ -119,7 +119,6 @@ export const LoginForm = () => {
         </Formik>
         <Background></Background>
       </FormContainer>
-
     </>
   );
 };

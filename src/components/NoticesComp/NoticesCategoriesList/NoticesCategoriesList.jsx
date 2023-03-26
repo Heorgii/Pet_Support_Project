@@ -14,8 +14,7 @@ export const NoticesCategoriesList = () => {
   const routeParams = useParams();
 
   const { BASE_URL } = window.global;
-  let itemForFetch =`${BASE_URL}/notices/${routeParams.id}`;
-  
+  let itemForFetch = `${BASE_URL}/notices/${routeParams.id}`;
 
   useEffect(() => {
     async function fetchNoticesList() {
