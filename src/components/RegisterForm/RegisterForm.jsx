@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'; //useSelector
+import { useDispatch, useSelector } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'components/Schemas/schemas';
@@ -19,26 +19,6 @@ import {
   Background,
   // SpinerWrapper,
 } from './RegisterForm.styled';
-
-// const phoneNumberMask = [
-//   '+',
-//   /\d/,
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-// ];
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -73,7 +53,6 @@ const RegisterForm = () => {
     const phone = form.elements.phone;
     const location = form.elements.location;
 
-
     const newUser = {
       name: name,
       email: email,
@@ -81,12 +60,12 @@ const RegisterForm = () => {
       confirmPassword: confirmPassword,
       phone: phone,
       location: location,
-    }
+    };
 
     dispatch(register(newUser));
     console.log(newUser);
     form.reset();
-  }
+  };
 
   const showForm = () => {
     setIsShown(false);
@@ -111,10 +90,10 @@ const RegisterForm = () => {
 
   const isValid =
     (formik.errors.email && formik.touched.email) ||
-      (formik.errors.password && formik.touched.password) ||
-      (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
-      formik.values.email === '' ||
-      formik.values.confirmPassword === ''
+    (formik.errors.password && formik.touched.password) ||
+    (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
+    formik.values.email === '' ||
+    formik.values.confirmPassword === ''
       ? true
       : false;
 
@@ -134,7 +113,9 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
-          <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
+          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+            {' '}
+            {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <>
@@ -155,7 +136,6 @@ const RegisterForm = () => {
                 </div>
               </>
             )}
-
             {isShown && (
               <>
                 <div>
@@ -192,7 +172,7 @@ const RegisterForm = () => {
                     {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
                   {formik.errors.confirmPassword &&
-                    formik.touched.confirmPassword ? (
+                  formik.touched.confirmPassword ? (
                     <ErrBox>{formik.errors.confirmPassword}</ErrBox>
                   ) : null}
                 </div>
