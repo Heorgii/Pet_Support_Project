@@ -15,6 +15,10 @@ export const NoticesCategoriesList = () => {
 
   let itemForFetch = `https://petsapi.cyclic.app/api/notices/${routeParams.id}`;
 
+  const { BASE_URL } = window.global;
+  let itemForFetch =`${BASE_URL}/notices/${routeParams.id}`;
+  
+
   useEffect(() => {
     async function fetchNoticesList() {
       setIsLoading(true);
