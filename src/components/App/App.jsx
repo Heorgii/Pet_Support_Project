@@ -30,7 +30,7 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="/register"
+            path="register"
             element={
               <RestrictedRoute
                 redirectTo="/user"
@@ -39,37 +39,34 @@ export const App = () => {
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
               <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
             }
           />
+          <Route path="news" element={<NewsPage />} />
+
+          <Route path="notices/:id" element={<NoticesPage />} />
           <Route
-            path="/news"
+            path="notices/favorite"
             element={
-              <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
+              <PrivateRoute
+                redirectTo="/register"
+                component={<NoticesPage />}
+              />
             }
           />
-
           <Route
-            path="/notices"
+            path="notices/own"
             element={
-              <RestrictedRoute
-                redirectTo="/notices"
+              <PrivateRoute
+                redirectTo="/register"
                 component={<NoticesPage />}
               />
             }
           />
 
-          <Route
-            path="/friends"
-            element={
-              <RestrictedRoute
-                redirectTo="/friends"
-                component={<OurFriendsPage />}
-              />
-            }
-          />
+          <Route path="friends" element={<OurFriendsPage />} />
 
           {/* added kadulin */}
           <Route path="api-docs" element={<ApiDocs />} />
