@@ -44,7 +44,6 @@ const RegisterForm = () => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    console.log(form);
 
     const name = form.elements.name;
     const email = form.elements.email;

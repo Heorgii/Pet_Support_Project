@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'components/Schemas/schemas';
-// import * as Yup from 'yup';
 
 import {
   FormContainer,
@@ -17,14 +16,12 @@ import {
   BoxText,
   Background,
 } from './LoginForm.styled';
+import { logIn } from 'redux/auth/operations';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
-
   const dispatch = useDispatch();
-  const register = useState(false);
-
 
   const hideForm = () => {
     setIsShown(true);
@@ -33,7 +30,7 @@ export const LoginForm = () => {
   const onSubmit = values => {
     const { email, password } = values;
     dispatch(
-      register({
+      logIn({
         email,
         password,
       }),
