@@ -13,8 +13,8 @@ export const ModalAddNoticeStyled = styled.div`
   height: auto;
   width: 280px;
 
-  margin-left auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
@@ -485,15 +485,14 @@ export const LabelRadioSex = styled.label`
     &:hover,
     &:focus {
       color: ${baseColor.colors.orangeLight};
-  }
+    }
 
   @media screen and (min-width: 768px) {
 
   &:not(:last-child) {
     margin-right: 80px;
   }
-
-
+}
 `;
 
 export const FieldRadioSex = styled(Field)`
