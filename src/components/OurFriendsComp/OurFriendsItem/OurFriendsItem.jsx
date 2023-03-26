@@ -36,25 +36,29 @@ export const OurFriendsItem = ({ friend }) => {
   const hrefPhone = `tel:${phone}`;
 
   // gets user time and compare with workDays
-  const userDay = new Date().getDay() - 1;
+  const userDay = new Date().getDay();
   const userHours = new Date().getHours();
   // const userHours = 20;
 
   useEffect(() => {
     try {
-      const day = workDays[userDay];
+      let today = userDay;
+      if (today === 0) {
+        today = 6;
+      }
+      const day = workDays[today];
       if (day.isOpen) {
         const start = Number(day.from.split(':')[0]);
         const finish = Number(day.to.split(':')[0]);
 
         if (userHours < start) {
           setWorkTime('closed');
-          setDayClosed(userDay);
+          setDayClosed(today);
           return;
         }
         if (userHours > finish) {
           setWorkTime('closed');
-          setDayClosed(userDay);
+          setDayClosed(today);
           return;
         }
         setWorkTime(day.from + ' - ' + day.to);
