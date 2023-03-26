@@ -51,7 +51,7 @@ export const AddNoticeModal = () => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanModal());
-    closeModalWindow(e);
+    closeModalWindow();
   };
 
   function toggleForm() {
@@ -80,7 +80,7 @@ export const AddNoticeModal = () => {
   async function postNotice(values) {
     setIsLoading(true);
     try {
-console.log(values)
+      console.log(values);
       const { code } = await fetchNotice('/pets', values);
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
@@ -98,7 +98,7 @@ console.log(values)
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
-          <ButtonClose onClick={onClickBackdrop}>
+          <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
             <IconClose />
           </ButtonClose>
           <Title>Add pet</Title>
@@ -118,12 +118,10 @@ console.log(values)
               }}
               onSubmit={values =>
                 !formQueue
-                  ? postNotice(values) &&
-                    navigate('/notices/own') &&
-                    (e => onClickBackdrop(e))
+                  ? postNotice(values) && navigate('/notices/own')
                   : toggleForm()
               }
-enableReinitialize={true}
+              enableReinitialize={true}
               validationSchema={
                 formQueue
                   ? schemas.noticeSchemaFirst
@@ -132,7 +130,14 @@ enableReinitialize={true}
                   : schemas.noticeSchemaSecondPrice
               }
             >
-              {({ values, handleChange, handleSubmit, errors, touched, setFieldValue }) => (
+              {({
+                values,
+                handleChange,
+                handleSubmit,
+                errors,
+                touched,
+                setFieldValue,
+              }) => (
                 <FormStyled
                   onSubmit={handleSubmit}
                   onChange={e => {
@@ -160,9 +165,7 @@ enableReinitialize={true}
                             value="lost/found"
                             checked={values.category === 'lost/found'}
                           />
-                          <LabelRadio htmlFor="radioOne">
-                            lost/found
-                          </LabelRadio>
+                          <LabelRadio htmlFor="radioOne">lost/found</LabelRadio>
 
                           <FieldRadio
                             type="radio"
@@ -182,9 +185,7 @@ enableReinitialize={true}
                             value="sell"
                             checked={values.category === 'sell'}
                           />
-                          <LabelRadio htmlFor="radioThree">
-                            sell
-                          </LabelRadio>
+                          <LabelRadio htmlFor="radioThree">sell</LabelRadio>
                         </FieldsRadio>
                         <FieldList>
                           <LabelItem htmlFor="title">
@@ -298,7 +299,10 @@ enableReinitialize={true}
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
+                            onChange={e => {
+                              handleChange(e);
+                              setFieldValue(values.location, 'hello');
+                            }}
                           />
                           {values.category === 'sell' ? (
                             <div>
@@ -371,18 +375,16 @@ onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
                       <ButtonFirst
                         className="btn__submit"
                         type="submit"
+                        onClick={
+                          !formQueue ? e => onClickBackdrop(e) : toggleForm
+                        }
                       >
                         {formQueue ? 'Next' : 'Done'}
                       </ButtonFirst>
                       <ButtonSecond
                         type="button"
                         onClick={
-                          formQueue
-                            ? () => {
-                                // onClean();
-                                onClickBackdrop();
-                              }
-                            : toggleForm
+                          formQueue ? e => onClickBackdrop(e) : toggleForm
                         }
                       >
                         {formQueue ? 'Cancel' : 'Back'}
