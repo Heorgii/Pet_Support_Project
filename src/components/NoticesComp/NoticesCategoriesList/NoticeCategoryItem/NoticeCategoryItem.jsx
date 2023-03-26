@@ -36,22 +36,21 @@ export const NoticesCategoriesItem = ({ data }) => {
 
   const openModalForItemPet = e => {
     e.preventDefault();
-    dispatch(
-      addModal({
-        modal: e.currentTarget.dataset.modal,
-        id: e.currentTarget.dataset.id,
-      }),
-    );
-    openModalWindow(e, null);
+    e.stopPropagation();
+    if (e.currentTarget.dataset.modal === 'itemPet') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          id: e.currentTarget.dataset.id,
+        }),
+      );
+      openModalWindow(e, null);
+    }
   };
 
   return (
     <ItemContainer>
-      <NoticesContainerItem
-        onClick={openModalForItemPet}
-        data-modal="itemPet"
-        data-id={data._id}
-      >
+      <NoticesContainerItem>
         <ContainerInfo>
           <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavorite}>
@@ -89,7 +88,13 @@ export const NoticesCategoriesItem = ({ data }) => {
           </Table>
         </ContainerInfo>
         <NoticeContainerButton>
-          <BtnLearnMore>Learn more</BtnLearnMore>
+          <BtnLearnMore
+            onClick={openModalForItemPet}
+            data-modal="itemPet"
+            data-id={data._id}
+          >
+            Learn more
+          </BtnLearnMore>
           <BtnDelete>
             Delete{' '}
             <img
