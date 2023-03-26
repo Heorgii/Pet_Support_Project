@@ -16,9 +16,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    notices: noticesReducer,
     query: querySlice.reducer,
-    notice: noticeReducer,
     modal: modalReducer,
   },
   middleware: getDefaultMiddleware =>

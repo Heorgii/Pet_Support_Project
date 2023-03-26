@@ -29,35 +29,24 @@ import {
 } from './AddNoticeModal.styled';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { noticeSlice } from 'redux/notice/slice';
-import { noticeState } from 'redux/notice/selectors';
-import { addOwnNotice } from 'redux/notices/operations';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
+import { fetchNotice } from 'services/APIservice';
+import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 
 export const AddNoticeModal = () => {
+  const [formQueue, setFormQueue] = useState(true);
+  const [fieldPrice, setFieldPrice] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-const [fieldPrice, setFieldPrice] = useState('false');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // const {
-  //   category,
-  //   title,
-  //   name,
-  //   birthday,
-  //   breed,
-  //   sex,
-  //   location,
-  //   price,
-  //   imageUrl,
-  //   comments,
-  // } = useSelector(noticeState);
   const modal = useSelector(modalComponent);
-  const [formQueue, setFormQueue] = useState('true');
 
   const onClickBackdrop = e => {
     e.preventDefault();
@@ -89,27 +78,26 @@ const [fieldPrice, setFieldPrice] = useState('false');
     }
   }
 
-  function submitForm(values) {
-    console.log(values);
-    dispatch(noticeSlice.actions.addNotice(values));
-    dispatch(addOwnNotice(values));
-    onClean();
-    onClickBackdrop();
-    navigate('/notices/own');
+  async function postNotice(values) {
+    setIsLoading(true);
+    try {
+      const { code } = await fetchNotice('/pets', values);
+      if (code && code !== 201) {
+        return onFetchError('Whoops, something went wrong');
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
-
-  function onClean() {
-    dispatch(noticeSlice.actions.cleanNotice());
-  }
-
-// function checkCategory(category) {
-// (category !== 'sell') ? secondschemas.noticeSchemaSecond : schemas.noticeSchemaSecondPrice
-// }
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
+          {isLoading ? onLoading() : onLoaded()}
+          {error && onFetchError('Whoops, something went wrong')}
           <ButtonClose onClick={onClickBackdrop}>
             <IconClose />
           </ButtonClose>
@@ -128,18 +116,29 @@ const [fieldPrice, setFieldPrice] = useState('false');
                 imageUrl: '',
                 comments: '',
               }}
-              onSubmit={values => {
-                if (!formQueue) {
-                  submitForm(values);
-                } else {
-                  toggleForm();
-console.log(values.category)
-                }
-              }}
-              validationSchema={formQueue ? schemas.noticeSchemaFirst : !fieldPrice ? schemas.noticeSchemaSecond : schemas.noticeSchemaSecondPrice}
+              onSubmit={values =>
+                !formQueue
+                  ? postNotice(values) &&
+                    navigate('/notices/own') &&
+                    (e => onClickBackdrop(e))
+                  : toggleForm()
+              }
+              validationSchema={
+                formQueue
+                  ? schemas.noticeSchemaFirst
+                  : !fieldPrice
+                  ? schemas.noticeSchemaSecond
+                  : schemas.noticeSchemaSecondPrice
+              }
             >
               {({ values, handleChange, handleSubmit, errors, touched }) => (
-                <FormStyled onSubmit={handleSubmit} onChange={(e) => {handleChange(e); values.category === 'sell' && setFieldPrice('true')}}>
+                <FormStyled
+                  onSubmit={handleSubmit}
+                  onChange={e => {
+                    handleChange(e);
+                    values.category === 'sell' && setFieldPrice(true);
+                  }}
+                >
                   <div>
                     {formQueue ? (
                       <div>
@@ -379,7 +378,7 @@ console.log(values.category)
                         onClick={
                           formQueue
                             ? () => {
-                                onClean();
+                                // onClean();
                                 onClickBackdrop();
                               }
                             : toggleForm
