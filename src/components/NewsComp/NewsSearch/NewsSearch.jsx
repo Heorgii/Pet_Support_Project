@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Formik } from 'formik';
 import {
   ButtonStyled,
@@ -10,6 +10,8 @@ import {
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 export const NewsSearch = ({ onSubmit, reset }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <Formik
       initialValues={{ search: '' }}
@@ -19,12 +21,17 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           setSubmitting(false);
           reset();
         } else {
-          onSubmit(values.search);
+          setSearchQuery(values.search);
+          onSubmit(values.search.toLowerCase());
           setSubmitting(false);
         }
       }}
+      setSearchQuery
+      onChange={values => {
+        setSearchQuery(values.search);
+      }}
     >
-      {({ isSubmitting, values, handleSubmit }) => (
+      {({ isSubmitting, values, handleSubmit, handleChange }) => (
         <FormStyled onSubmit={handleSubmit}>
           <LabelStyled>
             <FieldStyled
@@ -38,8 +45,13 @@ export const NewsSearch = ({ onSubmit, reset }) => {
               type="submit"
               disabled={isSubmitting}
               onSubmit={handleSubmit}
+              onChange={handleChange}
             >
-              {values.search !== '' ? <IconSearch hidden /> : <IconSearch />}
+              {values.search === searchQuery && values.search !== '' ? (
+                <IconSearch hidden />
+              ) : (
+                <IconSearch />
+              )}
             </ButtonStyled>
           </LabelStyled>
         </FormStyled>
