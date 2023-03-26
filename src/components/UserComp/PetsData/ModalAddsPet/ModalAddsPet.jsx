@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanModal } from "redux/modal/operation";
 import { modalComponent } from "redux/modal/selectors";
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import {
     BackDrop,
     ButtonBox,
