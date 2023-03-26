@@ -1,25 +1,21 @@
-import PropTypes from 'prop-types';
+
 import {
   Item,
   Title,
-  Info,
   TextWrapper,
-  InfoWrapper,
   Text,
   Link,
   Ractangle,
   Date,
 } from './NewsListItem.styled';
-export const NewsListItem = ({ newsItem }) => {
-  const { id, title, description, date, url } = newsItem;
+export const NewsListItem = ({ data }) => {
+  const { id, title, description, date, url } = data;
   return (
     <Item key={id} id={id}>
       <Ractangle></Ractangle>
 
       <Title>{title}</Title>
 
-      <Info>
-        <InfoWrapper>
           <TextWrapper>
             <Text>{description}</Text>
             <Date>
@@ -29,18 +25,21 @@ export const NewsListItem = ({ newsItem }) => {
               </Link>
             </Date>
           </TextWrapper>
-        </InfoWrapper>
-      </Info>
+       
+      
     </Item>
   );
 };
+export const NewsList = ({ NewsList }) => {
+  const sortedNewsList = NewsList.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
 
-NewsListItem.propTypes = {
-  newsItem: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-  }),
-};
+  return (
+    <div>
+      {sortedNewsList.map((news) => (
+        <NewsListItem key={news.id} data={news} />
+      ))}
+    </div>
+  );
+}
