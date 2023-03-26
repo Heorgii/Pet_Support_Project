@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Pet_Support_Project/static/css/main.c6c2faa5.css",
-    "main.js": "/Pet_Support_Project/static/js/main.df130f24.js",
-    "static/js/710.842d0811.chunk.js": "/Pet_Support_Project/static/js/710.842d0811.chunk.js",
+    "main.js": "/Pet_Support_Project/static/js/main.fd56e03c.js",
+    "static/js/710.619fef0d.chunk.js": "/Pet_Support_Project/static/js/710.619fef0d.chunk.js",
     "static/js/399.e1f04aec.chunk.js": "/Pet_Support_Project/static/js/399.e1f04aec.chunk.js",
     "static/js/947.33489d78.chunk.js": "/Pet_Support_Project/static/js/947.33489d78.chunk.js",
     "static/js/197.ea4e5caa.chunk.js": "/Pet_Support_Project/static/js/197.ea4e5caa.chunk.js",
@@ -15,16 +15,14 @@
     "static/js/161.f56ec0be.chunk.js": "/Pet_Support_Project/static/js/161.f56ec0be.chunk.js",
     "static/js/58.1fe33c17.chunk.js": "/Pet_Support_Project/static/js/58.1fe33c17.chunk.js",
     "static/js/828.5e9fa8d3.chunk.js": "/Pet_Support_Project/static/js/828.5e9fa8d3.chunk.js",
-    "static/media/dogMobile-X1.png": "/Pet_Support_Project/static/media/dogMobile-X1.12b3c00ee83a528386fc.png",
-    "static/media/dogTab-X1.png": "/Pet_Support_Project/static/media/dogTab-X1.12b3c00ee83a528386fc.png",
-    "static/media/dogDesk-X1.png": "/Pet_Support_Project/static/media/dogDesk-X1.2ac50b7b054a2cd8acdd.png",
-    "static/media/waveTab.png": "/Pet_Support_Project/static/media/waveTab.ddb5cf335deaae8b9469.png",
+    "static/media/waveTabFull.png": "/Pet_Support_Project/static/media/waveTabFull.b1156ad559cd735c0aba.png",
+    "static/media/dogFull-X1.png": "/Pet_Support_Project/static/media/dogFull-X1.6eec4a19fdeeed9eab9c.png",
     "static/media/defaultPets.png": "/Pet_Support_Project/static/media/defaultPets.724dc18138fc5902478a.png",
     "static/media/bg-register-desktop.png": "/Pet_Support_Project/static/media/bg-register-desktop.264f6a19130fa42a992f.png",
     "static/media/wave1-desk.png": "/Pet_Support_Project/static/media/wave1-desk.64e7adf8c018d3ce8e20.png",
+    "static/media/waveMobileFull.png": "/Pet_Support_Project/static/media/waveMobileFull.c91bcbaa58fbbbdfd654.png",
     "static/media/bg-register-tablet.png": "/Pet_Support_Project/static/media/bg-register-tablet.fc5f3af2953a94786376.png",
-    "static/media/wave.png": "/Pet_Support_Project/static/media/wave.199206e7712497c9763d.png",
-    "static/media/wave2-desk.png": "/Pet_Support_Project/static/media/wave2-desk.6e163b22b7589b85ae56.png",
+    "static/media/wave2Full.png": "/Pet_Support_Project/static/media/wave2Full.f9c129c9da9d77f2257d.png",
     "static/media/bg-register-mobile.png": "/Pet_Support_Project/static/media/bg-register-mobile.3a526b154ba37c216a7a.png",
     "static/media/icon_male.svg": "/Pet_Support_Project/static/media/icon_male.6d6a24f88bfb0a15b019aa2e40279318.svg",
     "static/media/No-image-available.webp": "/Pet_Support_Project/static/media/No-image-available.12543cbbce5122e5ed0d.webp",
@@ -38,8 +36,8 @@
     "static/media/icon_menu.svg": "/Pet_Support_Project/static/media/icon_menu.f21888656880bb1f4d60632c8c4e2786.svg",
     "static/media/icon_close.svg": "/Pet_Support_Project/static/media/icon_close.73b1d8773d59eabcd477439289b362e4.svg",
     "main.c6c2faa5.css.map": "/Pet_Support_Project/static/css/main.c6c2faa5.css.map",
-    "main.df130f24.js.map": "/Pet_Support_Project/static/js/main.df130f24.js.map",
-    "710.842d0811.chunk.js.map": "/Pet_Support_Project/static/js/710.842d0811.chunk.js.map",
+    "main.fd56e03c.js.map": "/Pet_Support_Project/static/js/main.fd56e03c.js.map",
+    "710.619fef0d.chunk.js.map": "/Pet_Support_Project/static/js/710.619fef0d.chunk.js.map",
     "399.e1f04aec.chunk.js.map": "/Pet_Support_Project/static/js/399.e1f04aec.chunk.js.map",
     "947.33489d78.chunk.js.map": "/Pet_Support_Project/static/js/947.33489d78.chunk.js.map",
     "197.ea4e5caa.chunk.js.map": "/Pet_Support_Project/static/js/197.ea4e5caa.chunk.js.map",
@@ -55,6 +53,6 @@
   },
   "entrypoints": [
     "static/css/main.c6c2faa5.css",
-    "static/js/main.df130f24.js"
+    "static/js/main.fd56e03c.js"
   ]
 }
