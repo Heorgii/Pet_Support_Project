@@ -13,8 +13,6 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   const routeParams = useParams();
 
-  let itemForFetch = `https://petsapi.cyclic.app/api/notices/${routeParams.id}`;
-
   const { BASE_URL } = window.global;
   let itemForFetch =`${BASE_URL}/notices/${routeParams.id}`;
   
