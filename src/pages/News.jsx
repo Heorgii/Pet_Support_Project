@@ -55,7 +55,6 @@ const News = () => {
   }, [pathParams, searchQuery]);
 
   const handleFormSubmit = searchQuery => {
-    reset();
     updateQueryString(searchQuery);
   };
 
@@ -80,6 +79,11 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
+          {news.length === 0 && !isLoading && (
+            <Title as="h3" size="14px">
+              Whoops! Can't find anything...
+            </Title>
+          )}
           {news.length > 0 && !error && <NewsList news={news} />}
         </Container>
       </Section>
