@@ -92,6 +92,10 @@ console.log(values)
     }
   }
 
+function changeInput(setFieldValue) {
+
+}
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
@@ -298,7 +302,7 @@ enableReinitialize={true}
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
+onChange={(e) => {handleChange(e); changeInput(setFieldValue)}}
                           />
                           {values.category === 'sell' ? (
                             <div>
