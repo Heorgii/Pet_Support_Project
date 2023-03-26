@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { openModalWindow } from 'hooks/modalWindow';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
+import { fetchData } from 'services/APIservice';
+import { addBreeds } from 'redux/breeds/slice';
 // import Notiflix from 'notiflix';
 // import { useAuth } from 'hooks/useAuth';
 
@@ -28,9 +30,21 @@ export const AddNoticeButton = () => {
     }
   };
 
+async function getData() {
+      try {
+        const { data } = await fetchData('/breeds');
+        dispatch(addBreeds(data));
+        if (!data) {
+          return alert('Whoops, something went wrong');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
   return (
     <div style={{ marginLeft: 'auto', position: 'relative' }}>
-      <ButtonStyled onClick={toggleModalAddNotice} data-modal="formSell">
+      <ButtonStyled onClick={(e) => {toggleModalAddNotice(e); getData();}} data-modal="formSell">
         <div>
           <PlusIcon />
         </div>

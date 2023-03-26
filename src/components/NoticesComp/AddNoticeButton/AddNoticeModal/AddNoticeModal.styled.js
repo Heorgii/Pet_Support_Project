@@ -177,10 +177,10 @@ export const ButtonFirst = styled.button`
     outline: 2px solid ${baseColor.colors.orangeLight};
   }
 
-&:disabled {
-opacity: 0.7;
-pointer-events: none;
-}
+  &:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
 
   @media screen and (min-width: 768px) {
     height: 44px;
@@ -482,17 +482,16 @@ export const LabelRadioSex = styled.label`
     margin-right: 40px;
   }
 
-    &:hover,
-    &:focus {
-      color: ${baseColor.colors.orangeLight};
-    }
+  &:hover,
+  &:focus {
+    color: ${baseColor.colors.orangeLight};
+  }
 
   @media screen and (min-width: 768px) {
-
-  &:not(:last-child) {
-    margin-right: 80px;
+    &:not(:last-child) {
+      margin-right: 80px;
+    }
   }
-}
 `;
 
 export const FieldRadioSex = styled(Field)`
@@ -674,7 +673,7 @@ export const Error = styled.span`
 `;
 
 export const Li = styled.li`
-cursor: pointer;
+  cursor: pointer;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -710,5 +709,39 @@ cursor: pointer;
   @media screen and (min-width: 768px) {
     font-size: 12px;
     margin-bottom: 10px;
+  }
+`;
+
+export const Option = styled.option`
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.inpText};
+
+  background: ${baseColor.colors.mainBg};
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
+export const OptionFirst = styled.option`
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: rgba(27,27,27,0.6);
+
+  background: ${baseColor.colors.mainBg};
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
   }
 `;
