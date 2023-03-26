@@ -26,7 +26,7 @@ import {
   LabelItemTextArea,
   FieldItemTextArea,
   Error,
-Li,
+// Li,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow } from 'hooks/modalWindow';
@@ -96,7 +96,7 @@ export const AddNoticeModal = () => {
   }
   const {
     // ready,
-    suggestions: { data },//status
+    // suggestions: { data },//status
     // setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
