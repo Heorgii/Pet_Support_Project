@@ -82,5 +82,6 @@ export const App = () => {
         </Route>
       </Routes>
     </HelmetProvider>
+
   );
 };

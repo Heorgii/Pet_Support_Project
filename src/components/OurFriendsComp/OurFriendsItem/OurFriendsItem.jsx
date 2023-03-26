@@ -36,9 +36,8 @@ export const OurFriendsItem = ({ friend }) => {
   const hrefPhone = `tel:${phone}`;
 
   // gets user time and compare with workDays
-  const userDay = new Date().getDay() - 1;
+  const userDay = [6, 0, 1, 2, 3, 4, 5][new Date().getDay()];
   const userHours = new Date().getHours();
-  // const userHours = 20;
 
   useEffect(() => {
     try {
