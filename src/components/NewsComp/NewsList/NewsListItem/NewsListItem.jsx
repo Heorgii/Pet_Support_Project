@@ -15,21 +15,28 @@ export const NewsListItem = ({ newsItem }) => {
   return (
     <Item key={_id} id={_id}>
       <Ractangle />
-
       <Title>
-        <EllipsisText text={title} length={50} />
+        <EllipsisText text={title} length={38} />
       </Title>
-
       <TextWrapper>
         <Text>
           <EllipsisText text={description} length={200} />
         </Text>
-        <Date>
-          {date}
-          <Link target="_blank" href={url}>
-            Read More
-          </Link>
-        </Date>
+        {date !== null ? (
+          <Date>
+            {date}
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </Date>
+        ) : (
+          <Date>
+            -------/----/----
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </Date>
+        )}
       </TextWrapper>
     </Item>
   );

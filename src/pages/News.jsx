@@ -14,19 +14,19 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query') ?? '';
-  const pathParams = `/news?query=${searchQuery}`;
+  const searchQuery = searchParams.get('search') ?? '';
+  const pathParams = `/news?search=${searchQuery}`;
 
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (searchQuery.trim() !== '') {
+    if (searchQuery.trim() === '') {
       (async () => {
         setIsLoading(true);
         try {
-          const { data } = await fetchData(pathParams);
+          const { data } = await fetchData('/news');
           setNews(data);
           if (!data) {
             return onFetchError('Whoops, something went wrong');
@@ -38,11 +38,10 @@ const News = () => {
         }
       })();
     }
-
     (async () => {
       setIsLoading(true);
       try {
-        const { data } = await fetchData('/news');
+        const { data } = await fetchData(pathParams);
         setNews(data);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
@@ -60,8 +59,8 @@ const News = () => {
     updateQueryString(searchQuery);
   };
 
-  const updateQueryString = query => {
-    const nextParams = query !== '' ? { query } : {};
+  const updateQueryString = search => {
+    const nextParams = search !== '' ? { search } : {};
     setSearchParams(nextParams);
   };
 
@@ -80,7 +79,7 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch onSubmit={handleFormSubmit} />
+          <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
           {news.length > 0 && !error && <NewsList news={news} />}
         </Container>
       </Section>

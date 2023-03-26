@@ -99,7 +99,7 @@ export const IconSearch = styled(iconSearch)`
   cursor: pointer;
   width: 20px;
   height: 20px;
-  display: block;
+  display: ${props => (props.hidden ? 'none' : 'block')};
 
   @media screen and (min-width: 768px) {
     width: 24px;

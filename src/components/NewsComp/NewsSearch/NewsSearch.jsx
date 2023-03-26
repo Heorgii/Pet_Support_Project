@@ -1,7 +1,5 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { addQuery } from 'redux/query/slice';
 import {
   ButtonStyled,
   FormStyled,
@@ -11,9 +9,7 @@ import {
 } from './NewsSearch.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
-export const NewsSearch = ({ onSubmit }) => {
-  // const dispatch = useDispatch();
-
+export const NewsSearch = ({ onSubmit, reset }) => {
   return (
     <Formik
       initialValues={{ search: '' }}
@@ -21,6 +17,7 @@ export const NewsSearch = ({ onSubmit }) => {
         if (values.search === '') {
           onInfo('Fill the field!');
           setSubmitting(false);
+          reset();
         } else {
           onSubmit(values.search);
           setSubmitting(false);
@@ -42,7 +39,7 @@ export const NewsSearch = ({ onSubmit }) => {
               disabled={isSubmitting}
               onSubmit={handleSubmit}
             >
-              <IconSearch />
+              {values.search !== '' ? <IconSearch hidden /> : <IconSearch />}
             </ButtonStyled>
           </LabelStyled>
         </FormStyled>

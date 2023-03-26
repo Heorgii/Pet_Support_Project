@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 const BASE_URL = 'https://petsapi.cyclic.app/api';
 
-async function fetchData(pathParams, params) {
+async function fetchData(pathParams) {
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
     headers: { 'Content-Type': 'application/json' },
-    params: { params },
   });
 
   return await axiosInstance.get();
