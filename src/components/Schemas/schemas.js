@@ -79,10 +79,10 @@ const noticeSchemaFirst = Yup.object().shape({
 const noticeSchemaSecond = Yup.object().shape({
   sex: Yup.string().required('Sex is Required!'),
   location: Yup.string()
-    .matches(
-      /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
-      'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
-    )
+    // .matches(
+    //   /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
+    //   'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
+    // )
     .required('Location is Required!'),
   imageUrl: Yup.string().required('Image is Required!'),
   comments: Yup.string()

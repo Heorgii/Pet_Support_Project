@@ -26,6 +26,7 @@ import {
   LabelItemTextArea,
   FieldItemTextArea,
   Error,
+Li,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow } from 'hooks/modalWindow';
@@ -36,10 +37,7 @@ import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+import usePlacesAutocomplete from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
 export const AddNoticeModal = () => {
@@ -96,56 +94,42 @@ console.log(values)
       setIsLoading(false);
     }
   }
+  const {
+    ready,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
 
-function changeInput(setFieldValue) {
+    },
+    debounce: 300,
+  });
 
-}
 
-//   const {
-//     ready,
-//     value,
-//     suggestions: { status, data },
-//     setValue,
-//     clearSuggestions,
-//   } = usePlacesAutocomplete({
-//     callbackName: "callback",
-//     requestOptions: {
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
 
-//     },
-//     debounce: 300,
-//   });
-//   const ref = useOnclickOutside(() => {
-//     clearSuggestions();
-//   });
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
 
-//   const handleInput = (e) => {
-// console.log(e.target.value)
-//     setValue(e.target.value);
-//   };
 
-//   const handleSelect =
-//     ({ description }) =>
-//     () => {
+  const renderSuggestions = (setFieldValue) =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
 
-//       setValue(description, false);
-//       clearSuggestions();
-
-//     };
-
-//   const renderSuggestions = () =>
-//     data.map((suggestion) => {
-//       const {
-//         place_id,
-//         structured_formatting: { main_text, secondary_text },
-//       } = suggestion;
-
-//       return (
-//         <li key={place_id} onClick={handleSelect(suggestion)}>
-//           <strong>{main_text}</strong> <small>{secondary_text}</small>
-//         </li>
-//       );
-//     });
-
+      return (
+        <Li key={place_id} onClick={() => {setFieldValue('location', suggestion.description);
+      clearSuggestions();}}>
+          {main_text}{', '}{secondary_text}
+        </Li>
+      );
+    });
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
@@ -307,7 +291,7 @@ enableReinitialize={true}
                         </FieldList>
                       </div>
                     ) : (
-                      <div>
+                      <div ref={ref}>
                         <FieldsRadioSex role="group" id="sex">
                           <p>
                             The sex
@@ -354,9 +338,9 @@ enableReinitialize={true}
                             placeholder="Type location"
                             value={values.location}
 disabled={!ready}
-onChange={(e) => {handleChange(e); changeInput(setFieldValue); handleInput(e)}}
+onChange={(e) => {handleChange(e); handleInput(e)}}
                         />
-{status === "OK" && <ul>{renderSuggestions()}</ul>}
+{status === "OK" && <ul>{renderSuggestions(setFieldValue)}</ul>}
                           {values.category === 'sell' ? (
                             <div>
                               <LabelItem htmlFor="price">
