@@ -4,16 +4,17 @@ import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { ContainerStatus } from './NoticesCategoriesList.styled';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export const NoticesCategoriesList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [status, setStatus] = useState('idle');
+  const routeParams = useParams();
 
-  let itemForFetch = 'https://petsapi.cyclic.app/api/notices/sell';
+  const { BASE_URL } = window.global;
+  let itemForFetch = `${BASE_URL}/notices/${routeParams.id}`;
 
   useEffect(() => {
     async function fetchNoticesList() {
@@ -45,9 +46,11 @@ export const NoticesCategoriesList = () => {
         }}
       >
         <ContainerStatus>
-          {data.map(key => (
-            <NoticesCategoriesItem data={key} key={uuidv4()} />
-          ))}
+          {data.length === 0 ? (
+            <h3>Ups Can't find anything..</h3>
+          ) : (
+            data.map(key => <NoticesCategoriesItem data={key} key={uuidv4()} />)
+          )}
         </ContainerStatus>
       </div>
       {isLoading ? onLoading() : onLoaded()}
