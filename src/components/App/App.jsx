@@ -5,6 +5,7 @@ import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
+import initAxios from 'utils/initAxios';
 
 const HomePage = lazy(() => import('pages/Home'));
 const OurFriendsPage = lazy(() => import('pages/OurFriends'));
@@ -15,6 +16,7 @@ const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 
 export const App = () => {
+  initAxios();
   //  як буде правцювати бекєнд потрібно оновити дані юзера
   // const dispatch = useDispatch();
   // const user = useSelector(selectUser)
