@@ -91,25 +91,13 @@ const noticeSchemaSecond = Yup.object().shape({
     .required('Comments are Required!'),
 });
 
-const noticeSchemaSecondPrice = Yup.object().shape({
-  sex: Yup.string().required('Sex is Required!'),
-  location: Yup.string()
-    .matches(
-      /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
-      'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
-    )
-    .required('Location is Required!'),
+const noticeSchemaSecondPrice = noticeSchemaSecond.concat(Yup.object().shape({
   price: Yup.number()
     .moreThan('0')
     .positive()
     .integer()
     .required('Price is Required!'),
-  imageUrl: Yup.string().required('Image is Required!'),
-  comments: Yup.string()
-    .min(8, 'Too Short!')
-    .max(120, 'Too Long!')
-    .required('Comments are Required!'),
-});
+}));
 
 const schemas = {
   registerSchema,

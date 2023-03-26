@@ -39,6 +39,8 @@ import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
 
 export const AddNoticeModal = () => {
+
+const [fieldPrice, setFieldPrice] = useState('false');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -100,9 +102,9 @@ export const AddNoticeModal = () => {
     dispatch(noticeSlice.actions.cleanNotice());
   }
 
-function checkCategory(category) {
+// function checkCategory(category) {
 // (category !== 'sell') ? secondschemas.noticeSchemaSecond : schemas.noticeSchemaSecondPrice
-}
+// }
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
@@ -134,10 +136,10 @@ function checkCategory(category) {
 console.log(values.category)
                 }
               }}
-              validationSchema={formQueue ? schemas.noticeSchemaFirst : schemas.noticeSchemaSecond}
+              validationSchema={formQueue ? schemas.noticeSchemaFirst : !fieldPrice ? schemas.noticeSchemaSecond : schemas.noticeSchemaSecondPrice}
             >
               {({ values, handleChange, handleSubmit, errors, touched }) => (
-                <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
+                <FormStyled onSubmit={handleSubmit} onChange={(e) => {handleChange(e); values.category === 'sell' && setFieldPrice('true')}}>
                   <div>
                     {formQueue ? (
                       <div>
