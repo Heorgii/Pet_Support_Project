@@ -31,7 +31,7 @@ const registerSchema = Yup.object().shape({
     .required('Require field'),
   phone: Yup.string()
     .matches(
-      /^\+38\(0\d{2}\) \d{3}-\d{2}-\d{2}$/,
+      /^\+380\d{9}$/,
       'Invalid number. valid +38(0xx) xxx-xx-xx',
     )
     .required('Require field'),
