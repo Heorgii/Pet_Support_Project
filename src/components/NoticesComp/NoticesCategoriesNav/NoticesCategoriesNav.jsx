@@ -20,7 +20,11 @@ export const NoticesCategoriesNav = () => {
       <BtnCategory onClick={() => handleClick('/notices/for-free')}>
         in good hand
       </BtnCategory>
+<<<<<<< HEAD
       <BtnCategory autoFocus={true} type="button" onClick={() => handleClick('/notices/sell')}>
+=======
+      <BtnCategory onClick={() => handleClick('/notices/sell')}>
+>>>>>>> 3f960439b4b9143b46cf69c1df49d8577365e040
         sell
       </BtnCategory>
       {isLoggedIn && (
