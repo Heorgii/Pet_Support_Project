@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
@@ -14,6 +15,7 @@ import {
   BackButton,
   // PhoneInput,
   ShowPassword,
+  Icon,
   StyledLink,
   BoxText,
   Background,
@@ -26,45 +28,20 @@ const RegisterForm = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
 
-  // const onSubmit = values => {
-  //   const { name, email, password, phone, location } = values;
-  //   dispatch(
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //       phone,
-  //       location,
-  //     }),
-  //     hideForm(),
-  //   );
-  // };
-
-  const onSubmit = e => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-
-    const name = form.elements.name;
-    const email = form.elements.email;
-    const password = form.elements.password;
-    const confirmPassword = form.elements.confirmPassword;
-    const phone = form.elements.phone;
-    const location = form.elements.location;
-
-    const newUser = {
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      phone: phone,
-      location: location,
-    };
-
-    dispatch(register(newUser));
-    console.log(newUser);
-    form.reset();
-  };
+  const onSubmit = ({ values, action }) => {
+    console.log('!!!!!!: ', values);
+    const { name, email, password, phone, location } = values;
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+        phone,
+        location,
+      }),
+      // hideForm(),
+    );
+};
 
   const showForm = () => {
     setIsShown(false);
@@ -84,7 +61,10 @@ const RegisterForm = () => {
       location: '',
     },
     validationSchema: schemas.registerSchema,
-    onSubmit,
+    onSubmit: (values, action) => {
+      console.log('form values: ', values);
+      onSubmit({ values, action });
+    },
   });
 
   const isValid =
@@ -128,7 +108,23 @@ const RegisterForm = () => {
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
                   />
-
+                  <div>
+                    <Icon>
+                      <input
+                        type="text"
+                        value={formik.values.email}
+                        validate={schemas.registerSchema.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {isValid ? (
+                        <FaCheck color="green" />
+                      ) : (
+                        <FaTimes color="red" />
+                      )}
+                      {formik.errors.email && formik.touched.email ? <ErrBox>{formik.errors.email}</ErrBox> : null}
+                    </Icon>
+                  </div>
                   {formik.errors.email || formik.touched.email ? (
                     <ErrBox>{formik.errors.email}</ErrBox>
                   ) : null}
