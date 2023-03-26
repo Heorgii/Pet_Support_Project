@@ -7,11 +7,12 @@ import {
   Text,
   Link,
   Ractangle,
-  Date,
+  Dates,
 } from './NewsListItem.styled';
 
 export const NewsListItem = ({ newsItem }) => {
   const { _id, title, description, date, url } = newsItem;
+
   return (
     <Item key={_id} id={_id}>
       <Ractangle />
@@ -23,19 +24,19 @@ export const NewsListItem = ({ newsItem }) => {
           <EllipsisText text={description} length={200} />
         </Text>
         {date !== null ? (
-          <Date>
-            {date}
+          <Dates>
+            {new Date(date).toLocaleDateString('en-AU')}
             <Link target="_blank" href={url}>
               Read More
             </Link>
-          </Date>
+          </Dates>
         ) : (
-          <Date>
+          <Dates>
             -------/----/----
             <Link target="_blank" href={url}>
               Read More
             </Link>
-          </Date>
+          </Dates>
         )}
       </TextWrapper>
     </Item>
