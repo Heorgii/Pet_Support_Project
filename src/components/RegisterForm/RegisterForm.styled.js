@@ -9,10 +9,11 @@ import tabletBackground from '../../images/register/bg-register-tablet.png';
 import desktopBackground from '../../images/register/bg-register-desktop.png';
 
 export const FormContainer = styled.div`
-  /* width: 100%; */
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  width: 100%;
+  @media(min-width: 767px) and (max-width: 1279px) {
     padding-top: 168px;
   }
+  
   @media screen and (min-width: 1280px) {
     padding-top: 44px;
   }

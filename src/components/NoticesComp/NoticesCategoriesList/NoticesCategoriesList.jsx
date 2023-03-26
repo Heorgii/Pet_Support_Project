@@ -13,6 +13,7 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
 
   let itemForFetch = 'http://petsapi.cyclic.app/api/notices/sell';
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     async function fetchNoticesList() {
