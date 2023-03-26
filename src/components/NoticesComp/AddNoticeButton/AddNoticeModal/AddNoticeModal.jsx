@@ -348,8 +348,10 @@ enableReinitialize={true}
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-onChange={(e) => {handleChange(e); changeInput(setFieldValue)}}
-                          />
+disabled={!ready}
+onChange={(e) => {handleChange(e); changeInput(setFieldValue); handleInput(e)}}
+                        />
+{status === "OK" && <ul>{renderSuggestions()}</ul>}
                           {values.category === 'sell' ? (
                             <div>
                               <LabelItem htmlFor="price">
