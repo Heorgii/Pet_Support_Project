@@ -35,25 +35,25 @@ import { addOwnNotice } from 'redux/notices/operations';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import * as Yup from 'yup';
+import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
 
 export const AddNoticeModal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {
-    category,
-    title,
-    name,
-    birthday,
-    breed,
-    sex,
-    location,
-    price,
-    imageUrl,
-    comments,
-  } = useSelector(noticeState);
+  // const {
+  //   category,
+  //   title,
+  //   name,
+  //   birthday,
+  //   breed,
+  //   sex,
+  //   location,
+  //   price,
+  //   imageUrl,
+  //   comments,
+  // } = useSelector(noticeState);
   const modal = useSelector(modalComponent);
   const [formQueue, setFormQueue] = useState('true');
 
@@ -65,16 +65,6 @@ export const AddNoticeModal = () => {
   };
 
   function toggleForm() {
-    if (category === 'sell') {
-      FormSchemaSecond.shape({
-        price: Yup.number()
-          .moreThan('0')
-          .positive()
-          .integer()
-          .required('Price is Required!'),
-      });
-    }
-
     setFormQueue(!formQueue);
   }
 
@@ -110,33 +100,9 @@ export const AddNoticeModal = () => {
     dispatch(noticeSlice.actions.cleanNotice());
   }
 
-  const FormSchemaFirst = Yup.object().shape({
-    category: Yup.string().required('Categori is Required!'),
-    title: Yup.string()
-      .min(2, 'Too Short!')
-      .max(48, 'Too Long!')
-      .required('Title is Required!'),
-    name: Yup.string()
-      .min(2, 'Too Short!')
-      .max(16, 'Too Long!')
-      .required('Name is Required!'),
-    birthday: Yup.date().required('BirthDay is Required!'),
-    breed: Yup.string()
-      .min(2, 'Too Short!')
-      .max(24, 'Too Long!')
-      .required('Breed is Required!'),
-  });
-  const FormSchemaSecond = Yup.object().shape({
-    sex: Yup.string().required('Sex is Required!'),
-    location: Yup.string()
-      .matches(/^[A-Za-z-]+, +[A-Za-z-]/i, 'Example: Brovary, Kyiv')
-      .required('Location is Required!'),
-    imageUrl: Yup.string().required('Image is Required!'),
-    comments: Yup.string()
-      .min(8, 'Too Short!')
-      .max(120, 'Too Long!')
-      .required('Comments are Required!'),
-  });
+function checkCategory(category) {
+// (category !== 'sell') ? secondschemas.noticeSchemaSecond : schemas.noticeSchemaSecondPrice
+}
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
@@ -149,25 +115,26 @@ export const AddNoticeModal = () => {
           <div>
             <Formik
               initialValues={{
-                category: category,
-                title: title,
-                name: name,
-                birthday: birthday,
-                breed: breed,
-                sex: sex,
-                location: location,
-                price: price,
-                imageUrl: imageUrl,
-                comments: comments,
+                category: '',
+                title: '',
+                name: '',
+                birthday: '',
+                breed: '',
+                sex: '',
+                location: '',
+                price: '',
+                imageUrl: '',
+                comments: '',
               }}
               onSubmit={values => {
                 if (!formQueue) {
                   submitForm(values);
                 } else {
                   toggleForm();
+console.log(values.category)
                 }
               }}
-              validationSchema={formQueue ? FormSchemaFirst : FormSchemaSecond}
+              validationSchema={formQueue ? schemas.noticeSchemaFirst : schemas.noticeSchemaSecond}
             >
               {({ values, handleChange, handleSubmit, errors, touched }) => (
                 <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
