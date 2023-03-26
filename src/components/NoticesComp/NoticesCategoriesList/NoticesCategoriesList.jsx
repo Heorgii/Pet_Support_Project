@@ -11,9 +11,9 @@ export const NoticesCategoriesList = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const [status, setStatus] = useState('idle');
 
-  let itemForFetch = 'http://petsapi.cyclic.app/api/notices/sell';
-  const [status, setStatus] = useState('idle');
+  let itemForFetch = 'https://petsapi.cyclic.app/api/notices/sell';
 
   useEffect(() => {
     async function fetchNoticesList() {

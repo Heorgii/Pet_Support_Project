@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-const BASE_URL = 'http://petsapi.cyclic.app/api';
+const BASE_URL = 'https://petsapi.cyclic.app/api';
 
 async function fetchData(pathParams) {
   const axiosInstance = axios.create({
