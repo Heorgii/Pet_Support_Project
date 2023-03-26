@@ -6,6 +6,8 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { queryValue } from 'redux/query/selectors';
 
 export const NoticesCategoriesList = () => {
   const [data, setData] = useState([]);
@@ -13,7 +15,11 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   // const [status, setStatus] = useState('idle');
 
-  let itemForFetch = 'https://petsapi.cyclic.app/api/notices/sell';
+  const query = useSelector(queryValue);
+
+  let itemForFetch = `https://petsapi.cyclic.app/api/notices/sell${
+    query && '?findtext=' + query
+  }`;
 
   useEffect(() => {
     async function fetchNoticesList() {

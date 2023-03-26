@@ -81,6 +81,7 @@ export const AddNoticeModal = () => {
   async function postNotice(values) {
     setIsLoading(true);
     try {
+console.log(values)
       const { code } = await fetchNotice('/pets', values);
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
@@ -132,7 +133,7 @@ enableReinitialize={true}
                   : schemas.noticeSchemaSecondPrice
               }
             >
-              {({ values, handleChange, handleSubmit, errors, touched }) => (
+              {({ values, handleChange, handleSubmit, errors, touched, setFieldValue }) => (
                 <FormStyled
                   onSubmit={handleSubmit}
                   onChange={e => {
@@ -160,7 +161,7 @@ enableReinitialize={true}
                             value="lost/found"
                             checked={values.category === 'lost/found'}
                           />
-                          <LabelRadio htmlFor="radioOne" key={nanoid()}>
+                          <LabelRadio htmlFor="radioOne">
                             lost/found
                           </LabelRadio>
 
@@ -171,7 +172,7 @@ enableReinitialize={true}
                             value="in good hands"
                             checked={values.category === 'in good hands'}
                           />
-                          <LabelRadio htmlFor="radioTwo" key={nanoid()}>
+                          <LabelRadio htmlFor="radioTwo">
                             in good hands
                           </LabelRadio>
 
@@ -182,12 +183,12 @@ enableReinitialize={true}
                             value="sell"
                             checked={values.category === 'sell'}
                           />
-                          <LabelRadio htmlFor="radioThree" key={nanoid()}>
+                          <LabelRadio htmlFor="radioThree">
                             sell
                           </LabelRadio>
                         </FieldsRadio>
                         <FieldList>
-                          <LabelItem htmlFor="title" key={nanoid()}>
+                          <LabelItem htmlFor="title">
                             <span>Title of ad</span>
                             {errors.title && touched.title ? (
                               <Error>{errors.title}</Error>
@@ -201,7 +202,7 @@ enableReinitialize={true}
                             placeholder="Type name"
                             value={values.title}
                           />
-                          <LabelItem htmlFor="name" key={nanoid()}>
+                          <LabelItem htmlFor="name">
                             <span>Name pet</span>
                             {errors.name && touched.name ? (
                               <Error>{errors.name}</Error>
@@ -215,7 +216,7 @@ enableReinitialize={true}
                             placeholder="Type name pet"
                             value={values.name}
                           />
-                          <LabelItem htmlFor="birthday" key={nanoid()}>
+                          <LabelItem htmlFor="birthday">
                             <span>Date of birth</span>
                             {errors.birthday && touched.birthday ? (
                               <Error>{errors.birthday}</Error>
@@ -235,7 +236,7 @@ enableReinitialize={true}
                             placeholder="Type day of birth"
                             value={values.birthday}
                           />
-                          <LabelItem htmlFor="breed" key={nanoid()}>
+                          <LabelItem htmlFor="breed">
                             <span>Breed</span>
                             {errors.breed && touched.breed ? (
                               <Error>{errors.breed}</Error>
@@ -267,7 +268,7 @@ enableReinitialize={true}
                             value="male"
                             checked={values.sex === 'male'}
                           />
-                          <LabelRadioSex htmlFor="radioOneSex" key={nanoid()}>
+                          <LabelRadioSex htmlFor="radioOneSex">
                             <IconMale />
                             <span>Male</span>
                           </LabelRadioSex>
@@ -279,13 +280,13 @@ enableReinitialize={true}
                             value="female"
                             checked={values.sex === 'female'}
                           />
-                          <LabelRadioSex htmlFor="radioTwoSex" key={nanoid()}>
+                          <LabelRadioSex htmlFor="radioTwoSex">
                             <IconFemale />
                             <span>Female</span>
                           </LabelRadioSex>
                         </FieldsRadioSex>
                         <FieldList>
-                          <LabelItem htmlFor="location" key={nanoid()}>
+                          <LabelItem htmlFor="location">
                             <span>Location</span>
                             {errors.location && touched.location ? (
                               <Error>{errors.location}</Error>
@@ -298,10 +299,11 @@ enableReinitialize={true}
                             name="location"
                             placeholder="Type location"
                             value={values.location}
+onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
                           />
                           {values.category === 'sell' ? (
                             <div>
-                              <LabelItem htmlFor="price" key={nanoid()}>
+                              <LabelItem htmlFor="price">
                                 <span>Price</span>
                                 {errors.price && touched.price ? (
                                   <Error>{errors.price}</Error>
@@ -319,7 +321,7 @@ enableReinitialize={true}
                           ) : (
                             ''
                           )}
-                          <LabelItem htmlFor="imageUrl" key={nanoid()}>
+                          <LabelItem htmlFor="imageUrl">
                             <span>Load the pet’s image</span>
                             <img
                               className="preview"
@@ -344,7 +346,7 @@ enableReinitialize={true}
                               handleChange(e, setImage(e));
                             }}
                           />
-                          <LabelItemTextArea htmlFor="comments" key={nanoid()}>
+                          <LabelItemTextArea htmlFor="comments">
                             <span>Comments</span>
                             {errors.comments && touched.comments ? (
                               <Error>{errors.comments}</Error>
@@ -370,7 +372,6 @@ enableReinitialize={true}
                       <ButtonFirst
                         className="btn__submit"
                         type="submit"
-                        key={nanoid()}
                       >
                         {formQueue ? 'Next' : 'Done'}
                       </ButtonFirst>
@@ -384,7 +385,6 @@ enableReinitialize={true}
                               }
                             : toggleForm
                         }
-                        key={nanoid()}
                       >
                         {formQueue ? 'Cancel' : 'Back'}
                       </ButtonSecond>
