@@ -30,10 +30,7 @@ const registerSchema = Yup.object().shape({
     )
     .required('Require field'),
   phone: Yup.string()
-    .matches(
-      /^\+380\d{9}$/,
-      'Invalid number. valid +38(0xx) xxx-xx-xx',
-    )
+    .matches(/^\+380\d{9}$/, 'Invalid number. valid +38(0xx) xxx-xx-xx')
     .required('Require field'),
   location: Yup.string()
     .matches(
@@ -62,9 +59,52 @@ const schemasLogin = Yup.object().shape({
     .matches(/^\s*\S+\s*$/, 'Password must be without spaces')
     .required('Require'),
 });
+
+const noticeSchemaFirst = Yup.object().shape({
+  category: Yup.string().required('Categori is Required!'),
+  title: Yup.string()
+    .min(2, 'Too Short!')
+    .max(48, 'Too Long!')
+    .required('Title is Required!'),
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(16, 'Too Long!')
+    .required('Name is Required!'),
+  birthday: Yup.date().required('BirthDay is Required!'),
+  breed: Yup.string()
+    .min(2, 'Too Short!')
+    .max(24, 'Too Long!')
+    .required('Breed is Required!'),
+});
+const noticeSchemaSecond = Yup.object().shape({
+  sex: Yup.string().required('Sex is Required!'),
+  location: Yup.string()
+    .matches(
+      /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
+      'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
+    )
+    .required('Location is Required!'),
+  imageUrl: Yup.string().required('Image is Required!'),
+  comments: Yup.string()
+    .min(8, 'Too Short!')
+    .max(120, 'Too Long!')
+    .required('Comments are Required!'),
+});
+
+const noticeSchemaSecondPrice = noticeSchemaSecond.concat(Yup.object().shape({
+  price: Yup.number()
+    .moreThan('0')
+    .positive()
+    .integer()
+    .required('Price is Required!'),
+}));
+
 const schemas = {
   registerSchema,
   schemasLogin,
+  noticeSchemaFirst,
+  noticeSchemaSecond,
+  noticeSchemaSecondPrice,
 };
 
 export default schemas;

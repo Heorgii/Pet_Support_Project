@@ -29,33 +29,24 @@ import {
 } from './AddNoticeModal.styled';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { noticeSlice } from 'redux/notice/slice';
-import { noticeState } from 'redux/notice/selectors';
-import { addOwnNotice } from 'redux/notices/operations';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import * as Yup from 'yup';
+import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
+import { fetchNotice } from 'services/APIservice';
+import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 
 export const AddNoticeModal = () => {
+  const [formQueue, setFormQueue] = useState(true);
+  const [fieldPrice, setFieldPrice] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const {
-    category,
-    title,
-    name,
-    birthday,
-    breed,
-    sex,
-    location,
-    price,
-    imageUrl,
-    comments,
-  } = useSelector(noticeState);
   const modal = useSelector(modalComponent);
-  const [formQueue, setFormQueue] = useState('true');
 
   const onClickBackdrop = e => {
     e.preventDefault();
@@ -65,16 +56,6 @@ export const AddNoticeModal = () => {
   };
 
   function toggleForm() {
-    if (category === 'sell') {
-      FormSchemaSecond.shape({
-        price: Yup.number()
-          .moreThan('0')
-          .positive()
-          .integer()
-          .required('Price is Required!'),
-      });
-    }
-
     setFormQueue(!formQueue);
   }
 
@@ -97,51 +78,27 @@ export const AddNoticeModal = () => {
     }
   }
 
-  function submitForm(values) {
-    console.log(values);
-    dispatch(noticeSlice.actions.addNotice(values));
-    dispatch(addOwnNotice(values));
-    onClean();
-    onClickBackdrop();
-    navigate('/notices/own');
+  async function postNotice(values) {
+    setIsLoading(true);
+    try {
+console.log(values)
+      const { code } = await fetchNotice('/pets', values);
+      if (code && code !== 201) {
+        return onFetchError('Whoops, something went wrong');
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
-
-  function onClean() {
-    dispatch(noticeSlice.actions.cleanNotice());
-  }
-
-  const FormSchemaFirst = Yup.object().shape({
-    category: Yup.string().required('Categori is Required!'),
-    title: Yup.string()
-      .min(2, 'Too Short!')
-      .max(48, 'Too Long!')
-      .required('Title is Required!'),
-    name: Yup.string()
-      .min(2, 'Too Short!')
-      .max(16, 'Too Long!')
-      .required('Name is Required!'),
-    birthday: Yup.date().required('BirthDay is Required!'),
-    breed: Yup.string()
-      .min(2, 'Too Short!')
-      .max(24, 'Too Long!')
-      .required('Breed is Required!'),
-  });
-  const FormSchemaSecond = Yup.object().shape({
-    sex: Yup.string().required('Sex is Required!'),
-    location: Yup.string()
-      .matches(/^[A-Za-z-]+, +[A-Za-z-]/i, 'Example: Brovary, Kyiv')
-      .required('Location is Required!'),
-    imageUrl: Yup.string().required('Image is Required!'),
-    comments: Yup.string()
-      .min(8, 'Too Short!')
-      .max(120, 'Too Long!')
-      .required('Comments are Required!'),
-  });
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
+          {isLoading ? onLoading() : onLoaded()}
+          {error && onFetchError('Whoops, something went wrong')}
           <ButtonClose onClick={onClickBackdrop}>
             <IconClose />
           </ButtonClose>
@@ -149,28 +106,41 @@ export const AddNoticeModal = () => {
           <div>
             <Formik
               initialValues={{
-                category: category,
-                title: title,
-                name: name,
-                birthday: birthday,
-                breed: breed,
-                sex: sex,
-                location: location,
-                price: price,
-                imageUrl: imageUrl,
-                comments: comments,
+                category: '',
+                title: '',
+                name: '',
+                birthday: '',
+                breed: '',
+                sex: '',
+                location: '',
+                price: '',
+                imageUrl: '',
+                comments: '',
               }}
-              onSubmit={values => {
-                if (!formQueue) {
-                  submitForm(values);
-                } else {
-                  toggleForm();
-                }
-              }}
-              validationSchema={formQueue ? FormSchemaFirst : FormSchemaSecond}
+              onSubmit={values =>
+                !formQueue
+                  ? postNotice(values) &&
+                    navigate('/notices/own') &&
+                    (e => onClickBackdrop(e))
+                  : toggleForm()
+              }
+enableReinitialize={true}
+              validationSchema={
+                formQueue
+                  ? schemas.noticeSchemaFirst
+                  : !fieldPrice
+                  ? schemas.noticeSchemaSecond
+                  : schemas.noticeSchemaSecondPrice
+              }
             >
-              {({ values, handleChange, handleSubmit, errors, touched }) => (
-                <FormStyled onSubmit={handleSubmit} onChange={handleChange}>
+              {({ values, handleChange, handleSubmit, errors, touched, setFieldValue }) => (
+                <FormStyled
+                  onSubmit={handleSubmit}
+                  onChange={e => {
+                    handleChange(e);
+                    values.category === 'sell' && setFieldPrice(true);
+                  }}
+                >
                   <div>
                     {formQueue ? (
                       <div>
@@ -191,7 +161,7 @@ export const AddNoticeModal = () => {
                             value="lost/found"
                             checked={values.category === 'lost/found'}
                           />
-                          <LabelRadio htmlFor="radioOne" key={nanoid()}>
+                          <LabelRadio htmlFor="radioOne">
                             lost/found
                           </LabelRadio>
 
@@ -202,7 +172,7 @@ export const AddNoticeModal = () => {
                             value="in good hands"
                             checked={values.category === 'in good hands'}
                           />
-                          <LabelRadio htmlFor="radioTwo" key={nanoid()}>
+                          <LabelRadio htmlFor="radioTwo">
                             in good hands
                           </LabelRadio>
 
@@ -213,12 +183,12 @@ export const AddNoticeModal = () => {
                             value="sell"
                             checked={values.category === 'sell'}
                           />
-                          <LabelRadio htmlFor="radioThree" key={nanoid()}>
+                          <LabelRadio htmlFor="radioThree">
                             sell
                           </LabelRadio>
                         </FieldsRadio>
                         <FieldList>
-                          <LabelItem htmlFor="title" key={nanoid()}>
+                          <LabelItem htmlFor="title">
                             <span>Title of ad</span>
                             {errors.title && touched.title ? (
                               <Error>{errors.title}</Error>
@@ -232,7 +202,7 @@ export const AddNoticeModal = () => {
                             placeholder="Type name"
                             value={values.title}
                           />
-                          <LabelItem htmlFor="name" key={nanoid()}>
+                          <LabelItem htmlFor="name">
                             <span>Name pet</span>
                             {errors.name && touched.name ? (
                               <Error>{errors.name}</Error>
@@ -246,7 +216,7 @@ export const AddNoticeModal = () => {
                             placeholder="Type name pet"
                             value={values.name}
                           />
-                          <LabelItem htmlFor="birthday" key={nanoid()}>
+                          <LabelItem htmlFor="birthday">
                             <span>Date of birth</span>
                             {errors.birthday && touched.birthday ? (
                               <Error>{errors.birthday}</Error>
@@ -266,7 +236,7 @@ export const AddNoticeModal = () => {
                             placeholder="Type day of birth"
                             value={values.birthday}
                           />
-                          <LabelItem htmlFor="breed" key={nanoid()}>
+                          <LabelItem htmlFor="breed">
                             <span>Breed</span>
                             {errors.breed && touched.breed ? (
                               <Error>{errors.breed}</Error>
@@ -298,7 +268,7 @@ export const AddNoticeModal = () => {
                             value="male"
                             checked={values.sex === 'male'}
                           />
-                          <LabelRadioSex htmlFor="radioOneSex" key={nanoid()}>
+                          <LabelRadioSex htmlFor="radioOneSex">
                             <IconMale />
                             <span>Male</span>
                           </LabelRadioSex>
@@ -310,13 +280,13 @@ export const AddNoticeModal = () => {
                             value="female"
                             checked={values.sex === 'female'}
                           />
-                          <LabelRadioSex htmlFor="radioTwoSex" key={nanoid()}>
+                          <LabelRadioSex htmlFor="radioTwoSex">
                             <IconFemale />
                             <span>Female</span>
                           </LabelRadioSex>
                         </FieldsRadioSex>
                         <FieldList>
-                          <LabelItem htmlFor="location" key={nanoid()}>
+                          <LabelItem htmlFor="location">
                             <span>Location</span>
                             {errors.location && touched.location ? (
                               <Error>{errors.location}</Error>
@@ -329,10 +299,11 @@ export const AddNoticeModal = () => {
                             name="location"
                             placeholder="Type location"
                             value={values.location}
+onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
                           />
                           {values.category === 'sell' ? (
                             <div>
-                              <LabelItem htmlFor="price" key={nanoid()}>
+                              <LabelItem htmlFor="price">
                                 <span>Price</span>
                                 {errors.price && touched.price ? (
                                   <Error>{errors.price}</Error>
@@ -350,7 +321,7 @@ export const AddNoticeModal = () => {
                           ) : (
                             ''
                           )}
-                          <LabelItem htmlFor="imageUrl" key={nanoid()}>
+                          <LabelItem htmlFor="imageUrl">
                             <span>Load the pet’s image</span>
                             <img
                               className="preview"
@@ -375,7 +346,7 @@ export const AddNoticeModal = () => {
                               handleChange(e, setImage(e));
                             }}
                           />
-                          <LabelItemTextArea htmlFor="comments" key={nanoid()}>
+                          <LabelItemTextArea htmlFor="comments">
                             <span>Comments</span>
                             {errors.comments && touched.comments ? (
                               <Error>{errors.comments}</Error>
@@ -401,7 +372,6 @@ export const AddNoticeModal = () => {
                       <ButtonFirst
                         className="btn__submit"
                         type="submit"
-                        key={nanoid()}
                       >
                         {formQueue ? 'Next' : 'Done'}
                       </ButtonFirst>
@@ -410,12 +380,11 @@ export const AddNoticeModal = () => {
                         onClick={
                           formQueue
                             ? () => {
-                                onClean();
+                                // onClean();
                                 onClickBackdrop();
                               }
                             : toggleForm
                         }
-                        key={nanoid()}
                       >
                         {formQueue ? 'Cancel' : 'Back'}
                       </ButtonSecond>
