@@ -1,27 +1,7 @@
+import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as iconSearch } from 'images/svg/icon_search.svg';
-
-
-import styled from 'styled-components';
-
-export const Title = styled.h1`
-  font-family: 'Manrope', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.375;
-  text-align: center;
-  color: ${baseColor.colors.blackText};
-
-  margin-bottom: 28px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 48px;
-
-    margin-bottom: 40px;
-  }
-`;
 
 export const ButtonStyled = styled.button`
   display: flex;
@@ -40,15 +20,14 @@ export const ButtonStyled = styled.button`
 
 export const FormStyled = styled(Form)`
   margin-bottom: 28px;
-margin-left: auto;
-margin-right: auto;
-max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 280px;
   width: 100%;
 
   @media screen and (min-width: 768px) {
-max-width: 608px;
-
     margin-bottom: 40px;
+    max-width: 608px;
   }
 `;
 
@@ -78,19 +57,15 @@ export const FieldStyled = styled(Field)`
     height: 20px;
     width: 20px;
   }
-}
-
-
 
   @media screen and (min-width: 768px) {
-
-  &::-webkit-search-cancel-button,
-  &::-webkit-search-decoration,
-  &::-webkit-search-results-button,
-  &::-webkit-search-results-decoration {
-    height: 24px;
-    width: 24px;
-  }
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      height: 24px;
+      width: 24px;
+    }
     font-size: 20px;
   }
 `;
@@ -124,7 +99,8 @@ export const IconSearch = styled(iconSearch)`
   cursor: pointer;
   width: 20px;
   height: 20px;
-  display: block;
+  display: ${props => (props.hidden ? 'none' : 'block')};
+
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;
