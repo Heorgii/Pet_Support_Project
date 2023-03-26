@@ -15,7 +15,7 @@ import {
   BackButton,
   // PhoneInput,
   ShowPassword,
-  Icon,
+  // Icon,
   StyledLink,
   BoxText,
   Background,
@@ -109,7 +109,7 @@ const RegisterForm = () => {
                     onBlur={formik.handleBlur}
                   />
                   <div>
-                    <Icon>
+                    {/* <Icon> */}
                       <input
                         type="text"
                         value={formik.values.email}
@@ -123,7 +123,7 @@ const RegisterForm = () => {
                         <FaTimes color="red" />
                       )}
                       {formik.errors.email && formik.touched.email ? <ErrBox>{formik.errors.email}</ErrBox> : null}
-                    </Icon>
+                    {/* </Icon> */}
                   </div>
                   {formik.errors.email || formik.touched.email ? (
                     <ErrBox>{formik.errors.email}</ErrBox>

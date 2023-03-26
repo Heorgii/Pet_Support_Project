@@ -71,21 +71,21 @@ export const ShowPassword = styled.span`
     height: inherit;
   }
 `;
-export const Icon = styled(Icon)`
-  display: inline-block;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-80%);
-  color: grey;
-  cursor: pointer;
-  svg {
-    width: inherit;
-    height: inherit;
-  }
-`;
+// export const Icon = styled(Icon)`
+//   display: inline-block;
+//   position: absolute;
+//   width: 20px;
+//   height: 20px;
+//   right: 15px;
+//   top: 50%;
+//   transform: translateY(-80%);
+//   color: grey;
+//   cursor: pointer;
+//   svg {
+//     width: inherit;
+//     height: inherit;
+//   }
+// `;
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;
