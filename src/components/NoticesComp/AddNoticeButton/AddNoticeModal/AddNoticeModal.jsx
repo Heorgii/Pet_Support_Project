@@ -27,7 +27,6 @@ import {
   FieldItemTextArea,
   Error,
 } from './AddNoticeModal.styled';
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';

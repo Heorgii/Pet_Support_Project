@@ -19,7 +19,7 @@ const HeroSection = styled.section`
     background-repeat: no-repeat;
 
     background-size: 330px 564px, 620px 540px;
-    background-position: top 180px left 30%, top 80px left 25%;
+    background-position: top 180px left 50%, top 80px left 25%;
   }
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
     background-image: url(${DogFull}), url(${waveTabFull});

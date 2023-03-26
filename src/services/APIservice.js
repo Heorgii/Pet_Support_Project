@@ -1,8 +1,8 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+const { BASE_URL } = window.global;
 async function fetchData(pathParams) {
-  const { BASE_URL } = window.global;
 
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
