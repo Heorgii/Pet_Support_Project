@@ -38,11 +38,12 @@ export const ModalNotices = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  
+
   const [data, setData] = useState([]);
-  const [ setIsLoading] = useState(false);//isLoading,
-  const [ setError] = useState(null);//error,
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   // const [status, setStatus] = useState('idle');
+  console.log(isLoading, error);
   
   let itemForFetch = `https://petsapi.cyclic.app/api/notices/byid/${modal.id}`;
 
