@@ -26,46 +26,47 @@ const RegisterForm = () => {
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
 
-  // const onSubmit = values => {
-  //   const { name, email, password, phone, location } = values;
-  //   dispatch(
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //       phone,
-  //       location,
-  //     }),
-  //     hideForm(),
-  //   );
-  // };
-
-  const onSubmit = e => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-    console.log(form);
-
-    const name = form.elements.name;
-    const email = form.elements.email;
-    const password = form.elements.password;
-    const confirmPassword = form.elements.confirmPassword;
-    const phone = form.elements.phone;
-    const location = form.elements.location;
-
-    const newUser = {
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      phone: phone,
-      location: location,
-    };
-
-    dispatch(register(newUser));
-    console.log(newUser);
-    form.reset();
+  const onSubmit = ({ values, action }) => {
+    console.log('!!!!!!: ', values);
+    const { name, email, password, phone, location } = values;
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+        phone,
+        location,
+      }),
+      // hideForm(),
+    );
   };
+
+  // const onSubmit = e => {
+  //   e.preventDefault();
+
+  //   const form = e.currentTarget;
+  //   console.log(form);
+
+  //   const name = form.elements.name;
+  //   const email = form.elements.email;
+  //   const password = form.elements.password;
+  //   const confirmPassword = form.elements.confirmPassword;
+  //   const phone = form.elements.phone;
+  //   const location = form.elements.location;
+
+  //   const newUser = {
+  //     name: name,
+  //     email: email,
+  //     password: password,
+  //     confirmPassword: confirmPassword,
+  //     phone: phone,
+  //     location: location,
+  //   };
+
+  //   dispatch(register(newUser));
+  //   console.log(newUser);
+  //   form.reset();
+  // };
 
   const showForm = () => {
     setIsShown(false);
@@ -85,7 +86,11 @@ const RegisterForm = () => {
       location: '',
     },
     validationSchema: schemas.registerSchema,
-    onSubmit,
+    // onSubmit: value => { console.log('formValue: ', value); onSubmit(value) },
+    onSubmit: (values, action) => {
+      console.log('form values: ', values);
+      onSubmit({ values, action });
+    },
   });
 
   const isValid =
