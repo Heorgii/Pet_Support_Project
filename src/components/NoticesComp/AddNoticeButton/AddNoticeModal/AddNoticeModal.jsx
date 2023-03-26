@@ -123,6 +123,7 @@ export const AddNoticeModal = () => {
                     (e => onClickBackdrop(e))
                   : toggleForm()
               }
+enableReinitialize={true}
               validationSchema={
                 formQueue
                   ? schemas.noticeSchemaFirst
