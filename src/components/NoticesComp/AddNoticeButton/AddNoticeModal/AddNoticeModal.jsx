@@ -26,6 +26,7 @@ import {
   LabelItemTextArea,
   FieldItemTextArea,
   Error,
+Li,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow } from 'hooks/modalWindow';
@@ -36,6 +37,8 @@ import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import usePlacesAutocomplete from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
@@ -91,6 +94,42 @@ console.log(values)
       setIsLoading(false);
     }
   }
+  const {
+    ready,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+
+    },
+    debounce: 300,
+  });
+
+
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
+
+
+  const renderSuggestions = (setFieldValue) =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <Li key={place_id} onClick={() => {setFieldValue('location', suggestion.description);
+      clearSuggestions();}}>
+          {main_text}{', '}{secondary_text}
+        </Li>
+      );
+    });
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
@@ -252,7 +291,7 @@ enableReinitialize={true}
                         </FieldList>
                       </div>
                     ) : (
-                      <div>
+                      <div ref={ref}>
                         <FieldsRadioSex role="group" id="sex">
                           <p>
                             The sex
@@ -298,8 +337,10 @@ enableReinitialize={true}
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-onChange={(e) => {handleChange(e); setFieldValue(values.location, 'hello')}}
-                          />
+disabled={!ready}
+onChange={(e) => {handleChange(e); handleInput(e)}}
+                        />
+{status === "OK" && <ul>{renderSuggestions(setFieldValue)}</ul>}
                           {values.category === 'sell' ? (
                             <div>
                               <LabelItem htmlFor="price">
