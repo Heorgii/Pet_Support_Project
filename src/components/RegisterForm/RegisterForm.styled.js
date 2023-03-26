@@ -13,6 +13,7 @@ export const FormContainer = styled.div`
   @media(min-width: 767px) and (max-width: 1279px) {
     padding-top: 168px;
   }
+  
   @media screen and (min-width: 1280px) {
     padding-top: 44px;
   }
