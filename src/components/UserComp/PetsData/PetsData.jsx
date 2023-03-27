@@ -1,5 +1,4 @@
 import { PetsList } from './PetsList/PetsList';
-// import { useAuth } from 'hooks/useAuth';
 import { useAuth } from '../../../redux/UserPage/auth/useAuth';
 
 import {

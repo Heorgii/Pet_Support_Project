@@ -1,8 +1,5 @@
-// import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { authSignUpUser } from 'redux/auth/operations';
-// import { updateUserProfile } from 'redux/auth/operations';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import authOperations from 'redux/UserPage/auth/authOperations';
 import {
   CheckMarkStyle,
@@ -46,7 +43,7 @@ export const UserDataItem = ({
   const handleChange = e => {
     const { name, value } = e.currentTarget;
 
-    if (name === 'name') {
+    if (name === 'userName') {
       setInputValue(value);
     }
     if (name === 'email') {
@@ -61,8 +58,8 @@ export const UserDataItem = ({
   };
 
   const handleSubmit = name => {
-    if (name === 'name') {
-      setActive('name');
+    if (name === 'userName') {
+      setActive('userName');
       if (
         inputValue.length !== 0 &&
         (inputValue.length < 2 || inputValue.length > 16)
@@ -72,7 +69,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ name: inputValue }));
+      dispatch(authOperations.update({ userName: inputValue }));
     } else if (name === 'email') {
       setActive('email');
       if (!inputValue.match(emailRegExp)) {
@@ -160,16 +157,3 @@ export const UserDataItem = ({
     </>
   );
 };
-
-// const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
-//   try {
-//     const result = await api.update(updateData);
-//     return result;
-//   } catch ({ response }) {
-//     return thunkAPI.rejectWithValue(response.data.message);
-//   }
-// });
-
-// const authOperations = {
-//   update,
-// };

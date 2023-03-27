@@ -49,16 +49,6 @@ export const PetsItem = ({ pet, profile }) => {
           </PetsItemDesc>
         </PetsItemInfoBlock>
       </PetsItemWrapper>
-
-      {/* {isModalOpen && (
-        <Modal setShow={toggleModal}>
-          <ModalConfirmDelete
-            _id={_id}
-            onClose={toggleModal}
-            onCloseBtn={toggleModal}
-          />
-        </Modal>
-      )} */}
     </>
   );
 };

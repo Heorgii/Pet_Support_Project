@@ -17,12 +17,6 @@ export const Logout = () => {
         <LogoutIconStyled />
         <LogoutBtnText>Log Out</LogoutBtnText>
       </LogoutBtn>
-
-      {/* {isModalOpen && (
-        <Modal setShow={toggleModal}>
-          <ModalLogout onClose={toggleModal} onCloseBtn={toggleModal} />
-        </Modal>
-      )} */}
     </>
   );
 };

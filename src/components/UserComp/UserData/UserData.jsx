@@ -23,21 +23,12 @@ export const UserData = () => {
 
   let { user } = useAuth();
   let profile = false;
-  // if (props.user) {
-  //   user = props.user;
-  //   profile = true;
-  // }
 
   const changeAvatar = e => {
     const data = new FormData();
     data.append('avatar', e.target.files[0]);
     dispatch(authOperations.update(data));
   };
-
-  // const handleUserDataUpdate = (field, value) => {
-  //   const data = { [field]: value };
-  //   dispatch(authSignUpUser.update(data));
-  // };
 
   return (
     <>
@@ -47,7 +38,6 @@ export const UserData = () => {
             src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto}
             alt="User"
           />
-          {/* {!props.user && ( */}
           <EditCameraForm>
             <EditCameraWrapper>
               <EditPhotoLabel htmlFor="user_photo">
@@ -63,20 +53,18 @@ export const UserData = () => {
               accept=".gif,.jpg,.jpeg,.png"
             />
           </EditCameraForm>
-          {/* )} */}
         </UserDataImgWrapper>
 
         <UserDataList>
           <UserDataItem
             profile={profile}
             label={'Name:'}
-            defaultValue={user.name}
+            defaultValue={user.userName}
             type="text"
-            name="name"
+            name="userName"
             active={active}
             setActive={setActive}
             id="name"
-            // onUpdate={value => handleUserDataUpdate('name', value)}
           />
 
           <UserDataItem
@@ -88,7 +76,6 @@ export const UserData = () => {
             active={active}
             setActive={setActive}
             id="email"
-            // onUpdate={value => handleUserDataUpdate('email', value)}
           />
 
           <UserDataItem
@@ -100,7 +87,6 @@ export const UserData = () => {
             active={active}
             setActive={setActive}
             id="birthday"
-            // onUpdate={value => handleUserDataUpdate('birhday', value)}
           />
 
           <UserDataItem
@@ -112,7 +98,6 @@ export const UserData = () => {
             active={active}
             setActive={setActive}
             id="phone"
-            // onUpdate={value => handleUserDataUpdate('phone', value)}
           />
 
           <UserDataItem
@@ -124,7 +109,6 @@ export const UserData = () => {
             active={active}
             setActive={setActive}
             id="city"
-            // onUpdate={value => handleUserDataUpdate('city', value)}
           />
         </UserDataList>
       </UserDataContainer>
