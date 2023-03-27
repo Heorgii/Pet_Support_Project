@@ -30,7 +30,7 @@ const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   }
 });
 
-const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
+const update = createAsyncThunk('/update', async (updateData, thunkAPI) => {
   try {
     const result = await api.update(updateData);
     return result;
@@ -39,7 +39,7 @@ const update = createAsyncThunk('auth/update', async (updateData, thunkAPI) => {
   }
 });
 
-const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
     return true;
@@ -48,7 +48,7 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-const profile = createAsyncThunk('auth/profile', async (_id, thunkAPI) => {
+const profile = createAsyncThunk('/profile', async (_id, thunkAPI) => {
   try {
     const result = await api.profile(_id);
     return result;
@@ -57,7 +57,7 @@ const profile = createAsyncThunk('auth/profile', async (_id, thunkAPI) => {
   }
 });
 
-const getUsers = createAsyncThunk('auth/getUsers', async (_, thunkAPI) => {
+const getUsers = createAsyncThunk('/getUsers', async (_, thunkAPI) => {
   try {
     const result = await api.getUsers();
     return result;
@@ -66,7 +66,7 @@ const getUsers = createAsyncThunk('auth/getUsers', async (_, thunkAPI) => {
   }
 });
 
-const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
+const addPet = createAsyncThunk('/addPet', async (pet, thunkAPI) => {
   try {
     const result = await api.addPet(pet);
     return result;
@@ -75,7 +75,7 @@ const addPet = createAsyncThunk('auth/addPet', async (pet, thunkAPI) => {
   }
 });
 
-const removePet = createAsyncThunk('auth/removePet', async (_id, thunkAPI) => {
+const removePet = createAsyncThunk('/removePet', async (_id, thunkAPI) => {
   try {
     const result = await api.removePet(_id);
     return { result, _id };

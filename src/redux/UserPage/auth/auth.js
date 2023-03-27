@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3030/api',
-  // baseURL: 'http://petsapi.cyclic.app/api',
+  // baseURL: 'http://localhost:3030/api',
+  baseURL: 'https://petsapi.cyclic.app/api',
 });
 
 const setToken = token => {
@@ -25,13 +25,13 @@ export const login = async user => {
 };
 
 export const logout = async () => {
-  await instance.get('/auth/logout');
+  await instance.get('/logout');
   setToken(null);
   return true;
 };
 
 export const update = async updateData => {
-  const { data } = await instance.patch('/update', updateData);
+  const { data } = await instance.patch('/user', updateData);
   return data;
 };
 
