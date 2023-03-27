@@ -21,10 +21,10 @@ export const NoticesCategoriesList = () => {
   const query = useSelector(queryValue);
   const { BASE_URL } = window.global;
 
-  const  itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
+  const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
 
   useEffect(() => {
-  query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
+    query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
     async function fetchNoticesList() {
       setIsLoading(true);
       await fetch(itemForFetch)

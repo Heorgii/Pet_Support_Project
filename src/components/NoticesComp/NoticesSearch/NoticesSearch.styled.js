@@ -2,7 +2,6 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as iconSearch } from 'images/svg/icon_search.svg';
 
-
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -40,13 +39,13 @@ export const ButtonStyled = styled.button`
 
 export const FormStyled = styled(Form)`
   margin-bottom: 28px;
-margin-left: auto;
-margin-right: auto;
-max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 280px;
   width: 100%;
 
   @media screen and (min-width: 768px) {
-max-width: 608px;
+    max-width: 608px;
 
     margin-bottom: 40px;
   }
@@ -65,7 +64,25 @@ export const FieldStyled = styled(Field)`
   align-items: center;
   letter-spacing: 0.04em;
   color: ${baseColor.colors.inpText};
+
   padding-right: 5px;
+margin-right: 10px;
+
+&:focus {
+
+border-right: 2px solid ${baseColor.colors.inpText};
+}
+
+&:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px ${baseColor.colors.white} inset;
+}
+
+&:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px ${baseColor.colors.white} inset;
+    -webkit-text-fill-color: ${baseColor.colors.inpText};
+}
+
+&:-webkit-box-shadow: 0 0 0px 1000px ${baseColor.colors.white} inset;
 
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration,
@@ -80,8 +97,6 @@ export const FieldStyled = styled(Field)`
   }
 }
 
-
-
   @media screen and (min-width: 768px) {
 
   &::-webkit-search-cancel-button,
@@ -94,7 +109,6 @@ export const FieldStyled = styled(Field)`
     font-size: 20px;
   }
 `;
-
 export const LabelStyled = styled.label`
   display: flex;
   align-items: center;
@@ -130,5 +144,3 @@ export const IconSearch = styled(iconSearch)`
     height: 24px;
   }
 `;
-
-

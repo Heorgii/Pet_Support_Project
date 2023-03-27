@@ -23,8 +23,8 @@ export const NoticesSearch = () => {
         initialValues={{ search: '' }}
         onSubmit={(values, actions) => {
           if (values.search === '') {
-          onInfo('Fill the field!');
-          actions.setSubmitting(false);
+            onInfo('Fill the field!');
+            actions.setSubmitting(false);
           } else {
             dispatch(addQuery(values.search));
             actions.setSubmitting(false);
@@ -40,20 +40,24 @@ export const NoticesSearch = () => {
                 name="search"
                 placeholder="Search"
                 value={values.search}
-onChange={(e) => {
-handleChange(e)
-document.querySelector('#search').addEventListener('input', (e) => {
-e.target.value === '' && dispatch(addQuery(''))
-})
-}}
+                onChange={e => {
+                  handleChange(e);
+                  document
+                    .querySelector('#search')
+                    .addEventListener('input', e => {
+                      e.target.value === '' && dispatch(addQuery(''));
+                    });
+                }}
               />
-              <div><ButtonStyled
-                type="submit"
-                disabled={isSubmitting}
-                onSubmit={handleSubmit}
-              >
-                <IconSearch />
-              </ButtonStyled></div>
+              <div>
+                <ButtonStyled
+                  type="submit"
+                  disabled={isSubmitting}
+                  onSubmit={handleSubmit}
+                >
+                  <IconSearch />
+                </ButtonStyled>
+              </div>
             </LabelStyled>
           </FormStyled>
         )}
