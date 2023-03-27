@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import registerSchema from '../Schemas/schemas';
+import { FaCheck, FaTimes } from 'react-icons/fa';
+import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
   FormRegister,
@@ -14,37 +15,33 @@ import {
   BackButton,
   // PhoneInput,
   ShowPassword,
+  // Icon,
   StyledLink,
   BoxText,
   Background,
   // SpinerWrapper,
 } from './RegisterForm.styled';
 
-// const phoneNumberMask = [
-//   '+',
-//   /\d/,
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-
-//   /\d/,
-//   /\d/,
-// ];
-
 const RegisterForm = () => {
-  const [isShown, setIsShown] = useState(true); //
+  const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const dispatch = useDispatch();
+
+  const onSubmit = ({ values, action }) => {
+    console.log('!!!!!!: ', values);
+    const { name: userName, email, password, phone, location } = values;
+    dispatch(
+      register({
+        userName,
+        email,
+        password,
+        phone,
+        location,
+      }),
+      // hideForm(),
+    );
+};
 
   const showForm = () => {
     setIsShown(false);
@@ -53,45 +50,6 @@ const RegisterForm = () => {
   const hideForm = () => {
     setIsShown(true);
   };
-
-  // const onSubmit = values => {
-  //   const { name, email, password, phone, location } = values;
-  //   dispatch(
-  //     register({
-  //       name,
-  //       email,
-  //       password,
-  //       phone,
-  //       location,
-  //     }),
-  //     hideForm(),
-  //   );
-  // };
-
-  const onSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-
-    const name = form.elements.name;
-    const email = form.elements.email;
-    const password = form.elements.password;
-    const confirmPassword = form.elements.confirmPassword;
-    const phone = form.elements.phone;
-    const location = form.elements.location;
-
-    const newUser = {
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      phone: phone,
-      location: location,
-    }
-
-    dispatch(register(newUser));
-    console.log(newUser);
-    form.reset();
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -102,16 +60,19 @@ const RegisterForm = () => {
       phone: '',
       location: '',
     },
-    validationSchema: registerSchema,
-    onSubmit,
+    validationSchema: schemas.registerSchema,
+    onSubmit: (values, action) => {
+      console.log('form values: ', values);
+      onSubmit({ values, action });
+    },
   });
 
   const isValid =
     (formik.errors.email && formik.touched.email) ||
-      (formik.errors.password && formik.touched.password) ||
-      (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
-      formik.values.email === '' ||
-      formik.values.confirmPassword === ''
+    (formik.errors.password && formik.touched.password) ||
+    (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
+    formik.values.email === '' ||
+    formik.values.confirmPassword === ''
       ? true
       : false;
 
@@ -130,8 +91,10 @@ const RegisterForm = () => {
       {/* </SpinerWrapper> */}
       {/* ) : (  */}
       <FormContainer>
-        <Formik validationSchema={registerSchema}>
-          <FormRegister onSubmit={onSubmit} autoComplete="off"> {/* formik. */}
+        <Formik validationSchema={schemas.registerSchema}>
+          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
+            {' '}
+            {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <>
@@ -140,19 +103,34 @@ const RegisterForm = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    validate={registerSchema.email}
+                    validate={schemas.registerSchema.email}
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
                   />
-
+                  <div>
+                    {/* <Icon> */}
+                      <input
+                        type="text"
+                        value={formik.values.email}
+                        validate={schemas.registerSchema.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {isValid ? (
+                        <FaCheck color="green" />
+                      ) : (
+                        <FaTimes color="red" />
+                      )}
+                      {formik.errors.email && formik.touched.email ? <ErrBox>{formik.errors.email}</ErrBox> : null}
+                    {/* </Icon> */}
+                  </div>
                   {formik.errors.email || formik.touched.email ? (
                     <ErrBox>{formik.errors.email}</ErrBox>
                   ) : null}
                 </div>
               </>
             )}
-
             {isShown && (
               <>
                 <div>
@@ -189,7 +167,7 @@ const RegisterForm = () => {
                     {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
                   {formik.errors.confirmPassword &&
-                    formik.touched.confirmPassword ? (
+                  formik.touched.confirmPassword ? (
                     <ErrBox>{formik.errors.confirmPassword}</ErrBox>
                   ) : null}
                 </div>

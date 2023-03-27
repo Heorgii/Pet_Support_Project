@@ -2,49 +2,26 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-// import schemasLogin from '../LoginForm/ShemaesLogin/schemasLogin';
-import * as Yup from 'yup';
+import schemas from 'components/Schemas/schemas';
 
 import {
-    FormContainer,
-    Title,
-    FormLogin,
-    ShowPassword,
-    Input,
-    Button,
-    ErrorBox,
-    StyledLink,
-    BoxText,
-    Background,
+  FormContainer,
+  Title,
+  FormLogin,
+  ShowPassword,
+  Input,
+  Button,
+  ErrorBox,
+  StyledLink,
+  BoxText,
+  Background,
 } from './LoginForm.styled';
-
-const schemasLogin = Yup.object().shape({
-    email: Yup.string()
-      .matches(/^\s*\S+\s*$/, 'Email must be without spaces')
-      .matches(/\S{7,}/, 'Email too short (min 7 symbols)')
-      .matches(
-        /^(?=.{7,63}$)([^а-яА-Я]+@([a-zA-Z]+\.)+[a-zA-z]{2,3})$/g,
-        'Invalid email',
-      )
-      .matches(
-        /^[^-]+((.*[^-]))*@([a-zA-Z]+\.)+[a-zA-z]{2,3}$/g,
-        'Dashes should only be inside email',
-      )
-      .required('Require'),
-    password: Yup.string()
-      .min(7, 'Password too short (min 7)')
-      .max(32, 'Password too long (max 32)')
-      .matches(/^\s*\S+\s*$/, 'Password must be without spaces')
-      .required('Require'),
-    });
+import { logIn } from 'redux/auth/operations';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
-
   const dispatch = useDispatch();
-  const register = useState(false);
-
 
   const hideForm = () => {
     setIsShown(true);
@@ -53,7 +30,7 @@ export const LoginForm = () => {
   const onSubmit = values => {
     const { email, password } = values;
     dispatch(
-      register({
+      logIn({
         email,
         password,
       }),
@@ -65,7 +42,7 @@ export const LoginForm = () => {
       email: '',
       password: '',
     },
-    validationSchema: schemasLogin,
+    validationSchema: schemas.schemasLogin,
     onSubmit,
   });
 
@@ -82,7 +59,7 @@ export const LoginForm = () => {
   return (
     <>
       <FormContainer>
-        <Formik validationSchema={schemasLogin}>
+        <Formik validationSchema={schemas.schemasLogin}>
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
             <Title>Login</Title>
             {isShown && (
@@ -92,7 +69,7 @@ export const LoginForm = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    validate={schemasLogin.email}
+                    validate={schemas.schemasLogin.email}
                     onChange={formik.handleChange}
                     value={formik.values.email}
                     onBlur={formik.handleBlur}
@@ -128,7 +105,7 @@ export const LoginForm = () => {
             )}
 
             {isShown && (
-              <Button type="button" disabled={isValid}>
+              <Button type="submit" disabled={isValid}>
                 Login
               </Button>
             )}
@@ -142,7 +119,6 @@ export const LoginForm = () => {
         </Formik>
         <Background></Background>
       </FormContainer>
-
     </>
   );
 };

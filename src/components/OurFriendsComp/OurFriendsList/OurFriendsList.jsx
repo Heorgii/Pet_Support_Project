@@ -5,7 +5,7 @@ export const OurFriendsList = ({ friends }) => {
   return (
     <List>
       {friends.map(friend => (
-        <OurFriendsItem friend={friend} key={friend.id} />
+        <OurFriendsItem friend={friend} key={friend._id} />
       ))}
     </List>
   );

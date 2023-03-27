@@ -1,4 +1,4 @@
-import data from './pets.json';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
@@ -37,6 +37,35 @@ export const ModalNotices = () => {
     closeModalWindow(e);
   };
 
+  const [data, setData] = useState([]);
+  const [, setIsLoading] = useState(false);
+  const [, setError] = useState(null);
+  // const [status, setStatus] = useState('idle');
+
+  const { BASE_URL } = window.global;
+  let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function fetchNoticesList() {
+      await fetch(itemForFetch)
+        .then(res => {
+          setIsLoading(false);
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(new Error(`Can't find anything`));
+        })
+        .then(value => setData(value))
+        .catch(error => {
+          setError(error);
+        });
+    }
+    if (modal.id !== '') {
+      fetchNoticesList();
+    }
+  }, [itemForFetch, modal.id]);
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -59,7 +88,7 @@ export const ModalNotices = () => {
                   </tr>
                   <tr>
                     <TdTable>Birthday:</TdTable>
-                    <TdTable2>{data.date}</TdTable2>
+                    <TdTable2>{data.birthday}</TdTable2>
                   </tr>
                   <tr>
                     <TdTable>Breed:</TdTable>

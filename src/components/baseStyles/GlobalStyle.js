@@ -4,6 +4,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 
 export const GlobalStyle = createGlobalStyle`
  body{
+  height: 100vh;
    margin: 0;
    font-family: -apple-system, BlinkMacSystemFont, 'Manrope Medium', 'Manrope Bold', 'Manrope SemiBold', 
    'Manrope Regular', 'Poppins Regular','Poppins Bold', 'Inter Regular' ,'Inter Medium', 'Inter Bold',
@@ -36,17 +37,20 @@ export const GlobalStyle = createGlobalStyle`
     width: 100vw;
     height: 100vh;
     opacity: 1;
+    visibility: visible;
     background-color: #0000006b;
-    transition: opacity .3s linear 50ms, visibility .3s linear 50ms;
+    transition: opacity .3s linear 50ms, visibility .3s linear 50ms; 
     position: fixed;
     top: 0;
     left: 0;
-    display: block;
 }
 #popup-root.is-hide{
   pointer-events: none;
+  /* display: none; */
   opacity: 0;
   visibility: hidden;
+  width: 0;
+  height: 0;
 }
   /* body {
   margin: 0;

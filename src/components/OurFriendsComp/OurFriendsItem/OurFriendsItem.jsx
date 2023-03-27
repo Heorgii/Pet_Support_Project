@@ -16,7 +16,7 @@ import defaultImg from 'images/defaultPets.png';
 
 export const OurFriendsItem = ({ friend }) => {
   const {
-    id,
+    _id,
     title,
     url,
     addressUrl,
@@ -36,9 +36,8 @@ export const OurFriendsItem = ({ friend }) => {
   const hrefPhone = `tel:${phone}`;
 
   // gets user time and compare with workDays
-  const userDay = new Date().getDay() - 1;
+  const userDay = [6, 0, 1, 2, 3, 4, 5][new Date().getDay()];
   const userHours = new Date().getHours();
-  // const userHours = 20;
 
   useEffect(() => {
     try {
@@ -67,8 +66,10 @@ export const OurFriendsItem = ({ friend }) => {
   }, [userDay, userHours, workDays]);
 
   return (
-    <Item key={id} id={id}>
-      <Title href={url}>{title}</Title>
+    <Item key={_id} id={_id}>
+      <Title href={url} target="blank">
+        {title}
+      </Title>
       <Info>
         {imageUrl ? (
           <Image
@@ -144,7 +145,7 @@ export const OurFriendsItem = ({ friend }) => {
 OurFriendsItem.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      _id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
       addressUrl: PropTypes.string.isRequired,

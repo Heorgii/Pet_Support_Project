@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import { ReactComponent as icon } from '../../../images/svg/icon_plus.svg';
+import { ReactComponent as icon } from 'images/svg/icon_plus.svg';
 
 export const ButtonStyled = styled.button`
   position: absolute;
   top: 100px;
   right: 0px;
-  z-index: 99;
+  z-index: 44;
 
   display: flex;
   align-items: center;
@@ -38,6 +38,20 @@ export const ButtonStyled = styled.button`
   cursor: pointer;
 
   color: ${baseColor.colors.white};
+  transition: all 500ms ease;
+
+  stroke: ${baseColor.colors.white};
+  fill: ${baseColor.colors.white};
+
+  &:hover {
+    transition: all 500ms ease;
+
+    color: ${baseColor.colors.orangeLight};
+    background: ${baseColor.colors.mainBg};
+    border: 2px solid ${baseColor.colors.orangeLight};
+    fill: ${baseColor.colors.orangeLight};
+    stroke: ${baseColor.colors.orangeLight};
+  }
 
   &:focus {
     outline: none;
@@ -59,6 +73,18 @@ export const ButtonStyled = styled.button`
 
     color: ${baseColor.colors.inpText};
 
+    &:hover {
+      color: ${baseColor.colors.inpText};
+      background: transparent;
+      border: none;
+      fill: ${baseColor.colors.orangeLight};
+      stroke: ${baseColor.colors.orangeLight};
+      & div {
+        background: ${baseColor.colors.white};
+        outline: 2px solid ${baseColor.colors.orangeLight};
+      }
+    }
+
     & div {
       display: flex;
       align-items: center;
@@ -70,6 +96,12 @@ export const ButtonStyled = styled.button`
       border-radius: 50%;
 
       background-color: ${baseColor.colors.orangeLight};
+      &:hover {
+        fill: ${baseColor.colors.orangeLight};
+        stroke: ${baseColor.colors.orangeLight};
+        background: ${baseColor.colors.white};
+        outline: 2px solid ${baseColor.colors.orangeLight};
+      }
     }
   }
 `;
@@ -78,6 +110,7 @@ export const PlusIcon = styled(icon)`
   width: 32px;
   height: 32px;
   display: block;
+
   @media screen and (min-width: 768px) {
     width: 24px;
     height: 24px;

@@ -10,11 +10,12 @@ import desktopBackground from '../../images/register/bg-register-desktop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
-  @media screen and (min-width: 768px) {
-    padding-top: 170px;
+  @media(min-width: 767px) and (max-width: 1279px) {
+    padding-top: 168px;
   }
+
   @media screen and (min-width: 1280px) {
-    padding-top: 50px;
+    padding-top: 44px;
   }
 `;
 export const Title = styled.h1`
@@ -70,6 +71,21 @@ export const ShowPassword = styled.span`
     height: inherit;
   }
 `;
+// export const Icon = styled(Icon)`
+//   display: inline-block;
+//   position: absolute;
+//   width: 20px;
+//   height: 20px;
+//   right: 15px;
+//   top: 50%;
+//   transform: translateY(-80%);
+//   color: grey;
+//   cursor: pointer;
+//   svg {
+//     width: inherit;
+//     height: inherit;
+//   }
+// `;
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;

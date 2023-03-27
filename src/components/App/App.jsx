@@ -5,16 +5,18 @@ import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
+// import initAxios from 'utils/initAxios';
 
-const HomePage = lazy(() => import('../../pages/Home'));
-const OurFriendsPage = lazy(() => import('../../pages/OurFriends'));
-const NoticesPage = lazy(() => import('../../pages/Notices'));
-const NewsPage = lazy(() => import('../../pages/News'));
-const UserPage = lazy(() => import('../../pages/User'));
-const RegisterPage = lazy(() => import('../../pages/Register'));
-const LoginPage = lazy(() => import('../../pages/Login'));
+const HomePage = lazy(() => import('pages/Home'));
+const OurFriendsPage = lazy(() => import('pages/OurFriends'));
+const NoticesPage = lazy(() => import('pages/Notices'));
+const NewsPage = lazy(() => import('pages/News'));
+const UserPage = lazy(() => import('pages/User'));
+const RegisterPage = lazy(() => import('pages/Register'));
+const LoginPage = lazy(() => import('pages/Login'));
 
 export const App = () => {
+  // initAxios();
   //  як буде правцювати бекєнд потрібно оновити дані юзера
   // const dispatch = useDispatch();
   // const user = useSelector(selectUser)
@@ -28,7 +30,7 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="/register"
+            path="register"
             element={
               <RestrictedRoute
                 redirectTo="/user"
@@ -37,37 +39,34 @@ export const App = () => {
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
               <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
             }
           />
+          <Route path="news" element={<NewsPage />} />
+
+          <Route path="notices/:id" element={<NoticesPage />} />
           <Route
-            path="/news"
+            path="notices/favorite"
             element={
-              <RestrictedRoute redirectTo="/news" component={<NewsPage />} />
+              <PrivateRoute
+                redirectTo="/register"
+                component={<NoticesPage />}
+              />
             }
           />
-
           <Route
-            path="/notices"
+            path="notices/own"
             element={
-              <RestrictedRoute
-                redirectTo="/notices"
+              <PrivateRoute
+                redirectTo="/register"
                 component={<NoticesPage />}
               />
             }
           />
 
-          <Route
-            path="/friends"
-            element={
-              <RestrictedRoute
-                redirectTo="/friends"
-                component={<OurFriendsPage />}
-              />
-            }
-          />
+          <Route path="friends" element={<OurFriendsPage />} />
 
           {/* added kadulin */}
           <Route path="api-docs" element={<ApiDocs />} />
@@ -83,5 +82,6 @@ export const App = () => {
         </Route>
       </Routes>
     </HelmetProvider>
+
   );
 };

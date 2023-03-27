@@ -1,13 +1,21 @@
+import PropTypes from 'prop-types';
 import { NewsListItem } from './NewsListItem/NewsListItem';
 import { List } from './NewsList.styled';
-import newsItem from '../news.json';
 
-export const NewsList = () => {
+export const NewsList = ({ news }) => {
+  const sortedNewsList = news.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+
   return (
     <List>
-      {newsItem.map(newsItem => (
-        <NewsListItem newsItem={newsItem} key={newsItem.id} />
+      {sortedNewsList.map(newsItem => (
+        <NewsListItem newsItem={newsItem} key={newsItem._id} />
       ))}
     </List>
   );
+};
+
+NewsList.propTypes = {
+  news: PropTypes.array.isRequired,
 };

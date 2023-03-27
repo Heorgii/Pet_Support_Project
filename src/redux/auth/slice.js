@@ -14,8 +14,8 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.data.user;
-        state.token = action.payload.data.user.authToken;
+        // state.user = action.payload.data.user;
+        // state.token = action.payload.data.user.authToken;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
@@ -24,8 +24,15 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.data.user;
-        state.token = action.payload.data.user.authToken;
+        const {userName, email, location, phone} = action.payload.data
+        const user = {
+          userName,
+          email,
+          location,
+          phone
+        }
+        state.user = user;
+        state.token = action.payload.data.authToken;
         state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, (state, action) => {

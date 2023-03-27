@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3030/api';
+axios.defaults.baseURL = `https://petsapi.cyclic.app/api`;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -12,13 +12,14 @@ const clearAuthHeader = () => {
 };
 
 export const register = createAsyncThunk(
-  'auth/register',
+  '/auth/signup',
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/auth/signup', credentials);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.data.authToken);
       return res.data;
     } catch (error) {
+      console.log(error)
       alert(`Something wrong`, error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -26,12 +27,12 @@ export const register = createAsyncThunk(
 );
 
 export const logIn = createAsyncThunk(
-  'auth/login',
+  '/auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/auth/login', credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const {data} = await axios.post('/auth/signin', credentials);
+      setAuthHeader(data.data.authToken);
+      return data;
     } catch (error) {
       alert(`Something wrong`, error.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -39,7 +40,9 @@ export const logIn = createAsyncThunk(
   },
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logOut = createAsyncThunk(
+  '/auth/logout', 
+  async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
     clearAuthHeader();
@@ -49,7 +52,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+  '/auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
