@@ -11,10 +11,9 @@ import waveRightDesk from 'images/hero/wave2Full.png';
 import heart from 'images/hero/heart.png';
 
 const HeroSection = styled.section`
+  height: 100%;
   @media screen and (max-width: 767.9px) {
     min-height: 500px;
-    // height: 100%;
-    height: calc(100vh - 58px);
     background: url(${DogMobile}), url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 280px auto, 620px auto;
@@ -23,7 +22,6 @@ const HeroSection = styled.section`
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
     min-height: 1000px;
-    height: calc(100vh - 73px);
     background: url(${DogTab}), url(${waveTabFull});
     background-repeat: no-repeat;
     background-size: 636px auto, 1400px auto;
@@ -35,8 +33,8 @@ const HeroContainer = styled(Container)`
   @media screen and (min-width: 1280px) {
     justify-content: start;
     align-items: start;
-    min-height: 768px;
-    height: calc(100vh - 64px);
+    min-height: 650px;
+    height: 100%;
     background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk}), url(${heart});
     background-repeat: no-repeat;

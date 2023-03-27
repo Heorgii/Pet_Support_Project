@@ -6,6 +6,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 16px 20px 0px 20px;
   margin: 0 auto;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     padding: 24px 32px 0px 32px;
