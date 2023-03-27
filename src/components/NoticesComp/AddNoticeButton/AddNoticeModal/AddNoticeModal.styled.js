@@ -737,7 +737,7 @@ export const OptionFirst = styled.option`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: rgba(27,27,27,0.6);
+  color: rgba(27, 27, 27, 0.6);
 
   background: ${baseColor.colors.mainBg};
 

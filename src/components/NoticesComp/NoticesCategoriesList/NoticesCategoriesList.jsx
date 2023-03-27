@@ -8,8 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useSearchParams } from 'react-router-dom';
 
 export const NoticesCategoriesList = () => {
   const [data, setData] = useState([]);
@@ -17,13 +16,15 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   const routeParams = useParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const query = useSelector(queryValue);
   const { BASE_URL } = window.global;
-  let itemForFetch = `${BASE_URL}/notices/${routeParams.id}${
-    query && '?findtext=' + query
-  }`;
+
+  const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
 
   useEffect(() => {
+    query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
     async function fetchNoticesList() {
       setIsLoading(true);
       await fetch(itemForFetch)
@@ -40,7 +41,7 @@ export const NoticesCategoriesList = () => {
         });
     }
     fetchNoticesList();
-  }, [itemForFetch]);
+  }, [itemForFetch, query, setSearchParams]);
 
   return (
     <>
