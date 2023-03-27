@@ -70,8 +70,9 @@ export const AddNoticeModal = () => {
   async function postNotice(values) {
     setIsLoading(true);
     try {
-      console.log(values);
-      const { code } = await fetchNotice('/pets', values);
+      const category = values.category
+      delete values.category
+      const { code } = await fetchNotice(`/notices/${category}`, values);
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
       }
@@ -81,6 +82,7 @@ export const AddNoticeModal = () => {
       setIsLoading(false);
     }
   }
+
   const {
     ready,
     suggestions: { data, status },
@@ -199,8 +201,8 @@ export const AddNoticeModal = () => {
                             type="radio"
                             id="radioOne"
                             name="category"
-                            value="lost/found"
-                            checked={values.category === 'lost/found'}
+                            value="lost-found"
+                            checked={values.category === 'lost-found'}
                           />
                           <LabelRadio htmlFor="radioOne">lost/found</LabelRadio>
 
@@ -208,8 +210,8 @@ export const AddNoticeModal = () => {
                             type="radio"
                             id="radioTwo"
                             name="category"
-                            value="in good hands"
-                            checked={values.category === 'in good hands'}
+                            value="for-free"
+                            checked={values.category === 'for-free'}
                           />
                           <LabelRadio htmlFor="radioTwo">
                             in good hands
