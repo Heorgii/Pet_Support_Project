@@ -16,9 +16,8 @@ async function fetchNotice(pathParams, body) {
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
     headers: { 'Content-Type': 'multipart/form-data' },
-    data: {...body},
+    data: JSON.stringify(body),
   });
-
   return await axiosInstance.post();
 }
 
