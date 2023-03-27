@@ -30,10 +30,10 @@ const RegisterForm = () => {
 
   const onSubmit = ({ values, action }) => {
     console.log('!!!!!!: ', values);
-    const { name, email, password, phone, location } = values;
+    const { name: userName, email, password, phone, location } = values;
     dispatch(
       register({
-        name,
+        userName,
         email,
         password,
         phone,
@@ -92,7 +92,7 @@ const RegisterForm = () => {
       {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
-          <FormRegister onSubmit={onSubmit} autoComplete="off">
+          <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
             {' '}
             {/* formik. */}
             <Title>Register</Title>
