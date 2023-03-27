@@ -25,7 +25,7 @@ export const NewsListItem = ({ newsItem }) => {
         </Text>
         {date !== null ? (
           <Dates>
-            {new Date(date).toLocaleDateString('en-AU')}
+            {new Date(date).toLocaleDateString()}
             <Link target="_blank" href={url}>
               Read More
             </Link>
