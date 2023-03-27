@@ -65,11 +65,25 @@ export const App = () => {
               />
             }
           />
-
-          <Route path="friends" element={<OurFriendsPage />} />
+          <Route
+            path="friends"
+            element={
+              <RestrictedRoute
+                redirectTo="friends"
+                component={<OurFriendsPage />}
+              />
+            }
+          />
+          {/* <Route path="friends" element={<OurFriendsPage />} /> */}
 
           {/* added kadulin */}
-          <Route path="api-docs" element={<ApiDocs />} />
+          <Route
+            path="api-docs"
+            element={
+              <RestrictedRoute redirectTo="api-docs" component={<ApiDocs />} />
+            }
+          />
+          {/* <Route path="api-docs" element={<ApiDocs />} /> */}
 
           <Route
             path="user"
@@ -82,6 +96,5 @@ export const App = () => {
         </Route>
       </Routes>
     </HelmetProvider>
-
   );
 };
