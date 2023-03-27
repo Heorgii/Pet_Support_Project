@@ -8,7 +8,7 @@ import {
   IconSearch,
 } from './NoticesSearch.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
-import Notiflix from 'notiflix';
+import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch } from 'react-redux';
 import { addQuery } from 'redux/query/slice';
 
@@ -21,17 +21,17 @@ export const NoticesSearch = () => {
 
       <Formik
         initialValues={{ search: '' }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, actions) => {
           if (values.search === '') {
-            Notiflix.Notify.warning('Fill the field!');
-            setSubmitting(false);
+          onInfo('Fill the field!');
+          actions.setSubmitting(false);
           } else {
             dispatch(addQuery(values.search));
-            setSubmitting(false);
+            actions.setSubmitting(false);
           }
         }}
       >
-        {({ isSubmitting, values, handleSubmit }) => (
+        {({ isSubmitting, values, handleSubmit, handleChange }) => (
           <FormStyled onSubmit={handleSubmit}>
             <LabelStyled>
               <FieldStyled
@@ -40,6 +40,12 @@ export const NoticesSearch = () => {
                 name="search"
                 placeholder="Search"
                 value={values.search}
+onChange={(e) => {
+handleChange(e)
+document.querySelector('#search').addEventListener('input', (e) => {
+e.target.value === '' && dispatch(addQuery(''))
+})
+}}
               />
               <div><ButtonStyled
                 type="submit"
