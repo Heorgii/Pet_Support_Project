@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = `http://petsapi.cyclic.app/api`;
+axios.defaults.baseURL = `https://petsapi.cyclic.app/api`;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,9 +16,10 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/auth/signup', credentials);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.data.authToken);
       return res.data;
     } catch (error) {
+      console.log(error)
       alert(`Something wrong`, error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -29,9 +30,9 @@ export const logIn = createAsyncThunk(
   '/auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/auth/login', credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const {data} = await axios.post('/auth/signin', credentials);
+      setAuthHeader(data.data.authToken);
+      return data;
     } catch (error) {
       alert(`Something wrong`, error.message);
       return thunkAPI.rejectWithValue(error.message);

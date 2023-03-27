@@ -105,7 +105,7 @@ export const LoginForm = () => {
             )}
 
             {isShown && (
-              <Button type="button" disabled={isValid}>
+              <Button type="submit" disabled={isValid}>
                 Login
               </Button>
             )}
