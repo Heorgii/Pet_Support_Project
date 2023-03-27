@@ -1,9 +1,9 @@
 import React from 'react';
 import { RegistrationButton } from './RegistrationBTN.styled';
 
-export const RegistrationBTN = onClick => {
+export const RegistrationBTN = ({ toggleMenu }) => {
   return (
-    <RegistrationButton to="/register" onClick={onClick}>
+    <RegistrationButton to="/register" onClick={toggleMenu}>
       Registration
     </RegistrationButton>
   );
