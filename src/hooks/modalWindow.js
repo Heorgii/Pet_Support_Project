@@ -1,4 +1,4 @@
-const closeByEsc = e => {
+export const closeByEsc = e => {
   if (e.code === 'Escape') {
     closeModalWindow(e);
   }

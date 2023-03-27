@@ -31,7 +31,7 @@ import {
   OptionFirst,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModalWindow } from 'hooks/modalWindow';
+import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
@@ -156,10 +156,14 @@ export const AddNoticeModal = () => {
                 imageUrl: '',
                 comments: '',
               }}
-              onSubmit={values =>
-                !formQueue
-                  ? postNotice(values) && navigate('/notices/own')
-                  : toggleForm()
+              onSubmit={values =>{
+                if(!formQueue) {
+postNotice(values);
+closeModalWindow();
+dispatch(cleanModal());
+window.removeEventListener('keydown', closeByEsc);
+navigate('/notices/own');
+} else {toggleForm(); values.imageUrl = ''}}
               }
               enableReinitialize={true}
               validationSchema={
