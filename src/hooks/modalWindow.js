@@ -10,6 +10,7 @@ export function openModalWindow(e, item) {
   window.addEventListener('keydown', closeByEsc);
 }
 
+
 export function closeModalWindow() {
   document.querySelector('#popup-root').classList.add('is-hide');
   window.removeEventListener('keydown', closeByEsc);
