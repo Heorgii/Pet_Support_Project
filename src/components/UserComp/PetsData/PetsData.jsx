@@ -9,7 +9,7 @@ import {
 } from './PetsData.styled';
 
 export const PetsData = props => {
-  const { pets } = useAuth();
+  let { pets } = useAuth();
   let profile = false;
   if (props && props.pets) {
     pets = props.pets;
