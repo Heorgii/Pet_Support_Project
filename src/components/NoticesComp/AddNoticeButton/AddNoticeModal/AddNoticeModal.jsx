@@ -67,20 +67,14 @@ export const AddNoticeModal = () => {
 
   function setImage(e) {
     const input = document.querySelector('.file');
-    const preview = document.querySelector('.preview');
     const reader = new FileReader();
     e.target.style = '';
 
     reader.onload = function () {
       e.target.style = `background-image: url(${reader.result}); background-size: contain; background-position: center; background-repeat: no-repeat;`;
-
-      preview.src = reader.result;
     };
     if (input.files[0]) {
       reader.readAsDataURL(input.files[0]);
-      preview.style = 'opacity:1;';
-    } else {
-      preview.src = '';
     }
   }
 
@@ -389,15 +383,6 @@ export const AddNoticeModal = () => {
                           )}
                           <LabelItem htmlFor="imageUrl">
                             <span>Load the pet’s image</span>
-                            <img
-                              className="preview"
-                              src=""
-                              alt="preview..."
-                              style={{
-                                opacity: '0',
-                                transition: 'all 500ms ease',
-                              }}
-                            />
                             {errors.imageUrl && touched.imageUrl ? (
                               <Error>{errors.imageUrl}</Error>
                             ) : null}
