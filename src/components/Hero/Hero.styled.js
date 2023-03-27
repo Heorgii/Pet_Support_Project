@@ -13,7 +13,8 @@ import heart from 'images/hero/heart.png';
 const HeroSection = styled.section`
   @media screen and (max-width: 767.9px) {
     min-height: 500px;
-    height: 100%;
+    // height: 100%;
+    height: calc(100vh - 58px);
     background: url(${DogMobile}), url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 280px auto, 620px auto;
