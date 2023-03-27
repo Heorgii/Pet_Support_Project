@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const ContainerCategoryBtn = styled.div`
@@ -16,28 +17,44 @@ const ContainerCategoryBtn = styled.div`
     width: 585px;
   }
 `;
-const BtnCategory = styled.button`
-  cursor: pointer;
+const BtnCategory = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 38px;
+  cursor: pointer;
   border-radius: 40px;
   border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
-  margin: 6px 12px 6px 0;
+  padding: 0 28px;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
-  padding: 0 28px;
 
-  &:hover {
+  &.active {
+    color: ${baseColor.colors.white};
+    background-color: ${baseColor.colors.orangeLight};
+  }
+`;
+const StyledLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  /* border: 2px solid ${baseColor.colors.orangeLight};
+  background-color: ${baseColor.colors.white}; */
+  margin: 6px 12px 6px 0;
+
+  &:hover,
+  &:focus {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
     outline: none;
   }
 `;
-export { BtnCategory, ContainerCategoryBtn };
+export { BtnCategory, ContainerCategoryBtn, StyledLi };

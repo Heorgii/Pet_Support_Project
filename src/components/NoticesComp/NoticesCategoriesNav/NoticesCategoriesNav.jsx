@@ -1,37 +1,38 @@
 import { useAuth } from 'hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+
 import {
   BtnCategory,
   ContainerCategoryBtn,
+  StyledLi,
 } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
-  let navigate = useNavigate();
 
-  const handleClick = href => {
-    navigate(href);
-  };
+  const navItemsPublick = [
+    { href: '/notices/lost-found', text: 'lost/find' },
+    { href: '/notices/for-free', text: 'in good hand' },
+    { href: '/notices/sell', text: 'sell' },
+  ];
+  const navItemsPrivate = [
+    { href: '/notices/favorite', text: 'fivorite pets' },
+    { href: '/notices/own', text: 'my pet' },
+  ];
+
   return (
     <ContainerCategoryBtn>
-      <BtnCategory onClick={() => handleClick('/notices/lost-found')}>
-        lost/find
-      </BtnCategory>
-      <BtnCategory onClick={() => handleClick('/notices/for-free')}>
-        in good hand
-      </BtnCategory>
-      <BtnCategory onClick={() => handleClick('/notices/sell')}>
-        sell
-      </BtnCategory>
+      {navItemsPublick.map(({ href, text }) => (
+        <StyledLi key={href}>
+          <BtnCategory to={href}>{text}</BtnCategory>
+        </StyledLi>
+      ))}
       {isLoggedIn && (
         <>
-          <BtnCategory onClick={() => handleClick('/notices/favorite')}>
-            fivorite pets
-          </BtnCategory>
-          <BtnCategory onClick={() => handleClick('/notices/own')}>
-            {' '}
-            my pet
-          </BtnCategory>
+          {navItemsPrivate.map(({ href, text }) => (
+            <StyledLi key={href}>
+              <BtnCategory to={href}>{text}</BtnCategory>
+            </StyledLi>
+          ))}
         </>
       )}
     </ContainerCategoryBtn>
