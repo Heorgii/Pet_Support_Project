@@ -38,13 +38,11 @@ import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
-import {
-  onFetchError,
-  onInfo,
-} from 'components/helpers/Messages/NotifyMessages';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
+import { setImage } from 'utils/setimage';
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
@@ -68,41 +66,13 @@ export const AddNoticeModal = () => {
     setFormQueue(!formQueue);
   }
 
-  function setImage(e) {
-    const input = document.querySelector('.file');
-    if (input.files[0] && input.files[0].size >= 2048000) {
-      input.value = '';
-      e.target.style = '';
-      onInfo('File size must be less than 2Mb!');
-      return;
-    }
-    if (
-      input.files[0] &&
-      !['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(
-        input.files[0].type.split('/')[1],
-      )
-    ) {
-      input.value = '';
-      e.target.style = '';
-      onInfo('File type must be only image!');
-      return;
-    }
-    const reader = new FileReader();
-    e.target.style = '';
-
-    reader.onload = function () {
-      e.target.style = `background-image: url(${reader.result}); background-size: contain; background-position: center; background-repeat: no-repeat;`;
-    };
-    if (input.files[0]) {
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
 
   async function postNotice(values) {
     setIsLoading(true);
     try {
-      console.log(values);
-      const { code } = await fetchNotice('/pets', values);
+      const category = values.category
+      delete values.category
+      const { code } = await fetchNotice(`/notices/${category}`, values);
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
       }
@@ -112,6 +82,7 @@ export const AddNoticeModal = () => {
       setIsLoading(false);
     }
   }
+
   const {
     ready,
     suggestions: { data, status },
@@ -230,8 +201,8 @@ export const AddNoticeModal = () => {
                             type="radio"
                             id="radioOne"
                             name="category"
-                            value="lost/found"
-                            checked={values.category === 'lost/found'}
+                            value="lost-found"
+                            checked={values.category === 'lost-found'}
                           />
                           <LabelRadio htmlFor="radioOne">lost/found</LabelRadio>
 
@@ -239,8 +210,8 @@ export const AddNoticeModal = () => {
                             type="radio"
                             id="radioTwo"
                             name="category"
-                            value="in good hands"
-                            checked={values.category === 'in good hands'}
+                            value="for-free"
+                            checked={values.category === 'for-free'}
                           />
                           <LabelRadio htmlFor="radioTwo">
                             in good hands
@@ -295,9 +266,9 @@ export const AddNoticeModal = () => {
                             onFocus={e => {
                               e.target.setAttribute('type', 'date');
                             }}
-                            onBlur={e => {
-                              e.target.setAttribute('type', 'text');
-                            }}
+                            // onBlur={e => {
+                            //   e.target.setAttribute('type', 'text');
+                            // }}
                             type="text"
                             id="birthday"
                             name="birthday"
