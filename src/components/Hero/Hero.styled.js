@@ -2,52 +2,54 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
 import waveMobile from 'images/hero/waveMobileFull.png';
-import DogFull from 'images/hero/dogFull-X1.png';
+import DogMobile from 'images/hero/dogMobile-X1.png';
+import DogTab from 'images/hero/dogTab-X1.png';
+import DogDesk from 'images/hero/dogDesk-X1.png';
 import waveTabFull from 'images/hero/waveTabFull.png';
 import waveLeftDesk from 'images/hero/wave1-desk.png';
 import waveRightDesk from 'images/hero/wave2Full.png';
 import heart from 'images/hero/heart.png';
 
 const HeroSection = styled.section`
-  display: flex;
-  height: 100vh;
-  justify-content: start;
-  align-items: start;
-
   @media screen and (max-width: 767.9px) {
-    background-image: url(${DogFull}), url(${waveMobile});
+    min-height: 500px;
+    // height: 100%;
+    height: calc(100vh - 58px);
+    background: url(${DogMobile}), url(${waveMobile});
     background-repeat: no-repeat;
-
-    background-size: 330px 564px, 620px 540px;
-    background-position: top 180px left 50%, top 80px left 25%;
+    background-size: 280px auto, 620px auto;
+    background-position: bottom 0px left 50%, bottom -20px left 25%;
   }
+
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    background-image: url(${DogFull}), url(${waveTabFull});
+    min-height: 1000px;
+    height: calc(100vh - 73px);
+    background: url(${DogTab}), url(${waveTabFull});
     background-repeat: no-repeat;
-    background-size: 636px 1142px, 1300px 1150px;
-    background-position: top 450px left 50%, top 140px left 30%;
+    background-size: 636px auto, 1400px auto;
+    background-position: bottom 0px left 50%, bottom -150px left 30%;
   }
 `;
 
 const HeroContainer = styled(Container)`
-  height: 100vh;
-  justify-content: start;
-  align-items: start;
   @media screen and (min-width: 1280px) {
-    background-image: url(${DogFull}), url(${waveRightDesk}),
+    justify-content: start;
+    align-items: start;
+    min-height: 768px;
+    height: calc(100vh - 64px);
+    background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk}), url(${heart});
     background-repeat: no-repeat;
-    background-size: 524px 918px, 425px 393px, 1178px 450px, 91px 89px;
-    background-position: top 150px left 92%, top 375px right 0px,
-      top 318px left 0px, top 80px left 650px;
+    background-size: 524px auto, 425px 393px, 1178px 450px, 91px 89px;
+    background-position: bottom 0px left 92%, bottom 0px right 0px,
+      bottom 0px left 0px, top 80px left 650px;
   }
 `;
 
 const HeroTitle = styled.h1`
-  // display: flex;
-  // outline: 2px solid green;
   margin-top: 60px;
   text-align: left;
+  margin-right: auto;
 
   font-family: Manrope;
   font-style: normal;
