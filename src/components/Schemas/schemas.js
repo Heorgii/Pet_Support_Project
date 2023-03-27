@@ -85,13 +85,13 @@ const noticeSchemaSecond = Yup.object().shape({
     // )
     .required('Location is Required!'),
   imageUrl: Yup.mixed()
-// .nullable()
+    // .nullable()
     // .test("FILE_SIZE", "Uploaded file is too big.", 
     //     value => !value || (value && value.size <= 1000000))
     // .test("File_format", "Uploaded file has unsupported format.", 
-        // value => {!value || (value && ['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(value.type)); console.log(value)})
-.required('Image is Required!')
-,
+    // value => {!value || (value && ['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(value.type)); console.log(value)})
+    .required('Image is Required!')
+  ,
   comments: Yup.string()
     .min(8, 'Too Short!')
     .max(120, 'Too Long!')
@@ -106,12 +106,34 @@ const noticeSchemaSecondPrice = noticeSchemaSecond.concat(Yup.object().shape({
     .required('Price is Required!'),
 }));
 
+const addPetsUser = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(16, 'Too Long!')
+    .required('Name is Required!'),
+
+  birthday: Yup.date().required('BirthDay is Required!'),
+
+  breed: Yup.string()
+    .min(2, 'Too Short!')
+    .max(16, 'Too Long!')
+    .required('Breed is Required!'),
+
+  imageUrl: Yup.mixed(),
+
+  comments: Yup.string()
+    .min(8, 'Too Short!')
+    .max(120, 'Too Long!')
+    .required('Comments are Required!'),
+});
+
 const schemas = {
   registerSchema,
   schemasLogin,
   noticeSchemaFirst,
   noticeSchemaSecond,
   noticeSchemaSecondPrice,
+  addPetsUser,
 };
 
 export default schemas;

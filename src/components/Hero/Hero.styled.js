@@ -35,7 +35,7 @@ const HeroContainer = styled(Container)`
   @media screen and (min-width: 1280px) {
     justify-content: start;
     align-items: start;
-    min-height: 768px;
+    min-height: 650;
     height: calc(100vh - 64px);
     background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk}), url(${heart});
