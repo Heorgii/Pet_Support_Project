@@ -1,5 +1,7 @@
 import { PetsList } from './PetsList/PetsList';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from '../../../redux/UserPage/auth/useAuth';
+
 import {
   AddPetDiv,
   AddPetWrapper,
@@ -8,13 +10,14 @@ import {
 } from './PetsData.styled';
 
 export const PetsData = props => {
-  let { pets } = useAuth();
+  const { pets } = useAuth();
   let profile = false;
-  if (props.pets) {
+  if (props && props.pets) {
     pets = props.pets;
     profile = true;
   }
 
+  console.log(pets);
   return (
     <>
       <AddPetWrapper>

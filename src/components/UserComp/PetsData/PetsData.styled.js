@@ -31,16 +31,16 @@ export const PetDataWrapper = styled.div`
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 32px;
+  padding-bottom: 32px;
 `;
 
 export const PetDataInfo = styled.h2`
   color: ${baseColor.colors.black};
   font-family: Manrope, sans-serif;
-  font-size: 32px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.37;
   letter-spacing: 0.04em;

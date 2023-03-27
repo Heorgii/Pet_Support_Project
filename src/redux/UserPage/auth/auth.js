@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const instance = axios.create({
   baseURL: 'http://localhost:3030/api',
+  // baseURL: 'http://petsapi.cyclic.app/api',
 });
 
 const setToken = token => {
@@ -12,13 +13,13 @@ const setToken = token => {
 };
 
 export const register = async user => {
-  const { data } = await instance.post('/auth/register', user);
+  const { data } = await instance.post('/register', user);
   setToken(data.token);
   return data.user;
 };
 
 export const login = async user => {
-  const { data } = await instance.post('/auth/login', user);
+  const { data } = await instance.post('/login', user);
   setToken(data.token);
   return data;
 };
@@ -30,22 +31,22 @@ export const logout = async () => {
 };
 
 export const update = async updateData => {
-  const { data } = await instance.patch('/auth/update', updateData);
+  const { data } = await instance.patch('/update', updateData);
   return data;
 };
 
 export const profile = async _id => {
-  const { data } = await instance.get(`/auth/profile/${_id}`);
+  const { data } = await instance.get(`/profile/${_id}`);
   return data;
 };
 
 export const getUsers = async () => {
-  const { data } = await instance.get('/auth/users');
+  const { data } = await instance.get('/user');
   return data;
 };
 
 export const addPet = async pet => {
-  const { data } = await instance.post('/pets/add', pet);
+  const { data } = await instance.post('/pets', pet);
   return data.pet;
 };
 

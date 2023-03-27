@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 // import { useAuth } from 'hooks/useAuth';
@@ -17,16 +17,16 @@ import {
   UserDataList,
 } from './UserData.styled';
 
-export const UserData = props => {
+export const UserData = () => {
   const [active, setActive] = useState('');
   const dispatch = useDispatch();
 
   let { user } = useAuth();
   let profile = false;
-  if (props.user) {
-    user = props.user;
-    profile = true;
-  }
+  // if (props.user) {
+  //   user = props.user;
+  //   profile = true;
+  // }
 
   const changeAvatar = e => {
     const data = new FormData();
@@ -47,23 +47,23 @@ export const UserData = props => {
             src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto}
             alt="User"
           />
-          {!props.user && (
-            <EditCameraForm>
-              <EditCameraWrapper>
-                <EditPhotoLabel htmlFor="user_photo">
-                  <EditCameraStyle />
-                  <span>Edit photo</span>
-                </EditPhotoLabel>
-              </EditCameraWrapper>
-              <EditPhotoInput
-                type="file"
-                name="edit photo"
-                id="user_photo"
-                onChange={changeAvatar}
-                accept=".gif,.jpg,.jpeg,.png"
-              />
-            </EditCameraForm>
-          )}
+          {/* {!props.user && ( */}
+          <EditCameraForm>
+            <EditCameraWrapper>
+              <EditPhotoLabel htmlFor="user_photo">
+                <EditCameraStyle />
+                <span>Edit photo</span>
+              </EditPhotoLabel>
+            </EditCameraWrapper>
+            <EditPhotoInput
+              type="file"
+              name="edit photo"
+              id="user_photo"
+              onChange={changeAvatar}
+              accept=".gif,.jpg,.jpeg,.png"
+            />
+          </EditCameraForm>
+          {/* )} */}
         </UserDataImgWrapper>
 
         <UserDataList>

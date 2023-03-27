@@ -51,6 +51,7 @@ const authSlice = createSlice({
         state.pets = payload.pets;
         state.token = payload.token;
         state.isError = null;
+        console.log(state.pets);
       })
       .addCase(authOperations.login.rejected, (state, { payload }) => {
         state.user = initialState.user;
