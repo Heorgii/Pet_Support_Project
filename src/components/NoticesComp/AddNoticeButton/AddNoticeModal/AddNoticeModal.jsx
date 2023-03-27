@@ -26,7 +26,9 @@ import {
   LabelItemTextArea,
   FieldItemTextArea,
   Error,
-// Li,
+  Li,
+  Option,
+  OptionFirst,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow } from 'hooks/modalWindow';
@@ -37,8 +39,9 @@ import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import usePlacesAutocomplete from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
+import usePlacesAutocomplete from 'use-places-autocomplete';
+import useOnclickOutside from 'react-cool-onclickoutside';
+import { breedsValue } from 'redux/breeds/selectors';
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
@@ -49,6 +52,7 @@ export const AddNoticeModal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
+  const breeds = useSelector(breedsValue);
 
   const onClickBackdrop = e => {
     e.preventDefault();
@@ -95,41 +99,44 @@ export const AddNoticeModal = () => {
     }
   }
   const {
-    // ready,
-    // suggestions: { data },//status
-    // setValue,
+    ready,
+    suggestions: { data, status },
+    setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
-    requestOptions: {
-
-    },
+    requestOptions: {},
     debounce: 300,
   });
-
 
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
 
-  // const handleInput = (e) => {
-  //   setValue(e.target.value);
-  // };
+  const handleInput = e => {
+    setValue(e.target.value);
+  };
 
+  const renderSuggestions = setFieldValue =>
+    data.map(suggestion => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
 
-  // const renderSuggestions = (setFieldValue) =>
-  //   data.map((suggestion) => {
-  //     const {
-  //       place_id,
-  //       structured_formatting: { main_text, secondary_text },
-  //     } = suggestion;
-
-  //     return (
-  //       <Li key={place_id} onClick={() => {setFieldValue('location', suggestion.description);
-  //     clearSuggestions();}}>
-  //         {main_text}{', '}{secondary_text}
-  //       </Li>
-  //     );
-  //   });
+      return (
+        <Li
+          key={place_id}
+          onClick={() => {
+            setFieldValue('location', suggestion.description);
+            clearSuggestions();
+          }}
+        >
+          {main_text}
+          {', '}
+          {secondary_text}
+        </Li>
+      );
+    });
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
@@ -178,6 +185,7 @@ export const AddNoticeModal = () => {
                 setFieldValue,
               }) => (
                 <FormStyled
+                  autoComplete="off"
                   onSubmit={handleSubmit}
                   onChange={e => {
                     handleChange(e);
@@ -283,12 +291,24 @@ export const AddNoticeModal = () => {
                           </LabelItem>
 
                           <FieldItem
+                            as="select"
                             type="text"
                             id="breed"
                             name="breed"
                             placeholder="Type breed"
-                            value={values.breed}
-                          />
+                            defaultValue={values.breed}
+                          >
+                            {
+                              <OptionFirst first value="unselected">
+                                Select breed type
+                              </OptionFirst>
+                            }
+                            {breeds.map(breed => (
+                              <Option key={breed._id} value={breed['name-en']}>
+                                {breed['name-en']}
+                              </Option>
+                            ))}
+                          </FieldItem>
                         </FieldList>
                       </div>
                     ) : (
@@ -338,12 +358,15 @@ export const AddNoticeModal = () => {
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-
+                            disabled={!ready}
                             onChange={e => {
                               handleChange(e);
-                              setFieldValue(values.location, 'hello');
+                              handleInput(e);
                             }}
                           />
+                          {status === 'OK' && (
+                            <ul>{renderSuggestions(setFieldValue)}</ul>
+                          )}
                           {values.category === 'sell' ? (
                             <div>
                               <LabelItem htmlFor="price">
@@ -412,13 +435,7 @@ export const AddNoticeModal = () => {
                       </div>
                     )}
                     <div className="btns">
-                      <ButtonFirst
-                        className="btn__submit"
-                        type="submit"
-                        onClick={
-                          !formQueue ? e => onClickBackdrop(e) : toggleForm
-                        }
-                      >
+                      <ButtonFirst className="btn__submit" type="submit">
                         {formQueue ? 'Next' : 'Done'}
                       </ButtonFirst>
                       <ButtonSecond
