@@ -73,7 +73,7 @@ const noticeSchemaFirst = Yup.object().shape({
   birthday: Yup.date().required('BirthDay is Required!'),
   breed: Yup.string()
     .min(2, 'Too Short!')
-    .max(24, 'Too Long!')
+    .max(34, 'Too Long!')
     .required('Breed is Required!'),
 });
 const noticeSchemaSecond = Yup.object().shape({
@@ -84,7 +84,14 @@ const noticeSchemaSecond = Yup.object().shape({
     //   'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
     // )
     .required('Location is Required!'),
-  imageUrl: Yup.string().required('Image is Required!'),
+  imageUrl: Yup.mixed()
+// .nullable()
+    // .test("FILE_SIZE", "Uploaded file is too big.", 
+    //     value => !value || (value && value.size <= 1000000))
+    // .test("File_format", "Uploaded file has unsupported format.", 
+        // value => {!value || (value && ['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(value.type)); console.log(value)})
+.required('Image is Required!')
+,
   comments: Yup.string()
     .min(8, 'Too Short!')
     .max(120, 'Too Long!')
