@@ -1,6 +1,5 @@
 import React from 'react';
 import { HeroSection, HeroContainer, HeroTitle } from './Hero.styled';
-
 export const Hero = () => {
   return (
     <HeroSection>
