@@ -3,14 +3,11 @@ import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNa
 import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';
 import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { Wrapper, WrapperNav } from './NoticesComp.styled';
-import { useState } from 'react';
 
 export const NoticesComp = () => {
-  const [search, setSearch] = useState('');
-
   return (
     <Wrapper>
-      <NoticesSearch data={{ search, setSearch }} />
+      <NoticesSearch />
       <WrapperNav>
         <NoticesCategoriesNav />
         <AddNoticeButton />

@@ -38,7 +38,10 @@ import schemas from 'components/Schemas/schemas';
 import { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import {
+  onFetchError,
+  onInfo,
+} from 'components/helpers/Messages/NotifyMessages';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
@@ -67,6 +70,23 @@ export const AddNoticeModal = () => {
 
   function setImage(e) {
     const input = document.querySelector('.file');
+    if (input.files[0] && input.files[0].size >= 2048000) {
+      input.value = '';
+      e.target.style = '';
+      onInfo('File size must be less than 2Mb!');
+      return;
+    }
+    if (
+      input.files[0] &&
+      !['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(
+        input.files[0].type.split('/')[1],
+      )
+    ) {
+      input.value = '';
+      e.target.style = '';
+      onInfo('File type must be only image!');
+      return;
+    }
     const reader = new FileReader();
     e.target.style = '';
 
@@ -156,15 +176,18 @@ export const AddNoticeModal = () => {
                 imageUrl: '',
                 comments: '',
               }}
-              onSubmit={values =>{
-                if(!formQueue) {
-postNotice(values);
-closeModalWindow();
-dispatch(cleanModal());
-window.removeEventListener('keydown', closeByEsc);
-navigate('/notices/own');
-} else {toggleForm(); values.imageUrl = ''}}
-              }
+              onSubmit={values => {
+                if (!formQueue) {
+                  postNotice(values);
+                  closeModalWindow();
+                  dispatch(cleanModal());
+                  window.removeEventListener('keydown', closeByEsc);
+                  navigate('/notices/own');
+                } else {
+                  toggleForm();
+                  values.imageUrl = '';
+                }
+              }}
               enableReinitialize={true}
               validationSchema={
                 formQueue
@@ -397,8 +420,10 @@ navigate('/notices/own');
                             type="file"
                             id="imageUrl"
                             name="imageUrl"
+                            accept=".jpeg,.jpg,.png,.gif"
                             onChange={e => {
-                              handleChange(e, setImage(e));
+                              handleChange(e);
+                              setImage(e);
                             }}
                           />
                           <LabelItemTextArea htmlFor="comments">
