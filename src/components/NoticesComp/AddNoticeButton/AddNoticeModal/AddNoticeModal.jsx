@@ -397,9 +397,10 @@ navigate('/notices/own');
                             type="file"
                             id="imageUrl"
                             name="imageUrl"
+accept=".jpeg,.jpg,.png,.gif"
                             onChange={e => {
-                              handleChange(e, setImage(e));
-                            }}
+                              handleChange(e); setImage(e);}
+                            }
                           />
                           <LabelItemTextArea htmlFor="comments">
                             <span>Comments</span>
