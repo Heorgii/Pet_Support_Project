@@ -29,7 +29,7 @@ import schemas from "components/Schemas/schemas";
 
 export const ModalAddsPet = () => {
     const dispatch = useDispatch();
-    const modal = useSelector(modalComponent);
+    // const modal = useSelector(modalComponent);
 
     const closeModalForItemPet = e => {
         e.preventDefault();
