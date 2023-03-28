@@ -18,9 +18,13 @@ import {
     ErrBox,
     FieldItemFile,
     ImgTitle,
-    InfoList, InfoList2, InfoListInput,
+    InfoList, 
+    InfoList2, 
+    InfoListInput,
     InfoListLable,
-    InfoListText, InfoListTextArea, PetsItemTitle,
+    InfoListText, 
+    InfoListTextArea, 
+    PetsItemTitle,
     UserPetContainerItem
 } from "./ModalAddsPet.styled";
 import { MdClose } from "react-icons/md";
@@ -72,7 +76,7 @@ export const ModalAddsPet = () => {
     // }
 
     const formik = useFormik({
-        initialVal: {
+        initialValues: {
             name: '',
             birthday: '',
             breed: '',
@@ -102,9 +106,9 @@ export const ModalAddsPet = () => {
             {isLoading ? onLoading() : onLoaded()}
             {error && onFetchError('Whoops, something went wrong')}
             <Formik
-                initialValues={{
-                    imageUrl: '',
-                }}
+                // initialValues={{
+                //     imageUrl: '',
+                // }}
             >
                 {({
                     handleChange,
@@ -130,7 +134,7 @@ export const ModalAddsPet = () => {
                                                     id="name"
                                                     name="name"
                                                     onChange={formik.handleChange}
-                                                    value={formik.values.name}
+                                                    // value={formik.values.}
                                                     onBlur={formik.handleBlur}
                                                     placeholder="Type name pet" />
                                                 {formik.errors.name || formik.touched.name ? (
