@@ -17,6 +17,8 @@ import {
   Background,
   IconValid,
   IconInValid,
+  ErrorBox,
+  Div,
 } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
 
@@ -70,7 +72,7 @@ export const LoginForm = () => {
             <Title>Login</Title>
             {isShown && (
               <>
-                <div>
+                <Div>
                   <Input
                     style={{
                       borderColor: showAccentValidateInput(
@@ -91,16 +93,16 @@ export const LoginForm = () => {
                   ) : (
                     <IconInValid color={baseColor.colors.error} />
                   )}
-                  {/* {formik.errors.email || formik.touched.email ? (
+                  {formik.errors.email || formik.touched.email ? (
                     <ErrorBox>{formik.errors.email}</ErrorBox>
-                  ) : null} */}
-                </div>
+                  ) : null}
+                </Div>
               </>
             )}
 
             {isShown && (
               <>
-                <div>
+                <Div>
                   <Input
                     style={{
                       borderColor: showAccentValidateInput(
@@ -119,10 +121,10 @@ export const LoginForm = () => {
                   <ShowPassword onClick={showPassword}>
                     {!showPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
-                  {/* {formik.errors.password && formik.touched.password ? (
+                  {formik.errors.password && formik.touched.password ? (
                     <ErrorBox>{formik.errors.password}</ErrorBox>
-                  ) : null} */}
-                </div>
+                  ) : null}
+                </Div>
               </>
             )}
 
