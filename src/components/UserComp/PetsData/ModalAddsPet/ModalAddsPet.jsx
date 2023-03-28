@@ -1,6 +1,6 @@
 import { closeModalWindow } from "hooks/modalWindow";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";//, useSelector
+import { useDispatch } from "react-redux";//, useSelector
 import { cleanModal } from "redux/modal/operation";
 // import { modalComponent } from "redux/modal/selectors";
 // import ReactDOM from 'react-dom';
