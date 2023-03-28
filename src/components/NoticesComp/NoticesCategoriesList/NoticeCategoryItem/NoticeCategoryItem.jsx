@@ -25,10 +25,10 @@ import {
 import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
-
-  const { user } = useAuth();//isLoggedIn
+  const { user } = useAuth(); //isLoggedIn
   const dispatch = useDispatch();
-  console.log(data.owner, user._id);
+  let id = '';
+  user == null ? (id = 1) : (id = user._id);
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -91,7 +91,7 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
           >
             Learn more
           </BtnLearnMore>
-          {data.owner === user._id && (
+          {data.owner === id && (
             <BtnDelete>
               Delete{' '}
               <img
