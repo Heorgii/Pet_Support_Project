@@ -13,7 +13,7 @@ export const PetsItem = ({ pet, profile }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
 
-  const { name, birthday, breed, photoUrl, comments } = pet;
+  const { name, date, breed, imageUrl, comments } = pet;
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -24,7 +24,7 @@ export const PetsItem = ({ pet, profile }) => {
   return (
     <>
       <PetsItemWrapper>
-        <PetsItemImg src={photoUrl} alt={name} />
+        <PetsItemImg src={imageUrl} alt={name} />
         <PetsItemInfoBlock>
           {!profile && (
             <PetsItemDeleteBtn type="button" onClick={toggleModal}>
@@ -37,7 +37,7 @@ export const PetsItem = ({ pet, profile }) => {
           </PetsItemDesc>
           <PetsItemDesc>
             <PetsItemSpan>Date of birth:</PetsItemSpan>
-            {birthday}
+            {date}
           </PetsItemDesc>
           <PetsItemDesc>
             <PetsItemSpan>Breed:</PetsItemSpan>

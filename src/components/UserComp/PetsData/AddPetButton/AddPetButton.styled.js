@@ -45,9 +45,9 @@ export const AddPetDesc = styled.p`
   }
 
   @media (max-width: 767px) {
-    font-size: 68px;
+    font-size: 12px;
     color: ${baseColor.colors.white};
-    margin: 100px;
+    margin: 0px;
   }
 `;
 
