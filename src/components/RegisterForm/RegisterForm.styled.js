@@ -112,7 +112,6 @@ export const Input = styled(Field)`
   background: ${baseColor.colors.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 16px;
   &:focus,
   &:hover {
     border-color: ${baseColor.colors.orange};
@@ -233,21 +232,32 @@ export const BackButton = styled.button`
     font-size: 20px;
   }
 `;
-// export const ErrBox = styled.div`
-//   position: absolute;
-//   white-space: nowrap;
-//   bottom: 0px;
-//   left: 15px;
-//   color: #e53e3e;
-//   font-family: 'Manrope';
-//   font-size: 12px;
-//   font-style: normal;
-//   line-height: 1.4;
-//   letter-spacing: 0.03em;
-//   @media screen and (min-width: 768px) {
-//     left: 32px;
-//   }
-// `;
+
+export const ErrBox = styled.div`
+  position: relative;
+  white-space: nowrap;
+  bottom: 0px;
+  left: 15px;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  margin-bottom: -16px;
+
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  }
+`;
+
+export const Div = styled.div`
+margin-bottom: 32px;
+  &:not(:first-child){
+    margin-bottom: 16;
+  }
+`;
+
 export const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
