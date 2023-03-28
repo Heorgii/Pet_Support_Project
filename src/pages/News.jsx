@@ -11,38 +11,44 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import { Pagination } from 'utils/paginate';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('search') ?? '';
-  const pathParams = `/news?search=${searchQuery}`;
 
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [total, setTotal] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const perPage = 2;
+
+  function changePage(newPage) {
+    setPage(newPage);
+  }
+
+  const [search, setSearch] = useState('');
+  const handleFormSubmit = searchQuery => {
+    setPage(Number(1));
+    setSearch(searchQuery);
+  };
   useEffect(() => {
-    if (searchQuery.trim() === '') {
-      (async () => {
-        setIsLoading(true);
-        try {
-          const { data } = await fetchData('/news');
-          setNews(data);
-          if (!data) {
-            return onFetchError('Whoops, something went wrong');
-          }
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsLoading(false);
-        }
-      })();
-    }
+    setSearchParams(
+      search.trim() !== ''
+        ? `search=${search}&perPage=${perPage}&page=${page}`
+        : `perPage=${perPage}&page=${page}`,
+    );
+
     (async () => {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(pathParams);
-        setNews(data);
+        const { data } = await fetchData(`/news?${searchParams}`);
+        setNews(data.data);
+        setTotal(data.total);
+        setTotalPage(data.totalPage);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -52,19 +58,10 @@ const News = () => {
         setIsLoading(false);
       }
     })();
-  }, [pathParams, searchQuery]);
+  }, [page, search, searchParams, setSearchParams]);
 
-  const handleFormSubmit = searchQuery => {
-    updateQueryString(searchQuery);
-  };
-
-  const updateQueryString = search => {
-    const nextParams = search !== '' ? { search } : {};
-    setSearchParams(nextParams);
-  };
 
   const reset = () => {
-    setSearchParams('');
     setError(null);
     setIsLoading(false);
   };
@@ -78,13 +75,24 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
-          {news.length === 0 && !isLoading && (
-            <Title as="h3" size="14px">
-              Whoops! Can't find anything...
-            </Title>
+          <NewsSearch sendSearch={handleFormSubmit} reset={reset}/> 
+          {!news &&
+            !isLoading && ( //&& news.length === 0
+              <Title as="h3" size="14px">
+                Whoops! Can't find anything...
+              </Title>
+            )}
+          {news.length > 0 && !error && (
+            <>
+              <NewsList news={news} />
+              <Pagination
+                perPage={perPage}
+                total={total}
+                totalPage={totalPage}
+                changePage={changePage}
+              />
+            </>
           )}
-          {news.length > 0 && !error && <NewsList news={news} />}
         </Container>
       </Section>
     </>
