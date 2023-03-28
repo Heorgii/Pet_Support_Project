@@ -28,6 +28,12 @@ export const UserPage = () => {
     return data.pets;
   };
 
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [isModalOpen]);
+
   useEffect(() => {
     async function fetchPets() {
       if (isLoading) return;
@@ -41,7 +47,7 @@ export const UserPage = () => {
   console.log('Users PetsList', petsList);
 
   return (
-    <div>
+    <>
       <UserPageWrapper>
         <UserDataWrapper>
           <UserDataTitle title="My information:" />
@@ -59,7 +65,7 @@ export const UserPage = () => {
         </UserAboutWrapper>
       </UserPageWrapper>
       <ModalAddsPet />
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,11 @@
 import { closeModalWindow } from 'hooks/modalWindow';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; //, useSelector
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import ReactDOM from 'react-dom';
 import {
+  BackDrop,
   ButtonBackText,
   ButtonBox,
   ButtonFirst,
@@ -51,7 +52,7 @@ export const ModalAddsPet = () => {
   }
 
   const [isLoading, setIsLoading] = useState(false);
-  const [setError] = useState(null); //error,
+  const [error, setError] = useState(null);
   const [isShown, setIsShown] = useState(true);
 
   const showForm = () => {
@@ -88,6 +89,7 @@ export const ModalAddsPet = () => {
       name: '',
       data: '',
       breed: '',
+      // imageUrl: '',
       comments: '',
     },
     validationSchema: schemas.addPetsUser,
@@ -106,10 +108,13 @@ export const ModalAddsPet = () => {
       ? true
       : false;
 
+  //  ReactDOM.createPortal
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
+      // <BackDrop onClick={e => closeModalForItemPet(e)}>
       <FormDiv onClick={e => onClickBackdrop(e)}>
         {isLoading ? onLoading() : onLoaded()}
+        {/* {error && onFetchError('Whoops, something went wrong')} */}
         <div onClick={e => e.stopPropagation()}>
           <Formik
             initialValues={{

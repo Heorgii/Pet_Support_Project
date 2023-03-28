@@ -1,4 +1,5 @@
 import { PetsList } from './PetsList/PetsList';
+import { useAuth } from '../../../redux/UserPage/auth/useAuth';
 
 import {
   AddPetDiv,
