@@ -8,26 +8,26 @@ import {
   PetDataWrapper,
 } from './PetsData.styled';
 
-export const PetsData = props => {
-  let { pets } = useAuth();
-  let profile = false;
-  if (props && props.pets) {
-    pets = props.pets;
-    profile = true;
-  }
+export const PetsData = ({ petsList }) => {
+  // let { pets } = useAuth();
+  // let profile = false;
+  // if (props && props.pets) {
+  //   pets = props.pets;
+  //   profile = true;
+  // }
 
-  console.log(pets);
+  console.log(petsList);
   return (
     <>
       <AddPetWrapper>
-        {!profile && <AddPetDiv></AddPetDiv>}
+        <AddPetDiv></AddPetDiv>
 
-        {pets.length === 0 ? (
+        {petsList.length === 0 ? (
           <PetDataWrapper>
             <PetDataInfo>Unfortunately there is no one here yet.</PetDataInfo>
           </PetDataWrapper>
         ) : (
-          <PetsList pets={pets} profile={profile} />
+          <PetsList petsList={petsList} />
         )}
       </AddPetWrapper>
     </>

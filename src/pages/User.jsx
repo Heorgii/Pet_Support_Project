@@ -13,18 +13,34 @@ import {
   MyPetTitle,
 } from './UserPage.styled';
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
+import axios from 'axios';
+// import { async } from 'q';
 // import { cleanModal } from 'redux/modal/operation';
 
 export const UserPage = () => {
-  const [toShow] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [petsList, setPetsList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
+
+  const getPets = async () => {
+    const pets = await axios('/user');
+    setIsLoading(true);
+    return pets;
+  };
 
   useEffect(() => {
     if (!isModalOpen) {
       document.body.style.overflow = '';
     }
   }, [isModalOpen]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    setPetsList(() => getPets());
+  }, [isLoading]);
+
+  console.log('Users PetsList', petsList);
 
   return (
     <>
@@ -41,7 +57,7 @@ export const UserPage = () => {
             <MyPetTitle>My pets:</MyPetTitle>
             <AddPetButton onOpenAddsPet={toggleModal} />
           </TopContainer>
-          {toShow === 'pets' && <PetsData />}
+          <PetsData petsList={petsList} />
         </UserAboutWrapper>
       </UserPageWrapper>
       {isModalOpen && (
