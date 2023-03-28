@@ -26,10 +26,6 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           setSubmitting(false);
         }
       }}
-      setSearchQuery
-      onChange={values => {
-        setSearchQuery(values.search);
-      }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
         <FormStyled onSubmit={handleSubmit}>
@@ -40,12 +36,20 @@ export const NewsSearch = ({ onSubmit, reset }) => {
               name="search"
               placeholder="Search"
               value={values.search}
+              onChange={e => {
+                // debugger;
+                handleChange(e);
+                document
+                  .querySelector('#search')
+                  .addEventListener('input', e => {
+                    e.target.value.trim() === '' && onSubmit('');
+                  });
+              }}
             />
             <ButtonStyled
               type="submit"
               disabled={isSubmitting}
               onSubmit={handleSubmit}
-              onChange={handleChange}
             >
               {values.search === searchQuery && values.search !== '' ? (
                 <IconSearch hidden />

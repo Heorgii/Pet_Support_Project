@@ -68,11 +68,7 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch
-            onSubmit={handleFormSubmit}
-            reset={reset}
-            onChange={getData}
-          />
+          <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
           {news.length === 0 && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
