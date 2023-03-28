@@ -32,7 +32,7 @@ export const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         const { userName, email, location, phone, favorites } =
           action.payload.data;
-          
+
         const user = {
           userName,
           email,
@@ -59,15 +59,15 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        const {userName, email, location, phone} = action.payload.data.user
-      
+        const { userName, email, location, phone } = action.payload.data.user;
+
         const user = {
           userName,
           email,
           location,
-          phone
-        }
-        console.log(user)
+          phone,
+        };
+        console.log(user);
         state.user = user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
