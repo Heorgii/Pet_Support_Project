@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'; //useSelector
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import { FaCheck, FaTimes } from 'react-icons/fa';
+// import { FaCheck, FaTimes } from 'react-icons/fa';
+import { baseColor } from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
@@ -11,14 +12,14 @@ import {
   Input,
   Button,
   Title,
-  ErrBox,
   BackButton,
   // PhoneInput,
   ShowPassword,
-  // Icon,
   StyledLink,
   BoxText,
   Background,
+  IconValid,
+  IconInValid,
   // SpinerWrapper,
 } from './RegisterForm.styled';
 
@@ -41,7 +42,7 @@ const RegisterForm = () => {
       }),
       // hideForm(),
     );
-};
+  };
 
   const showForm = () => {
     setIsShown(false);
@@ -83,6 +84,10 @@ const RegisterForm = () => {
     setShowConfirmPass(!showConfirmPass);
   };
 
+  const showAccentValidateInput = (hasValue, isValide) => {
+    return !hasValue ? null : isValide ? '#E2001A' : '#3CBC81';
+  };
+
   return (
     <>
       {/* {loading ? (
@@ -93,41 +98,41 @@ const RegisterForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            {' '}
             {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <>
                 <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    validate={schemas.registerSchema.email}
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                    onBlur={formik.handleBlur}
-                  />
                   <div>
-                    {/* <Icon> */}
-                      <input
-                        type="text"
-                        value={formik.values.email}
-                        validate={schemas.registerSchema.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {isValid ? (
-                        <FaCheck color="green" />
-                      ) : (
-                        <FaTimes color="red" />
-                      )}
-                      {formik.errors.email && formik.touched.email ? <ErrBox>{formik.errors.email}</ErrBox> : null}
-                    {/* </Icon> */}
+                    <Input
+                      style={{
+                        borderColor: showAccentValidateInput(
+                          formik.values.email,
+                          formik.errors.email,
+                        ),
+                      }}
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                      value={formik.values.email}
+                      validate={schemas.registerSchema.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+
+                    {!formik.values.email ? null : !formik.errors.email ? (
+                      <IconValid color={baseColor.colors.success} />
+                    ) : (
+                      <IconInValid color={baseColor.colors.error} />
+                    )}
+                    {/* {formik.errors.email && formik.touched.email ? (
+                      <ErrBox>{formik.errors.email}</ErrBox>
+                    ) : null} */}
                   </div>
-                  {formik.errors.email || formik.touched.email ? (
+                  {/* Підказка валідації */}
+                  {/* {formik.errors.email || formik.touched.email ? (
                     <ErrBox>{formik.errors.email}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
@@ -135,6 +140,12 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+                    style={{
+                      borderColor: showAccentValidateInput(
+                        formik.values.password,
+                        formik.errors.password,
+                      ),
+                    }}
                     name="password"
                     type={showPass ? 'text' : 'password'}
                     placeholder="Password"
@@ -146,9 +157,9 @@ const RegisterForm = () => {
                   <ShowPassword onClick={showPassword}>
                     {!showPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
-                  {formik.errors.password && formik.touched.password ? (
+                  {/* {formik.errors.password && formik.touched.password ? (
                     <ErrBox>{formik.errors.password}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
@@ -156,6 +167,12 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+                    style={{
+                      borderColor: showAccentValidateInput(
+                        formik.values.confirmPassword,
+                        formik.errors.confirmPassword,
+                      ),
+                    }}
                     name="confirmPassword"
                     type={showConfirmPass ? 'text' : 'password'}
                     placeholder="Confirm Password"
@@ -166,10 +183,10 @@ const RegisterForm = () => {
                   <ShowPassword onClick={showConfirmPassword}>
                     {!showConfirmPass ? <ImEyeBlocked /> : <ImEye />}
                   </ShowPassword>
-                  {formik.errors.confirmPassword &&
+                  {/* {formik.errors.confirmPassword &&
                   formik.touched.confirmPassword ? (
                     <ErrBox>{formik.errors.confirmPassword}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
@@ -182,6 +199,12 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+                    style={{
+                      borderColor: showAccentValidateInput(
+                        formik.values.name,
+                        formik.errors.name,
+                      ),
+                    }}
                     name="name"
                     type="text"
                     placeholder="Name"
@@ -189,10 +212,14 @@ const RegisterForm = () => {
                     value={formik.values.name}
                     onBlur={formik.handleBlur}
                   />
-
-                  {formik.errors.name && formik.touched.name ? (
+                  {!formik.values.name ? null : !formik.errors.name ? (
+                    <IconValid color={baseColor.colors.success} />
+                  ) : (
+                    <IconInValid color={baseColor.colors.error} />
+                  )}
+                  {/* {formik.errors.name && formik.touched.name ? (
                     <ErrBox>{formik.errors.name}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
@@ -200,6 +227,12 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+                    style={{
+                      borderColor: showAccentValidateInput(
+                        formik.values.location,
+                        formik.errors.location,
+                      ),
+                    }}
                     name="location"
                     type="text"
                     placeholder="Location, region"
@@ -207,10 +240,14 @@ const RegisterForm = () => {
                     value={formik.values.location}
                     onBlur={formik.handleBlur}
                   />
-
-                  {formik.errors.location && formik.touched.location ? (
+                  {!formik.values.location ? null : !formik.errors.location ? (
+                    <IconValid color={baseColor.colors.success} />
+                  ) : (
+                    <IconInValid color={baseColor.colors.error} />
+                  )}
+                  {/* {formik.errors.location && formik.touched.location ? (
                     <ErrBox>{formik.errors.location}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
@@ -218,6 +255,12 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+                    style={{
+                      borderColor: showAccentValidateInput(
+                        formik.values.phone,
+                        formik.errors.phone,
+                      ),
+                    }}
                     // mask={phoneNumberMask}
                     id="phone"
                     type="phone"
@@ -227,10 +270,14 @@ const RegisterForm = () => {
                     onBlur={formik.handleBlur}
                     name="phone"
                   />
-
-                  {formik.errors.phone && formik.touched.phone ? (
+                  {!formik.values.phone ? null : !formik.errors.phone ? (
+                    <IconValid color={baseColor.colors.success} />
+                  ) : (
+                    <IconInValid color={baseColor.colors.error} />
+                  )}
+                  {/* {formik.errors.phone && formik.touched.phone ? (
                     <ErrBox>{formik.errors.phone}</ErrBox>
-                  ) : null}
+                  ) : null} */}
                 </div>
               </>
             )}
