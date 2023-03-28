@@ -53,7 +53,7 @@ export const App = () => {
 
           <Route path="notices/:id" element={<NoticesPage />} />
           <Route
-            path="notices/favorite"
+            path="notices/:favorite"
             element={
               <PrivateRoute
                 redirectTo="/register"
@@ -62,7 +62,7 @@ export const App = () => {
             }
           />
           <Route
-            path="notices/own"
+            path="notices/:own"
             element={
               <PrivateRoute
                 redirectTo="/register"
