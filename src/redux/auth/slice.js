@@ -74,6 +74,7 @@ export const authSlice = createSlice({
         };
         console.log(user);
         state.user = user;
+
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

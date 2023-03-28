@@ -13,7 +13,7 @@ import {
   MyPetTitle,
 } from './UserPage.styled';
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
-import { cleanModal } from 'redux/modal/operation';
+// import { cleanModal } from 'redux/modal/operation';
 
 export const UserPage = () => {
   const [toShow] = useState();

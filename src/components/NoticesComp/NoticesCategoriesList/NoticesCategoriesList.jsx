@@ -16,7 +16,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { addFavorite } from 'redux/UserPage/auth/auth';
 
 export const NoticesCategoriesList = () => {
-  const { isLoggedIn, user, isRefreshing, favorites } = useAuth();
+  const { isLoggedIn, favorites } = useAuth();// user, isRefreshing,
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
