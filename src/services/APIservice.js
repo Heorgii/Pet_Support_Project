@@ -51,4 +51,4 @@ fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice, fetchPetsUser};
+export { fetchData, fetchNotice, fetchPetsUser };

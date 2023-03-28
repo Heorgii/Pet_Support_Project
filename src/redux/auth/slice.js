@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  addFavorite,
+  removeFavorite,
+} from './operations';
 
 const initialState = {
   user: {
@@ -82,6 +89,34 @@ export const authSlice = createSlice({
         state.user = initialState.user;
         state.isLoggedIn = false;
         state.isRefreshing = false;
+      })
+      .addCase(addFavorite.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(addFavorite.fulfilled, (state, { payload }) => {
+        state.user.favorites = [...state.user.favorites, payload];
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(addFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
+      .addCase(removeFavorite.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(removeFavorite.fulfilled, (state, { payload }) => {
+        state.user.favorites = state.user.favorites.filter(
+          _id => _id !== payload,
+        );
+        state.isLoading = false;
+        state.isError = null;
+      })
+      .addCase(removeFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
       });
   },
 });
