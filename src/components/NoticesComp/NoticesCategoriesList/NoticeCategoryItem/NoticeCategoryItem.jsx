@@ -22,10 +22,11 @@ import {
   BtnForFavorite,
   TBody,
 } from './NoticeCategoryItem.styled';
+import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
 
-  const { isLoggedIn, user } = useAuth();
+  const { user } = useAuth();//isLoggedIn
   const dispatch = useDispatch();
   console.log(data.owner, user._id);
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';//useEffect
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
@@ -13,7 +13,7 @@ import {
   MyPetTitle,
 } from './UserPage.styled';
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
-import { cleanModal } from 'redux/modal/operation';
+// import { cleanModal } from 'redux/modal/operation';
 import { openModalWindow } from 'hooks/modalWindow';
 
 export const UserPage = () => {

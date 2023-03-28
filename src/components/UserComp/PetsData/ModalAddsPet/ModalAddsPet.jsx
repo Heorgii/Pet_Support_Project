@@ -57,24 +57,24 @@ export const ModalAddsPet = () => {
     setIsShown(true);
   };
 
-  async function postNotice(values) {
-    const file = document.querySelector('.file').files[0];
-    setIsLoading(true);
-    try {
-      const { code } = await fetchPetsUser(`/pets`, values, file);
-      if (code && code !== 201) {
-        return onFetchError('Whoops, something went wrong');
-      }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+//   async function postNotice(values) {
+//     const file = document.querySelector('.file').files[0];
+//     setIsLoading(true);
+//     try {
+//       const { code } = await fetchPetsUser(`/pets`, values, file);
+//       if (code && code !== 201) {
+//         return onFetchError('Whoops, something went wrong');
+//       }
+//     } catch (error) {
+//       setError(error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   }
 
-  const onSubmit = (values, action) => {
-    console.log(values);
-  };
+//   const onSubmit = (values, action) => {
+//     console.log(values);
+//   };
 
   const formik = useFormik({
     initialValues: {
