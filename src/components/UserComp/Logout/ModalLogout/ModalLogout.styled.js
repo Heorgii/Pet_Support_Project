@@ -6,10 +6,10 @@ export const ModalWrapper = styled.div`
   position: absolute;
   /* width: 90%; */
   background-color: ${baseColor.colors.white};
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   border-radius: 20px;
   top: 50%;
   left: 50%;
@@ -57,8 +57,8 @@ export const ModalCloseBtn = styled.button`
 `;
 
 export const CloseIcon = styled(Close)`
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 16px;
   fill: ${baseColor.colors.black};
   transform: all 150ms linear;
 
@@ -68,23 +68,21 @@ export const CloseIcon = styled(Close)`
   }
 
   @media screen and (min-width: 768px) {
-    width: 28px;
-    height: 28px;
   }
 `;
 
 export const ModalDescription = styled.p`
   color: ${baseColor.colors.blackText};
-  font-size: 36px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.37;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   padding-left: 24px;
   padding-right: 24px;
 
   @media screen and (min-width: 768px) {
-    font-size: 28px;
+    font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.01em;
   }
@@ -104,7 +102,7 @@ export const ModalButton = styled.button`
   letter-spacing: 0.04em;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 36px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.37;
   color: ${baseColor.colors.blackText};
@@ -121,6 +119,6 @@ export const ModalButton = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 28px;
+    font-size: 20px;
   }
 `;
