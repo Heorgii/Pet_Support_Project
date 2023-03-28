@@ -91,9 +91,6 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      // const date = new Date('15-05-2020');
-      // const date = new Date(inputValue);
-      // console.log(date);
       dispatch(
         authOperations.update({
           birthday: inputValue,
