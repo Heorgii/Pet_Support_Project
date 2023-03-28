@@ -1,4 +1,4 @@
-import { useState } from 'react'; //useEffect
+import { useEffect, useState } from 'react';
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
@@ -12,23 +12,36 @@ import {
   UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
+
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
-// import { cleanModal } from 'redux/modal/operation';
-import { openModalWindow } from 'hooks/modalWindow';
+import axios from 'axios';
 
 export const UserPage = () => {
-  const [toShow] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(state => !state);
+  const [isLoading, setIsLoading] = useState(false);
+  const [petsList, setPetsList] = useState([]);
 
-  // useEffect(() => {
-  //   if (!isModalOpen) {
-  //     document.body.style.overflow = '';
-  //   }
-  // }, [isModalOpen]);
+  const getPets = async () => {
+    setIsLoading(true);
+    const { data } = await axios('/user');
+    console.log('test', data.pets);
+    setIsLoading(false);
+    return data.pets;
+  };
+
+  useEffect(() => {
+    async function fetchPets() {
+      if (isLoading) return;
+      const pets = await getPets();
+      setPetsList(pets);
+      console.log('test fn', pets);
+    }
+    fetchPets();
+  }, [isLoading]);
+
+  console.log('Users PetsList', petsList);
 
   return (
-    <>
+    <div>
       <UserPageWrapper>
         <UserDataWrapper>
           <UserDataTitle title="My information:" />
@@ -40,18 +53,13 @@ export const UserPage = () => {
         <UserAboutWrapper>
           <TopContainer>
             <MyPetTitle>My pets:</MyPetTitle>
-            <AddPetButton onOpenAddsPet={openModalWindow} />
+            <AddPetButton />
           </TopContainer>
-          {toShow === 'pets' && <PetsData />}
+          <PetsData petsList={petsList} />
         </UserAboutWrapper>
       </UserPageWrapper>
-      {isModalOpen && (
-        // setShow={toggleModal}
-        <cleanModal>
-          <ModalAddsPet onCloseBtn={toggleModal} />
-        </cleanModal>
-      )}
-    </>
+      <ModalAddsPet />
+    </div>
   );
 };
 

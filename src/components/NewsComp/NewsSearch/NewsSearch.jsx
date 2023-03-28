@@ -9,7 +9,7 @@ import {
 } from './NewsSearch.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
-export const NewsSearch = ({ onSubmit, reset }) => {
+export const NewsSearch = ({ sendSearch, reset }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
@@ -22,17 +22,13 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-          onSubmit(values.search);
+sendSearch(searchQuery)
           setSubmitting(false);
         }
       }}
-      setSearchQuery
-      onChange={values => {
-        setSearchQuery(values.search);
-      }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
-        <FormStyled onSubmit={handleSubmit}>
+        <FormStyled onSubmit={handleSubmit} autoComplete="off">
           <LabelStyled>
             <FieldStyled
               id="search"
@@ -40,19 +36,24 @@ export const NewsSearch = ({ onSubmit, reset }) => {
               name="search"
               placeholder="Search"
               value={values.search}
+              onChange={e => {
+                  handleChange(e);
+                  document
+                    .querySelector('#search')
+                    .addEventListener('input', e => {
+                      e.target.value === '' && sendSearch('');
+                    });
+                }}
             />
-            <ButtonStyled
-              type="submit"
-              disabled={isSubmitting}
-              onSubmit={handleSubmit}
-              onChange={handleChange}
-            >
-              {values.search === searchQuery && values.search !== '' ? (
-                <IconSearch hidden />
-              ) : (
-                <IconSearch />
-              )}
-            </ButtonStyled>
+              <div>
+                <ButtonStyled
+                  type="submit"
+                  disabled={isSubmitting}
+                  onSubmit={handleSubmit}
+                >
+                  <IconSearch />
+                </ButtonStyled>
+              </div>
           </LabelStyled>
         </FormStyled>
       )}

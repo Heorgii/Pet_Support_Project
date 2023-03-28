@@ -40,6 +40,11 @@ export const getUsers = async () => {
   return data;
 };
 
+// export const getPets = async () => {
+//   const { data } = await axios.get('/pets');
+//   return data;
+// };
+
 export const addPet = async pet => {
   const { data } = await axios.post('/pets', pet);
   return data.pet;
