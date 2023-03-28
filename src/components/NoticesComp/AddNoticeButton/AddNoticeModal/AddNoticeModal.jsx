@@ -302,7 +302,7 @@ export const AddNoticeModal = () => {
                         </FieldList>
                       </div>
                     ) : (
-                      <div ref={ref}>
+                      <div>
                         <FieldsRadioSex role="group" id="sex">
                           <p>
                             The sex
@@ -343,6 +343,7 @@ export const AddNoticeModal = () => {
                           </LabelItem>
 
                           <FieldItem
+ ref={ref}
                             type="text"
                             id="location"
                             name="location"

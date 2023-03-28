@@ -21,6 +21,10 @@ import {
   Background,
   // SpinerWrapper,
 } from './RegisterForm.styled';
+import usePlacesAutocomplete from 'use-places-autocomplete';
+import useOnclickOutside from 'react-cool-onclickoutside';
+import { Li } from 'components/NoticesComp/AddNoticeButton/AddNoticeModal/AddNoticeModal.styled';
+
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -82,6 +86,46 @@ const RegisterForm = () => {
   const showConfirmPassword = () => {
     setShowConfirmPass(!showConfirmPass);
   };
+
+  const {
+    ready,
+    suggestions: { data, status },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {},
+    debounce: 300,
+  });
+
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleInput = e => {
+    setValue(e.target.value);
+  };
+
+  const renderSuggestions = setFieldValue =>
+    data.map(suggestion => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <Li
+          key={place_id}
+          onClick={() => {
+            setFieldValue('location', suggestion.description);
+            clearSuggestions();
+          }}
+        >
+          {main_text}
+          {', '}
+          {secondary_text}
+        </Li>
+      );
+    });
 
   return (
     <>
@@ -200,13 +244,22 @@ const RegisterForm = () => {
               <>
                 <div>
                   <Input
+ ref={ref}
+
                     name="location"
                     type="text"
                     placeholder="Location, region"
-                    onChange={formik.handleChange}
                     value={formik.values.location}
                     onBlur={formik.handleBlur}
-                  />
+                            disabled={!ready}
+                            onChange={e => {
+                              formik.handleChange(e);
+                              handleInput(e);
+                            }}
+                          />
+                          {status === 'OK' && (
+                            <ul>{renderSuggestions(formik.setFieldValue)}</ul>
+                          )}
 
                   {formik.errors.location && formik.touched.location ? (
                     <ErrBox>{formik.errors.location}</ErrBox>
