@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import { Field } from 'formik';
+import { Field, Form } from 'formik';
 
 const BackDrop = styled.div`
   display: flex;
@@ -13,22 +13,22 @@ const BackDrop = styled.div`
 `;
 
 export const ErrBox = styled.div`
-  position: absolute;
-  white-space: nowrap;
+  /* position: absolute; */
+  /* white-space: nowrap;
   bottom: 0px;
-  left: 15px;
+  left: 15px; */
   color: #e53e3e;
   font-family: 'Manrope';
   font-size: 12px;
   font-style: normal;
   line-height: 1.4;
-  letter-spacing: 0.03em;
+  /* letter-spacing: 0.03em;
   @media screen and (min-width: 768px) {
     left: 32px;
-  }
+  } */
 `;
 
-const UserPetContainerItem = styled.div`
+const UserPetContainerItem = styled(Form)`
   position: relative;
   display: block;
   width: 280px;
@@ -89,7 +89,7 @@ const ContainerInfo = styled.div`
   align-items: center;
 `;
 
-const InfoList = styled.ul`
+const InfoList = styled.div`
   overflow: hidden;
   margin-top: 28px;
   @media screen and (min-width: 768px) {
@@ -120,7 +120,7 @@ const InfoListLable = styled.label`
   }
 `;
 
-const InfoListInput = styled.input`
+const InfoListInput = styled(Field)`
   background: #FDF7F2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
@@ -198,7 +198,7 @@ const InfoListTextArea = styled.textarea`
 
 `;
 
-const PetsItemTitle = styled.div`
+const PetsItemTitle = styled.p`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -342,7 +342,4 @@ export {
   ButtonText,
   ButtonText2,
   ButtonBackText,
-  MainComments,
-  ContainerComments,
-  NoticeContainerButtom,
 };
