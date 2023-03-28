@@ -5,18 +5,47 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 // import MaskedInput from 'react-text-mask';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
-import mobileBackground from '../../images/register/bg-register-mobile.png';
-import tabletBackground from '../../images/register/bg-register-tablet.png';
-import desktopBackground from '../../images/register/bg-register-desktop.png';
+// import mobileBackground from '../../images/register/bg-register-mobile.png';
+// import tabletBackground from '../../images/register/bg-register-tablet.png';
+// import desktopBackground from '../../images/register/bg-register-desktop.png';
+import BackgroundImage from 'images/register/bgForm.png';
+import waveMobile from 'images/hero/waveMobileFull.png';
+import waveTab from 'images/register/BGFornTab.png';
+
+export const FormSection = styled.section`
+  height: 100%;
+
+  @media screen and (max-width: 767.9px) {
+    min-height: 540px;
+    background-image: url(${waveMobile});
+    background-repeat: no-repeat;
+    background-size: 620px auto;
+    background-position: bottom -250px left 30%;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
+    min-height: 720px;
+    background: url(${waveTab});
+    background-repeat: no-repeat;
+    background-size: 1396px auto;
+    background-position: bottom -130px left 50%;
+  }
+`;
 
 export const FormContainer = styled.div`
-  width: 100%;
+  /* width: 100%; */
+  height: 100%;
   @media (min-width: 767px) and (max-width: 1279px) {
     padding-top: 168px;
   }
 
   @media screen and (min-width: 1280px) {
     padding-top: 44px;
+    min-height: 700px;
+    background: url(${BackgroundImage});
+    background-repeat: no-repeat;
+    background-size: 1280px auto;
+    background-position: bottom 0 left 50%;
   }
 `;
 export const Title = styled.h1`
@@ -37,7 +66,6 @@ export const FormRegister = styled(Form)`
   justify-content: center;
   align-items: center;
   padding-top: 44px;
-  padding-bottom: 40px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     width: 608px;
@@ -325,25 +353,25 @@ export const BoxText = styled.div`
   color: rgba(17, 17, 17, 0.6);
 `;
 
-export const Background = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -100;
-  background-image: url(${mobileBackground});
-  background-position: center bottom;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100vh;
-  @media screen and (min-width: 768px) {
-    background-image: url(${tabletBackground});
-  }
-  @media screen and (min-width: 1280px) {
-    background-image: url(${desktopBackground});
-  }
-`;
+// export const Background = styled.div`
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: -100;
+//   background-image: url(${mobileBackground});
+//   background-position: center bottom;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   height: 100vh;
+//   @media screen and (min-width: 768px) {
+//     background-image: url(${tabletBackground});
+//   }
+//   @media screen and (min-width: 1280px) {
+//     background-image: url(${desktopBackground});
+//   }
+// `;
 
 export const SpinerWrapper = styled.div`
   position: absolute;
