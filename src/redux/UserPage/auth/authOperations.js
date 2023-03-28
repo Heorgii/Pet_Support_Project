@@ -75,7 +75,7 @@ const addPet = createAsyncThunk('/addPet', async (pet, thunkAPI) => {
   }
 });
 
-const removePet = createAsyncThunk('/removePet', async (_id, thunkAPI) => {
+const removePet = createAsyncThunk('/pets', async (_id, thunkAPI) => {
   try {
     const result = await api.removePet(_id);
     return { result, _id };
