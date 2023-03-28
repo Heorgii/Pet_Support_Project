@@ -9,10 +9,13 @@ const ItemContainer = styled.li`
   font-style: normal;
   width: 100%;
   height: 100%;
+  align-items: stretch;
 `;
 const NoticesContainerItem = styled.div`
   position: relative;
-  display: block;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
   object-fit: cover;
   width: 280px;
   padding: 0 0 12px 0;
