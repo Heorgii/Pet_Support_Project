@@ -11,12 +11,14 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import { useDispatch, useSelector } from 'react-redux';
+import { queryValue } from 'redux/query/selectors';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') ?? '';
   const pathParams = `/news?search=${searchQuery}`;
-
+  const search = useSelector(queryValue);
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,13 +38,23 @@ const News = () => {
     }
   }
 
+  // useEffect(() => {
+  //   if (searchQuery.trim() !== '') {
+  //     getData(pathParams);
+  //   } else {
+  //     getData('/news');
+  //   }
+  // }, [pathParams, searchQuery]);
+
   useEffect(() => {
-    if (searchQuery.trim() !== '') {
+    if (search.trim() !== '') {
+      const nextParams = search !== '' ? { search } : {};
+      setSearchParams(nextParams);
       getData(pathParams);
     } else {
       getData('/news');
     }
-  }, [pathParams, searchQuery]);
+  }, [pathParams, search, setSearchParams]);
 
   const handleFormSubmit = searchQuery => {
     updateQueryString(searchQuery);

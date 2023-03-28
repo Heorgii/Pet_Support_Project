@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { addQuery } from 'redux/query/slice';
 import {
   ButtonStyled,
   FormStyled,
@@ -11,6 +13,7 @@ import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 export const NewsSearch = ({ onSubmit, reset }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -22,7 +25,8 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-          onSubmit(values.search);
+          // onSubmit(values.search);
+          dispatch(addQuery(values.search));
           setSubmitting(false);
         }
       }}
@@ -42,7 +46,8 @@ export const NewsSearch = ({ onSubmit, reset }) => {
                 document
                   .querySelector('#search')
                   .addEventListener('input', e => {
-                    e.target.value.trim() === '' && onSubmit('');
+                    // e.target.value.trim() === '' && onSubmit('');
+                    e.target.value === '' && dispatch(addQuery(''));
                   });
               }}
             />
