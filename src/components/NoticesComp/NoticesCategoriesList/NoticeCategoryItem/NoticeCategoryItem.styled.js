@@ -24,6 +24,7 @@ const NoticesContainerItem = styled.div`
   transition: box-shadow 250ms linear;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &:hover {
+    border-radius: 20px;
     box-shadow: 0 1px 4px ${baseColor.colors.orange},
       -23px 0 20px -23px ${baseColor.colors.orange},
       23px 0 20px -23px ${baseColor.colors.orange},
@@ -152,6 +153,10 @@ const BtnDelete = styled.button`
     outline: none;
   }
 `;
+const TBody = styled.tbody`
+  width: 100%;
+`;
+
 const TdTable = styled.td`
   font-family: 'Manrope';
   font-style: normal;
@@ -203,4 +208,5 @@ export {
   TdTable2,
   NoticeContainerButton,
   BtnForFavorite,
+  TBody,
 };

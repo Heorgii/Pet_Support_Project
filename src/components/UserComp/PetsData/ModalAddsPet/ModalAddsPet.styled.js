@@ -10,6 +10,13 @@ const BackDrop = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
+  position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(17, 17, 17, 0.6);
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
 `;
 
 export const ErrBox = styled.div`

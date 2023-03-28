@@ -17,13 +17,14 @@ import {
   ShowPassword,
   StyledLink,
   BoxText,
-  Background,
+  // Background,
   IconValid,
   IconInValid,
   ErrBox,
   Div,
   LocationList,
   LocationItem,
+  FormSection,
   // SpinerWrapper,
 } from './RegisterForm.styled';
 import usePlacesAutocomplete from 'use-places-autocomplete';
@@ -136,7 +137,7 @@ const RegisterForm = () => {
     });
 
   return (
-    <>
+    <FormSection>
       {/* {loading ? (
         <SpinerWrapper>
           {/* <Spinner /> */}
@@ -332,10 +333,10 @@ const RegisterForm = () => {
             </BoxText>
           </FormRegister>
         </Formik>
-        <Background></Background>
+        {/* <Background></Background> */}
       </FormContainer>
       {/*  )} */}
-    </>
+    </FormSection>
   );
 };
 

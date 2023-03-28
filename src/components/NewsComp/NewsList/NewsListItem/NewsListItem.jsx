@@ -15,12 +15,12 @@ export const NewsListItem = ({ newsItem }) => {
 
   return (
     <Item key={_id} id={_id}>
+      <TextWrapper>
       <Ractangle />
       <Title>
         <EllipsisText text={title} length={38} />
       </Title>
-      <TextWrapper>
-        <Text>
+       <Text>
           <EllipsisText text={description} length={200} />
         </Text>
         {date !== null ? (
