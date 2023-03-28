@@ -45,6 +45,11 @@ export const FieldStyled = styled(Field)`
   letter-spacing: 0.04em;
   color: ${baseColor.colors.inpText};
   padding-right: 5px;
+  margin-right: 10px;
+
+  &:focus {
+    border-right: 2px solid ${baseColor.colors.inpText};
+  }
 
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration,

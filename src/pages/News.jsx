@@ -21,37 +21,27 @@ const News = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (searchQuery.trim() === '') {
-      (async () => {
-        setIsLoading(true);
-        try {
-          const { data } = await fetchData('/news');
-          setNews(data);
-          if (!data) {
-            return onFetchError('Whoops, something went wrong');
-          }
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsLoading(false);
-        }
-      })();
-    }
-    (async () => {
-      setIsLoading(true);
-      try {
-        const { data } = await fetchData(pathParams);
-        setNews(data);
-        if (!data) {
-          return onFetchError('Whoops, something went wrong');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+  async function getData(params) {
+    setIsLoading(true);
+    try {
+      const { data } = await fetchData(params);
+      setNews(data);
+      if (!data) {
+        return onFetchError('Whoops, something went wrong');
       }
-    })();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (searchQuery.trim() !== '') {
+      getData(pathParams);
+    } else {
+      getData('/news');
+    }
   }, [pathParams, searchQuery]);
 
   const handleFormSubmit = searchQuery => {
@@ -78,7 +68,11 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
+          <NewsSearch
+            onSubmit={handleFormSubmit}
+            reset={reset}
+            onChange={getData}
+          />
           {news.length === 0 && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
