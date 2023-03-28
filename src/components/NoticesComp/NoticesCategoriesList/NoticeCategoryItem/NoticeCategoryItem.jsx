@@ -1,6 +1,6 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
-import { useAuth } from 'redux/UserPage/auth/useAuth';
+// import { useAuth } from 'redux/UserPage/auth/useAuth';
 // import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
