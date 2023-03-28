@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { addQuery } from 'redux/query/slice';
 import {
   ButtonStyled,
   FormStyled,
@@ -11,9 +9,8 @@ import {
 } from './NewsSearch.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
-export const NewsSearch = ({ onSubmit, reset }) => {
+export const NewsSearch = ({ sendSearch, reset }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -25,14 +22,13 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-          // onSubmit(values.search);
-          dispatch(addQuery(values.search));
+sendSearch(searchQuery)
           setSubmitting(false);
         }
       }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
-        <FormStyled onSubmit={handleSubmit}>
+        <FormStyled onSubmit={handleSubmit} autoComplete="off">
           <LabelStyled>
             <FieldStyled
               id="search"
@@ -41,27 +37,23 @@ export const NewsSearch = ({ onSubmit, reset }) => {
               placeholder="Search"
               value={values.search}
               onChange={e => {
-                // debugger;
-                handleChange(e);
-                document
-                  .querySelector('#search')
-                  .addEventListener('input', e => {
-                    // e.target.value.trim() === '' && onSubmit('');
-                    e.target.value === '' && dispatch(addQuery(''));
-                  });
-              }}
+                  handleChange(e);
+                  document
+                    .querySelector('#search')
+                    .addEventListener('input', e => {
+                      e.target.value === '' && sendSearch('');
+                    });
+                }}
             />
-            <ButtonStyled
-              type="submit"
-              disabled={isSubmitting}
-              onSubmit={handleSubmit}
-            >
-              {values.search === searchQuery && values.search !== '' ? (
-                <IconSearch hidden />
-              ) : (
-                <IconSearch />
-              )}
-            </ButtonStyled>
+              <div>
+                <ButtonStyled
+                  type="submit"
+                  disabled={isSubmitting}
+                  onSubmit={handleSubmit}
+                >
+                  <IconSearch />
+                </ButtonStyled>
+              </div>
           </LabelStyled>
         </FormStyled>
       )}

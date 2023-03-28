@@ -11,62 +11,57 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { useSelector } from 'react-redux';
-import { queryValue } from 'redux/query/selectors';
+import { Pagination } from 'utils/paginate';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('search') ?? '';
-  const pathParams = `/news?search=${searchQuery}`;
-  const search = useSelector(queryValue);
+
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function getData(params) {
-    setIsLoading(true);
-    try {
-      const { data } = await fetchData(params);
-      setNews(data);
-      if (!data) {
-        return onFetchError('Whoops, something went wrong');
-      }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const [total, setTotal] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const perPage = 2;
+
+  function changePage(newPage) {
+    setPage(newPage);
   }
 
-  // useEffect(() => {
-  //   if (searchQuery.trim() !== '') {
-  //     getData(pathParams);
-  //   } else {
-  //     getData('/news');
-  //   }
-  // }, [pathParams, searchQuery]);
-
-  useEffect(() => {
-    if (search.trim() !== '') {
-      const nextParams = search !== '' ? { search } : {};
-      setSearchParams(nextParams);
-      getData(pathParams);
-    } else {
-      getData('/news');
-    }
-  }, [pathParams, search, setSearchParams]);
-
+  const [search, setSearch] = useState('');
   const handleFormSubmit = searchQuery => {
-    updateQueryString(searchQuery);
+    setPage(Number(1));
+    setSearch(searchQuery);
   };
+  useEffect(() => {
+    setSearchParams(
+      search.trim() !== ''
+        ? `search=${search}&perPage=${perPage}&page=${page}`
+        : `perPage=${perPage}&page=${page}`,
+    );
 
-  const updateQueryString = search => {
-    const nextParams = search !== '' ? { search } : {};
-    setSearchParams(nextParams);
-  };
+    (async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await fetchData(`/news?${searchParams}`);
+        setNews(data.data);
+        setTotal(data.total);
+        setTotalPage(data.totalPage);
+        if (!data) {
+          return onFetchError('Whoops, something went wrong');
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [page, search, searchParams, setSearchParams]);
+
 
   const reset = () => {
-    setSearchParams('');
     setError(null);
     setIsLoading(false);
   };
@@ -80,13 +75,24 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch onSubmit={handleFormSubmit} reset={reset} />
-          {news.length === 0 && !isLoading && (
-            <Title as="h3" size="14px">
-              Whoops! Can't find anything...
-            </Title>
+          <NewsSearch sendSearch={handleFormSubmit} reset={reset}/> 
+          {!news &&
+            !isLoading && ( //&& news.length === 0
+              <Title as="h3" size="14px">
+                Whoops! Can't find anything...
+              </Title>
+            )}
+          {news.length > 0 && !error && (
+            <>
+              <NewsList news={news} />
+              <Pagination
+                perPage={perPage}
+                total={total}
+                totalPage={totalPage}
+                changePage={changePage}
+              />
+            </>
           )}
-          {news.length > 0 && !error && <NewsList news={news} />}
         </Container>
       </Section>
     </>
