@@ -6,7 +6,7 @@ const initialState = {
     _id: null,
     userName: null,
     email: null,
-    city: null,
+    location: null,
     birthday: null,
     phone: null,
     avatarUrl: null,

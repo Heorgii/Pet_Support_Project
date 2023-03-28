@@ -52,7 +52,7 @@ export const UserDataItem = ({
       setInputValue(value);
     } else if (name === 'phone') {
       setInputValue(value);
-    } else if (name === 'city') {
+    } else if (name === 'location') {
       setInputValue(value);
     }
   };
@@ -91,7 +91,14 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ birthday: inputValue }));
+      // const date = new Date('15-05-2020');
+      // const date = new Date(inputValue);
+      // console.log(date);
+      dispatch(
+        authOperations.update({
+          birthday: inputValue,
+        }),
+      );
     } else if (name === 'phone') {
       setActive('phone');
       if (inputValue.slice(0, 4) !== '+380') {
@@ -105,15 +112,15 @@ export const UserDataItem = ({
       setIsError('');
       setActive('');
       dispatch(authOperations.update({ phone: inputValue }));
-    } else if (name === 'city') {
-      setActive('city');
+    } else if (name === 'location') {
+      setActive('location');
       if (!inputValue.match(cityRegex)) {
         setIsError('use format Kyiv, Brovary');
         return;
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ city: inputValue }));
+      dispatch(authOperations.update({ location: inputValue }));
     }
   };
 
