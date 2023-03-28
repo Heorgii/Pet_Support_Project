@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { addQuery } from 'redux/query/slice';
 import {
   ButtonStyled,
   FormStyled,
@@ -11,6 +13,7 @@ import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 export const NewsSearch = ({ onSubmit, reset }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -22,13 +25,10 @@ export const NewsSearch = ({ onSubmit, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-          onSubmit(values.search);
+          // onSubmit(values.search);
+          dispatch(addQuery(values.search));
           setSubmitting(false);
         }
-      }}
-      setSearchQuery
-      onChange={values => {
-        setSearchQuery(values.search);
       }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
@@ -40,12 +40,21 @@ export const NewsSearch = ({ onSubmit, reset }) => {
               name="search"
               placeholder="Search"
               value={values.search}
+              onChange={e => {
+                // debugger;
+                handleChange(e);
+                document
+                  .querySelector('#search')
+                  .addEventListener('input', e => {
+                    // e.target.value.trim() === '' && onSubmit('');
+                    e.target.value === '' && dispatch(addQuery(''));
+                  });
+              }}
             />
             <ButtonStyled
               type="submit"
               disabled={isSubmitting}
               onSubmit={handleSubmit}
-              onChange={handleChange}
             >
               {values.search === searchQuery && values.search !== '' ? (
                 <IconSearch hidden />

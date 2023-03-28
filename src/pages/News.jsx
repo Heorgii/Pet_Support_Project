@@ -11,48 +11,50 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
+import { useDispatch, useSelector } from 'react-redux';
+import { queryValue } from 'redux/query/selectors';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') ?? '';
   const pathParams = `/news?search=${searchQuery}`;
-
+  const search = useSelector(queryValue);
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (searchQuery.trim() === '') {
-      (async () => {
-        setIsLoading(true);
-        try {
-          const { data } = await fetchData('/news');
-          setNews(data);
-          if (!data) {
-            return onFetchError('Whoops, something went wrong');
-          }
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsLoading(false);
-        }
-      })();
-    }
-    (async () => {
-      setIsLoading(true);
-      try {
-        const { data } = await fetchData(pathParams);
-        setNews(data);
-        if (!data) {
-          return onFetchError('Whoops, something went wrong');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+  async function getData(params) {
+    setIsLoading(true);
+    try {
+      const { data } = await fetchData(params);
+      setNews(data);
+      if (!data) {
+        return onFetchError('Whoops, something went wrong');
       }
-    })();
-  }, [pathParams, searchQuery]);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  // useEffect(() => {
+  //   if (searchQuery.trim() !== '') {
+  //     getData(pathParams);
+  //   } else {
+  //     getData('/news');
+  //   }
+  // }, [pathParams, searchQuery]);
+
+  useEffect(() => {
+    if (search.trim() !== '') {
+      const nextParams = search !== '' ? { search } : {};
+      setSearchParams(nextParams);
+      getData(pathParams);
+    } else {
+      getData('/news');
+    }
+  }, [pathParams, search, setSearchParams]);
 
   const handleFormSubmit = searchQuery => {
     updateQueryString(searchQuery);
