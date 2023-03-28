@@ -150,7 +150,7 @@ const InfoListInput = styled(Field)`
   }
 `;
 
-export const FieldItemFile = styled(Field)`
+export const FieldItemFile = styled.input`
   all: unset;
   height: 208px;
   width: 208px;

@@ -72,11 +72,10 @@ export const ModalAddsPet = () => {
     // }
 
     const formik = useFormik({
-        initialValues: {
+        initialVal: {
             name: '',
             birthday: '',
             breed: '',
-            imageUrl: '',
             comments: '',
         },
         validationSchema: schemas.addPetsUser,
@@ -102,7 +101,11 @@ export const ModalAddsPet = () => {
         <BackDrop >
             {isLoading ? onLoading() : onLoaded()}
             {error && onFetchError('Whoops, something went wrong')}
-            <Formik>
+            <Formik
+                initialValues={{
+                    imageUrl: '',
+                }}
+            >
                 {({
                     handleChange,
                 }) => (
@@ -128,7 +131,7 @@ export const ModalAddsPet = () => {
                                                     name="name"
                                                     onChange={formik.handleChange}
                                                     value={formik.values.name}
-                                                    // onBlur={formik.handleBlur}
+                                                    onBlur={formik.handleBlur}
                                                     placeholder="Type name pet" />
                                                 {formik.errors.name || formik.touched.name ? (
                                                     <ErrBox>{formik.errors.name}</ErrBox>
@@ -202,12 +205,12 @@ export const ModalAddsPet = () => {
                                         <ImgTitle>Add petAdd photo and some comments</ImgTitle>
 
                                         <FieldItemFile
+                                            className="file"
                                             type="file"
                                             id="imageUrl"
                                             name="imageUrl"
-                                            accept=".jpeg,.jpg,.png,.gif"
                                             value={formik.values.imageUrl}
-                                            onBlur={formik.handleBlur}
+                                            accept=".jpeg,.jpg,.png,.gif"
                                             onChange={e => {
                                                 handleChange(e);
                                                 setImage(e);
