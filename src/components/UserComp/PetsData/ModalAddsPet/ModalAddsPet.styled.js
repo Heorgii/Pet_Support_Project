@@ -31,7 +31,6 @@ export const ErrBox = styled.div`
 const UserPetContainerItem = styled(Form)`
   position: relative;
   display: block;
-  width: 280px;
   padding: 17px 20px 43px 20px;
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
@@ -66,31 +65,39 @@ const ContainerCloseModal = styled.div`
   }
 `;
 
-const ContainerStatus = styled.div`
-  position: absolute;
-  top: 77px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 158px;
-  height: 28px;
-  background: #fdf7f2;
-  border-radius: 0 20px 20px 0;
-  backdrop-filter: blur(50px);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
-`;
-
 const ContainerInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
+const PetsItemTitle = styled.h2`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  color: ${baseColor.colors.black};
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 49px;;
+  }
+`;
+
 const InfoList = styled.div`
   overflow: hidden;
+  margin-top: 28px;
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+`;
+
+export const InfoList2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 28px;
   @media screen and (min-width: 768px) {
     margin-top: 40px;
@@ -145,8 +152,8 @@ const InfoListInput = styled(Field)`
 
 export const FieldItemFile = styled(Field)`
   all: unset;
-  height: 116px;
-  width: 116px;
+  height: 208px;
+  width: 208px;
 
   margin-bottom: 28px;
   background-color: ${baseColor.colors.mainBg};
@@ -177,39 +184,47 @@ export const FieldItemFile = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-    height: 140px;
-    width: 140px;
+    height: 182px;
+    width: 182px;
+  }
+`;
+
+export const ImgTitle = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  color: ${baseColor.colors.black};
+
+  @media screen and (min-width: 768px){
+    font-size: 20px;
+    line-height: 27px;  
   }
 `;
 
 const InfoListTextArea = styled.textarea`
   background: #FDF7F2;
-  border: 1px solid ${baseColor.colors.mainBg};
+  border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 20px;
   padding: 12px 0 0 14px;
   width: 240px;
   height: 100px;
   resize: none;
+
+  @media screen and (min-width: 768px){
+    width: 394px;
+    height: 116px;
+  }
   &:hover,
   &:focus{
     border-color: rgb(255, 97, 1);
     outline: none;
   }
 
-`;
-
-const PetsItemTitle = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 33px;
-  color: ${baseColor.colors.black};
-
-  @media screen and (min-width: 768px) {
-    font-size: 36px;
-    line-height: 49px;;
-  }
 `;
 
 const ButtonBox = styled.div`
@@ -278,6 +293,7 @@ const ButtonText = styled.p`
     line-height: 27px;
   }
 `;
+
 const ButtonText2 = styled.p`
   padding: 9px 92px;
   color: ${baseColor.colors.black};
@@ -300,35 +316,11 @@ const ButtonBackText = styled.p`
   }
 `;
 
-const NoticeContainerButtom = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  @media screen and (min-width: 768px) {
-    justify-content: end;
-    flex-direction: row-reverse;
-    margin-top: 32px;
-  }
-`;
-
-const MainComments = styled.span`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-`;
-
-const ContainerComments = styled.div`
-  margin-top: 28px;
-`;
-
 export {
   UserPetContainerItem,
   ContainerCloseModal,
   ContainerPositionForCloseModal,
   ContainerInfo,
-  ContainerStatus,
   PetsItemTitle,
   BackDrop,
   InfoList,
