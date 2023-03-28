@@ -8,7 +8,7 @@ import {
   onSuccess,
 } from 'components/helpers/Messages/NotifyMessages';
 import { useAuth } from 'redux/UserPage/auth/useAuth';
-
+import { fetchData } from 'services/APIservice';
 import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { addFavorite } from 'redux/UserPage/auth/auth';
 
 export const NoticesCategoriesList = () => {
-  const { isLoggedIn, favorites } = useAuth();// user, isRefreshing,
+  const { isLoggedIn, favorites } = useAuth(); // user, isRefreshing,
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,9 +26,8 @@ export const NoticesCategoriesList = () => {
 
   const query = useSelector(queryValue);
   const dispatch = useDispatch();
-  const { BASE_URL } = window.global;
 
-  const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
+  const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
   const toggleFavorite = async id => {
     dispatch(addFavorite(id));
@@ -44,23 +43,22 @@ export const NoticesCategoriesList = () => {
 
   useEffect(() => {
     query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
-    async function fetchNoticesList() {
+
+    (async function fetchNoticesList() {
       setIsLoading(true);
-      await fetch(itemForFetch)
-        .then(res => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(new Error(`Can't find anything`));
-        })
-        .then(value => setData(value))
-        .catch(error => {
-          setError(error);
-        });
-    }
-    fetchNoticesList();
-  }, [itemForFetch, query, setSearchParams]);
+      try {
+        const { data } = await fetchData(itemForFetch);
+        setData(data);
+        if (!data) {
+          return onFetchError('Whoops, something went wrong');
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [itemForFetch, query, routeParams.id, setSearchParams]);
 
   return (
     <>
