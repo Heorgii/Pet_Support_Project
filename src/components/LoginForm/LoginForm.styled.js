@@ -4,19 +4,49 @@ import { Link } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
-import mobileBackground from '../../images/register/bg-register-mobile.png';
-import tabletBackground from '../../images/register/bg-register-tablet.png';
-import desktopBackground from '../../images/register/bg-register-desktop.png';
+// import mobileBackground from '../../images/register/bg-register-mobile.png';
+// import tabletBackground from '../../images/register/bg-register-tablet.png';
+// import desktopBackground from '../../images/register/bg-register-desktop.png';
+import BackgroundImage from 'images/register/bgForm.png';
+import waveMobile from 'images/hero/waveMobileFull.png';
+import waveTab from 'images/register/BGFornTab.png';
+
+const FormSection = styled.section`
+  height: 100%;
+
+  @media screen and (max-width: 767.9px) {
+    min-height: 540px;
+    background-image: url(${waveMobile});
+    background-repeat: no-repeat;
+    background-size: 620px auto;
+    background-position: bottom -250px left 30%;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
+    min-height: 720px;
+    background: url(${waveTab});
+    background-repeat: no-repeat;
+    background-size: 1396px auto;
+    background-position: bottom -130px left 50%;
+  }
+`;
 
 const FormContainer = styled.div`
-  width: 100%;
+  height: 100%;
   @media screen and (min-width: 768px) {
     padding-top: 170px;
   }
   @media screen and (min-width: 1280px) {
-    padding-top: 50px;
+    padding-top: 80px;
+
+    min-height: 700px;
+    background: url(${BackgroundImage});
+    background-repeat: no-repeat;
+    background-size: 1280px auto;
+    background-position: bottom 0 left 50%;
   }
 `;
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 700;
@@ -32,8 +62,8 @@ export const IconValid = styled(FaCheck)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 6%;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -48,8 +78,8 @@ export const IconInValid = styled(FaTimes)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 6%;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -67,7 +97,6 @@ const FormLogin = styled(Form)`
   justify-content: center;
   align-items: center;
   padding-top: 44px;
-  padding-bottom: 40px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     width: 608px;
@@ -93,8 +122,8 @@ const ShowPassword = styled.span`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 6%;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -111,7 +140,7 @@ const Input = styled.input`
   background: ${baseColor.colors.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
 
   &:focus,
   &:hover {
@@ -135,7 +164,7 @@ const Button = styled.button`
   background: ${baseColor.colors.orangeLight};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin: 24px 0 40px 0;
+  margin: 8px 0 40px 0;
   transform: scale(1);
   transition: transform 0.5s;
   cursor: pointer;
@@ -175,21 +204,27 @@ const Button = styled.button`
     font-size: 20px;
   }
 `;
-// const ErrorBox = styled.div`
-//   position: absolute;
-//   white-space: nowrap;
-//   bottom: 0px;
-//   left: 15px;
-//   color: #e53e3e;
-//   font-family: 'Manrope';
-//   font-size: 12px;
-//   font-style: normal;
-//   line-height: 1.4;
-//   letter-spacing: 0.03em;
-//   @media screen and (min-width: 768px) {
-//     left: 32px;
-//   }
-// `;
+const ErrorBox = styled.div`
+  position: absolute;
+  white-space: nowrap;
+  bottom: 0px;
+  left: 15px;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  margin-bottom: -16px;
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  }
+`;
+
+const Div = styled.div`
+  margin-bottom: 32px;
+`;
+
 const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
@@ -210,27 +245,28 @@ const BoxText = styled.div`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
 `;
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -100;
-  background-image: url(${mobileBackground});
-  background-position: center bottom;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 100vh;
-  @media screen and (min-width: 768px) {
-    background-image: url(${tabletBackground});
-  }
-  @media screen and (min-width: 1280px) {
-    background-image: url(${desktopBackground});
-  }
-`;
+// const Background = styled.div`
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: -100;
+//   background-image: url(${mobileBackground});
+//   background-position: center bottom;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   height: 100vh;
+//   @media screen and (min-width: 768px) {
+//     background-image: url(${tabletBackground});
+//   }
+//   @media screen and (min-width: 1280px) {
+//     background-image: url(${desktopBackground});
+//   }
+// `;
 
 export {
+  FormSection,
   FormContainer,
   Title,
   FormLogin,
@@ -239,5 +275,7 @@ export {
   Button,
   StyledLink,
   BoxText,
-  Background,
+  // Background,
+  ErrorBox,
+  Div,
 };

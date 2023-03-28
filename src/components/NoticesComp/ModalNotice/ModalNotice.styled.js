@@ -196,7 +196,7 @@ const TdTable2 = styled.td`
   }
 `;
 const Table = styled.table`
-  width: 240px;
+  min-width: 240px;
   display: flex;
   overflow: hidden;
   margin-top: 26px;

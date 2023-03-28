@@ -97,7 +97,7 @@ export const MyPetContainer = styled.div`
 export const MyPetTitle = styled.h2`
   outline: none;
   font-family: Manrope, sans-serif;
-  color: ${baseColor.colors.blackText}
+  color: ${baseColor.colors.blackText};
   font-size: 18px;
   font-weight: 500;
   line-height: 1.37;
@@ -117,6 +117,5 @@ export const MyPetTitle = styled.h2`
   @media (min-width: 768px) {
     font-size: 28px;
     padding-bottom: 4px;
-
   }
 `;

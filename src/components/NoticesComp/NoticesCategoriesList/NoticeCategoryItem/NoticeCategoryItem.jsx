@@ -1,6 +1,6 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
-import { useAuth } from 'redux/UserPage/auth/useAuth';
+// import { useAuth } from 'redux/UserPage/auth/useAuth';
 // import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
@@ -20,11 +20,15 @@ import {
   Table,
   NoticeContainerButton,
   BtnForFavorite,
+  TBody,
 } from './NoticeCategoryItem.styled';
+import { useAuth } from 'hooks/useAuth';
 
 export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
-  // const { isLoggedIn } = useAuth();
+  const { user } = useAuth(); //isLoggedIn
   const dispatch = useDispatch();
+  let id = '';
+  user == null ? (id = 1) : (id = user._id);
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -56,9 +60,9 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
             }
             loading="lazy"
           />
-          <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+          <NoticeItemTitle>{data.title}</NoticeItemTitle>
           <Table>
-            <tbody>
+            <TBody>
               <tr>
                 <TdTable>Breed:</TdTable>
                 <TdTable2>{data.breed}</TdTable2>
@@ -76,7 +80,7 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
                   years
                 </TdTable2>
               </tr>
-            </tbody>
+            </TBody>
           </Table>
         </ContainerInfo>
         <NoticeContainerButton>
@@ -87,15 +91,17 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
           >
             Learn more
           </BtnLearnMore>
-          <BtnDelete>
-            Delete{' '}
-            <img
-              loading="lazy"
-              src={delBack}
-              alt="heard"
-              style={{ marginLeft: '12px' }}
-            />
-          </BtnDelete>
+          {data.owner === id && (
+            <BtnDelete>
+              Delete{' '}
+              <img
+                loading="lazy"
+                src={delBack}
+                alt="heard"
+                style={{ marginLeft: '12px' }}
+              />
+            </BtnDelete>
+          )}
         </NoticeContainerButton>
       </NoticesContainerItem>
     </ItemContainer>
