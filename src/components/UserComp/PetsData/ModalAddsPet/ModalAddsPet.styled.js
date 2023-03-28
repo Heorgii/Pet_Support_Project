@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 
-const BackDrop = styled.div`
+export const FormDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,6 +10,13 @@ const BackDrop = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(17, 17, 17, 0.6);
+  z-index: 102222220;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const ErrBox = styled.div`
@@ -322,7 +329,6 @@ export {
   ContainerPositionForCloseModal,
   ContainerInfo,
   PetsItemTitle,
-  BackDrop,
   InfoList,
   InfoListLable,
   InfoListInput,

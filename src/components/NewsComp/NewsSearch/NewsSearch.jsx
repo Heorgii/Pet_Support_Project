@@ -26,10 +26,6 @@ sendSearch(searchQuery)
           setSubmitting(false);
         }
       }}
-      setSearchQuery
-      onChange={values => {
-        setSearchQuery(values.search);
-      }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
         <FormStyled onSubmit={handleSubmit} autoComplete="off">

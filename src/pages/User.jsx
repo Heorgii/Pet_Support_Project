@@ -12,19 +12,39 @@ import {
   UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
+
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
-// import { cleanModal } from 'redux/modal/operation';
+import axios from 'axios';
 
 export const UserPage = () => {
-  const [toShow] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(state => !state);
+  const [isLoading, setIsLoading] = useState(false);
+  const [petsList, setPetsList] = useState([]);
+
+  const getPets = async () => {
+    setIsLoading(true);
+    const { data } = await axios('/user');
+    console.log('test', data.pets);
+    setIsLoading(false);
+    return data.pets;
+  };
+
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [isModalOpen]);
 
   useEffect(() => {
-    if (!isModalOpen) {
-      document.body.style.overflow = '';
+    async function fetchPets() {
+      if (isLoading) return;
+      const pets = await getPets();
+      setPetsList(pets);
+      console.log('test fn', pets);
     }
-  }, [isModalOpen]);
+    fetchPets();
+  }, []);
+
+  console.log('Users PetsList', petsList);
 
   return (
     <>
@@ -39,16 +59,12 @@ export const UserPage = () => {
         <UserAboutWrapper>
           <TopContainer>
             <MyPetTitle>My pets:</MyPetTitle>
-            <AddPetButton onOpenAddsPet={toggleModal} />
+            <AddPetButton />
           </TopContainer>
-          {toShow === 'pets' && <PetsData />}
+          <PetsData petsList={petsList} />
         </UserAboutWrapper>
       </UserPageWrapper>
-      {isModalOpen && (
-        <cleanModal setShow={toggleModal}>
-          <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
-        </cleanModal>
-      )}
+      <ModalAddsPet />
     </>
   );
 };
