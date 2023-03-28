@@ -5,7 +5,7 @@ import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
-import { useDispatch } from 'react-redux';    
+import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 // import initAxios from 'utils/initAxios';
 
@@ -21,7 +21,7 @@ export const App = () => {
   // initAxios();
   //  як буде правцювати бекєнд потрібно оновити дані юзера
   const dispatch = useDispatch();
-  
+
   // const user = useSelector(selectUser)
   // console.log('ssss',user)
   useEffect(() => {
@@ -70,7 +70,7 @@ export const App = () => {
               />
             }
           />
-  
+
           <Route path="friends" element={<OurFriendsPage />} />
 
           {/* added kadulin */}

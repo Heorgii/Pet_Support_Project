@@ -30,8 +30,24 @@ async function fetchNotice(pathParams, body, file) {
   });
 }
 
+// async function fetchPetsUser(pathParams, body, file) {
+//   const formData = new FormData();
+
+//   formData.append('name', body.name);
+//   formData.append('birthday', body.birthday);
+//   formData.append('breed', body.breed);
+//   formData.append('comments', body.comments);
+//   formData.append('imageURL', file);
+
+//   return axios.post(`${BASE_URL}${pathParams}`, formData, {
+//     headers: {
+//       'Content-Type': 'multipart/form-data',
+//     },
+//   });
+// }
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice };
+export { fetchData, fetchNotice, };
