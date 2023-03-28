@@ -20,11 +20,14 @@ import {
   Table,
   NoticeContainerButton,
   BtnForFavorite,
+  TBody,
 } from './NoticeCategoryItem.styled';
 
 export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
-  // const { isLoggedIn } = useAuth();
+
+  const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
+  console.log(data.owner, user._id);
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -56,9 +59,9 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
             }
             loading="lazy"
           />
-          <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+          <NoticeItemTitle>{data.title}</NoticeItemTitle>
           <Table>
-            <tbody>
+            <TBody>
               <tr>
                 <TdTable>Breed:</TdTable>
                 <TdTable2>{data.breed}</TdTable2>
@@ -76,7 +79,7 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
                   years
                 </TdTable2>
               </tr>
-            </tbody>
+            </TBody>
           </Table>
         </ContainerInfo>
         <NoticeContainerButton>
@@ -87,15 +90,17 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
           >
             Learn more
           </BtnLearnMore>
-          <BtnDelete>
-            Delete{' '}
-            <img
-              loading="lazy"
-              src={delBack}
-              alt="heard"
-              style={{ marginLeft: '12px' }}
-            />
-          </BtnDelete>
+          {data.owner === user._id && (
+            <BtnDelete>
+              Delete{' '}
+              <img
+                loading="lazy"
+                src={delBack}
+                alt="heard"
+                style={{ marginLeft: '12px' }}
+              />
+            </BtnDelete>
+          )}
         </NoticeContainerButton>
       </NoticesContainerItem>
     </ItemContainer>
