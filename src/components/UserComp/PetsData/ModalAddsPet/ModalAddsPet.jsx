@@ -33,7 +33,7 @@ import schemas from 'components/Schemas/schemas';
 import { setImage } from 'utils/setimage';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { fetchPetsUser } from 'services/APIservice';
+// import { fetchPetsUser } from 'services/APIservice';
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();
@@ -45,8 +45,8 @@ export const ModalAddsPet = () => {
     closeModalWindow(e);
   };
 
-  const [isLoading, setIsLoading] = useState(false); //setIsLoading
-  const [error, setError] = useState(null); //setError
+  const [isLoading] = useState(false); //setIsLoading
+  const [error] = useState(null); //setError
   const [isShown, setIsShown] = useState(true);
 
   const showForm = () => {
