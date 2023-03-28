@@ -1,9 +1,9 @@
 import React from 'react';
 import { MobileAccountButton, AccountButton, IconUser } from './UserNav.styled';
 
-export const MobileUserNav = () => {
+export const MobileUserNav = ({ toggleMenu }) => {
   return (
-    <MobileAccountButton to="/user">
+    <MobileAccountButton to="/user" onClick={toggleMenu}>
       <IconUser />
       Account
     </MobileAccountButton>
