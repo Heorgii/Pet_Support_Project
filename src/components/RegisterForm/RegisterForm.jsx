@@ -22,6 +22,9 @@ import {
   IconInValid,
   // SpinerWrapper,
 } from './RegisterForm.styled';
+import usePlacesAutocomplete from 'use-places-autocomplete';
+import useOnclickOutside from 'react-cool-onclickoutside';
+import { Li } from 'components/NoticesComp/AddNoticeButton/AddNoticeModal/AddNoticeModal.styled';
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -88,6 +91,46 @@ const RegisterForm = () => {
     return !hasValue ? null : isValide ? '#E2001A' : '#3CBC81';
   };
 
+  const {
+    ready,
+    suggestions: { data, status },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {},
+    debounce: 300,
+  });
+
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleInput = e => {
+    setValue(e.target.value);
+  };
+
+  const renderSuggestions = setFieldValue =>
+    data.map(suggestion => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <Li
+          key={place_id}
+          onClick={() => {
+            setFieldValue('location', suggestion.description);
+            clearSuggestions();
+          }}
+        >
+          {main_text}
+          {', '}
+          {secondary_text}
+        </Li>
+      );
+    });
+
   return (
     <>
       {/* {loading ? (
@@ -128,6 +171,7 @@ const RegisterForm = () => {
                     {/* {formik.errors.email && formik.touched.email ? (
                       <ErrBox>{formik.errors.email}</ErrBox>
                     ) : null} */}
+               
                   </div>
                   {/* Підказка валідації */}
                   {/* {formik.errors.email || formik.touched.email ? (
@@ -225,7 +269,7 @@ const RegisterForm = () => {
             )}
             {!isShown && (
               <>
-                <div>
+                <div ref={ref}>
                   <Input
                     style={{
                       borderColor: showAccentValidateInput(
@@ -236,16 +280,25 @@ const RegisterForm = () => {
                     name="location"
                     type="text"
                     placeholder="Location, region"
-                    onChange={formik.handleChange}
                     value={formik.values.location}
                     onBlur={formik.handleBlur}
+                    disabled={!ready}
+                    onChange={e => {
+                      formik.handleChange(e);
+                      handleInput(e);
+                    }}
                   />
                   {!formik.values.location ? null : !formik.errors.location ? (
                     <IconValid color={baseColor.colors.success} />
                   ) : (
                     <IconInValid color={baseColor.colors.error} />
                   )}
-                  {/* {formik.errors.location && formik.touched.location ? (
+                  
+                    {status === 'OK' && (
+                    <ul>{renderSuggestions(formik.setFieldValue)}</ul>
+                  )}
+                  {/* {formik.errors.location && formik.touched.location ? (                
+                  {formik.errors.location && formik.touched.location ? (
                     <ErrBox>{formik.errors.location}</ErrBox>
                   ) : null} */}
                 </div>

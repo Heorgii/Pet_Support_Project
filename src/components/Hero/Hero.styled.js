@@ -12,8 +12,10 @@ import heart from 'images/hero/heart.png';
 
 const HeroSection = styled.section`
   height: 100%;
+  min-height: 720px;
+
   @media screen and (max-width: 767.9px) {
-    min-height: 500px;
+    min-height: 550px;
     background: url(${DogMobile}), url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 280px auto, 620px auto;
@@ -21,7 +23,7 @@ const HeroSection = styled.section`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    min-height: 1000px;
+    min-height: 1200px;
     background: url(${DogTab}), url(${waveTabFull});
     background-repeat: no-repeat;
     background-size: 636px auto, 1400px auto;
@@ -30,11 +32,12 @@ const HeroSection = styled.section`
 `;
 
 const HeroContainer = styled(Container)`
+  height: 100%;
+  justify-content: start;
+  align-items: start;
+
   @media screen and (min-width: 1280px) {
-    justify-content: start;
-    align-items: start;
-    min-height: 650;
-    height: calc(100vh - 64px);
+    /* height: calc(100vh - 64px); */
     background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk}), url(${heart});
     background-repeat: no-repeat;
@@ -47,7 +50,7 @@ const HeroContainer = styled(Container)`
 const HeroTitle = styled.h1`
   margin-top: 60px;
   text-align: left;
-  margin-right: auto;
+  /* margin-right: auto; */
 
   font-family: Manrope;
   font-style: normal;
