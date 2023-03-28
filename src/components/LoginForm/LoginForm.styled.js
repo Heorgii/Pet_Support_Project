@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 
 import mobileBackground from '../../images/register/bg-register-mobile.png';
 import tabletBackground from '../../images/register/bg-register-tablet.png';
@@ -26,6 +27,38 @@ const Title = styled.h1`
     font-weight: 500;
   }
 `;
+export const IconValid = styled(FaCheck)`
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-80%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
+export const IconInValid = styled(FaTimes)`
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-80%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
 const FormLogin = styled(Form)`
   position: relative;
   width: 280px;
@@ -142,21 +175,21 @@ const Button = styled.button`
     font-size: 20px;
   }
 `;
-const ErrorBox = styled.div`
-  position: absolute;
-  white-space: nowrap;
-  bottom: 0px;
-  left: 15px;
-  color: #e53e3e;
-  font-family: 'Manrope';
-  font-size: 12px;
-  font-style: normal;
-  line-height: 1.4;
-  letter-spacing: 0.03em;
-  @media screen and (min-width: 768px) {
-    left: 32px;
-  }
-`;
+// const ErrorBox = styled.div`
+//   position: absolute;
+//   white-space: nowrap;
+//   bottom: 0px;
+//   left: 15px;
+//   color: #e53e3e;
+//   font-family: 'Manrope';
+//   font-size: 12px;
+//   font-style: normal;
+//   line-height: 1.4;
+//   letter-spacing: 0.03em;
+//   @media screen and (min-width: 768px) {
+//     left: 32px;
+//   }
+// `;
 const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
@@ -204,7 +237,6 @@ export {
   ShowPassword,
   Input,
   Button,
-  ErrorBox,
   StyledLink,
   BoxText,
   Background,
