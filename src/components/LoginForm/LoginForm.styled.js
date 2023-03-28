@@ -62,7 +62,7 @@ export const IconValid = styled(FaCheck)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 28px;
+  right: 6%;
   top: 62%;
   transform: translateY(-80%);
   color: grey;
@@ -78,7 +78,7 @@ export const IconInValid = styled(FaTimes)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 28px;
+  right: 6%;
   top: 62%;
   transform: translateY(-80%);
   color: grey;
@@ -122,7 +122,7 @@ const ShowPassword = styled.span`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 28px;
+  right: 6%;
   top: 62%;
   transform: translateY(-80%);
   color: grey;
