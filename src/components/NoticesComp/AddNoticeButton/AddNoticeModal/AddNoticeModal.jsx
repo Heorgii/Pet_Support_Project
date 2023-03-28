@@ -70,9 +70,7 @@ export const AddNoticeModal = () => {
   async function postNotice(values) {
     setIsLoading(true);
     try {
-      const category = values.category
-      delete values.category
-      const { code } = await fetchNotice(`/notices/${category}`, values);
+      const { code } = await fetchNotice(`/notices/${values.category}`, values);
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
       }
