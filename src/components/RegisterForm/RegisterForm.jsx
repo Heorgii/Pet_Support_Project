@@ -25,7 +25,6 @@ import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { Li } from 'components/NoticesComp/AddNoticeButton/AddNoticeModal/AddNoticeModal.styled';
 
-
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
@@ -45,7 +44,7 @@ const RegisterForm = () => {
       }),
       // hideForm(),
     );
-};
+  };
 
   const showForm = () => {
     setIsShown(false);
@@ -154,19 +153,21 @@ const RegisterForm = () => {
                   />
                   <div>
                     {/* <Icon> */}
-                      <input
-                        type="text"
-                        value={formik.values.email}
-                        validate={schemas.registerSchema.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {isValid ? (
-                        <FaCheck color="green" />
-                      ) : (
-                        <FaTimes color="red" />
-                      )}
-                      {formik.errors.email && formik.touched.email ? <ErrBox>{formik.errors.email}</ErrBox> : null}
+                    <input
+                      type="text"
+                      value={formik.values.email}
+                      validate={schemas.registerSchema.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {isValid ? (
+                      <FaCheck color="green" />
+                    ) : (
+                      <FaTimes color="red" />
+                    )}
+                    {formik.errors.email && formik.touched.email ? (
+                      <ErrBox>{formik.errors.email}</ErrBox>
+                    ) : null}
                     {/* </Icon> */}
                   </div>
                   {formik.errors.email || formik.touched.email ? (
@@ -242,24 +243,22 @@ const RegisterForm = () => {
             )}
             {!isShown && (
               <>
-                <div>
+                <div ref={ref}>
                   <Input
- ref={ref}
-
                     name="location"
                     type="text"
                     placeholder="Location, region"
                     value={formik.values.location}
                     onBlur={formik.handleBlur}
-                            disabled={!ready}
-                            onChange={e => {
-                              formik.handleChange(e);
-                              handleInput(e);
-                            }}
-                          />
-                          {status === 'OK' && (
-                            <ul>{renderSuggestions(formik.setFieldValue)}</ul>
-                          )}
+                    disabled={!ready}
+                    onChange={e => {
+                      formik.handleChange(e);
+                      handleInput(e);
+                    }}
+                  />
+                  {status === 'OK' && (
+                    <ul>{renderSuggestions(formik.setFieldValue)}</ul>
+                  )}
 
                   {formik.errors.location && formik.touched.location ? (
                     <ErrBox>{formik.errors.location}</ErrBox>

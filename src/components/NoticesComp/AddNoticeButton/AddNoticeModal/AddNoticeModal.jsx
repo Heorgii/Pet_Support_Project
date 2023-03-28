@@ -56,6 +56,7 @@ export const AddNoticeModal = () => {
   const breeds = useSelector(breedsValue);
 
   const onClickBackdrop = e => {
+    setFormQueue(true)
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanModal());
@@ -65,7 +66,6 @@ export const AddNoticeModal = () => {
   function toggleForm() {
     setFormQueue(!formQueue);
   }
-
 
   async function postNotice(values) {
     setIsLoading(true);
@@ -302,7 +302,7 @@ export const AddNoticeModal = () => {
                         </FieldList>
                       </div>
                     ) : (
-                      <div>
+                      <div ref={ref}>
                         <FieldsRadioSex role="group" id="sex">
                           <p>
                             The sex
@@ -343,7 +343,6 @@ export const AddNoticeModal = () => {
                           </LabelItem>
 
                           <FieldItem
- ref={ref}
                             type="text"
                             id="location"
                             name="location"
