@@ -62,8 +62,8 @@ export const ShowPassword = styled.span`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -77,8 +77,8 @@ export const IconValid = styled(FaCheck)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -93,14 +93,62 @@ export const IconInValid = styled(FaTimes)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
   svg {
     width: inherit;
     height: inherit;
+  }
+`;
+
+export const LocationList = styled.ul`
+  width: 98%;
+  position: absolute;
+
+  top: 74%;
+  left: 1.1%;
+  background-color: ${baseColor.colors.mainBg};
+  z-index: 100;
+  border: 1px solid;
+  border-top-color: transparent;
+  border-left-color: ${baseColor.colors.error};
+  border-right-color: ${baseColor.colors.error};
+  border-bottom-color: ${baseColor.colors.error};
+
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+`;
+export const LocationItem = styled.li`
+  margin: 16px 30px 0 30px;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  cursor: pointer;
+
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.inpText};
+  background: ${baseColor.colors.mainBg};
+
+  &:hover {
+    color: ${baseColor.colors.orangeLight};
+  }
+
+  &:focus {
+    color: ${baseColor.colors.orangeLight};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -155,7 +203,7 @@ export const Button = styled.button`
   background: ${baseColor.colors.orangeLight};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin: 24px 0 40px 0;
+  margin: 8px 0 40px 0;
   transform: scale(1);
   transition: transform 0.5s;
   cursor: pointer;
@@ -203,7 +251,7 @@ export const BackButton = styled.button`
   background: ${baseColor.colors.white};
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
-  margin: -26px 0 40px 0;
+  margin: -24px 0 40px 0;
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.5s;
@@ -252,10 +300,7 @@ export const ErrBox = styled.div`
 `;
 
 export const Div = styled.div`
-margin-bottom: 32px;
-  &:not(:first-child){
-    margin-bottom: 16;
-  }
+  margin-bottom: 32px;
 `;
 
 export const StyledLink = styled(Link)`

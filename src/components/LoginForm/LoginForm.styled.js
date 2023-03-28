@@ -32,8 +32,8 @@ export const IconValid = styled(FaCheck)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -48,8 +48,8 @@ export const IconInValid = styled(FaTimes)`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -93,8 +93,8 @@ const ShowPassword = styled.span`
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 15px;
-  top: 50%;
+  right: 28px;
+  top: 62%;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -111,7 +111,7 @@ const Input = styled.input`
   background: ${baseColor.colors.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
 
   &:focus,
   &:hover {
@@ -135,7 +135,7 @@ const Button = styled.button`
   background: ${baseColor.colors.orangeLight};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin: 24px 0 40px 0;
+  margin: 8px 0 40px 0;
   transform: scale(1);
   transition: transform 0.5s;
   cursor: pointer;
@@ -175,21 +175,27 @@ const Button = styled.button`
     font-size: 20px;
   }
 `;
-// const ErrorBox = styled.div`
-//   position: absolute;
-//   white-space: nowrap;
-//   bottom: 0px;
-//   left: 15px;
-//   color: #e53e3e;
-//   font-family: 'Manrope';
-//   font-size: 12px;
-//   font-style: normal;
-//   line-height: 1.4;
-//   letter-spacing: 0.03em;
-//   @media screen and (min-width: 768px) {
-//     left: 32px;
-//   }
-// `;
+const ErrorBox = styled.div`
+  position: absolute;
+  white-space: nowrap;
+  bottom: 0px;
+  left: 15px;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  margin-bottom: -16px;
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  }
+`;
+
+const Div = styled.div`
+  margin-bottom: 32px;
+`;
+
 const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
@@ -240,4 +246,6 @@ export {
   StyledLink,
   BoxText,
   Background,
+  ErrorBox,
+  Div,
 };
