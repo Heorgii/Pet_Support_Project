@@ -67,11 +67,11 @@ export const UserAboutWrapper = styled.div`
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    padding-left: 16px;
+    padding-left: 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-left: 100px;
+    padding-left: 0px;
   }
 `;
 export const TopContainer = styled.div`
