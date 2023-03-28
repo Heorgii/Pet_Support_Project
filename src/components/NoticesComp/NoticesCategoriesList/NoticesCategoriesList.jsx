@@ -7,6 +7,8 @@ import {
   onInfo,
   onSuccess,
 } from 'components/helpers/Messages/NotifyMessages';
+
+import { fetchData } from 'services/APIservice';
 import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
@@ -22,8 +24,8 @@ export const NoticesCategoriesList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useSelector(queryValue);
   const dispatch = useDispatch();
-  const { BASE_URL } = window.global;
-  const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
+
+  const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(selectFavorites);
@@ -46,29 +48,22 @@ export const NoticesCategoriesList = () => {
 
   useEffect(() => {
     query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
-    async function fetchNoticesList() {
+
+    (async function fetchNoticesList() {
       setIsLoading(true);
-      await fetch(
-        itemForFetch,
-        // ,{
-        // headers: {
-        //   'Authorization': 'Bearer eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjFjMDA4OTMxMWE2NDFmMTg2MmM5ZiIsImlhdCI6MTY3OTk4MDQ5OSwiZXhwIjoxNjgxMTkwMDk5fQ.IPBuqC9bosbPGgfDkFY4nvcaJw2UUDDG_kzo1WO3yno'
-        // },}
-      )
-        .then(res => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(new Error(`Can't find anything`));
-        })
-        .then(value => setData(value))
-        .catch(error => {
-          setError(error);
-        });
-    }
-    fetchNoticesList();
-  }, [itemForFetch, query, setSearchParams]);
+      try {
+        const { data } = await fetchData(itemForFetch);
+        setData(data);
+        if (!data) {
+          return onFetchError('Whoops, something went wrong');
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [itemForFetch, query, routeParams.id, setSearchParams]);
 
   return (
     <>

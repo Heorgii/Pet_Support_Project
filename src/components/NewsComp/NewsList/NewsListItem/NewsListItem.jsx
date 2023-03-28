@@ -15,11 +15,11 @@ export const NewsListItem = ({ newsItem }) => {
 
   return (
     <Item key={_id} id={_id}>
-      <Ractangle />
-      <Title>
-        <EllipsisText text={title} length={38} />
-      </Title>
       <TextWrapper>
+        <Ractangle />
+        <Title>
+          <EllipsisText text={title} length={38} />
+        </Title>
         <Text>
           <EllipsisText text={description} length={200} />
         </Text>

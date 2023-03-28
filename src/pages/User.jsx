@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react'; //useEffect
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
@@ -14,17 +14,18 @@ import {
 } from './UserPage.styled';
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
 // import { cleanModal } from 'redux/modal/operation';
+import { openModalWindow } from 'hooks/modalWindow';
 
 export const UserPage = () => {
   const [toShow] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      document.body.style.overflow = '';
-    }
-  }, [isModalOpen]);
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [isModalOpen]);
 
   return (
     <>
@@ -39,14 +40,15 @@ export const UserPage = () => {
         <UserAboutWrapper>
           <TopContainer>
             <MyPetTitle>My pets:</MyPetTitle>
-            <AddPetButton onOpenAddsPet={toggleModal} />
+            <AddPetButton onOpenAddsPet={openModalWindow} />
           </TopContainer>
           {toShow === 'pets' && <PetsData />}
         </UserAboutWrapper>
       </UserPageWrapper>
       {isModalOpen && (
-        <cleanModal setShow={toggleModal}>
-          <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
+        // setShow={toggleModal}
+        <cleanModal>
+          <ModalAddsPet onCloseBtn={toggleModal} />
         </cleanModal>
       )}
     </>

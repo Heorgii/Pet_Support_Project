@@ -10,6 +10,13 @@ const BackDrop = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(17, 17, 17, 0.6);
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const ErrBox = styled.div`
@@ -82,7 +89,7 @@ const PetsItemTitle = styled.h2`
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
-    line-height: 49px;;
+    line-height: 49px;
   }
 `;
 
@@ -114,7 +121,7 @@ const InfoListText = styled.p`
   margin-bottom: 8px;
   color: ${baseColor.colors.blackText};
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     font-size: 24px;
     margin-bottom: 12px;
   }
@@ -122,29 +129,28 @@ const InfoListText = styled.p`
 
 const InfoListLable = styled.label`
   margin-bottom: 16px;
-  &:last-child{
+  &:last-child {
     margin-bottom: 0px;
   }
 `;
 
 const InfoListInput = styled(Field)`
-  background: #FDF7F2;
+  background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   width: 100%;
-  padding: 11px 20px 11px 14px; 
-
+  padding: 11px 20px 11px 14px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 28px;
     width: 100%;
-    padding: 11px 323px 11px 16px; 
+    padding: 11px 323px 11px 16px;
   }
 
   &:hover,
-  &:focus{
+  &:focus {
     border-color: rgb(255, 97, 1);
     outline: none;
   }
@@ -200,14 +206,14 @@ export const ImgTitle = styled.p`
   margin-bottom: 20px;
   color: ${baseColor.colors.black};
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     font-size: 20px;
-    line-height: 27px;  
+    line-height: 27px;
   }
 `;
 
 const InfoListTextArea = styled.textarea`
-  background: #FDF7F2;
+  background: #fdf7f2;
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 20px;
   padding: 12px 0 0 14px;
@@ -215,16 +221,15 @@ const InfoListTextArea = styled.textarea`
   height: 100px;
   resize: none;
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     width: 394px;
     height: 116px;
   }
   &:hover,
-  &:focus{
+  &:focus {
     border-color: rgb(255, 97, 1);
     outline: none;
   }
-
 `;
 
 const ButtonBox = styled.div`
@@ -232,7 +237,7 @@ const ButtonBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
@@ -249,12 +254,12 @@ const ButtonFirst = styled.button`
   cursor: pointer;
 
   &:hover,
-  &:focus{
+  &:focus {
     transform: scale(1.05);
     transition: transform 0.5s ease 0s;
   }
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     margin-bottom: 0;
     margin-left: 20px;
   }
@@ -271,7 +276,7 @@ const ButtonSecond = styled.button`
   overflow: hidden;
 
   &:hover,
-  &:focus{
+  &:focus {
     transform: scale(1.05);
     transition: transform 0.5s ease 0s;
   }
@@ -287,8 +292,8 @@ const ButtonText = styled.p`
   padding: 9px 101px;
   color: ${baseColor.colors.white};
 
-  @media screen and (min-width: 768px){
-    padding: 8.5px 66.5px ;
+  @media screen and (min-width: 768px) {
+    padding: 8.5px 66.5px;
     font-size: 20px;
     line-height: 27px;
   }
@@ -298,7 +303,7 @@ const ButtonText2 = styled.p`
   padding: 9px 92px;
   color: ${baseColor.colors.black};
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     padding: 8.5px 55px;
     font-size: 20px;
     line-height: 27px;
@@ -309,7 +314,7 @@ const ButtonBackText = styled.p`
   padding: 9px 101px;
   color: ${baseColor.colors.black};
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     padding: 8.5px 55px;
     font-size: 20px;
     line-height: 27px;

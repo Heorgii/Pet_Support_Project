@@ -28,7 +28,6 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-
   return (
     <HelmetProvider>
       <Routes>
@@ -70,7 +69,15 @@ export const App = () => {
               />
             }
           />
-
+          {/* <Route
+            path="friends"
+            element={
+              <RestrictedRoute
+                redirectTo="/friends"
+                component={<OurFriendsPage />}
+              />
+            }
+          /> */}
           <Route path="friends" element={<OurFriendsPage />} />
 
           {/* added kadulin */}
