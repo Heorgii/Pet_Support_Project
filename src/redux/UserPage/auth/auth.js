@@ -20,8 +20,8 @@ export const login = async user => {
 };
 
 export const logout = async () => {
-  await axios.get('/logout');
   setToken(null);
+  await axios.post('/auth/logout');
   return true;
 };
 

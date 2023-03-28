@@ -39,7 +39,7 @@ const update = createAsyncThunk('/update', async (updateData, thunkAPI) => {
   }
 });
 
-const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
+const logout = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {
     await api.logout();
     return true;
