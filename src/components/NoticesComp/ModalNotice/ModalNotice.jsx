@@ -27,7 +27,7 @@ import {
   NoticeContainerButtom,
 } from './ModalNotice.styled';
 
-export const ModalNotices = () => {
+export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
 
@@ -120,7 +120,7 @@ export const ModalNotices = () => {
           </ContainerComments>
           <NoticeContainerButtom>
             <BtnContact>Contacts</BtnContact>
-            <BtnAddFavorits>
+            <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
               Add to{' '}
               <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
             </BtnAddFavorits>

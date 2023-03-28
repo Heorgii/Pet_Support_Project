@@ -6,6 +6,7 @@ import {
   getUser,
   getPets,
   getProfile,
+  getFavorites,
   getToken,
   getUsers,
 } from 'redux/UserPage/auth/authSelectors';
@@ -16,6 +17,7 @@ export const useAuth = () => {
   const userEmail = useSelector(getUserEmail);
   const user = useSelector(getUser);
   const pets = useSelector(getPets);
+  const favorites = useSelector(getFavorites);
   const profile = useSelector(getProfile);
   const token = useSelector(getToken);
   const users = useSelector(getUsers);
@@ -31,5 +33,6 @@ export const useAuth = () => {
     profile,
     token,
     users,
+    favorites,
   };
 };
