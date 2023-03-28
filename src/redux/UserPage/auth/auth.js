@@ -1,56 +1,61 @@
 import axios from 'axios';
 
-export const instance = axios.create({
-  // baseURL: 'http://localhost:3030/api',
-  baseURL: 'https://petsapi.cyclic.app/api',
-});
-
 const setToken = token => {
   if (token) {
-    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
-  instance.defaults.headers.common.authorization = '';
+  axios.defaults.headers.common.Authorization = '';
 };
 
 export const register = async user => {
-  const { data } = await instance.post('/register', user);
+  const { data } = await axios.post('/register', user);
   setToken(data.token);
   return data.user;
 };
 
 export const login = async user => {
-  const { data } = await instance.post('/login', user);
+  const { data } = await axios.post('/login', user);
   setToken(data.token);
   return data;
 };
 
 export const logout = async () => {
-  await instance.get('/logout');
+  await axios.get('/logout');
   setToken(null);
   return true;
 };
 
 export const update = async updateData => {
-  const { data } = await instance.patch('/user', updateData);
+  const { data } = await axios.patch('/user', updateData);
   return data;
 };
 
 export const profile = async _id => {
-  const { data } = await instance.get(`/profile/${_id}`);
+  const { data } = await axios.get(`/profile/${_id}`);
   return data;
 };
 
 export const getUsers = async () => {
-  const { data } = await instance.get('/user');
+  const { data } = await axios.get('/user');
   return data;
 };
 
 export const addPet = async pet => {
-  const { data } = await instance.post('/pets', pet);
+  const { data } = await axios.post('/pets', pet);
   return data.pet;
 };
 
 export const removePet = async _id => {
-  const { data } = await instance.delete(`/pets/${_id}`);
+  const { data } = await axios.delete(`/pets/${_id}`);
+  return data;
+};
+
+export const addFavorite = async id => {
+  const { data } = await axios.post(`/notices/favorites/${id}`);
+  return data;
+};
+
+export const removeFavorite = async id => {
+  const { data } = await axios.delete(`/notices/favorites/${id}`);
   return data;
 };

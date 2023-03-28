@@ -84,6 +84,27 @@ const removePet = createAsyncThunk('/removePet', async (_id, thunkAPI) => {
   }
 });
 
+const addFavorite = createAsyncThunk('/addFavorite', async (_id, thunkAPI) => {
+  try {
+    const result = await api.addFavorite(_id);
+    return { result, _id };
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data.message);
+  }
+});
+
+const removeFavorite = createAsyncThunk(
+  '/removeFavorite',
+  async (_id, thunkAPI) => {
+    try {
+      const result = await api.removeFavorite(_id);
+      return { result, _id };
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
+    }
+  },
+);
+
 const authOperations = {
   register,
   login,
@@ -94,6 +115,8 @@ const authOperations = {
   getUsers,
   addPet,
   removePet,
+  addFavorite,
+  removeFavorite,
 };
 
 export default authOperations;

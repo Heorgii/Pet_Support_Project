@@ -2,15 +2,21 @@ import { NoticesCategoriesItem } from './NoticeCategoryItem/NoticeCategoryItem';
 import { ModalNotices } from '../ModalNotice/ModalNotice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { ContainerStatus } from './NoticesCategoriesList.styled';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { v4 as uuidv4 } from 'uuid';
+import {
+  onFetchError,
+  onInfo,
+  onSuccess,
+} from 'components/helpers/Messages/NotifyMessages';
+import { useAuth } from 'redux/UserPage/auth/useAuth';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { addFavorite } from 'redux/UserPage/auth/auth';
 
 export const NoticesCategoriesList = () => {
+  const { isLoggedIn, user, isRefreshing, favorites } = useAuth();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,9 +25,23 @@ export const NoticesCategoriesList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = useSelector(queryValue);
+  const dispatch = useDispatch();
   const { BASE_URL } = window.global;
 
   const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
+
+  const toggleFavorite = async id => {
+    dispatch(addFavorite(id));
+    console.log(favorites);
+    onSuccess('You add pet to the favorite!');
+  };
+
+  const handleFavoriteBtnClick = id => e => {
+    e.preventDefault();
+    e.stopPropagation();
+    !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
+  };
+
   useEffect(() => {
     query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
     async function fetchNoticesList() {
@@ -62,13 +82,19 @@ export const NoticesCategoriesList = () => {
           {data.length === 0 ? (
             <h3>Ups Can't find anything..</h3>
           ) : (
-            data.map(key => <NoticesCategoriesItem data={key} key={uuidv4()} />)
+            data.map(value => (
+              <NoticesCategoriesItem
+                data={value}
+                addToFavoriteFunction={handleFavoriteBtnClick}
+                key={value._id}
+              />
+            ))
           )}
         </ContainerStatus>
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-      <ModalNotices />
+      <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );
 };

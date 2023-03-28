@@ -1,6 +1,6 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { useAuth } from 'redux/UserPage/auth/useAuth';
 import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useSelector, useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
@@ -22,17 +22,9 @@ import {
   BtnForFavorite,
 } from './NoticeCategoryItem.styled';
 
-export const NoticesCategoriesItem = ({ data }) => {
-  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
-
-  const addToFavorite = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    !isLoggedIn
-      ? onInfo('You must be loggined!')
-      : onSuccess('You add pet to the favorite!');
-  };
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -53,7 +45,7 @@ export const NoticesCategoriesItem = ({ data }) => {
       <NoticesContainerItem>
         <ContainerInfo>
           <ContainerStatus>{data.category}</ContainerStatus>
-          <BtnForFavorite onClick={addToFavorite}>
+          <BtnForFavorite onClick={addToFavoriteFunction(data._id)}>
             <img src={akar_icons_heart} alt="Add to favorite" />
           </BtnForFavorite>
           <ImgItem
