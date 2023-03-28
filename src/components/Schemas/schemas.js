@@ -34,8 +34,8 @@ const registerSchema = Yup.object().shape({
     .required('Require field'),
   location: Yup.string()
     .matches(
-      /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
-      'Invalid format. valid: city or city, region',
+      /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
+      'Invalid format. Example: Brovary, Kyiv ...',
     )
     .required('Require field'),
 });
@@ -79,32 +79,27 @@ const noticeSchemaFirst = Yup.object().shape({
 const noticeSchemaSecond = Yup.object().shape({
   sex: Yup.string().required('Sex is Required!'),
   location: Yup.string()
-    // .matches(
-    //   /^(\s*[a-zA-Z-]{2,}(?!,)\s*|\s*[a-zA-Z-]{2,},\s+([a-zA-Z-]+\s*)+\s*)$/,
-    //   'Invalid format. valid: city or city, region, Example: Brovary, Kyiv',
-    // )
+    .matches(
+      /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
+      'Invalid format. Example: Brovary, Kyiv ...',
+    )
     .required('Location is Required!'),
-  imageUrl: Yup.mixed()
-    // .nullable()
-    // .test("FILE_SIZE", "Uploaded file is too big.", 
-    //     value => !value || (value && value.size <= 1000000))
-    // .test("File_format", "Uploaded file has unsupported format.", 
-    // value => {!value || (value && ['jpeg', 'png', 'webp', 'gif', 'jpg'].includes(value.type)); console.log(value)})
-    .required('Image is Required!')
-  ,
+  imageUrl: Yup.string().required('Image is Required!'),
   comments: Yup.string()
     .min(8, 'Too Short!')
     .max(120, 'Too Long!')
     .required('Comments are Required!'),
 });
 
-const noticeSchemaSecondPrice = noticeSchemaSecond.concat(Yup.object().shape({
-  price: Yup.number()
-    .moreThan('0')
-    .positive()
-    .integer()
-    .required('Price is Required!'),
-}));
+const noticeSchemaSecondPrice = noticeSchemaSecond.concat(
+  Yup.object().shape({
+    price: Yup.number()
+      .moreThan('0')
+      .positive()
+      .integer()
+      .required('Price is Required!'),
+  }),
+);
 
 const addPetsUser = Yup.object().shape({
   name: Yup.string()
