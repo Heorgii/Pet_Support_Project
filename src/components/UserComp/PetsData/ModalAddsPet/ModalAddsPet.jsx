@@ -42,6 +42,7 @@ export const ModalAddsPet = () => {
     // const [isLoading] = useState(false);//setIsLoading
     // const [error] = useState(null);//, setError
     const [isShown, setIsShown] = useState(true);
+    const [file, setFile] = useState('');
 
 
     // const { BASE_URL } = window.global;
@@ -70,9 +71,9 @@ export const ModalAddsPet = () => {
     //     }
     // }
 
-    const onSubmit = (values, action) => {
-        console.log(values);
-    }
+    // const onSubmit = (values, action) => {
+    //     console.log(values);
+    // }
 
     const formik = useFormik({
         initialValues: {
@@ -98,8 +99,9 @@ export const ModalAddsPet = () => {
             ? true
             : false;
 
-    return ReactDOM.createPortal(
-        Object.values(modal)[0] === 'itemPet' && (
+            //  ReactDOM.createPortal
+    return(
+        // Object.values(modal)[0] === 'itemPet' && (
             <BackDrop onClick={closeModalForItemPet}>
                 <Formik>
                     {({
@@ -252,7 +254,7 @@ export const ModalAddsPet = () => {
                     )}
                 </Formik >
             </BackDrop >
-        ),
-        document.querySelector('#popup-root'),
+        // ),
+        // document.querySelector('#popup-root'),
     );
 }

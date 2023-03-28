@@ -1,8 +1,8 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
 import { useAuth } from 'redux/UserPage/auth/useAuth';
-import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { useSelector, useDispatch } from 'react-redux';
+// import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
+import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
 import delBack from 'images/svg/icon_delete.svg';
@@ -23,7 +23,7 @@ import {
 } from './NoticeCategoryItem.styled';
 
 export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
   const openModalForItemPet = e => {
