@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../../../../redux/UserPage/auth/authOperations';
 import {
   DeleteIcon,
   PetsItemDeleteBtn,
@@ -10,27 +11,14 @@ import {
 } from './PetsItem.styled';
 
 export const PetsItem = ({ pet, profile }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => setIsModalOpen(state => !state);
-
-  const { name, date, breed, imageUrl, comments } = pet;
-
-  useEffect(() => {
-    if (!isModalOpen) {
-      document.body.style.overflow = '';
-    }
-  }, [isModalOpen]);
+  const dispatch = useDispatch();
+  const { name, _id, date, breed, imageUrl, comments } = pet;
 
   return (
     <>
       <PetsItemWrapper>
         <PetsItemImg src={imageUrl} alt={name} />
         <PetsItemInfoBlock>
-          {!profile && (
-            <PetsItemDeleteBtn type="button" onClick={toggleModal}>
-              <DeleteIcon />
-            </PetsItemDeleteBtn>
-          )}
           <PetsItemDesc>
             <PetsItemSpan>Name:</PetsItemSpan>
             {name}
@@ -47,6 +35,14 @@ export const PetsItem = ({ pet, profile }) => {
             <PetsItemSpan>Comments:</PetsItemSpan>
             {comments}
           </PetsItemDesc>
+          {!profile && (
+            <PetsItemDeleteBtn
+              type="submit"
+              onClick={() => dispatch(authOperations.removePet(_id))}
+            >
+              <DeleteIcon />
+            </PetsItemDeleteBtn>
+          )}
         </PetsItemInfoBlock>
       </PetsItemWrapper>
     </>
