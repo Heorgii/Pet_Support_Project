@@ -7,32 +7,34 @@ import {
   onInfo,
   onSuccess,
 } from 'components/helpers/Messages/NotifyMessages';
-import { useAuth } from 'redux/UserPage/auth/useAuth';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { addFavorite } from 'redux/UserPage/auth/auth';
+import { addFavorite, removeFavorite } from 'redux/auth/operations';
+import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const NoticesCategoriesList = () => {
-  const { isLoggedIn, favorites } = useAuth();// user, isRefreshing,
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const routeParams = useParams();
-
   const [searchParams, setSearchParams] = useSearchParams();
-
   const query = useSelector(queryValue);
   const dispatch = useDispatch();
   const { BASE_URL } = window.global;
-
   const itemForFetch = `${BASE_URL}/notices/${routeParams.id}?${searchParams}`;
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(selectFavorites);
+
   const toggleFavorite = async id => {
+    if (favorites.includes(id)) {
+      dispatch(removeFavorite(id));
+      onSuccess('You remove pet from the favorite!');
+      return;
+    }
     dispatch(addFavorite(id));
-    console.log(favorites);
     onSuccess('You add pet to the favorite!');
   };
 
@@ -85,6 +87,7 @@ export const NoticesCategoriesList = () => {
             data.map(value => (
               <NoticesCategoriesItem
                 data={value}
+                isInFavorite={favorites.includes(value._id)}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
               />

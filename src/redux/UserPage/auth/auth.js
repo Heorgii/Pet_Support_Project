@@ -49,13 +49,3 @@ export const removePet = async _id => {
   const { data } = await axios.delete(`/pets/${_id}`);
   return data;
 };
-
-export const addFavorite = async id => {
-  const { data } = await axios.post(`/notices/favorites/${id}`);
-  return data;
-};
-
-export const removeFavorite = async id => {
-  const { data } = await axios.delete(`/notices/favorites/${id}`);
-  return data;
-};

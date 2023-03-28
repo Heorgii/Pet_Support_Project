@@ -26,11 +26,12 @@ import {
   ContainerComments,
   NoticeContainerButtom,
 } from './ModalNotice.styled';
+import { selectFavorites } from 'redux/auth/selectors';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
-
+  const favorites = useSelector(selectFavorites);
   const closeModalForItemPet = e => {
     e.preventDefault();
     dispatch(cleanModal());
@@ -42,6 +43,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   const [, setError] = useState(null);
   // const [status, setStatus] = useState('idle');
 
+  const isInFavorite = favorites.includes(data._id);
   const { BASE_URL } = window.global;
   let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
 
@@ -121,7 +123,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
           <NoticeContainerButtom>
             <BtnContact>Contacts</BtnContact>
             <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
-              Add to{' '}
+              {isInFavorite ? `Remove from ${' '}` : `Add to${' '}`}
               <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
             </BtnAddFavorits>
           </NoticeContainerButtom>
