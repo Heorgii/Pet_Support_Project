@@ -16,13 +16,13 @@ export const PetsData = ({ petsList }) => {
   //   profile = true;
   // }
 
-  console.log(petsList);
+  // console.log(petsList);
   return (
     <>
       <AddPetWrapper>
         <AddPetDiv></AddPetDiv>
 
-        {petsList.length === 0 ? (
+        {petsList?.length === 0 ? (
           <PetDataWrapper>
             <PetDataInfo>Unfortunately there is no one here yet.</PetDataInfo>
           </PetDataWrapper>

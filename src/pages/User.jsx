@@ -1,4 +1,4 @@
-import { useState } from 'react'; //useEffect
+import { useEffect, useState } from 'react'; //useEffect
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
@@ -19,15 +19,17 @@ import axios from 'axios';
 import { openModalWindow } from 'hooks/modalWindow';
 
 export const UserPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [petsList, setPetsList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
 
   const getPets = async () => {
-    const pets = await axios('/user');
     setIsLoading(true);
-    return pets;
+    const { data } = await axios('/user');
+    console.log('test', data.pets);
+    setIsLoading(false);
+    return data.pets;
   };
 
   useEffect(() => {
@@ -37,9 +39,14 @@ export const UserPage = () => {
   }, [isModalOpen]);
 
   useEffect(() => {
-    if (isLoading) return;
-    setPetsList(() => getPets());
-  }, [isLoading]);
+    async function fetchPets() {
+      if (isLoading) return;
+      const pets = await getPets();
+      setPetsList(pets);
+      console.log('test fn', pets);
+    }
+    fetchPets();
+  }, []);
 
   console.log('Users PetsList', petsList);
 
