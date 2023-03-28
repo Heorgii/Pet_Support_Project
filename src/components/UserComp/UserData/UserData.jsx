@@ -1,4 +1,4 @@
-import { useState } from 'react';//useEffect
+import { useState } from 'react'; //useEffect
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 // import { useAuth } from 'hooks/useAuth';
@@ -82,7 +82,7 @@ export const UserData = () => {
             profile={profile}
             label={'Birthday:'}
             defaultValue={user.birthday || '01.01.1900'}
-            type="text"
+            type="data"
             name="birthday"
             active={active}
             setActive={setActive}
@@ -103,9 +103,9 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'City:'}
-            defaultValue={user.city}
+            defaultValue={user.location}
             type="text"
-            name="city"
+            name="location"
             active={active}
             setActive={setActive}
             id="city"

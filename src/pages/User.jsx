@@ -12,6 +12,8 @@ import {
   UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
+import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
+import { cleanModal } from 'redux/modal/operation';
 
 export const UserPage = () => {
   const [toShow] = useState();
@@ -42,6 +44,11 @@ export const UserPage = () => {
           {toShow === 'pets' && <PetsData />}
         </UserAboutWrapper>
       </UserPageWrapper>
+      {isModalOpen && (
+        <cleanModal setShow={toggleModal}>
+          <ModalAddsPet onClose={toggleModal} onCloseBtn={toggleModal} />
+        </cleanModal>
+      )}
     </>
   );
 };
