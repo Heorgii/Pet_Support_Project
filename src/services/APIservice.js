@@ -11,15 +11,15 @@ async function fetchData(pathParams) {
   return await axiosInstance.get();
 }
 
-async function fetchNotice(pathParams, body) {
+async function fetchNotice(pathParams, body, file) {
   const formData = new FormData();
   formData.append('birthday', body.birthday);
   formData.append('breed', body.breed);
   formData.append('comments', body.comments);
-  formData.append('imageUrl', body.imageUrl);
+  formData.append('imageURL', file);
   formData.append('location', body.location);
   formData.append('name', body.name);
-  formData.append('price', body.price);
+  body.price !== '' && formData.append('price', body.price);
   formData.append('sex', body.sex);
   formData.append('title', body.title);
 

@@ -56,7 +56,7 @@ export const AddNoticeModal = () => {
   const breeds = useSelector(breedsValue);
 
   const onClickBackdrop = e => {
-    setFormQueue(true)
+    setFormQueue(true);
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanModal());
@@ -68,9 +68,14 @@ export const AddNoticeModal = () => {
   }
 
   async function postNotice(values) {
+    const file = document.querySelector('.file').files[0];
     setIsLoading(true);
     try {
-      const { code } = await fetchNotice(`/notices/${values.category}`, values);
+      const { code } = await fetchNotice(
+        `/notices/${values.category}`,
+        values,
+        file,
+      );
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
       }
@@ -150,6 +155,7 @@ export const AddNoticeModal = () => {
                   postNotice(values);
                   closeModalWindow();
                   dispatch(cleanModal());
+                  setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate('/notices/own');
                 } else {
