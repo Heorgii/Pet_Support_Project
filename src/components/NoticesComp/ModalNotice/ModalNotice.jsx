@@ -43,7 +43,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   const [, setError] = useState(null);
   // const [status, setStatus] = useState('idle');
 
-  const isInFavorite = favorites.includes(data._id);
+  const isInFavorite = favorites.includes(modal.id);
   const { BASE_URL } = window.global;
   let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
 
