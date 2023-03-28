@@ -24,13 +24,13 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        const {userName, email, location, phone} = action.payload.data
+        const { userName, email, location, phone } = action.payload.data;
         const user = {
           userName,
           email,
           location,
-          phone
-        }
+          phone,
+        };
         state.user = user;
         state.token = action.payload.data.authToken;
         state.isLoggedIn = true;
