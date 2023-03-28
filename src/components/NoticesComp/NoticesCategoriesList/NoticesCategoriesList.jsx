@@ -46,7 +46,13 @@ export const NoticesCategoriesList = () => {
     query !== '' ? setSearchParams(`findtext=${query}`) : setSearchParams('');
     async function fetchNoticesList() {
       setIsLoading(true);
-      await fetch(itemForFetch)
+      await fetch(
+        itemForFetch,
+        // ,{
+        // headers: {
+        //   'Authorization': 'Bearer eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjFjMDA4OTMxMWE2NDFmMTg2MmM5ZiIsImlhdCI6MTY3OTk4MDQ5OSwiZXhwIjoxNjgxMTkwMDk5fQ.IPBuqC9bosbPGgfDkFY4nvcaJw2UUDDG_kzo1WO3yno'
+        // },}
+      )
         .then(res => {
           setIsLoading(false);
           if (res.ok) {

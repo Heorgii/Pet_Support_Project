@@ -3,6 +3,7 @@ import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 // import MaskedInput from 'react-text-mask';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 
 import mobileBackground from '../../images/register/bg-register-mobile.png';
 import tabletBackground from '../../images/register/bg-register-tablet.png';
@@ -10,7 +11,7 @@ import desktopBackground from '../../images/register/bg-register-desktop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
-  @media(min-width: 767px) and (max-width: 1279px) {
+  @media (min-width: 767px) and (max-width: 1279px) {
     padding-top: 168px;
   }
 
@@ -71,21 +72,38 @@ export const ShowPassword = styled.span`
     height: inherit;
   }
 `;
-// export const Icon = styled(Icon)`
-//   display: inline-block;
-//   position: absolute;
-//   width: 20px;
-//   height: 20px;
-//   right: 15px;
-//   top: 50%;
-//   transform: translateY(-80%);
-//   color: grey;
-//   cursor: pointer;
-//   svg {
-//     width: inherit;
-//     height: inherit;
-//   }
-// `;
+export const IconValid = styled(FaCheck)`
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-80%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
+export const IconInValid = styled(FaTimes)`
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-80%);
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+`;
+
 export const Input = styled(Field)`
   width: 280px;
   font-size: 14px;
@@ -94,7 +112,6 @@ export const Input = styled(Field)`
   background: ${baseColor.colors.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
-  margin-bottom: 16px;
   &:focus,
   &:hover {
     border-color: ${baseColor.colors.orange};
@@ -215,8 +232,9 @@ export const BackButton = styled.button`
     font-size: 20px;
   }
 `;
+
 export const ErrBox = styled.div`
-  position: absolute;
+  position: relative;
   white-space: nowrap;
   bottom: 0px;
   left: 15px;
@@ -226,10 +244,20 @@ export const ErrBox = styled.div`
   font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.03em;
+  margin-bottom: -16px;
+
   @media screen and (min-width: 768px) {
     left: 32px;
   }
 `;
+
+export const Div = styled.div`
+margin-bottom: 32px;
+  &:not(:first-child){
+    margin-bottom: 16;
+  }
+`;
+
 export const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const { BASE_URL } = window.global;
 async function fetchData(pathParams) {
-
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
     headers: { 'Content-Type': 'application/json' },
@@ -12,13 +11,23 @@ async function fetchData(pathParams) {
   return await axiosInstance.get();
 }
 
-async function fetchNotice(pathParams, body) {
-  const axiosInstance = axios.create({
-    baseURL: `${BASE_URL}${pathParams}`,
-    headers: { 'Content-Type': 'multipart/form-data' },
-    data: JSON.stringify(body),
+async function fetchNotice(pathParams, body, file) {
+  const formData = new FormData();
+  formData.append('birthday', body.birthday);
+  formData.append('breed', body.breed);
+  formData.append('comments', body.comments);
+  formData.append('imageURL', file);
+  formData.append('location', body.location);
+  formData.append('name', body.name);
+  body.price !== '' && formData.append('price', body.price);
+  formData.append('sex', body.sex);
+  formData.append('title', body.title);
+
+  return axios.post(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
-  return await axiosInstance.post();
 }
 
 fetchData.propTypes = {

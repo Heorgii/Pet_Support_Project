@@ -22,8 +22,6 @@ export const useAuth = () => {
   const token = useSelector(getToken);
   const users = useSelector(getUsers);
 
-  console.log('pets:', pets);
-
   return {
     isLoggedIn,
     isError,

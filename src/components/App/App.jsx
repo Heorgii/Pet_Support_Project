@@ -1,10 +1,12 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
+import { useDispatch } from 'react-redux';    
+import { refreshUser } from 'redux/auth/operations';
 // import initAxios from 'utils/initAxios';
 
 const HomePage = lazy(() => import('pages/Home'));
@@ -18,11 +20,14 @@ const LoginPage = lazy(() => import('pages/Login'));
 export const App = () => {
   // initAxios();
   //  як буде правцювати бекєнд потрібно оновити дані юзера
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
   // const user = useSelector(selectUser)
-  // useEffect(() => {
-  //   if(user){dispatch(refreshUser(user))};
-  // }, [dispatch, user]);
+  // console.log('ssss',user)
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
 
   return (
     <HelmetProvider>
@@ -48,7 +53,7 @@ export const App = () => {
 
           <Route path="notices/:id" element={<NoticesPage />} />
           <Route
-            path="notices/favorite"
+            path="notices/:favorite"
             element={
               <PrivateRoute
                 redirectTo="/register"
@@ -57,7 +62,7 @@ export const App = () => {
             }
           />
           <Route
-            path="notices/own"
+            path="notices/:own"
             element={
               <PrivateRoute
                 redirectTo="/register"

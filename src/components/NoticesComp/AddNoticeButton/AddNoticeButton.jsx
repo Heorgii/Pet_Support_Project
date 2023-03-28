@@ -6,12 +6,10 @@ import { openModalWindow } from 'hooks/modalWindow';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { fetchData } from 'services/APIservice';
 import { addBreeds } from 'redux/breeds/slice';
-// import Notiflix from 'notiflix';
-// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 export const AddNoticeButton = () => {
-  // const { isLoggedIn } = useAuth();
-  const isLoggedIn = true;
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
   const toggleModalAddNotice = e => {
