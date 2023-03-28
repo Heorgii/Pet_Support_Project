@@ -58,7 +58,7 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
             }
             loading="lazy"
           />
-          <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+          <NoticeItemTitle>{data.title}</NoticeItemTitle>
           <Table>
             <TBody>
               <tr>
