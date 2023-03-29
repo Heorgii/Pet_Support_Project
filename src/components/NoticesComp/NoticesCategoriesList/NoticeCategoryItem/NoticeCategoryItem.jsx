@@ -27,7 +27,11 @@ import {
 import { selecId } from 'redux/auth/selectors';
 // import { authOperations } from 'redux/UserPage/auth';
 
-export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
+export const NoticesCategoriesItem = ({
+  data,
+  addToFavoriteFunction,
+  isInFavorite,
+}) => {
   const { _id } = useSelector(selecId); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';
