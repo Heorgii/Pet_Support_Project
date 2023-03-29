@@ -16,25 +16,26 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
+import { addPage } from 'redux/pagination/slice';
+import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
 export const NoticesCategoriesList = () => {
+  const dispatch = useDispatch();
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [totalPage, setTotalPage] = useState(0);
-  const [page, setPage] = useState(1);
-
-  const perPage = 3;
+  const page = useSelector(paginationPage);
+  const perPage = useSelector(paginationPerPage);
 
   function changePage(newPage) {
-    setPage(newPage);
+    dispatch(addPage((newPage)));
   }
 
   const routeParams = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useSelector(queryValue);
-  const dispatch = useDispatch();
 
   const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
@@ -79,7 +80,7 @@ export const NoticesCategoriesList = () => {
         setIsLoading(false);
       }
     })();
-  }, [itemForFetch, page, query, setSearchParams]);
+  }, [itemForFetch, page, perPage, query, setSearchParams]);
 
   return (
     <>

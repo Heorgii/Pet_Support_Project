@@ -11,6 +11,7 @@ import { Title } from 'components/baseStyles/CommonStyle.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch } from 'react-redux';
 import { addQuery } from 'redux/query/slice';
+import { addPage } from 'redux/pagination/slice';
 
 export const NoticesSearch = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export const NoticesSearch = () => {
                   document
                     .querySelector('#search')
                     .addEventListener('input', e => {
-                      e.target.value === '' && dispatch(addQuery(''));
+                    if(e.target.value === '') {dispatch(addPage(1)); dispatch(addQuery(''));}
                     });
                 }}
               />
