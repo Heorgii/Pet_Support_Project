@@ -14,10 +14,8 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/paginate';
 
 const News = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [total, setTotal] = useState(0);
@@ -35,6 +33,11 @@ const News = () => {
     setPage(Number(1));
     setSearch(searchQuery);
   };
+
+  const [searchParams, setSearchParams] = useSearchParams(
+    `perPage=${perPage}&page=${page}`,
+  );
+
   useEffect(() => {
     setSearchParams(
       search.trim() !== ''
@@ -43,7 +46,6 @@ const News = () => {
     );
 
     (async () => {
-      setIsLoading(true);
       try {
         const { data } = await fetchData(`/news?${searchParams}`);
         setNews(data.data);
@@ -81,7 +83,7 @@ const News = () => {
                 Whoops! Can't find anything...
               </Title>
             )}
-          {news.length > 0 && !error && (
+          {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
               <Pagination
