@@ -15,24 +15,23 @@ export const FormDiv = styled.div`
   left: 0px;
   background-color: rgba(17, 17, 17, 0.6);
   z-index: 102222220;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
 `;
 
 export const ErrBox = styled.div`
-  /* position: absolute; */
-  /* white-space: nowrap;
-  bottom: 0px;
-  left: 15px; */
+  position: absolute;
+  margin-left: 16px;
+  /* margin-bottom: -16px; */
   color: #e53e3e;
   font-family: 'Manrope';
   font-size: 12px;
   font-style: normal;
   line-height: 1.4;
-  /* letter-spacing: 0.03em;
+  letter-spacing: 0.03em;
   @media screen and (min-width: 768px) {
     left: 32px;
-  } */
+  }
 `;
 
 const UserPetContainerItem = styled(Form)`
@@ -110,7 +109,13 @@ export const InfoList2 = styled.div`
     margin-top: 40px;
   }
 `;
+const InfoListLable = styled.div`
+  margin-bottom: 28px;
 
+  &:last-child {
+    margin-bottom: 0px;
+  }
+`;
 const InfoListText = styled.p`
   font-family: 'Manrope';
   font-style: normal;
@@ -119,6 +124,7 @@ const InfoListText = styled.p`
   line-height: 26px;
   font-family: 'Manrope';
   margin-bottom: 8px;
+
   color: ${baseColor.colors.blackText};
 
   @media screen and (min-width: 768px) {
@@ -127,26 +133,25 @@ const InfoListText = styled.p`
   }
 `;
 
-const InfoListLable = styled.label`
-  margin-bottom: 16px;
-  &:last-child {
-    margin-bottom: 0px;
-  }
-`;
-
 const InfoListInput = styled(Field)`
+  /* position: relative; */
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   width: 100%;
   padding: 11px 20px 11px 14px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 22px;
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
     width: 100%;
     padding: 11px 323px 11px 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
   }
 
   &:hover,
@@ -156,7 +161,24 @@ const InfoListInput = styled(Field)`
   }
 `;
 
+export const ErrBoxImage = styled.div`
+  position: absolute;
+  margin-left: 16px;
+  top: 59%;
+  left: 39%;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  /* letter-spacing: 0.03em;
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  } */
+`;
+
 export const FieldItemFile = styled.input`
+  position: relative;
   all: unset;
   height: 208px;
   width: 208px;
