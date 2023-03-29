@@ -20,19 +20,19 @@ export const FormDiv = styled.div`
 `;
 
 export const ErrBox = styled.div`
-  /* position: absolute; */
-  /* white-space: nowrap;
+  position: relative;
+  white-space: nowrap;
   bottom: 0px;
-  left: 15px; */
+  left: 15px; 
   color: #e53e3e;
   font-family: 'Manrope';
   font-size: 12px;
   font-style: normal;
   line-height: 1.4;
-  /* letter-spacing: 0.03em;
+  letter-spacing: 0.03em;
   @media screen and (min-width: 768px) {
     left: 32px;
-  } */
+  }
 `;
 
 const UserPetContainerItem = styled(Form)`
@@ -128,10 +128,15 @@ const InfoListText = styled.p`
 `;
 
 const InfoListLable = styled.label`
-  margin-bottom: 16px;
+display: block;
+  /* margin-bottom: 16px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+
   &:last-child {
     margin-bottom: 0px;
-  }
+  } */
 `;
 
 const InfoListInput = styled(Field)`
@@ -140,6 +145,7 @@ const InfoListInput = styled(Field)`
   border-radius: 40px;
   width: 100%;
   padding: 11px 20px 11px 14px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -147,6 +153,10 @@ const InfoListInput = styled(Field)`
     margin-bottom: 28px;
     width: 100%;
     padding: 11px 323px 11px 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
   }
 
   &:hover,
