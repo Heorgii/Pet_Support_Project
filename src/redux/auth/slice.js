@@ -79,7 +79,6 @@ export const authSlice = createSlice({
           favorites,
           _id,
         };
-        console.log(user);
         state.user = user;
 
         state.isLoggedIn = true;
@@ -89,6 +88,7 @@ export const authSlice = createSlice({
         state.user = initialState.user;
         state.isLoggedIn = false;
         state.isRefreshing = false;
+        state.token = null;
       })
       .addCase(addFavorite.pending, state => {
         state.isLoading = true;
