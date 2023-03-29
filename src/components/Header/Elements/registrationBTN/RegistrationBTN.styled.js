@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const RegistrationButton = styled(NavLink)`
+  padding: 8px 28px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 12px;
-  width: 144px;
+
   height: 35px;
   border-radius: 40px;
   text-decoration: none;
@@ -32,11 +33,13 @@ const RegistrationButton = styled(NavLink)`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1280px) {
+    padding: 8.5px 28px;
     height: 44px;
     font-size: 20px;
     line-height: 27px;
   }
   @media screen and (min-width: 1280px) {
+    padding: 10px 28px;
     height: 48px;
     font-size: 20px;
     line-height: 27px;
