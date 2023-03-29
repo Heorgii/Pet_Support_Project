@@ -14,16 +14,14 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
 
 const News = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
 
-  const perPage = 3;
+  const perPage = 10;
 
   function changePage(newPage) {
     setPage(newPage);
@@ -35,6 +33,10 @@ const News = () => {
     setSearch(searchQuery);
   };
 
+  const [searchParams, setSearchParams] = useSearchParams(
+    `perPage=${perPage}&page=${page}`,
+  );
+
   useEffect(() => {
     setSearchParams(
       search.trim() !== ''
@@ -43,7 +45,6 @@ const News = () => {
     );
 
     (async () => {
-      setIsLoading(true);
       try {
         const { data } = await fetchData(`/news?${searchParams}`);
         setNews(data.data);
@@ -63,7 +64,7 @@ const News = () => {
     setError(null);
     setIsLoading(false);
   };
-  console.log('news', news);
+
   return (
     <>
       <SEO title="News" description="You can see all news" />
@@ -74,20 +75,15 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch sendSearch={handleFormSubmit} reset={reset} />
-          {news?.length &&
-            !isLoading && (
-              <Title as="h3" size="14px">
-                Whoops! Can't find anything...
-              </Title>
-            )}
-
+          {!news && !isLoading && (
+            <Title as="h3" size="14px">
+              Whoops! Can't find anything...
+            </Title>
+          )}
           {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
-              <Pagination
-                totalPage={totalPage}
-                changePage={changePage}
-              />
+              <Pagination totalPage={totalPage} changePage={changePage} />
             </>
           )}
         </Container>
