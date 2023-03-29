@@ -7,7 +7,10 @@ export const PetsItemWrapper = styled.li`
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  padding: 16px 20px 40px
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
 
   &:not(:last-child) {
     margin-bottom: 20px;
@@ -29,7 +32,7 @@ export const PetsItemWrapper = styled.li`
 
   @media screen and (min-width: 1600px) {
     &:not(:last-child) {
-      margin-bottom: 100px;
+      margin-bottom: 0px;
     }
   }
 `;
@@ -117,7 +120,7 @@ export const PetsItemDesc = styled.p`
   letter-spacing: 0.04em;
 
   &:not(:last-child) {
-    margin-bottom: 120 px;
+    margin-bottom: 12px;
   }
 
   @media screen and (min-width: 768px) {

@@ -38,8 +38,16 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        const { userName, email, location, phone, favorites, _id } =
-          action.payload.data;
+        const {
+          userName,
+          email,
+          location,
+          phone,
+          birthday,
+          avatarUrl,
+          favorites,
+          _id,
+        } = action.payload.data;
 
         const user = {
           userName,
@@ -47,7 +55,9 @@ export const authSlice = createSlice({
           location,
           phone,
           favorites,
+          birthday,
           _id,
+          avatarUrl,
         };
         state.user = user;
         state.token = action.payload.data.authToken;
@@ -68,7 +78,7 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        const { userName, email, location, phone, favorites, _id } =
+        const { userName, email, location, birthday, phone, favorites, _id } =
           action.payload.data.user;
 
         const user = {
@@ -76,6 +86,7 @@ export const authSlice = createSlice({
           email,
           location,
           phone,
+          birthday,
           favorites,
           _id,
         };
