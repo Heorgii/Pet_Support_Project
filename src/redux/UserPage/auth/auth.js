@@ -40,6 +40,11 @@ export const getUsers = async () => {
   return data;
 };
 
+// export const getPets = async () => {
+//   const { data } = await axios.get('/pets');
+//   return data;
+// };
+
 export const addPet = async pet => {
   const { data } = await axios.post('/pets', pet);
   return data.pet;
@@ -47,15 +52,5 @@ export const addPet = async pet => {
 
 export const removePet = async _id => {
   const { data } = await axios.delete(`/pets/${_id}`);
-  return data;
-};
-
-export const addFavorite = async id => {
-  const { data } = await axios.post(`/notices/favorites/${id}`);
-  return data;
-};
-
-export const removeFavorite = async id => {
-  const { data } = await axios.delete(`/notices/favorites/${id}`);
   return data;
 };

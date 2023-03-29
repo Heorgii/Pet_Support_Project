@@ -107,7 +107,7 @@ const addPetsUser = Yup.object().shape({
     .max(16, 'Too Long!')
     .required('Name is Required!'),
 
-  birthday: Yup.date().required('BirthDay is Required!'),
+  data: Yup.date().required('BirthDay is Required!'),
 
   breed: Yup.string()
     .min(2, 'Too Short!')

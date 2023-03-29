@@ -24,7 +24,11 @@ import {
 } from './NoticeCategoryItem.styled';
 import { useAuth } from 'hooks/useAuth';
 
-export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
+export const NoticesCategoriesItem = ({
+  data,
+  addToFavoriteFunction,
+  isInFavorite,
+}) => {
   const { user } = useAuth(); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';

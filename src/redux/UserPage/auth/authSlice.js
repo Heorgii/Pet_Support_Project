@@ -137,37 +137,6 @@ const authSlice = createSlice({
       .addCase(authOperations.removePet.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = payload;
-      })
-      .addCase(authOperations.addFavorite.pending, state => {
-        state.isLoading = true;
-        state.isError = null;
-      })
-      .addCase(authOperations.addFavorite.fulfilled, (state, { payload }) => {
-        state.favorites = [...state.user.favorites, payload];
-        state.isLoading = false;
-        state.isError = null;
-      })
-      .addCase(authOperations.addFavorite.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.isError = payload;
-      })
-      .addCase(authOperations.removeFavorite.pending, state => {
-        state.isLoading = true;
-        state.isError = null;
-      })
-      .addCase(
-        authOperations.removeFavorite.fulfilled,
-        (state, { payload }) => {
-          state.user.favorites = state.user.favorites(
-            _id => _id !== payload._id,
-          );
-          state.isLoading = false;
-          state.isError = null;
-        },
-      )
-      .addCase(authOperations.removeFavorite.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.isError = payload;
       });
   },
 });

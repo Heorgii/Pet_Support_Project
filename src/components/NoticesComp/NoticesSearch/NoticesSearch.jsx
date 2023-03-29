@@ -32,7 +32,7 @@ export const NoticesSearch = () => {
         }}
       >
         {({ isSubmitting, values, handleSubmit, handleChange }) => (
-          <FormStyled onSubmit={handleSubmit}>
+          <FormStyled onSubmit={handleSubmit} autoComplete="off">
             <LabelStyled>
               <FieldStyled
                 id="search"

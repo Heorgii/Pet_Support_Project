@@ -1,13 +1,13 @@
 import { PetsItem } from './PetsItem/PetsItem';
 import { PetsListWrapper } from './PetsList.styled';
 
-export const PetsList = ({ pets, profile }) => {
+export const PetsList = ({ petsList }) => {
   return (
     <>
-      {pets.length > 0 && (
+      {petsList?.length > 0 && (
         <PetsListWrapper>
-          {pets.map(pet => (
-            <PetsItem key={pet._id} pet={pet} profile={profile} />
+          {petsList.map(pet => (
+            <PetsItem key={pet._id} pet={pet} />
           ))}
         </PetsListWrapper>
       )}
