@@ -48,8 +48,8 @@ const HeroContainer = styled(Container)`
 const HeartContainer = styled.div`
   @media screen and (min-width: 1280px) {
     position: absolute;
-    top: 127px;
-    left: 685px;
+    top: 60px;
+    left: 680px;
     height: 89px;
     width: 91px;
     background-image: url(${heart});
@@ -92,9 +92,52 @@ const BallContainer = styled.div`
     width: 64px;
     background-image: url(${ball});
     background-repeat: no-repeat;
-    animation: bounce-in-top 1.5s both;
+    animation: bounce-in-top 7s both;
   }
+
   @keyframes bounce-in-top {
+    0% {
+      transform: translateY(-700px);
+      animation-timing-function: ease-in;
+    }
+    35% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    50% {
+      transform: translateY(-200px);
+      animation-timing-function: ease-in;
+    }
+    65% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    75% {
+      transform: translateY(-70px);
+      animation-timing-function: ease-in;
+    }
+    84% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    90% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-in;
+    }
+    94% {
+      transform: translateY(0px);
+      animation-timing-function: ease-in;
+    }
+    97% {
+      transform: translateY(-10px);
+      animation-timing-function: ease-in;
+    }
+    100% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+  }
+  /* @keyframes bounce-in-top {
     0% {
       transform: translateY(-500px);
       animation-timing-function: ease-in;
@@ -129,7 +172,7 @@ const BallContainer = styled.div`
       transform: translateY(0);
       animation-timing-function: ease-out;
     }
-  }
+  } */
 `;
 
 const HeroTitle = styled.h1`

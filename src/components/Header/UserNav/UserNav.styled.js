@@ -8,8 +8,8 @@ const MobileAccountButton = styled(NavLink)`
   justify-content: center;
   align-items: center;
   margin: 46px auto 0 auto;
+  padding: 8px 36px;
 
-  width: 164px;
   height: 35px;
   border-radius: 40px;
   text-decoration: none;
@@ -35,19 +35,13 @@ const AccountButton = styled(MobileAccountButton)`
   display: none;
 
   @media screen and (min-width: 768px) {
+    padding: 8px 28px;
     display: flex;
     width: 164px;
     height: 44px;
     font-size: 20px;
     line-height: 27px;
   }
-  // @media screen and (min-width: 1280px) {
-  //   display: flex;
-  //   width: 164px;
-  //   height: 44px;
-  //   font-size: 20px;
-  //   line-height: 27px;
-  // }
 `;
 
 const IconUser = styled(iconUser)`

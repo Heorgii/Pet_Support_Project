@@ -26,6 +26,7 @@ import {
   InfoListTextArea,
   PetsItemTitle,
   UserPetContainerItem,
+  ErrBoxImage,
 } from './ModalAddsPet.styled';
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
@@ -80,6 +81,7 @@ export const ModalAddsPet = () => {
   }
 
   const onSubmit = (values, action) => {
+    console.log(values);
     postUserPets(values);
   };
 
@@ -89,6 +91,7 @@ export const ModalAddsPet = () => {
       data: '',
       breed: '',
       comments: '',
+      imageUrl: '',
     },
     validationSchema: schemas.addPetsUser,
     onSubmit: (values, action) => {
@@ -96,18 +99,9 @@ export const ModalAddsPet = () => {
     },
   });
 
-  const isValid =
-    (formik.errors.name && formik.touched.name) ||
-    (formik.errors.data && formik.touched.data) ||
-    (formik.errors.breed && formik.touched.breed) ||
-    (formik.errors.imageUrl && formik.touched.imageUrl) ||
-    (formik.errors.comments && formik.touched.comments)
-      ? true
-      : false;
-
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
-      <FormDiv onClick={e => onClickBackdrop(e)}>
+      <FormDiv className="form" onClick={e => onClickBackdrop(e)}>
         {isLoading ? onLoading() : onLoaded()}
         <div onClick={e => e.stopPropagation()}>
           <Formik
@@ -192,17 +186,16 @@ export const ModalAddsPet = () => {
 
                     <ButtonBox>
                       {isShown && (
-                        <ButtonFirst
-                          type="button"
-                          onClick={showForm}
-                          disabled={isValid}
-                        >
+                        <ButtonFirst type="button" onClick={showForm}>
                           <ButtonText>Next</ButtonText>
                         </ButtonFirst>
                       )}
 
                       {isShown && (
-                        <ButtonSecond type="button" onClick={e => onClickBackdrop(e)}>
+                        <ButtonSecond
+                          type="button"
+                          onClick={e => onClickBackdrop(e)}
+                        >
                           <ButtonText2>Cancel</ButtonText2>
                         </ButtonSecond>
                       )}
@@ -229,10 +222,10 @@ export const ModalAddsPet = () => {
                         />
 
                         {formik.errors.imageUrl || formik.touched.imageUrl ? (
-                          <ErrBox>{formik.errors.imageUrl}</ErrBox>
+                          <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>
                         ) : null}
                       </>
-                      // {/* </InfoListLable> */}
+                      //  </InfoListLable>
                     )}
 
                     {!isShown && (

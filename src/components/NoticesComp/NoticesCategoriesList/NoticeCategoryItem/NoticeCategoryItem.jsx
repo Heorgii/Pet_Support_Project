@@ -22,7 +22,7 @@ import {
   TBody,
 } from './NoticeCategoryItem.styled';
 import { selecId } from 'redux/auth/selectors';
-import { authOperations } from 'redux/UserPage/auth';
+// import { authOperations } from 'redux/UserPage/auth';
 
 export const NoticesCategoriesItem = ({
   data,
@@ -109,7 +109,8 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {data.owner === id && (
-            <BtnDelete onClick={() => dispatch(authOperations.removePet(_id))}>
+            //  onClick={() => dispatch(authOperations.removePet(_id))}
+            <BtnDelete>
               Delete{' '}
               <img
                 loading="lazy"
