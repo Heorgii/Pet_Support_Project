@@ -34,7 +34,7 @@ export const UserPage = () => {
       setPetsList(pets);
     }
     fetchPets();
-  }, []);
+  }, [getPets]);
 
   console.log('Users PetsList', petsList);
 
