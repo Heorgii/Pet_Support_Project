@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
