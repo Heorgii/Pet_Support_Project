@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { PetsItem } from './PetsItem/PetsItem';
 import { PetsListWrapper } from './PetsList.styled';
 
