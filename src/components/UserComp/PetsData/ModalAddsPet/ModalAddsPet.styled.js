@@ -133,18 +133,6 @@ const InfoListText = styled.p`
   }
 `;
 
-const InfoListLable = styled.label`
-display: block;
-  /* margin-bottom: 16px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 28px;
-  }
-
-  &:last-child {
-    margin-bottom: 0px;
-  } */
-`;
-
 const InfoListInput = styled(Field)`
   position: relative;
   background: #fdf7f2;
