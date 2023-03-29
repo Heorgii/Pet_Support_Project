@@ -92,7 +92,6 @@ export const ModalAddsPet = () => {
     },
     validationSchema: schemas.addPetsUser,
     onSubmit: (values, action) => {
-      console.log('form values: ', values);
       onSubmit({ values, action });
     },
   });

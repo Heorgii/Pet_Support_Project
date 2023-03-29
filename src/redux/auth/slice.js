@@ -79,7 +79,6 @@ export const authSlice = createSlice({
           favorites,
           _id,
         };
-        console.log(user);
         state.user = user;
 
         state.isLoggedIn = true;

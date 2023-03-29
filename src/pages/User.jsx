@@ -31,8 +31,6 @@ export const UserPage = () => {
     fetchPets();
   }, []);
 
-  console.log('Users PetsList', petsList);
-
   return (
     <div>
       <UserPageWrapper>

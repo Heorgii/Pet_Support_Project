@@ -33,7 +33,6 @@ async function fetchNotice(pathParams, body, file) {
 async function fetchPetsUser(pathParams, body, file) {
   const formData = new FormData();
 
-  console.log(body);
   formData.append('name', body.values.name);
   formData.append('date', body.values.data);
   formData.append('breed', body.values.breed);
