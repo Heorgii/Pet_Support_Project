@@ -11,7 +11,7 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { Pagination } from 'utils/paginate';
+import { Pagination } from 'utils/pagination';
 
 const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,11 +20,10 @@ const News = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [total, setTotal] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
 
-  const perPage = 10;
+  const perPage = 3;
 
   function changePage(newPage) {
     setPage(newPage);
@@ -32,7 +31,7 @@ const News = () => {
 
   const [search, setSearch] = useState('');
   const handleFormSubmit = searchQuery => {
-    setPage(Number(1));
+    setPage(1);
     setSearch(searchQuery);
   };
   useEffect(() => {
@@ -47,7 +46,6 @@ const News = () => {
       try {
         const { data } = await fetchData(`/news?${searchParams}`);
         setNews(data.data);
-        setTotal(data.total);
         setTotalPage(data.totalPage);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
@@ -75,18 +73,16 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch sendSearch={handleFormSubmit} reset={reset} />
-          {!news &&
-            !isLoading && ( //&& news.length === 0
+          {news?.length &&
+            !isLoading && (
               <Title as="h3" size="14px">
                 Whoops! Can't find anything...
               </Title>
             )}
-          {news.length > 0 && !error && (
+          {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
               <Pagination
-                perPage={perPage}
-                total={total}
                 totalPage={totalPage}
                 changePage={changePage}
               />
