@@ -5,7 +5,8 @@ import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import heard from 'images/svg/heard.png';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { baseColor } from 'components/baseStyles/Variables.styled';
 import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
@@ -135,10 +136,29 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <Link style={{ textDecoration: 'none' }} to={`tel:${data.phone}`}>
               <BtnContact>Contacts</BtnContact>
             </Link>
-            <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+            {/* <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
               {isInFavorite ? `Remove from ${' '}` : `Add to${' '}`}
-              <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
-            </BtnAddFavorits>
+              {isInFavorite ? (
+                <AiOutlineHeart
+                  size={22}
+                  color={baseColor.colors.orangeLight}
+                />
+              ) : (
+                <AiFillHeart size={22} color={baseColor.colors.white} />
+              )}
+            </BtnAddFavorits> */}
+
+            {isInFavorite ? (
+              <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                Remove from
+                <AiOutlineHeart size={22} style={{ marginLeft: '5px' }} />
+              </BtnAddFavorits>
+            ) : (
+              <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                Add to
+                <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
+              </BtnAddFavorits>
+            )}
           </NoticeContainerButtom>
         </NoticesContainerItem>
       </BackDrop>
