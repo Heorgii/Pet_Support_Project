@@ -22,7 +22,7 @@ import {
   TBody,
 } from './NoticeCategoryItem.styled';
 import { selecId } from 'redux/auth/selectors';
-import { authOperations } from 'redux/UserPage/auth';
+// import { authOperations } from 'redux/UserPage/auth';
 
 export const NoticesCategoriesItem = ({
   data,
