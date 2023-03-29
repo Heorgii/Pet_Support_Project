@@ -20,6 +20,10 @@ import axios from 'axios';
 export const UserPage = () => {
   const [petsList, setPetsList] = useState([]);
 
+  const removePetList = _id => {
+    setPetsList(petsList.filter(pet => pet._id !== _id));
+  };
+
   useEffect(() => {
     const getPets = async () => {
       const { data } = await axios('/user');
@@ -49,7 +53,7 @@ export const UserPage = () => {
             <MyPetTitle>My pets:</MyPetTitle>
             <AddPetButton />
           </TopContainer>
-          <PetsData petsList={petsList} />
+          <PetsData petsList={petsList} removePetList={removePetList}/>
         </UserAboutWrapper>
       </UserPageWrapper>
       <ModalAddsPet />
