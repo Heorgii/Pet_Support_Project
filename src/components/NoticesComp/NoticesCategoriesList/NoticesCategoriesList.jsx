@@ -17,7 +17,7 @@ import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const NoticesCategoriesList = () => {
-  const [data, setData] = useState([]);
+  const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const routeParams = useParams();
@@ -31,7 +31,11 @@ export const NoticesCategoriesList = () => {
   const favorites = useSelector(selectFavorites);
 
   const toggleFavorite = async id => {
-    if (favorites.includes(id)) {
+    let isInFavorite = false;
+    favorites
+      ? (isInFavorite = favorites.includes(id))
+      : (isInFavorite = false);
+    if (isInFavorite) {
       dispatch(removeFavorite(id));
       onSuccess('You remove pet from the favorite!');
       return;
@@ -53,7 +57,7 @@ export const NoticesCategoriesList = () => {
       setIsLoading(true);
       try {
         const { data } = await fetchData(itemForFetch);
-        setData(data);
+        setListItem(data);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -76,13 +80,13 @@ export const NoticesCategoriesList = () => {
         }}
       >
         <ContainerStatus>
-          {data.length === 0 ? (
+          {listItem.length === 0 ? (
             <h3>Ups Can't find anything..</h3>
           ) : (
-            data.map(value => (
+            listItem.map(value => (
               <NoticesCategoriesItem
                 data={value}
-                isInFavorite={favorites.includes(value._id)}
+                isInFavorite={favorites ? favorites.includes(value._id) : false}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
               />

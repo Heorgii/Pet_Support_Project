@@ -27,6 +27,7 @@ import {
   NoticeContainerButtom,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
+import { Link } from 'react-router-dom';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
@@ -41,9 +42,11 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   const [data, setData] = useState([]);
   const [, setIsLoading] = useState(false);
   const [, setError] = useState(null);
-  // const [status, setStatus] = useState('idle');
 
-  const isInFavorite = favorites.includes(modal.id);
+  let isInFavorite = false;
+  favorites
+    ? (isInFavorite = favorites.includes(modal.id))
+    : (isInFavorite = false);
   const { BASE_URL } = window.global;
   let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
 
@@ -90,7 +93,15 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   </tr>
                   <tr>
                     <TdTable>Birthday:</TdTable>
-                    <TdTable2>{data.birthday}</TdTable2>
+                    <TdTable2>
+                      {data.birthday
+                        ? Date(data.birthday).split(' ')[2] +
+                          ' ' +
+                          Date(data.birthday).split(' ')[1] +
+                          ' ' +
+                          Date(data.birthday).split(' ')[3]
+                        : 'no info'}
+                    </TdTable2>
                   </tr>
                   <tr>
                     <TdTable>Breed:</TdTable>
@@ -121,7 +132,9 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <Comments>{data.comments}</Comments>
           </ContainerComments>
           <NoticeContainerButtom>
-            <BtnContact>Contacts</BtnContact>
+            <Link style={{ textDecoration: 'none' }} to={`tel:${data.phone}`}>
+              <BtnContact>Contacts</BtnContact>
+            </Link>
             <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
               {isInFavorite ? `Remove from ${' '}` : `Add to${' '}`}
               <img src={heard} alt="heard" style={{ marginLeft: '8px' }} />
