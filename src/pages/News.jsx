@@ -24,7 +24,7 @@ const News = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
 
-  const perPage = 2;
+  const perPage = 10;
 
   function changePage(newPage) {
     setPage(newPage);
