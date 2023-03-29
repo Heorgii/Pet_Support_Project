@@ -17,23 +17,19 @@ import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAdd
 import axios from 'axios';
 
 export const UserPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [petsList, setPetsList] = useState([]);
-  const getPets = useCallback(async () => {
-    if (isLoading) return;
-    setIsLoading(true);
-    const { data } = await axios('/user');
-    setIsLoading(false);
-    return data.pets;
-  }, [isLoading]);
 
   useEffect(() => {
+    const getPets = async () => {
+      const { data } = await axios('/user');
+      return data.pets;
+    };
     async function fetchPets() {
       const pets = await getPets();
       setPetsList(pets);
     }
     fetchPets();
-  }, [getPets]);
+  }, []);
 
   console.log('Users PetsList', petsList);
 
