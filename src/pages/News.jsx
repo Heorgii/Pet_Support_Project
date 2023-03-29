@@ -34,6 +34,7 @@ const News = () => {
     setPage(1);
     setSearch(searchQuery);
   };
+
   useEffect(() => {
     setSearchParams(
       search.trim() !== ''
@@ -62,7 +63,7 @@ const News = () => {
     setError(null);
     setIsLoading(false);
   };
-
+  console.log('news', news);
   return (
     <>
       <SEO title="News" description="You can see all news" />
@@ -79,6 +80,7 @@ const News = () => {
                 Whoops! Can't find anything...
               </Title>
             )}
+
           {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
