@@ -22,8 +22,10 @@ export const UserDataItem = ({
   setActive,
   profile,
 }) => {
-  const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-  const cityRegex = /^(\w+(,)\s*)+\w+$/;
+  // const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+  const emailRegExp = /^.+@.+\..+$/;
+  const cityRegex = /^[a-zA-Z\s,'-]+$/;
+  const phoneRegExp = /^\+380\d{9}$/;
   const dayToday = new Date().toLocaleDateString();
   const minDate = new Date('01.01.1910').toLocaleDateString();
 
@@ -98,14 +100,22 @@ export const UserDataItem = ({
       );
     } else if (name === 'phone') {
       setActive('phone');
-      if (inputValue.slice(0, 4) !== '+380') {
-        setIsError('phone should start +380');
+      if (!phoneRegExp.test(inputValue)) {
+        setIsError('please type valid phone number starting with +380');
         return;
       }
-      if (inputValue.length < 13) {
-        setIsError('please type 13 signs');
+      if (inputValue.length !== 13) {
+        setIsError('phone number should contain 13 digits');
         return;
       }
+      // if (inputValue.slice(0, 4) !== '+380') {
+      //   setIsError('phone should start +380');
+      //   return;
+      // }
+      // if (inputValue.length < 13) {
+      //   setIsError('please type 13 signs');
+      //   return;
+      // }
       setIsError('');
       setActive('');
       dispatch(authOperations.update({ phone: inputValue }));

@@ -44,7 +44,7 @@ const UserPage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {/* <Section> */}
       {/* <Container> */}
       <UserPageWrapper>
@@ -66,7 +66,7 @@ const UserPage = () => {
       <ModalAddsPet />
       {/* </Container> */}
       {/* </Section> */}
-    </div>
+    </>
   );
 };
 
