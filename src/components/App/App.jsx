@@ -1,12 +1,13 @@
 import { lazy, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
-import { useDispatch } from 'react-redux';    
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
+import { selectIsFirstLoad, selectIsRefreshing } from 'redux/auth/selectors';
 // import initAxios from 'utils/initAxios';
 
 const HomePage = lazy(() => import('pages/Home'));
@@ -21,83 +22,90 @@ export const App = () => {
   // initAxios();
   //  як буде правцювати бекєнд потрібно оновити дані юзера
   const dispatch = useDispatch();
-  
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   // const user = useSelector(selectUser)
   // console.log('ssss',user)
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-
-  return (
+  return isRefreshing ? (
+    <></>
+  ) : (
     <HelmetProvider>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+
+          {/* <Route path="register" element={ <RestrictedRoute redirectTo="/user" component={<RegisterPage />} /> } /> */}
           <Route
             path="register"
             element={
-              <RestrictedRoute
-                redirectTo="/user"
-                component={<RegisterPage />}
-              />
+              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
             }
           />
+
+          {/* <Route path="login" element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />} /> */}
           <Route
             path="login"
             element={
-              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+              <RestrictedRoute component={<LoginPage />} redirectTo="/" />
             }
           />
-          <Route path="news" element={<NewsPage />} />
 
-          <Route path="notices/:id" element={<NoticesPage />} />
+          {/* <Route path="news" element={<NewsPage />} /> */}
+          <Route
+            path="news"
+            element={
+              <RestrictedRoute component={<NewsPage />} redirectTo="/" />
+            }
+          />
+
+          {/* <Route path="notices/*" element={<RestrictedRoute component={<NoticesPage />} redirectTo="/" />} /> */}
+          {/* <Route path="notices/:id" element={<NoticesPage />} /> */}
+          <Route
+            path="notices/:id"
+            element={
+              <RestrictedRoute component={<NoticesPage />} redirectTo="/" />
+            }
+          />
           <Route
             path="notices/:favorite"
             element={
-              <PrivateRoute
-                redirectTo="/register"
-                component={<NoticesPage />}
-              />
+              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
             }
           />
           <Route
             path="notices/:own"
             element={
-              <PrivateRoute
-                redirectTo="/register"
-                component={<NoticesPage />}
-              />
+              <PrivateRoute component={<NoticesPage />} redirectTo="/login" />
             }
           />
-          {/* <Route
+
+          <Route
             path="friends"
             element={
-              <RestrictedRoute
-                redirectTo="/friends"
-                component={<OurFriendsPage />}
-              />
+              <RestrictedRoute component={<OurFriendsPage />} redirectTo="/" />
             }
-          /> */}
-          <Route path="friends" element={<OurFriendsPage />} />
+          />
+          {/* <Route path="friends" element={<OurFriendsPage />} /> */}
 
           {/* added kadulin */}
           <Route
             path="api-docs"
-            element={
-              <RestrictedRoute redirectTo="api-docs" component={<ApiDocs />} />
-            }
+            element={<RestrictedRoute redirectTo="/" component={<ApiDocs />} />}
           />
           {/* <Route path="api-docs" element={<ApiDocs />} /> */}
 
           <Route
             path="user"
             element={
-              <PrivateRoute redirectTo="/register" component={<UserPage />} />
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
 
-          <Route path="*" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </HelmetProvider>
