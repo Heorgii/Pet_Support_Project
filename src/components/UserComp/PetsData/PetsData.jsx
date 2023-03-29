@@ -7,7 +7,7 @@ import {
   PetDataWrapper,
 } from './PetsData.styled';
 
-export const PetsData = ({ petsList }) => {
+export const PetsData = ({ petsList, removePetList }) => {
   // let { pets } = useAuth();
   // let profile = false;
   // if (props && props.pets) {
@@ -25,7 +25,7 @@ export const PetsData = ({ petsList }) => {
             <PetDataInfo>Unfortunately there is no one here yet.</PetDataInfo>
           </PetDataWrapper>
         ) : (
-          <PetsList petsList={petsList} />
+          <PetsList petsList={petsList} removePetList={removePetList}/>
         )}
       </AddPetWrapper>
     </>

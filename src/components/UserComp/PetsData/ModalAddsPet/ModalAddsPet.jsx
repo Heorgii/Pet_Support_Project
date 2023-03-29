@@ -99,21 +99,9 @@ export const ModalAddsPet = () => {
     },
   });
 
-  const isValid =
-    (formik.errors.name && formik.touched.name) ||
-    (formik.errors.data && formik.touched.data) ||
-    (formik.errors.breed && formik.touched.breed) ||
-    (formik.errors.imageUrl && formik.touched.imageUrl) ||
-    (formik.errors.comments && formik.touched.comments)
-      ? true
-      : false;
-
-  // console.log(formik.errors.imageUrl);
-  // console.log(formik.errors.comments);
-
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
-      <FormDiv onClick={e => onClickBackdrop(e)}>
+      <FormDiv className="form" onClick={e => onClickBackdrop(e)}>
         {isLoading ? onLoading() : onLoaded()}
         <div onClick={e => e.stopPropagation()}>
           <Formik
@@ -198,11 +186,7 @@ export const ModalAddsPet = () => {
 
                     <ButtonBox>
                       {isShown && (
-                        <ButtonFirst
-                          type="button"
-                          onClick={showForm}
-                          disabled={isValid}
-                        >
+                        <ButtonFirst type="button" onClick={showForm}>
                           <ButtonText>Next</ButtonText>
                         </ButtonFirst>
                       )}

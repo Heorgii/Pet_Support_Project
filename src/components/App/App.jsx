@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { Route, Routes } from 'react-router-dom';//Navigate
+import { Route, Routes } from 'react-router-dom'; //Navigate
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';

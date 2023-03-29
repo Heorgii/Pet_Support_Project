@@ -28,10 +28,10 @@ export const ErrBox = styled.div`
   font-size: 12px;
   font-style: normal;
   line-height: 1.4;
-  /* letter-spacing: 0.03em;
+  letter-spacing: 0.03em;
   @media screen and (min-width: 768px) {
     left: 32px;
-  } */
+  }
 `;
 
 const UserPetContainerItem = styled(Form)`
@@ -140,6 +140,7 @@ const InfoListInput = styled(Field)`
   border-radius: 40px;
   width: 100%;
   padding: 11px 20px 11px 14px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -147,6 +148,10 @@ const InfoListInput = styled(Field)`
     /* margin-bottom: 28px; */
     width: 100%;
     padding: 11px 323px 11px 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
   }
 
   &:hover,

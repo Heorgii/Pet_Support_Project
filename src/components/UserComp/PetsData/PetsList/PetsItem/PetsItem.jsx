@@ -10,7 +10,7 @@ import {
   PetsItemWrapper,
 } from './PetsItem.styled';
 
-export const PetsItem = ({ pet, profile }) => {
+export const PetsItem = ({ pet, profile, removePetList }) => {
   const dispatch = useDispatch();
   const { name, _id, date, breed, imageUrl, comments } = pet;
 
@@ -19,13 +19,24 @@ export const PetsItem = ({ pet, profile }) => {
       <PetsItemWrapper>
         <PetsItemImg src={imageUrl} alt={name} />
         <PetsItemInfoBlock>
+          {!profile && (
+            <PetsItemDeleteBtn
+              type="submit"
+              onClick={() => {
+                dispatch(authOperations.removePet(_id));
+                removePetList(_id);
+              }}
+            >
+              <DeleteIcon />
+            </PetsItemDeleteBtn>
+          )}
           <PetsItemDesc>
             <PetsItemSpan>Name:</PetsItemSpan>
             {name}
           </PetsItemDesc>
           <PetsItemDesc>
             <PetsItemSpan>Date of birth:</PetsItemSpan>
-            {date}
+            {new Date(date).toLocaleDateString()}
           </PetsItemDesc>
           <PetsItemDesc>
             <PetsItemSpan>Breed:</PetsItemSpan>
@@ -35,14 +46,6 @@ export const PetsItem = ({ pet, profile }) => {
             <PetsItemSpan>Comments:</PetsItemSpan>
             {comments}
           </PetsItemDesc>
-          {!profile && (
-            <PetsItemDeleteBtn
-              type="submit"
-              onClick={() => dispatch(authOperations.removePet(_id))}
-            >
-              <DeleteIcon />
-            </PetsItemDeleteBtn>
-          )}
         </PetsItemInfoBlock>
       </PetsItemWrapper>
     </>

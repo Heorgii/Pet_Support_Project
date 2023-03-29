@@ -70,7 +70,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
       fetchNoticesList();
     }
   }, [itemForFetch, modal.id]);
-
+  console.log(data);
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -82,7 +82,13 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
           </ContainerPositionForCloseModal>
           <ContainerInfo>
             <ContainerStatus>{data.category}</ContainerStatus>
-            <ImgItem src={no_Photo} />
+            <ImgItem
+              src={
+                data.imageUrl === '' || data.imageUrl === undefined
+                  ? no_Photo
+                  : data.imageUrl
+              }
+            />
             <div>
               <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
               <Table>
@@ -95,11 +101,20 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                     <TdTable>Birthday:</TdTable>
                     <TdTable2>
                       {data.birthday
-                        ? Date(data.birthday).split(' ')[2] +
+                        ? data.birthday
+                            .split('T')[0]
+                            .split(' ')[0]
+                            .split('-')[2] +
                           ' ' +
-                          Date(data.birthday).split(' ')[1] +
+                          data.birthday
+                            .split('T')[0]
+                            .split(' ')[0]
+                            .split('-')[1] +
                           ' ' +
-                          Date(data.birthday).split(' ')[3]
+                          data.birthday
+                            .split('T')[0]
+                            .split(' ')[0]
+                            .split('-')[0]
                         : 'no info'}
                     </TdTable2>
                   </tr>

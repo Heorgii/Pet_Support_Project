@@ -54,3 +54,13 @@ export const LogoutBtnText = styled.span`
     color: ${baseColor.colors.orange};
   }
 `;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(17, 17, 17, 0.6);
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+`;
