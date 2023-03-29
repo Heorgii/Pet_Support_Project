@@ -27,7 +27,7 @@ export const UserPage = () => {
   const getPets = async () => {
     setIsLoading(true);
     const { data } = await axios('/user');
-    console.log('test', data.pets);
+    // console.log('test', data.pets);
     setIsLoading(false);
     return data.pets;
   };
