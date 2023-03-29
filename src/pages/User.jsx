@@ -33,7 +33,7 @@ export const UserPage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {/* <Section> */}
       {/* <Container> */}
       <UserPageWrapper>
@@ -55,7 +55,7 @@ export const UserPage = () => {
       <ModalAddsPet />
       {/* </Container> */}
       {/* </Section> */}
-    </div>
+    </>
   );
 };
 
