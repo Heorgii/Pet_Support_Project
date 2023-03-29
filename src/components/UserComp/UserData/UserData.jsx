@@ -30,6 +30,8 @@ export const UserData = () => {
     dispatch(authOperations.update(data));
   };
 
+  const birthday = new Date(user.birthday).toLocaleDateString();
+
   return (
     <>
       <UserDataContainer>
@@ -81,7 +83,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'Birthday:'}
-            defaultValue={user.birthday || '01.01.1900'}
+            defaultValue={birthday || '01.01.1900'}
             type="data"
             name="birthday"
             active={active}
