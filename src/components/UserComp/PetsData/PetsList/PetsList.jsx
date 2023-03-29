@@ -2,7 +2,6 @@ import { PetsItem } from './PetsItem/PetsItem';
 import { PetsListWrapper } from './PetsList.styled';
 
 export const PetsList = ({ petsList, removePetList }) => {
-
   // const [petsList, setPetsList] = useState([]);
 
   // const removePetList = _id => {
