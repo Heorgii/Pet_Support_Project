@@ -36,7 +36,7 @@ export const UserPage = () => {
       console.log('test fn', pets);
     }
     fetchPets();
-  }, [isLoading]);
+  }, []);
 
   console.log('Users PetsList', petsList);
 
