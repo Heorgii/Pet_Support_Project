@@ -15,7 +15,7 @@ import {
 
 import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
 import axios from 'axios';
-import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
+// import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 export const UserPage = () => {
   const [petsList, setPetsList] = useState([]);
