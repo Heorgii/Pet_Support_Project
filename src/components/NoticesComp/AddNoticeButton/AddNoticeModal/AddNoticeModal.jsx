@@ -43,6 +43,7 @@ import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
+import { paginationPage, paginationPerPage } from 'redux/pagination/selectors'; 
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
@@ -54,6 +55,8 @@ export const AddNoticeModal = () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
+const page = useSelector(paginationPage);
+const perPage = useSelector(paginationPerPage);
 
   const onClickBackdrop = e => {
     setFormQueue(true);
@@ -157,7 +160,7 @@ export const AddNoticeModal = () => {
                   dispatch(cleanModal());
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
-                  navigate('/notices/own');
+                  navigate(`/notices/own?perPage=${perPage}&page=${page}`);
                 } else {
                   toggleForm();
                   values.imageUrl = '';

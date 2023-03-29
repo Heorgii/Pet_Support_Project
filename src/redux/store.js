@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { querySlice } from './query/slice';
+import { paginationSlice } from './pagination/slice';
 import { breedsSlice } from './breeds/slice';
 import { authReducer } from './auth/slice';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -19,6 +20,7 @@ export const store = configureStore({
     query: querySlice.reducer,
     modal: modalReducer,
     breeds: breedsSlice.reducer,
+    pagination: paginationSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

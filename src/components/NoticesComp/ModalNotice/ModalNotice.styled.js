@@ -79,6 +79,7 @@ const ImgItem = styled.img`
   height: 240px;
   border-radius: 0px 0px 40px 40px;
   outline: unset;
+  object-fit: contain;
   @media screen and (min-width: 768px) {
     width: 288px;
     height: 328px;
