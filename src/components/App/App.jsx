@@ -83,7 +83,7 @@ export const App = () => {
           <Route
             path="api-docs"
             element={
-              <RestrictedRoute redirectTo="api-docs" component={<ApiDocs />} />
+              <RestrictedRoute redirectTo="/api-docs" component={<ApiDocs />} />
             }
           />
 
