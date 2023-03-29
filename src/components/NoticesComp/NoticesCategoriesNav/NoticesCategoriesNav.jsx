@@ -40,13 +40,12 @@ export const NoticesCategoriesNav = () => {
     const item = ref.current;
     item &&
       item.addEventListener('click', () => {
-        console.log('click');
         dispatch(addPage(1));
       });
   }, [dispatch]);
 
   return (
-    <ContainerCategoryBtn>
+    <ContainerCategoryBtn ref={ref} >
       {navItemsPublick.map(({ href, text }) => (
         <StyledLi key={href}>
           <BtnCategory to={href}>{text}</BtnCategory>
