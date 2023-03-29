@@ -1,10 +1,9 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
-// import { useAuth } from 'redux/UserPage/auth/useAuth';
-// import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
-import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { baseColor } from 'components/baseStyles/Variables.styled';
 import delBack from 'images/svg/icon_delete.svg';
 import {
   NoticesContainerItem,
@@ -22,17 +21,18 @@ import {
   BtnForFavorite,
   TBody,
 } from './NoticeCategoryItem.styled';
-import { useAuth } from 'hooks/useAuth';
+import { selecId } from 'redux/auth/selectors';
+import { authOperations } from 'redux/UserPage/auth';
 
 export const NoticesCategoriesItem = ({
   data,
   addToFavoriteFunction,
   isInFavorite,
 }) => {
-  const { user } = useAuth(); //isLoggedIn
+  const { _id } = useSelector(selecId); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';
-  user == null ? (id = 1) : (id = user._id);
+  _id == null ? (id = 1) : (id = _id);
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -54,7 +54,11 @@ export const NoticesCategoriesItem = ({
         <ContainerInfo>
           <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavoriteFunction(data._id)}>
-            <img src={akar_icons_heart} alt="Add to favorite" />
+            {isInFavorite ? (
+              <AiFillHeart size={28} color={baseColor.colors.orangeLight} />
+            ) : (
+              <AiOutlineHeart size={28} color={baseColor.colors.orangeLight} />
+            )}
           </BtnForFavorite>
           <ImgItem
             src={
@@ -78,10 +82,13 @@ export const NoticesCategoriesItem = ({
               <tr>
                 <TdTable>Age:</TdTable>
                 <TdTable2>
-                  {Math.round(
-                    (Date.now() - Date.parse(data.createdAt)) / 31536000 / 1000,
-                  )}{' '}
-                  years
+                  {data.birthday
+                    ? Math.round(
+                        (Date.now() - Date.parse(data.birthday)) /
+                          31536000 /
+                          1000,
+                      ) + ' years'
+                    : 'no info'}
                 </TdTable2>
               </tr>
             </TBody>
@@ -96,12 +103,12 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {data.owner === id && (
-            <BtnDelete>
+            <BtnDelete onClick={() => dispatch(authOperations.removePet(_id))}>
               Delete{' '}
               <img
                 loading="lazy"
                 src={delBack}
-                alt="heard"
+                alt="delete button"
                 style={{ marginLeft: '12px' }}
               />
             </BtnDelete>

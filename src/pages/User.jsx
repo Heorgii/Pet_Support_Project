@@ -28,8 +28,11 @@ export const UserPage = () => {
   };
 
   useEffect(() => {
+    const getPets = async () => {
+      const { data } = await axios('/user');
+      return data.pets;
+    };
     async function fetchPets() {
-      if (isLoading) return;
       const pets = await getPets();
       setPetsList(pets);
       // console.log('test fn', pets);

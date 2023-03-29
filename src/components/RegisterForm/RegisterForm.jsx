@@ -38,7 +38,6 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = ({ values, action }) => {
-    console.log('!!!!!!: ', values);
     const { name: userName, email, password, phone, location } = values;
     dispatch(
       register({
@@ -71,7 +70,6 @@ const RegisterForm = () => {
     },
     validationSchema: schemas.registerSchema,
     onSubmit: (values, action) => {
-      console.log('form values: ', values);
       onSubmit({ values, action });
     },
   });

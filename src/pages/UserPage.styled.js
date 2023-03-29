@@ -106,8 +106,6 @@ export const MyPetTitle = styled.h2`
   padding-right: 8px;
   padding-bottom: 0px;
 
-
-
   @media (max-width: 400px) {
     &:not(:last-child) {
       margin-bottom: 50px;

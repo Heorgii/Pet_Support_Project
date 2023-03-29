@@ -19,7 +19,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 export const authSlice = createSlice({
@@ -79,7 +79,6 @@ export const authSlice = createSlice({
           favorites,
           _id,
         };
-        console.log(user);
         state.user = user;
 
         state.isLoggedIn = true;

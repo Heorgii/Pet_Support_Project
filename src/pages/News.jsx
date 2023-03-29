@@ -24,7 +24,7 @@ const News = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
 
-  const perPage = 2;
+  const perPage = 10;
 
   function changePage(newPage) {
     setPage(newPage);
@@ -60,7 +60,6 @@ const News = () => {
     })();
   }, [page, search, searchParams, setSearchParams]);
 
-
   const reset = () => {
     setError(null);
     setIsLoading(false);
@@ -75,7 +74,7 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch sendSearch={handleFormSubmit} reset={reset}/> 
+          <NewsSearch sendSearch={handleFormSubmit} reset={reset} />
           {!news &&
             !isLoading && ( //&& news.length === 0
               <Title as="h3" size="14px">

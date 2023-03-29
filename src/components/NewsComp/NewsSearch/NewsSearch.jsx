@@ -22,7 +22,7 @@ export const NewsSearch = ({ sendSearch, reset }) => {
           reset();
         } else {
           setSearchQuery(values.search);
-sendSearch(searchQuery)
+          sendSearch(searchQuery);
           setSubmitting(false);
         }
       }}
@@ -37,23 +37,23 @@ sendSearch(searchQuery)
               placeholder="Search"
               value={values.search}
               onChange={e => {
-                  handleChange(e);
-                  document
-                    .querySelector('#search')
-                    .addEventListener('input', e => {
-                      e.target.value === '' && sendSearch('');
-                    });
-                }}
+                handleChange(e);
+                document
+                  .querySelector('#search')
+                  .addEventListener('input', e => {
+                    e.target.value === '' && sendSearch('');
+                  });
+              }}
             />
-              <div>
-                <ButtonStyled
-                  type="submit"
-                  disabled={isSubmitting}
-                  onSubmit={handleSubmit}
-                >
-                  <IconSearch />
-                </ButtonStyled>
-              </div>
+            <div>
+              <ButtonStyled
+                type="submit"
+                disabled={isSubmitting}
+                onSubmit={handleSubmit}
+              >
+                <IconSearch />
+              </ButtonStyled>
+            </div>
           </LabelStyled>
         </FormStyled>
       )}
