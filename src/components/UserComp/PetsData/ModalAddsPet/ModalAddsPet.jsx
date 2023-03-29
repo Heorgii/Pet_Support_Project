@@ -202,7 +202,10 @@ export const ModalAddsPet = () => {
                       )}
 
                       {isShown && (
-                        <ButtonSecond type="button" onClick={e => onClickBackdrop(e)}>
+                        <ButtonSecond
+                          type="button"
+                          onClick={e => onClickBackdrop(e)}
+                        >
                           <ButtonText2>Cancel</ButtonText2>
                         </ButtonSecond>
                       )}
