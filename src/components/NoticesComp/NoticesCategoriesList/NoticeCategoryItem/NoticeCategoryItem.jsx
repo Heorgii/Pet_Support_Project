@@ -91,6 +91,12 @@ export const NoticesCategoriesItem = ({
                     : 'no info'}
                 </TdTable2>
               </tr>
+              {data.price && (
+                <tr>
+                  <TdTable>Price:</TdTable>
+                  <TdTable2>{data.price}</TdTable2>
+                </tr>
+              )}
             </TBody>
           </Table>
         </ContainerInfo>
