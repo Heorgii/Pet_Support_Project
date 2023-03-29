@@ -22,9 +22,9 @@ export function Pagination({ perPage, total, totalPage, changePage }) {
     setItemOffset(newOffset);
   };
 
-function f(p) {
-console.log(p)
-}
+  function f(p) {
+    console.log(p);
+  }
 
   return (
     <ReactPaginate
@@ -48,7 +48,7 @@ console.log(p)
       activeLinkClassName="paginate__link--active"
       breakClassName="paginate__page--break"
       breakLinkClassName="paginate__link--break"
-        onPageActive={f}
+      onPageActive={f}
     />
   );
 }

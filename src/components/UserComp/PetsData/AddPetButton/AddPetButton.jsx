@@ -24,11 +24,17 @@ export const AddPetButton = ({ onOpenAddsPet }) => {
       openModalWindow(e, null);
     }
   };
-  
+
   return (
     <AddPetWrapper>
       <AddPetDesc>Add pet</AddPetDesc>
-      <AddPetBtn type="button" onClick={(e) =>{toggleModalAddUserPets(e)}} data-modal="formAddPets">
+      <AddPetBtn
+        type="button"
+        onClick={e => {
+          toggleModalAddUserPets(e);
+        }}
+        data-modal="formAddPets"
+      >
         <PlusIcon />
       </AddPetBtn>
       <ModalAddsPet />
