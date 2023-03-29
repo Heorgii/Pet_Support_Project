@@ -26,6 +26,7 @@ import {
   InfoListTextArea,
   PetsItemTitle,
   UserPetContainerItem,
+  ErrBoxImage,
 } from './ModalAddsPet.styled';
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
@@ -80,6 +81,7 @@ export const ModalAddsPet = () => {
   }
 
   const onSubmit = (values, action) => {
+    console.log(values);
     postUserPets(values);
   };
 
@@ -89,6 +91,7 @@ export const ModalAddsPet = () => {
       data: '',
       breed: '',
       comments: '',
+      imageUrl: '',
     },
     validationSchema: schemas.addPetsUser,
     onSubmit: (values, action) => {
@@ -219,10 +222,10 @@ export const ModalAddsPet = () => {
                         />
 
                         {formik.errors.imageUrl || formik.touched.imageUrl ? (
-                          <ErrBox>{formik.errors.imageUrl}</ErrBox>
+                          <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>
                         ) : null}
                       </>
-                      // {/* </InfoListLable> */}
+                      //  </InfoListLable>
                     )}
 
                     {!isShown && (
