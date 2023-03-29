@@ -15,7 +15,6 @@ export const PetsData = ({ petsList }) => {
   //   profile = true;
   // }
 
-  // console.log(petsList);
   return (
     <>
       <AddPetWrapper>

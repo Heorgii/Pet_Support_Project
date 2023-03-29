@@ -151,15 +151,26 @@ const BtnAddFavorits = styled.button`
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
 
+  & > svg {
+    color: ${baseColor.colors.orangeLight};
+  }
+
   &:hover {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
+    & > svg {
+      color: ${baseColor.colors.white};
+    }
   }
   &:focus {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
+    & > svg {
+      color: ${baseColor.colors.white};
+    }
   }
+
   @media screen and (min-width: 768px) {
     width: 160px;
     margin: 0 12px 0 0;
