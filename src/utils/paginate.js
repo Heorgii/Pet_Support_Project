@@ -10,11 +10,12 @@ export function Pagination({ perPage, total, totalPage, changePage }) {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + perPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
   // Invoke when user click to request another page.
   const handlePageClick = event => {
     const newOffset = (event.selected * perPage) % total;
- 
+
     changePage(event.selected + 1);
     setItemOffset(newOffset);
   };
