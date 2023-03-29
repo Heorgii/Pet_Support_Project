@@ -9,7 +9,7 @@ import {
   PlusIcon,
 } from './AddPetButton.styled';
 
-export const AddPetButton = ({ onOpenAddsPet }) => {
+export const AddPetButton = () => {
   const dispatch = useDispatch();
 
   const toggleModalAddUserPets = e => {

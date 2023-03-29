@@ -52,7 +52,7 @@ export const ModalAddsPet = () => {
   }
 
   const [isLoading, setIsLoading] = useState(false);
-  const [setError] = useState(null); //error,
+  const [setError] = useState(null);
   const [isShown, setIsShown] = useState(true);
 
   const showForm = () => {
