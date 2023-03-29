@@ -27,7 +27,7 @@ const Item = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 394px;
+    max-width: 390px;
     min-height: 287px;
   }
 

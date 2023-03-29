@@ -53,7 +53,7 @@ export const UserPage = () => {
             <MyPetTitle>My pets:</MyPetTitle>
             <AddPetButton />
           </TopContainer>
-          <PetsData petsList={petsList} removePetList={removePetList}/>
+          <PetsData petsList={petsList} removePetList={removePetList} />
         </UserAboutWrapper>
       </UserPageWrapper>
       <ModalAddsPet />

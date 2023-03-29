@@ -25,7 +25,7 @@ export const PetsData = ({ petsList, removePetList }) => {
             <PetDataInfo>Unfortunately there is no one here yet.</PetDataInfo>
           </PetDataWrapper>
         ) : (
-          <PetsList petsList={petsList} removePetList={removePetList}/>
+          <PetsList petsList={petsList} removePetList={removePetList} />
         )}
       </AddPetWrapper>
     </>
