@@ -7,7 +7,7 @@ import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectIsFirstLoad, selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsRefreshing } from 'redux/auth/selectors';
 // import initAxios from 'utils/initAxios';
 
 const HomePage = lazy(() => import('pages/Home'));
