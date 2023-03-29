@@ -21,19 +21,17 @@ export const UserPage = () => {
   const [petsList, setPetsList] = useState([]);
 
   const getPets = async () => {
+    if (isLoading) return;
     setIsLoading(true);
     const { data } = await axios('/user');
-    // console.log('test', data.pets);
     setIsLoading(false);
     return data.pets;
   };
 
   useEffect(() => {
     async function fetchPets() {
-      if (isLoading) return;
       const pets = await getPets();
       setPetsList(pets);
-      console.log('test fn', pets);
     }
     fetchPets();
   }, []);
