@@ -23,7 +23,8 @@ export const UserDataItem = ({
   profile,
 }) => {
   const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-  const cityRegex = /^(\w+(,)\s*)+\w+$/;
+  // const cityRegex = /^(\w+(,)\s*)+\w+$/;
+  const cityRegex = /^[a-zA-Z\s,'-]+$/;
   const dayToday = new Date().toLocaleDateString();
   const minDate = new Date('01.01.1910').toLocaleDateString();
 
