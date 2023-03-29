@@ -82,6 +82,7 @@ const ContainerInfo = styled.div`
 const ImgItem = styled.img`
   width: 280px;
   height: 288px;
+  object-fit: contain;
   outline: unset;
   @media screen and (min-width: 768px) {
     width: 100%;
