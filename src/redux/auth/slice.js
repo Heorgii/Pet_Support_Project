@@ -38,28 +38,28 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        const {
-          userName,
-          email,
-          location,
-          phone,
-          birthday,
-          avatarUrl,
-          favorites,
-          _id,
-        } = action.payload.data;
+        // const {
+        //   userName,
+        //   email,
+        //   location,
+        //   phone,
+        //   birthday,
+        //   avatarUrl,
+        //   favorites,
+        //   _id,
+        // } = action.payload.data;
 
-        const user = {
-          userName,
-          email,
-          location,
-          phone,
-          favorites,
-          birthday,
-          _id,
-          avatarUrl,
-        };
-        state.user = user;
+        // const user = {
+        //   userName,
+        //   email,
+        //   location,
+        //   phone,
+        //   favorites,
+        //   birthday,
+        //   _id,
+        //   avatarUrl,
+        // };
+        state.user = action.payload.data;
         state.token = action.payload.data.authToken;
         state.isLoggedIn = true;
       })
@@ -78,19 +78,19 @@ export const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        const { userName, email, location, birthday, phone, favorites, _id } =
-          action.payload.data.user;
+        // const { userName, email, location, birthday, phone, favorites, _id } =
+        //   action.payload.data.user;
 
-        const user = {
-          userName,
-          email,
-          location,
-          phone,
-          birthday,
-          favorites,
-          _id,
-        };
-        state.user = user;
+        // const user = {
+        //   userName,
+        //   email,
+        //   location,
+        //   phone,
+        //   birthday,
+        //   favorites,
+        //   _id,
+        // };
+        state.user = action.payload.data.user;
 
         state.isLoggedIn = true;
         state.isRefreshing = false;

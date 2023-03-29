@@ -37,7 +37,7 @@ export const UserData = () => {
       <UserDataContainer>
         <UserDataImgWrapper>
           <UserDataImg
-            src={user.avatarUrl ? user.avatarUrl : defaultUserPhoto}
+            src={user.avatar ? user.avatar : defaultUserPhoto}
             alt="User"
           />
           <EditCameraForm>
