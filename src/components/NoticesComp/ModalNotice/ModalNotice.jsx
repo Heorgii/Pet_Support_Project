@@ -82,7 +82,13 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
           </ContainerPositionForCloseModal>
           <ContainerInfo>
             <ContainerStatus>{data.category}</ContainerStatus>
-            <ImgItem src={no_Photo} />
+            <ImgItem
+              src={
+                data.imageUrl === '' || data.imageUrl === undefined
+                  ? no_Photo
+                  : data.imageUrl
+              }
+            />
             <div>
               <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
               <Table>

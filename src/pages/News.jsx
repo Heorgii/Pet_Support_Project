@@ -11,16 +11,13 @@ import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
 import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { Pagination } from 'utils/paginate';
+import { Pagination } from 'utils/pagination';
 
 const News = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [total, setTotal] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
 
@@ -32,9 +29,14 @@ const News = () => {
 
   const [search, setSearch] = useState('');
   const handleFormSubmit = searchQuery => {
-    setPage(Number(1));
+    setPage(1);
     setSearch(searchQuery);
   };
+
+  const [searchParams, setSearchParams] = useSearchParams(
+    `perPage=${perPage}&page=${page}`,
+  );
+
   useEffect(() => {
     setSearchParams(
       search.trim() !== ''
@@ -43,11 +45,9 @@ const News = () => {
     );
 
     (async () => {
-      setIsLoading(true);
       try {
         const { data } = await fetchData(`/news?${searchParams}`);
         setNews(data.data);
-        setTotal(data.total);
         setTotalPage(data.totalPage);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
@@ -75,21 +75,15 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch sendSearch={handleFormSubmit} reset={reset} />
-          {!news &&
-            !isLoading && ( //&& news.length === 0
-              <Title as="h3" size="14px">
-                Whoops! Can't find anything...
-              </Title>
-            )}
-          {news.length > 0 && !error && (
+          {!news && !isLoading && (
+            <Title as="h3" size="14px">
+              Whoops! Can't find anything...
+            </Title>
+          )}
+          {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
-              <Pagination
-                perPage={perPage}
-                total={total}
-                totalPage={totalPage}
-                changePage={changePage}
-              />
+              <Pagination totalPage={totalPage} changePage={changePage} />
             </>
           )}
         </Container>

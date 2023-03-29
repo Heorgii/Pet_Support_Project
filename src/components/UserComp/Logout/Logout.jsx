@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { LogoutBtn, LogoutBtnText, LogoutIconStyled } from './Logout.styled';
+import {
+  LogoutBtn,
+  LogoutBtnText,
+  LogoutIconStyled,
+  Modal,
+} from './Logout.styled';
 import { ModalLogout } from './ModalLogout/ModalLogout';
 // import { cleanModal } from 'redux/modal/operation';
 export const Logout = () => {
@@ -20,9 +25,9 @@ export const Logout = () => {
       </LogoutBtn>
 
       {isModalOpen && (
-        <cleanModal setShow={toggleModal}>
+        <Modal setShow={toggleModal}>
           <ModalLogout onClose={toggleModal} onCloseBtn={toggleModal} />
-        </cleanModal>
+        </Modal>
       )}
     </>
   );

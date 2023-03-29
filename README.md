@@ -48,8 +48,8 @@ The final project for the **React.Js and Node.Js** course of Full Stack Develope
     - /login - public-restricted, redirects to LoginPage
    
   **UserNav**
-    Компонент рендерить блок навігації з маршрутами:
-    - /user - приватний, переадресує на сторінку UserPage
+    The component renders a navigation block with routes: 
+     - /user - private, redirects to the UserPage page
     
 **Registration**
   The component contains a form with the first part of the form fields and the Next button and the Login navigation element
