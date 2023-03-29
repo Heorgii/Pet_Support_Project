@@ -26,6 +26,7 @@ import {
   InfoListTextArea,
   PetsItemTitle,
   UserPetContainerItem,
+  ErrBoxImage,
 } from './ModalAddsPet.styled';
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
@@ -80,6 +81,7 @@ export const ModalAddsPet = () => {
   }
 
   const onSubmit = (values, action) => {
+    console.log(values);
     postUserPets(values);
   };
 
@@ -89,6 +91,7 @@ export const ModalAddsPet = () => {
       data: '',
       breed: '',
       comments: '',
+      imageUrl: '',
     },
     validationSchema: schemas.addPetsUser,
     onSubmit: (values, action) => {
@@ -104,6 +107,9 @@ export const ModalAddsPet = () => {
     (formik.errors.comments && formik.touched.comments)
       ? true
       : false;
+
+  // console.log(formik.errors.imageUrl);
+  // console.log(formik.errors.comments);
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
@@ -202,7 +208,10 @@ export const ModalAddsPet = () => {
                       )}
 
                       {isShown && (
-                        <ButtonSecond type="button">
+                        <ButtonSecond
+                          type="button"
+                          onClick={e => onClickBackdrop(e)}
+                        >
                           <ButtonText2>Cancel</ButtonText2>
                         </ButtonSecond>
                       )}
@@ -229,10 +238,10 @@ export const ModalAddsPet = () => {
                         />
 
                         {formik.errors.imageUrl || formik.touched.imageUrl ? (
-                          <ErrBox>{formik.errors.imageUrl}</ErrBox>
+                          <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>
                         ) : null}
                       </>
-                      // {/* </InfoListLable> */}
+                      //  </InfoListLable>
                     )}
 
                     {!isShown && (

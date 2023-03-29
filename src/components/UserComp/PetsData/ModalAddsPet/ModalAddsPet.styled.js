@@ -134,7 +134,7 @@ const InfoListText = styled.p`
 `;
 
 const InfoListInput = styled(Field)`
-  position: relative;
+  /* position: relative; */
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
@@ -156,7 +156,24 @@ const InfoListInput = styled(Field)`
   }
 `;
 
+export const ErrBoxImage = styled.div`
+  position: absolute;
+  margin-left: 16px;
+  top: 59%;
+  left: 39%;
+  color: #e53e3e;
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  /* letter-spacing: 0.03em;
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  } */
+`;
+
 export const FieldItemFile = styled.input`
+  position: relative;
   all: unset;
   height: 208px;
   width: 208px;
