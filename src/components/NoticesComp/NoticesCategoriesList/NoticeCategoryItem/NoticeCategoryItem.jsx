@@ -109,7 +109,8 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {data.owner === id && (
-            <BtnDelete onClick={() => dispatch(authOperations.removePet(_id))}>
+            //  onClick={() => dispatch(authOperations.removePet(_id))}
+            <BtnDelete>
               Delete{' '}
               <img
                 loading="lazy"
