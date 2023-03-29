@@ -4,7 +4,8 @@ import { openModalWindow } from 'hooks/modalWindow';
 // import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
-import akar_icons_heart from 'images/svg/akar-icons_heart.svg';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { baseColor } from 'components/baseStyles/Variables.styled';
 import delBack from 'images/svg/icon_delete.svg';
 import {
   NoticesContainerItem,
@@ -52,7 +53,11 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
         <ContainerInfo>
           <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavoriteFunction(data._id)}>
-            <img src={akar_icons_heart} alt="Add to favorite" />
+            {isInFavorite ? (
+              <AiFillHeart size={28} color={baseColor.colors.orangeLight} />
+            ) : (
+              <AiOutlineHeart size={28} color={baseColor.colors.orangeLight} />
+            )}
           </BtnForFavorite>
           <ImgItem
             src={
