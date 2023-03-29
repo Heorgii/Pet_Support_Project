@@ -1,7 +1,5 @@
 import no_Photo from 'images/No-image-available.webp';
 import { openModalWindow } from 'hooks/modalWindow';
-// import { useAuth } from 'redux/UserPage/auth/useAuth';
-// import { onInfo, onSuccess } from 'components/helpers/Messages/NotifyMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
@@ -23,11 +21,14 @@ import {
   BtnForFavorite,
   TBody,
 } from './NoticeCategoryItem.styled';
-// import { useAuth } from 'hooks/useAuth';
 import { selecId } from 'redux/auth/selectors';
-// import { authOperations } from 'redux/UserPage/auth';
+import { authOperations } from 'redux/UserPage/auth';
 
-export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
+export const NoticesCategoriesItem = ({
+  data,
+  addToFavoriteFunction,
+  isInFavorite,
+}) => {
   const { _id } = useSelector(selecId); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';
@@ -102,9 +103,7 @@ export const NoticesCategoriesItem = ({ data, addToFavoriteFunction }) => {
             Learn more
           </BtnLearnMore>
           {data.owner === id && (
-            <BtnDelete
-            // onClick={() => dispatch(authOperations.removePet(data._id))}
-            >
+            <BtnDelete onClick={() => dispatch(authOperations.removePet(_id))}>
               Delete{' '}
               <img
                 loading="lazy"
