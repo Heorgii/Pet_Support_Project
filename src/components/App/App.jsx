@@ -38,33 +38,108 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
 
-          {/* <Route path="register" element={ <RestrictedRoute redirectTo="/user" component={<RegisterPage />} /> } /> */}
           <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          />
+
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<LoginPage />} />
+            }
+          />
+
+          <Route path="news" element={<NewsPage />} />
+
+          <Route path="notices/:id" element={<NoticesPage />} />
+
+          <Route
+            path="notices/:favorite"
+            element={
+              <PrivateRoute
+                redirectTo="/register"
+                component={<NoticesPage />}
+              />
+            }
+          />
+
+          <Route
+            path="notices/:own"
+            element={
+              <PrivateRoute
+                redirectTo="/register"
+                component={<NoticesPage />}
+              />
+            }
+          />
+
+          <Route path="friends" element={<OurFriendsPage />} />
+
+          <Route
+            path="api-docs"
+            element={
+              <RestrictedRoute redirectTo="api-docs" component={<ApiDocs />} />
+            }
+          />
+
+          <Route
+            path="user"
+            element={
+              <PrivateRoute redirectTo="/register" component={<UserPage />} />
+            }
+          />
+
+          {/* <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/user"
+                component={<RegisterPage />}
+              />
+            }
+          /> */}
+
+          {/* <Route
             path="register"
             element={
               <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
             }
-          />
-
-          {/* <Route path="login" element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />} /> */}
+          /> */}
+          {/* 
           <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/user" 
+              component={<LoginPage />} />
+            }
+          /> */}
+
+          {/* <Route
             path="login"
             element={
               <RestrictedRoute component={<LoginPage />} redirectTo="/" />
             }
-          />
+          /> */}
 
           {/* <Route path="news" element={<NewsPage />} /> */}
-          <Route
+          {/* <Route
             path="news"
             element={
               <RestrictedRoute component={<NewsPage />} redirectTo="/" />
             }
-          />
+          /> */}
 
-          {/* <Route path="notices/*" element={<RestrictedRoute component={<NoticesPage />} redirectTo="/" />} /> */}
+          {/* <Route path="notices/" element={
+          <RestrictedRoute component={<NoticesPage />} 
+          redirectTo="/" />} /> */}
           {/* <Route path="notices/:id" element={<NoticesPage />} /> */}
-          <Route
+          {/* <Route
             path="notices/:id"
             element={
               <RestrictedRoute component={<NoticesPage />} redirectTo="/" />
@@ -88,24 +163,24 @@ export const App = () => {
             element={
               <RestrictedRoute component={<OurFriendsPage />} redirectTo="/" />
             }
-          />
+          /> */}
           {/* <Route path="friends" element={<OurFriendsPage />} /> */}
 
           {/* added kadulin */}
-          <Route
+          {/* <Route
             path="api-docs"
             element={<RestrictedRoute redirectTo="/" component={<ApiDocs />} />}
-          />
+          /> */}
           {/* <Route path="api-docs" element={<ApiDocs />} /> */}
 
-          <Route
+          {/* <Route
             path="user"
             element={
               <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
-          />
+          /> */}
 
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
     </HelmetProvider>
