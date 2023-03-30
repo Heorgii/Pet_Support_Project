@@ -30,7 +30,7 @@ export const NoticesCategoriesList = () => {
   const perPage = useSelector(paginationPerPage);
 
   function changePage(newPage) {
-    dispatch(addPage((newPage)));
+    dispatch(addPage(newPage));
   }
 
   const routeParams = useParams();
@@ -59,6 +59,9 @@ export const NoticesCategoriesList = () => {
   const handleFavoriteBtnClick = id => e => {
     e.preventDefault();
     e.stopPropagation();
+    if (routeParams.id === 'favorite') {
+      setTotal(0);
+    }
     !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
   };
 
@@ -82,13 +85,12 @@ export const NoticesCategoriesList = () => {
       } finally {
         setIsLoading(false);
       }
-
     }
     fetchNoticesList();
     if (total === 0) {
       setTimeout(() => fetchNoticesList(), 500);
     }
-  }, [itemForFetch, page, perPage, query, setSearchParams, total]);  
+  }, [itemForFetch, page, perPage, query, setSearchParams, total]);
 
   return (
     <>

@@ -31,7 +31,7 @@ export const NoticesCategoriesNav = () => {
   const navItemsPrivate = [
     {
       href: `/notices/favorite?perPage=${perPage}&page=${page}`,
-      text: 'fivorite pets',
+      text: 'favorite pets',
     },
     { href: `/notices/own?perPage=${perPage}&page=${page}`, text: 'my pet' },
   ];
