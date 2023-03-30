@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'; //useSelector
+import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-// import { FaCheck, FaTimes } from 'react-icons/fa';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
@@ -13,11 +12,9 @@ import {
   Button,
   Title,
   BackButton,
-  // PhoneInput,
   ShowPassword,
   StyledLink,
   BoxText,
-  // Background,
   IconValid,
   IconInValid,
   ErrBox,
@@ -25,11 +22,9 @@ import {
   LocationList,
   LocationItem,
   FormSection,
-  // SpinerWrapper,
 } from './RegisterForm.styled';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-// import { Li } from 'components/NoticesComp/AddNoticeButton/AddNoticeModal/AddNoticeModal.styled';
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -47,7 +42,6 @@ const RegisterForm = () => {
         phone,
         location,
       }),
-      // hideForm(),
     );
   };
 

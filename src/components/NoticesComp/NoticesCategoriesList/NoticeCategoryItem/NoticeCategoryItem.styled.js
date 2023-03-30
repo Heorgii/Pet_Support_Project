@@ -24,12 +24,10 @@ const NoticesContainerItem = styled.div`
   transition: box-shadow 250ms linear;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &:hover {
-    border-radius: 20px;
     cursor: pointer;
     box-shadow: 0 1px 4px ${baseColor.colors.orange},
       -23px 0 20px -23px ${baseColor.colors.orange},
-      23px 0 20px -23px ${baseColor.colors.orange},
-      inset 0 0 40px ${baseColor.colors.orange};
+      23px 0 20px -23px ${baseColor.colors.orange};
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
