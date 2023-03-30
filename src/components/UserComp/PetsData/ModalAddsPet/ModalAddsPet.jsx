@@ -172,12 +172,12 @@ export const ModalAddsPet = () => {
                         // <InfoListLable>
                         <>
                           <InfoListText>Breed</InfoListText>
-                          <InfoListInput>
-                            type="text" id="breed" name="breed" onChange=
+                          <InfoListInput
+                            as="select" type="text" id="breed" name="breed" onChange=
                             {formik.handleChange}
                             value={formik.values.breed}
                             onBlur={formik.handleBlur}
-                            placeholder="Type breed"
+                            placeholder="Type breed">
                             {
                               <OptionFirst first value="unselected">
                                 Select breed type
