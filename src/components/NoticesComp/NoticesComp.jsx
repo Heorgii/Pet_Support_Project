@@ -6,16 +6,14 @@ import { WrapperNav } from './NoticesComp.styled';
 import { useState } from 'react';
 
 export const NoticesComp = () => {
-  const [total, setTotal] = useState(0);
-
   return (
     <>
       <NoticesSearch />
       <WrapperNav>
         <NoticesCategoriesNav />
-        <AddNoticeButton setTotal={setTotal} />
+        <AddNoticeButton />
       </WrapperNav>
-      <NoticesCategoriesList total={total} setTotal={setTotal} />
+      <NoticesCategoriesList />
     </>
   );
 };
