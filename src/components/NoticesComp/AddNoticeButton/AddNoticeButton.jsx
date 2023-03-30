@@ -8,7 +8,7 @@ import { fetchData } from 'services/APIservice';
 import { addBreeds } from 'redux/breeds/slice';
 import { useAuth } from 'hooks/useAuth';
 
-export const AddNoticeButton = ({ setTotal }) => {
+export const AddNoticeButton = () => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
@@ -54,7 +54,7 @@ export const AddNoticeButton = ({ setTotal }) => {
         </div>
         Add pet
       </ButtonStyled>
-      {isLoggedIn && <AddNoticeModal setTotal={setTotal} />}
+      {isLoggedIn && <AddNoticeModal />}
     </div>
   );
 };

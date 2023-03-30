@@ -46,7 +46,7 @@ import { setImage } from 'utils/setimage';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 import { addReload } from 'redux/reload/slice';
 
-export const AddNoticeModal = ({ setTotal, total }) => {
+export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState(true);
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -85,8 +85,6 @@ export const AddNoticeModal = ({ setTotal, total }) => {
     } catch (error) {
       setError(error);
     } finally {
-      console.log(total);
-      setTotal(0);
       setIsLoading(false);
     }
   }

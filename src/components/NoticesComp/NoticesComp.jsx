@@ -7,17 +7,15 @@ import { useState } from 'react';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const NoticesComp = () => {
-  const [total, setTotal] = useState(0);
-
   return (
     <>
       <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <WrapperNav>
         <NoticesCategoriesNav />
-        <AddNoticeButton setTotal={setTotal} />
+        <AddNoticeButton />
       </WrapperNav>
-      <NoticesCategoriesList total={total} setTotal={setTotal} />
+      <NoticesCategoriesList />
     </>
   );
 };
