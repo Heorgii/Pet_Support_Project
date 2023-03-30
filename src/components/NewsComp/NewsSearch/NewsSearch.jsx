@@ -28,8 +28,8 @@ export const NewsSearch = () => {
           setTimeout(() => {
             dispatch(addQuery(values.search));
           }, 150);
-        }
           setSubmitting(false);
+        }
       }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
