@@ -17,6 +17,8 @@ import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addPage } from 'redux/pagination/slice';
+import { addReload } from 'redux/reload/slice';
+import { reloadValue } from 'redux/reload/selectors';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
@@ -26,7 +28,6 @@ export const NoticesCategoriesList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
-  const [total, setTotal] = useState(0);
   const page = useSelector(paginationPage);
   const perPage = useSelector(paginationPerPage);
 
@@ -37,6 +38,7 @@ export const NoticesCategoriesList = () => {
   const routeParams = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useSelector(queryValue);
+  const reload = useSelector(reloadValue);
 
   const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
@@ -60,6 +62,9 @@ export const NoticesCategoriesList = () => {
   const handleFavoriteBtnClick = id => e => {
     e.preventDefault();
     e.stopPropagation();
+    if (routeParams.id === 'favorite') {
+      setTotalPage(0);
+    }
     !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
   };
 
@@ -74,7 +79,6 @@ export const NoticesCategoriesList = () => {
         const { data } = await fetchData(itemForFetch);
         setListItem(data.data);
         setTotalPage(data.totalPage);
-        setTotal(data.total);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -85,10 +89,11 @@ export const NoticesCategoriesList = () => {
       }
     }
     fetchNoticesList();
-    if (total === 0) {
-      setTimeout(() => fetchNoticesList(), 100);
+    if (reload) {
+      setTimeout(() => fetchNoticesList(), 500);
+      dispatch(addReload(false));
     }
-  }, [itemForFetch, page, perPage, query, setSearchParams, total]);
+  }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);
 
   return (
     <>
@@ -112,7 +117,6 @@ export const NoticesCategoriesList = () => {
                 isInFavorite={favorites ? favorites.includes(value._id) : false}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
-                setTotal={setTotal}
               />
             ))
           )}

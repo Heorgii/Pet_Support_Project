@@ -15,6 +15,7 @@ export const ModalAddNoticeStyled = styled.div`
 
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
@@ -37,6 +38,10 @@ export const ModalAddNoticeStyled = styled.div`
 `;
 
 export const Overlay = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -321,7 +326,6 @@ export const FieldItem = styled(Field)`
 
   margin-bottom: 16px;
 
-
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
@@ -557,7 +561,6 @@ export const LabelItemTextArea = styled.label`
 
   color: ${baseColor.colors.inpText};
 
-
   & span {
     display: block;
     margin-bottom: 8px;
@@ -576,7 +579,6 @@ export const LabelItemTextArea = styled.label`
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
-
 
     & span {
       display: block;
@@ -664,7 +666,7 @@ export const Error = styled.span`
 export const Li = styled.li`
   cursor: pointer;
 
-width: 100%;
+  width: 100%;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -678,7 +680,6 @@ width: 100%;
   padding: 10px 15px 10px 15px;
 
   margin-bottom: 2px;
-
 
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};

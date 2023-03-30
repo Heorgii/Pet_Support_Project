@@ -44,6 +44,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
+import { addReload } from 'redux/reload/slice';
 
 export const AddNoticeModal = ({ setTotal, total }) => {
   const [formQueue, setFormQueue] = useState(true);
@@ -162,6 +163,9 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?perPage=${perPage}&page=${page}`);
+                  setTimeout(() => {
+                    dispatch(addReload(true));
+                  }, 500);
                 } else {
                   toggleForm();
                   values.imageUrl = '';
@@ -221,9 +225,7 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                             value="for-free"
                             checked={values.category === 'for-free'}
                           />
-                          <LabelRadio htmlFor="radioTwo">
-                            in good hands
-                          </LabelRadio>
+                          <LabelRadio htmlFor="radioTwo">for-free</LabelRadio>
 
                           <FieldRadio
                             type="radio"

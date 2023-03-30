@@ -24,12 +24,12 @@ import {
 import { selecId } from 'redux/auth/selectors';
 import { useState } from 'react';
 import { deleteNoticeUser } from 'services/APIservice';
+import { addReload } from 'redux/reload/slice';
 
 export const NoticesCategoriesItem = ({
   data,
   addToFavoriteFunction,
   isInFavorite,
-  setTotal,
 }) => {
   const [, setIsLoading] = useState(false);
   const [, setError] = useState(null);
@@ -47,7 +47,7 @@ export const NoticesCategoriesItem = ({
     } catch (error) {
       setError(error);
     } finally {
-      setTotal(0);
+      dispatch(addReload(true));
       setIsLoading(false);
     }
   }
