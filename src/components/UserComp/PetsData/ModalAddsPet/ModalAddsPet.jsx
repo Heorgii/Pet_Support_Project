@@ -74,6 +74,7 @@ export const ModalAddsPet = () => {
       if (code && code !== 204) {
         return onFetchError('Whoops, something went wrong');
       }
+      dispatch(addReload(true));
     } catch (error) {
       setError(error);
     } finally {
@@ -81,9 +82,8 @@ export const ModalAddsPet = () => {
     }
   }
 
-  const onSubmit = (values) => {
+  const onSubmit = values => {
     postUserPets(values);
-    dispatch(addReload(true));
     formik.resetForm();
     closeModalWindow();
     dispatch(cleanModal());
@@ -110,7 +110,6 @@ export const ModalAddsPet = () => {
         {isLoading ? onLoading() : onLoaded()}
         <div onClick={e => e.stopPropagation()}>
           <Formik>
-            {({ handleChange, values, errors, touched }) => (
               <UserPetContainerItem onSubmit={formik.handleSubmit}>
                 <ContainerPositionForCloseModal>
                   <ContainerCloseModal onClick={e => onClickBackdrop(e)}>
@@ -130,6 +129,7 @@ export const ModalAddsPet = () => {
                           type="text"
                           id="name"
                           name="name"
+                          autoComplete="off"
                           onChange={formik.handleChange}
                           value={formik.values.name}
                           onBlur={formik.handleBlur}
@@ -146,9 +146,6 @@ export const ModalAddsPet = () => {
                           onFocus={e => {
                             e.target.setAttribute('type', 'date');
                           }}
-                          // onBlur={e => {
-                          //   e.target.setAttribute('type', 'text');
-                          // }}
                           onBlur={formik.handleBlur}
                           type="text"
                           id="data"
@@ -259,7 +256,6 @@ export const ModalAddsPet = () => {
                   </div>
                 </ContainerInfo>
               </UserPetContainerItem>
-            )}
           </Formik>
         </div>
       </FormDiv>
