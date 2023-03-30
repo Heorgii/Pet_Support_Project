@@ -17,7 +17,7 @@ import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addPage } from 'redux/pagination/slice';
-import { addReload } from 'redux/reload/slice';
+// import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
@@ -37,7 +37,7 @@ export const NoticesCategoriesList = ({setTotal}) => {
   const routeParams = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useSelector(queryValue);
-  const reload = useSelector(reloadValue);
+  // const reload = useSelector(reloadValue);
 
   const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
