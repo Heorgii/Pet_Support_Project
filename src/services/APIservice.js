@@ -32,12 +32,11 @@ async function fetchNotice(pathParams, body, file) {
 
 async function fetchPetsUser(pathParams, body, file) {
   const formData = new FormData();
-
   formData.append('name', body.values.name);
   formData.append('date', body.values.data);
   formData.append('breed', body.values.breed);
   formData.append('comments', body.values.comments);
-  formData.append('imageURL', file);
+  formData.set('imageURL', file);
 
   return axios.post(`${BASE_URL}${pathParams}`, formData, {
     headers: {

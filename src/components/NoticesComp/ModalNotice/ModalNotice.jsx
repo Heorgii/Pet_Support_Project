@@ -89,7 +89,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
               }
             />
             <div>
-              <NoticeItemTitle>Сute pet looking for a home</NoticeItemTitle>
+              <NoticeItemTitle>{data.title}</NoticeItemTitle>
               <Table>
                 <tbody>
                   <tr>
