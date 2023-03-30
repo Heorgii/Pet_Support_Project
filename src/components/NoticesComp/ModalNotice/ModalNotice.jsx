@@ -63,6 +63,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
         })
         .then(value => setData(value))
         .catch(error => {
+          setData(false);
           setError(error);
         });
     }
@@ -79,102 +80,111 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
               <MdClose style={{ width: '15.5px', height: '15.5px' }} />
             </ContainerCloseModal>
           </ContainerPositionForCloseModal>
-          <ContainerInfo>
-            <ContainerStatus>{data.category}</ContainerStatus>
-            <ImgItem
-              src={
-                data.imageUrl === '' || data.imageUrl === undefined
-                  ? no_Photo
-                  : data.imageUrl
-              }
-            />
-            <div>
-              <NoticeItemTitle>{data.title}</NoticeItemTitle>
-              <Table>
-                <tbody>
-                  <tr>
-                    <TdTable>Name:</TdTable>
-                    <TdTable2>{data.name}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Birthday:</TdTable>
-                    <TdTable2>
-                      {data.birthday
-                        ? data.birthday
-                            .split('T')[0]
-                            .split(' ')[0]
-                            .split('-')[2] +
-                          ' ' +
-                          data.birthday
-                            .split('T')[0]
-                            .split(' ')[0]
-                            .split('-')[1] +
-                          ' ' +
-                          data.birthday
-                            .split('T')[0]
-                            .split(' ')[0]
-                            .split('-')[0]
-                        : 'no info'}
-                    </TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Breed:</TdTable>
-                    <TdTable2>{data.breed}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Location:</TdTable>
-                    <TdTable2>{data.location}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>The sex:</TdTable>
-                    <TdTable2>{data.sex}</TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Email:</TdTable>
-                    <TdTable2>
-                      <a
-                        style={{ textDecoration: 'none' }}
-                        href={`mailto: ${data.email}`}
-                      >
-                        {data.email}
-                      </a>
-                    </TdTable2>
-                  </tr>
-                  <tr>
-                    <TdTable>Phone:</TdTable>
-                    <TdTable2>
-                      <a
-                        style={{ textDecoration: 'none' }}
-                        href={`tel:${data.phone}`}
-                      >
-                        {data.phone}
-                      </a>
-                    </TdTable2>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </ContainerInfo>
-          <ContainerComments>
-            <MainComments>Comments: </MainComments>
-            <Comments>{data.comments}</Comments>
-          </ContainerComments>
-          <NoticeContainerButtom>
-            <Link style={{ textDecoration: 'none' }} to={`tel:${data.phone}`}>
-              <BtnContact>Contacts</BtnContact>
-            </Link>
-            {isInFavorite ? (
-              <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
-                Remove from
-                <AiOutlineHeart size={22} style={{ marginLeft: '5px' }} />
-              </BtnAddFavorits>
-            ) : (
-              <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
-                Add to
-                <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
-              </BtnAddFavorits>
-            )}
-          </NoticeContainerButtom>
+          {data ? (
+            <>
+              <ContainerInfo>
+                <ContainerStatus>{data.category}</ContainerStatus>
+                <ImgItem
+                  src={
+                    data.imageUrl === '' || data.imageUrl === undefined
+                      ? no_Photo
+                      : data.imageUrl
+                  }
+                />
+                <div>
+                  <NoticeItemTitle>{data.title}</NoticeItemTitle>
+                  <Table>
+                    <tbody>
+                      <tr>
+                        <TdTable>Name:</TdTable>
+                        <TdTable2>{data.name}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Birthday:</TdTable>
+                        <TdTable2>
+                          {data.birthday
+                            ? data.birthday
+                                .split('T')[0]
+                                .split(' ')[0]
+                                .split('-')[2] +
+                              ' ' +
+                              data.birthday
+                                .split('T')[0]
+                                .split(' ')[0]
+                                .split('-')[1] +
+                              ' ' +
+                              data.birthday
+                                .split('T')[0]
+                                .split(' ')[0]
+                                .split('-')[0]
+                            : 'no info'}
+                        </TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Breed:</TdTable>
+                        <TdTable2>{data.breed}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Location:</TdTable>
+                        <TdTable2>{data.location}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>The sex:</TdTable>
+                        <TdTable2>{data.sex}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Email:</TdTable>
+                        <TdTable2>
+                          <a
+                            style={{ textDecoration: 'none' }}
+                            href={`mailto: ${data.email}`}
+                          >
+                            {data.email}
+                          </a>
+                        </TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Phone:</TdTable>
+                        <TdTable2>
+                          <a
+                            style={{ textDecoration: 'none' }}
+                            href={`tel:${data.phone}`}
+                          >
+                            {data.phone}
+                          </a>
+                        </TdTable2>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
+              </ContainerInfo>
+              <ContainerComments>
+                <MainComments>Comments: </MainComments>
+                <Comments>{data.comments}</Comments>
+              </ContainerComments>
+              <NoticeContainerButtom>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  to={`tel:${data.phone}`}
+                >
+                  <BtnContact>Contacts</BtnContact>
+                </Link>
+                {isInFavorite ? (
+                  <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                    Remove from
+                    <AiOutlineHeart size={22} style={{ marginLeft: '5px' }} />
+                  </BtnAddFavorits>
+                ) : (
+                  <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                    Add to
+                    <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
+                  </BtnAddFavorits>
+                )}
+              </NoticeContainerButtom>
+            </>
+          ) : (
+            <h1>"Ups... Don't have information about this pet"</h1>
+          )}
         </NoticesContainerItem>
       </BackDrop>
     ),
