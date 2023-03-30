@@ -1,7 +1,7 @@
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 
-export function setImage(e) {
+export function setImage(e, setFieldValues) {
     const input = document.querySelector('.file');
     if (input.files[0] && input.files[0].size >= 2048000) {
       input.value = '';
@@ -24,7 +24,9 @@ export function setImage(e) {
     e.target.style = '';
 
     reader.onload = function () {
-      e.target.style = `background-image: url(${reader.result}); background-size: contain; background-position: center; background-repeat: no-repeat;`;
+      setFieldValues(
+        e.target.style = `background-image: url(${reader.result}); background-size: contain; background-position: center; background-repeat: no-repeat;`
+      )
     };
     if (input.files[0]) {
       reader.readAsDataURL(input.files[0]);

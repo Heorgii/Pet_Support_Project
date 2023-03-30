@@ -114,7 +114,7 @@ const addPetsUser = Yup.object().shape({
     .max(16, 'Too Long!')
     .required('Breed is Required!'),
 
-  imageUrl: Yup.mixed().required('Photo is Required!'),
+  // imageUrl: Yup.mixed().required('Photo is Required!'),
 
   comments: Yup.string()
     .min(8, 'Too Short!')
