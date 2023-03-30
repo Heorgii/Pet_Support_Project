@@ -21,7 +21,7 @@ import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({setTotal}) => {
   const dispatch = useDispatch();
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -88,12 +88,11 @@ export const NoticesCategoriesList = () => {
       }
     }
     fetchNoticesList();
-    if(reload) {
-setTimeout(() => fetchNoticesList(), 500);
-dispatch(addReload(false))
-} 
-    
-  }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);  
+    if (total === 0) {
+      setTimeout(() => fetchNoticesList(), 200);
+    }
+  }, [itemForFetch, page, perPage, query, setSearchParams, total]);
+
 
   return (
     <>
