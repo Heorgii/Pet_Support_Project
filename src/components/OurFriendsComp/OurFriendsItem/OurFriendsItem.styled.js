@@ -31,6 +31,7 @@ const Item = styled.li`
     min-height: 287px;
   }
   transition: all 0.25s ease-in;
+
   &:hover,
   &:focus {
     position: relative;
@@ -131,7 +132,8 @@ const Link = styled.a`
     font-size: 16px;
     line-height: 1.375;
   }
-  transition: all 0.25s ease-in;
+  transition: all 0.2s ease-in;
+
   &:hover,
   &:focus {
     color: ${baseColor.colors.orangeLight};
