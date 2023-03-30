@@ -3,6 +3,7 @@ import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNa
 import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';
 import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { WrapperNav } from './NoticesComp.styled';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 import { useState } from 'react';
 
 export const NoticesComp = () => {
@@ -10,6 +11,7 @@ export const NoticesComp = () => {
 
   return (
     <>
+      <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <WrapperNav>
         <NoticesCategoriesNav />
