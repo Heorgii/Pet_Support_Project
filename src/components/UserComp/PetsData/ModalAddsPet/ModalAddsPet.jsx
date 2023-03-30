@@ -15,7 +15,7 @@ import {
   ContainerInfo,
   ContainerPositionForCloseModal,
   ErrBox,
-  ErrBoxImage,
+  // ErrBoxImage,
   FieldItemFile,
   FormDiv,
   ImgTitle,
@@ -33,7 +33,7 @@ import {
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
 import schemas from 'components/Schemas/schemas';
-import { setImage } from 'utils/setimage';
+// import { setImage } from 'utils/setimage';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
@@ -104,7 +104,7 @@ export const ModalAddsPet = () => {
   }
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [ setError] = useState(null);//error,
   const [isShown, setIsShown] = useState(true);
 
   const showForm = () => {
