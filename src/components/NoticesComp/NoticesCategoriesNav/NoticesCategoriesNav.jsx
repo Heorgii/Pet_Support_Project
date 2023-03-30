@@ -31,9 +31,9 @@ export const NoticesCategoriesNav = () => {
   const navItemsPrivate = [
     {
       href: `/notices/favorite?perPage=${perPage}&page=${page}`,
-      text: 'favorite pets',
+      text: 'favorite ads',
     },
-    { href: `/notices/own?perPage=${perPage}&page=${page}`, text: 'my pet' },
+    { href: `/notices/own?perPage=${perPage}&page=${page}`, text: 'my ads' },
   ];
 
   useEffect(() => {
