@@ -225,9 +225,7 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                             value="for-free"
                             checked={values.category === 'for-free'}
                           />
-                          <LabelRadio htmlFor="radioTwo">
-                            in good hands
-                          </LabelRadio>
+                          <LabelRadio htmlFor="radioTwo">for-free</LabelRadio>
 
                           <FieldRadio
                             type="radio"
