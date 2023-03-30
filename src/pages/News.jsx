@@ -68,7 +68,7 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch />
-          {!news && !isLoading && (
+          {(!news || (news?.length === 0)) && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
             </Title>
