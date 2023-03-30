@@ -2,7 +2,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const UserPageWrapper = styled.div`
-  @media (min-width: 320px) {
+  /* @media (min-width: 320px) {
     width: 100%;
     padding-bottom: 80px;
     padding-left: 20px;
@@ -13,14 +13,15 @@ export const UserPageWrapper = styled.div`
     padding-bottom: 100px;
     padding-left: 0px;
     padding-right: 32px;
-  }
+  } */
 
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 40px;
+    width: 100%;
+    /* padding-bottom: 40px;
     padding-right: 16px;
-    margin-top: 60px;
+    margin-top: 60px; */
   }
 `;
 
@@ -55,6 +56,8 @@ export const UserDataContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    max-width: 411px;
+    margin-left: -16px;
     margin-bottom: 0px;
     margin-top: 24px;
     padding-right: 16px;

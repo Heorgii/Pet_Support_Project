@@ -11,7 +11,7 @@ import {
   UserAboutWrapper,
   UserDataContainer,
   UserDataWrapper,
-  // UserPageWrapper,
+  UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
@@ -50,22 +50,22 @@ const UserPage = () => {
       />
       <Section>
         <Container>
-          {/* <UserPageWrapper> */}
-          <UserDataWrapper>
-            <UserDataTitle title="My information:" />
-            <UserDataContainer>
-              <UserData />
-              <Logout />
-            </UserDataContainer>
-          </UserDataWrapper>
-          <UserAboutWrapper>
-            <TopContainer>
-              <MyPetTitle>My pets:</MyPetTitle>
-              <AddPetButton />
-            </TopContainer>
-            <PetsData petsList={petsList} removePetList={removePetList} />
-          </UserAboutWrapper>
-          {/* </UserPageWrapper> */}
+          <UserPageWrapper>
+            <UserDataWrapper>
+              <UserDataTitle title="My information:" />
+              <UserDataContainer>
+                <UserData />
+                <Logout />
+              </UserDataContainer>
+            </UserDataWrapper>
+            <UserAboutWrapper>
+              <TopContainer>
+                <MyPetTitle>My pets:</MyPetTitle>
+                <AddPetButton />
+              </TopContainer>
+              <PetsData petsList={petsList} removePetList={removePetList} />
+            </UserAboutWrapper>
+          </UserPageWrapper>
         </Container>
       </Section>
     </>
