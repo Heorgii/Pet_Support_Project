@@ -46,20 +46,18 @@ export const NewsSearch = () => {
                       setTimeout(() => {
                         dispatch(addPage(1));
                         dispatch(addQuery(''));
-                      }, 500);
+                      }, 100);
                     }
                   });
               }}
             />
-            <div>
-              <ButtonStyled
-                type="submit"
-                disabled={isSubmitting}
-                onSubmit={handleSubmit}
-              >
-                <IconSearch />
-              </ButtonStyled>
-            </div>
+            <ButtonStyled
+              type="submit"
+              disabled={isSubmitting}
+              onSubmit={handleSubmit}
+            >
+              <IconSearch />
+            </ButtonStyled>
           </LabelStyled>
         </FormStyled>
       )}

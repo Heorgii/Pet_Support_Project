@@ -7,7 +7,7 @@ import {
   onInfo,
   onSuccess,
 } from 'components/helpers/Messages/NotifyMessages';
-
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 import { fetchData } from 'services/APIservice';
 import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
@@ -88,12 +88,11 @@ export const NoticesCategoriesList = () => {
       }
     }
     fetchNoticesList();
-    if(reload) {
-setTimeout(() => fetchNoticesList(), 500);
-dispatch(addReload(false))
-} 
-    
-  }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);  
+    if (reload) {
+      setTimeout(() => fetchNoticesList(), 500);
+      dispatch(addReload(false));
+    }
+  }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);
 
   return (
     <>
@@ -107,7 +106,9 @@ dispatch(addReload(false))
       >
         <ContainerStatus>
           {listItem?.length === 0 ? (
-            <h3>Ups Can't find anything..</h3>
+            <Title as="h3" size="20px">
+              Whoops! Can't find anything...
+            </Title>
           ) : (
             listItem.map(value => (
               <NoticesCategoriesItem

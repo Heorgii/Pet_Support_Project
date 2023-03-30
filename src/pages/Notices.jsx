@@ -1,19 +1,17 @@
 import { NoticesComp } from 'components/NoticesComp/NoticesComp';
 import { Section, Container } from 'components/baseStyles/CommonStyle.styled';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from 'utils/SEO';
 
 const Notices = () => {
   return (
-    <div>
-      <Helmet>
-        <title>Find pet</title>
-      </Helmet>
+    <>
+      <SEO title="Find pets" description="You can find your favorite pets" />
       <Section>
         <Container>
           <NoticesComp />
         </Container>
       </Section>
-    </div>
+    </>
   );
 };
 

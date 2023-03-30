@@ -5,6 +5,7 @@ import {
   Title,
   TextWrapper,
   Text,
+  DateWrapper,
   Link,
   Ractangle,
   Dates,
@@ -24,19 +25,19 @@ export const NewsListItem = ({ newsItem }) => {
           <EllipsisText text={description} length={200} />
         </Text>
         {date !== null ? (
-          <Dates>
-            {new Date(date).toLocaleDateString()}
+          <DateWrapper>
+            <Dates>{new Date(date).toLocaleDateString()}</Dates>
             <Link target="_blank" href={url}>
               Read More
             </Link>
-          </Dates>
+          </DateWrapper>
         ) : (
-          <Dates>
-            -------/----/----
+          <DateWrapper>
+            <Dates>----/----/-------</Dates>
             <Link target="_blank" href={url}>
               Read More
             </Link>
-          </Dates>
+          </DateWrapper>
         )}
       </TextWrapper>
     </Item>
