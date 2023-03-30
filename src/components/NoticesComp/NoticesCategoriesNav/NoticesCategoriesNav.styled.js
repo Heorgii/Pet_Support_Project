@@ -52,6 +52,8 @@ const StyledLi = styled.li`
   &:focus {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
+    cursor: pointer;
+    transform: scale(1.15);
   }
   &:focus {
     outline: none;
