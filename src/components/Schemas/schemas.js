@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-// import { object, string } from 'yup';
 
 const registerSchema = Yup.object().shape({
   email: Yup.string()
@@ -111,7 +110,7 @@ const addPetsUser = Yup.object().shape({
 
   breed: Yup.string()
     .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
+    .max(34, 'Too Long!')
     .required('Breed is Required!'),
 
   // imageUrl: Yup.mixed().required('Photo is Required!'),

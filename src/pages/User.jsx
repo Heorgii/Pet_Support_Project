@@ -14,9 +14,14 @@ import {
 } from './UserPage.styled';
 
 import axios from 'axios';
+import { addReload } from 'redux/reload/slice';
+import { reloadValue } from 'redux/reload/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 // import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const UserPage = () => {
+  const dispatch = useDispatch();
+
   const [petsList, setPetsList] = useState([]);
 
   const removePetList = async _id => {
@@ -30,6 +35,8 @@ const UserPage = () => {
     }
   };
 
+  const reload = useSelector(reloadValue);
+
   useEffect(() => {
     const getPets = async () => {
       const { data } = await axios('/user');
@@ -40,7 +47,11 @@ const UserPage = () => {
       setPetsList(pets);
     }
     fetchPets();
-  }, []);
+    if(reload) {
+setTimeout(() => fetchPets(), 200);
+dispatch(addReload(false))
+} 
+  }, [dispatch, reload]);
 
   return (
     <>
