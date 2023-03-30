@@ -20,11 +20,11 @@ export const NoticesCategoriesNav = () => {
   const navItemsPublick = [
     {
       href: `/notices/lost-found?perPage=${perPage}&page=${page}`,
-      text: 'lost/find',
+      text: 'lost/found',
     },
     {
       href: `/notices/for-free?perPage=${perPage}&page=${page}`,
-      text: 'in good hand',
+      text: 'for-free',
     },
     { href: `/notices/sell?perPage=${perPage}&page=${page}`, text: 'sell' },
   ];
@@ -45,7 +45,7 @@ export const NoticesCategoriesNav = () => {
   }, [dispatch]);
 
   return (
-    <ContainerCategoryBtn ref={ref} >
+    <ContainerCategoryBtn ref={ref}>
       {navItemsPublick.map(({ href, text }) => (
         <StyledLi key={href}>
           <BtnCategory to={href}>{text}</BtnCategory>
