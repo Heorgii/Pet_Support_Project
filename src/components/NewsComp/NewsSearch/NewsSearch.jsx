@@ -22,8 +22,12 @@ export const NewsSearch = () => {
           onInfo('Fill the field!');
           setSubmitting(false);
         } else {
-          dispatch(addPage(1));
-          dispatch(addQuery(values.search));
+          setTimeout(() => {
+            dispatch(addPage(1));
+          }, 100);
+          setTimeout(() => {
+            dispatch(addQuery(values.search));
+          }, 100);
           setSubmitting(false);
         }
       }}
