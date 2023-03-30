@@ -15,7 +15,7 @@ import {
   ContainerInfo,
   ContainerPositionForCloseModal,
   ErrBox,
-  // ErrBoxImage,
+  ErrBoxImage,
   FieldItemFile,
   FormDiv,
   ImgTitle,
@@ -33,60 +33,13 @@ import {
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
 import schemas from 'components/Schemas/schemas';
-// import { setImage } from 'utils/setimage';
+import { setImage } from 'utils/setimage';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
 import { breedsValue } from 'redux/breeds/selectors';
 import React from 'react';
 import { addReload } from 'redux/reload/slice';
-
-
-// class ThumbClass extends React.Component {
-//   state = {
-//     loading: false,
-//     thumb: this.props.value,
-//   };
-
-//   componentWillReceiveProps(nextProps) {
-//     if (!nextProps.file) {
-//       return;
-//     }
-
-//     this.setState({ loading: true }, () => {
-//       let reader = new FileReader();
-
-//       reader.onloadend = () => {
-//         this.setState({ loading: false, thumb: reader.result });
-//       };
-
-//       reader.readAsDataURL(nextProps.file);
-//     });
-//   }
-
-//   render() {
-//     const { file } = this.props;
-//     const { loading, thumb } = this.state;
-
-//     if (!file) {
-//       return null;
-//     }
-
-//     if (loading) {
-//       return <p>loading...</p>;
-//     }
-
-//     return (
-//       <img
-//         src={thumb}
-//         alt={file.name}
-//         className="img-thumbnail mt-2"
-//         height={200}
-//         width={200}
-//       />
-//     );
-//   }
-// }
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();
@@ -102,12 +55,8 @@ export const ModalAddsPet = () => {
   };
 
   const [isLoading, setIsLoading] = useState(false);
-  const [setError] = useState(null); //error,
+  const [, setError] = useState(null);
   const [isShown, setIsShown] = useState(true);
-
-  // const closeForm = () =>{
-  //   window.location.reload();
-  // }
 
   const showForm = () => {
     setIsShown(false);
@@ -125,8 +74,6 @@ export const ModalAddsPet = () => {
       if (code && code !== 204) {
         return onFetchError('Whoops, something went wrong');
       }
-      dispatch(addReload(true));
-      onClickBackdrop();
     } catch (error) {
       setError(error);
     } finally {
@@ -134,9 +81,13 @@ export const ModalAddsPet = () => {
     }
   }
 
-  const onSubmit = (values, action) => {
-    console.log(values);
+  const onSubmit = (values) => {
     postUserPets(values);
+    dispatch(addReload(true));
+    formik.resetForm();
+    closeModalWindow();
+    dispatch(cleanModal());
+    setIsShown(true);
   };
 
   const formik = useFormik({
@@ -153,36 +104,12 @@ export const ModalAddsPet = () => {
     },
   });
 
-  // const Thumb = ({ value }) => {
-  //   // this.setState({ loading: true }, () => {
-  //   let reader = new FileReader();
-  //   let file = null;
-  //   // reader.onloadend = () => {
-  //   //   this.setState({ loading: false, thumb: reader.result });
-  //   // };
-  //   reader.onLoaded = () => {
-  //     file = reader.result;
-  //     console.log(file);
-  //   };
-
-    // return (
-    //   <img
-    //     src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/udHvbKwV-IMG-Dubai-UAE-1.jpg"
-    //     alt=""
-    //   />
-    // );
-  // };
-
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
       <FormDiv className="form" onClick={e => onClickBackdrop(e)}>
         {isLoading ? onLoading() : onLoaded()}
         <div onClick={e => e.stopPropagation()}>
-          <Formik
-          // initialValues={{
-          //   imageUrl: '',
-          // }}
-          >
+          <Formik>
             {({ handleChange, values, errors, touched }) => (
               <UserPetContainerItem onSubmit={formik.handleSubmit}>
                 <ContainerPositionForCloseModal>
@@ -193,152 +120,143 @@ export const ModalAddsPet = () => {
 
                 <ContainerInfo>
                   <PetsItemTitle>Add pet</PetsItemTitle>
-                  {isShown && (
-                    <>
-                      <InfoList>
-                        <InfoListLable>
-                          <InfoListText>Name pet</InfoListText>
-                          <InfoListInput
-                            type="text"
-                            id="name"
-                            name="name"
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                            onBlur={formik.handleBlur}
-                            placeholder="Type name pet"
-                          />
-                          {formik.errors.name || formik.touched.name ? (
-                            <ErrBox>{formik.errors.name}</ErrBox>
-                          ) : null}
-                        </InfoListLable>
+                  <div
+                    style={isShown ? { display: 'block' } : { display: 'none' }}
+                  >
+                    <InfoList>
+                      <InfoListLable>
+                        <InfoListText>Name pet</InfoListText>
+                        <InfoListInput
+                          type="text"
+                          id="name"
+                          name="name"
+                          onChange={formik.handleChange}
+                          value={formik.values.name}
+                          onBlur={formik.handleBlur}
+                          placeholder="Type name pet"
+                        />
+                        {formik.errors.name || formik.touched.name ? (
+                          <ErrBox>{formik.errors.name}</ErrBox>
+                        ) : null}
+                      </InfoListLable>
 
-                        <InfoListLable>
-                          <InfoListText>Date of birth</InfoListText>
-                          <InfoListInput
-                            onFocus={e => {
-                              e.target.setAttribute('type', 'date');
-                            }}
-                            // onBlur={e => {
-                            //   e.target.setAttribute('type', 'text');
-                            // }}
-                            onBlur={formik.handleBlur}
-                            type="text"
-                            id="data"
-                            name="data"
-                            onChange={formik.handleChange}
-                            value={formik.values.data}
-                            placeholder="Type date of birth"
-                          />
+                      <InfoListLable>
+                        <InfoListText>Date of birth</InfoListText>
+                        <InfoListInput
+                          onFocus={e => {
+                            e.target.setAttribute('type', 'date');
+                          }}
+                          // onBlur={e => {
+                          //   e.target.setAttribute('type', 'text');
+                          // }}
+                          onBlur={formik.handleBlur}
+                          type="text"
+                          id="data"
+                          name="data"
+                          onChange={formik.handleChange}
+                          value={formik.values.data}
+                          placeholder="Type date of birth"
+                        />
 
-                          {formik.errors.data || formik.touched.data ? (
-                            <ErrBox>{formik.errors.data}</ErrBox>
-                          ) : null}
-                        </InfoListLable>
+                        {formik.errors.data || formik.touched.data ? (
+                          <ErrBox>{formik.errors.data}</ErrBox>
+                        ) : null}
+                      </InfoListLable>
 
-                        <InfoListLable>
-                          <InfoListText>Breed</InfoListText>
-                          <InfoListInput
-                            as="select"
-                            type="text"
-                            id="breed"
-                            name="breed"
-                            onChange={formik.handleChange}
-                            value={formik.values.breed}
-                            onBlur={formik.handleBlur}
-                            placeholder="Type breed"
-                          >
-                            {
-                              <OptionFirst first value="unselected">
-                                Select breed type
-                              </OptionFirst>
-                            }
-                            {breeds.map(breed => (
-                              <Option key={breed._id} value={breed['name-en']}>
-                                {breed['name-en']}
-                              </Option>
-                            ))}
-                          </InfoListInput>
-
-                          {formik.errors.breed || formik.touched.breed ? (
-                            <ErrBox>{formik.errors.breed}</ErrBox>
-                          ) : null}
-                        </InfoListLable>
-                      </InfoList>
-
-                      <ButtonBox>
-                        <ButtonFirst type="button" onClick={showForm}>
-                          <ButtonText>Next</ButtonText>
-                        </ButtonFirst>
-
-                        <ButtonSecond
-                          type="button"
-                          onClick={e => onClickBackdrop(e)}
+                      <InfoListLable>
+                        <InfoListText>Breed</InfoListText>
+                        <InfoListInput
+                          as="select"
+                          type="text"
+                          id="breed"
+                          name="breed"
+                          onChange={formik.handleChange}
+                          value={formik.values.breed}
+                          onBlur={formik.handleBlur}
+                          placeholder="Type breed"
                         >
-                          <ButtonText2>Cancel</ButtonText2>
-                        </ButtonSecond>
-                      </ButtonBox>
-                    </>
-                  )}
+                          {
+                            <OptionFirst first value="unselected">
+                              Select breed type
+                            </OptionFirst>
+                          }
+                          {breeds.map(breed => (
+                            <Option key={breed._id} value={breed['name-en']}>
+                              {breed['name-en']}
+                            </Option>
+                          ))}
+                        </InfoListInput>
 
-                  {!isShown && (
-                    <>
-                      <InfoList2>
-                        <>
-                          <ImgTitle>
-                            Add petAdd photo and some comments
-                          </ImgTitle>
+                        {formik.errors.breed || formik.touched.breed ? (
+                          <ErrBox>{formik.errors.breed}</ErrBox>
+                        ) : null}
+                      </InfoListLable>
+                    </InfoList>
 
-                          <FieldItemFile
-                            className="file"
-                            type="file"
-                            id="imageUrl"
-                            name="imageUrl"
-                            // value={values.imageUrl}
-                            // style={formik.values.prev}
-                            accept=".jpeg,.jpg,.png,.gif"
-                            onChange={e => {
-                              // handleChange(e);
-                              formik.setFieldValue(
-                                'imageUrl',
-                                e.currentTarget.files[0],
-                              );
-                              // setImage(e, formik.setFieldValue);
-                            }}
-                          />
-                          {/* <Thumb value={formik.values.imageUrl} /> */}
-                          {/* <Thumb file={formik.values.imageUrl} /> */}
+                    <ButtonBox>
+                      <ButtonFirst type="button" onClick={showForm}>
+                        <ButtonText>Next</ButtonText>
+                      </ButtonFirst>
 
-                          {/* {formik.errors.imageUrl || formik.touched.imageUrl ? (
+                      <ButtonSecond
+                        type="button"
+                        onClick={e => onClickBackdrop(e)}
+                      >
+                        <ButtonText2>Cancel</ButtonText2>
+                      </ButtonSecond>
+                    </ButtonBox>
+                  </div>
+
+                  <div
+                    style={
+                      !isShown ? { display: 'block' } : { display: 'none' }
+                    }
+                  >
+                    <InfoList2>
+                      <>
+                        <ImgTitle>Add petAdd photo and some comments</ImgTitle>
+
+                        <FieldItemFile
+                          className="file"
+                          type="file"
+                          id="imageUrl"
+                          name="imageUrl"
+                          accept=".jpeg,.jpg,.png,.gif"
+                          onChange={e => {
+                            formik.handleChange(e);
+                            setImage(e);
+                          }}
+                        />
+                        {formik.errors.imageUrl || formik.touched.imageUrl ? (
                           <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>
-                        ) : null} */}
-                        </>
+                        ) : null}
+                      </>
 
-                        <InfoListLable>
-                          <InfoListText>Comments</InfoListText>
-                          <InfoListTextArea
-                            onChange={formik.handleChange}
-                            value={formik.values.comments}
-                            onBlur={formik.handleBlur}
-                            name="comments"
-                            placeholder="Type comments"
-                          />
-                          {formik.errors.comments || formik.touched.comments ? (
-                            <ErrBox>{formik.errors.comments}</ErrBox>
-                          ) : null}
-                        </InfoListLable>
-                      </InfoList2>
+                      <InfoListLable>
+                        <InfoListText>Comments</InfoListText>
+                        <InfoListTextArea
+                          onChange={formik.handleChange}
+                          value={formik.values.comments}
+                          onBlur={formik.handleBlur}
+                          name="comments"
+                          placeholder="Type comments"
+                        />
+                        {formik.errors.comments || formik.touched.comments ? (
+                          <ErrBox>{formik.errors.comments}</ErrBox>
+                        ) : null}
+                      </InfoListLable>
+                    </InfoList2>
 
-                      <ButtonBox>
-                        <ButtonFirst type="submit">
-                          <ButtonText>Done</ButtonText>
-                        </ButtonFirst>
+                    <ButtonBox>
+                      <ButtonFirst type="submit">
+                        <ButtonText>Done</ButtonText>
+                      </ButtonFirst>
 
-                        <ButtonSecond type="button" onClick={hideForm}>
-                          <ButtonBackText>Back</ButtonBackText>
-                        </ButtonSecond>
-                      </ButtonBox>
-                    </>
-                  )}
+                      <ButtonSecond type="button" onClick={hideForm}>
+                        <ButtonBackText>Back</ButtonBackText>
+                      </ButtonSecond>
+                    </ButtonBox>
+                  </div>
                 </ContainerInfo>
               </UserPetContainerItem>
             )}
