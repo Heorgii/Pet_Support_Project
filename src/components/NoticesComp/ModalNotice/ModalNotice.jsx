@@ -131,11 +131,25 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   </tr>
                   <tr>
                     <TdTable>Email:</TdTable>
-                    <TdTable2>{data.email}</TdTable2>
+                    <TdTable2>
+                      <a
+                        style={{ textDecoration: 'none' }}
+                        href={`mailto: ${data.email}`}
+                      >
+                        {data.email}
+                      </a>
+                    </TdTable2>
                   </tr>
                   <tr>
                     <TdTable>Phone:</TdTable>
-                    <TdTable2>{data.phone}</TdTable2>
+                    <TdTable2>
+                      <a
+                        style={{ textDecoration: 'none' }}
+                        href={`tel:${data.phone}`}
+                      >
+                        {data.phone}
+                      </a>
+                    </TdTable2>
                   </tr>
                 </tbody>
               </Table>
