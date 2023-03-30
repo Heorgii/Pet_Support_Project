@@ -43,20 +43,19 @@ import usePlacesAutocomplete from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
-import { paginationPage, paginationPerPage } from 'redux/pagination/selectors'; 
+import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
-export const AddNoticeModal = () => {
+export const AddNoticeModal = ({ setTotal, total }) => {
   const [formQueue, setFormQueue] = useState(true);
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
-const page = useSelector(paginationPage);
-const perPage = useSelector(paginationPerPage);
+  const page = useSelector(paginationPage);
+  const perPage = useSelector(paginationPerPage);
 
   const onClickBackdrop = e => {
     setFormQueue(true);
@@ -85,6 +84,8 @@ const perPage = useSelector(paginationPerPage);
     } catch (error) {
       setError(error);
     } finally {
+      console.log(total);
+      setTotal(0);
       setIsLoading(false);
     }
   }

@@ -17,15 +17,15 @@ import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({ total, setTotal }) => {
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [totalPage, setTotalPage] = useState(0);
+
   const [page, setPage] = useState(1);
 
-  const perPage = 3;
+  const perPage = 8;
 
   function changePage(newPage) {
     setPage(newPage);
@@ -62,14 +62,17 @@ export const NoticesCategoriesList = () => {
   };
 
   useEffect(() => {
-    query !== '' ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`) : setSearchParams(`perPage=${perPage}&page=${page}`);
+    query !== ''
+      ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`)
+      : setSearchParams(`perPage=${perPage}&page=${page}`);
 
-    (async function fetchNoticesList() {
+    async function fetchNoticesList() {
       setIsLoading(true);
       try {
         const { data } = await fetchData(itemForFetch);
         setListItem(data.data);
         setTotalPage(data.totalPage);
+        setTotal(data.total);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -78,8 +81,12 @@ export const NoticesCategoriesList = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [itemForFetch, page, query, setSearchParams]);
+    }
+    fetchNoticesList();
+    if (total === 0) {
+      setTimeout(() => fetchNoticesList(), 500);
+    }
+  }, [itemForFetch, total, page, query, setSearchParams, setTotal]);
 
   return (
     <>
@@ -101,18 +108,15 @@ export const NoticesCategoriesList = () => {
                 isInFavorite={favorites ? favorites.includes(value._id) : false}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
+                setTotal={setTotal}
               />
             ))
           )}
         </ContainerStatus>
-
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-              <Pagination
-                totalPage={totalPage}
-                changePage={changePage}
-              />
+      <Pagination totalPage={totalPage} changePage={changePage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );

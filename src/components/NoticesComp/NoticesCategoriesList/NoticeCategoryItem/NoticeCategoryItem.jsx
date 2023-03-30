@@ -22,17 +22,35 @@ import {
   TBody,
 } from './NoticeCategoryItem.styled';
 import { selecId } from 'redux/auth/selectors';
-// import { authOperations } from 'redux/UserPage/auth';
+import { useState } from 'react';
+import { deleteNoticeUser } from 'services/APIservice';
 
 export const NoticesCategoriesItem = ({
   data,
   addToFavoriteFunction,
   isInFavorite,
+  setTotal,
 }) => {
+  const [, setIsLoading] = useState(false);
+  const [, setError] = useState(null);
+
   const { _id } = useSelector(selecId); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';
   _id == null ? (id = 1) : (id = _id);
+
+  async function deleteNotice(id) {
+    setIsLoading(true);
+    try {
+      const { date } = await deleteNoticeUser(`/notices/${id}`);
+      return date;
+    } catch (error) {
+      setError(error);
+    } finally {
+      setTotal(0);
+      setIsLoading(false);
+    }
+  }
 
   const openModalForItemPet = e => {
     e.preventDefault();
@@ -109,8 +127,7 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {data.owner === id && (
-            //  onClick={() => dispatch(authOperations.removePet(_id))}
-            <BtnDelete>
+            <BtnDelete onClick={e => deleteNotice(data._id)}>
               Delete{' '}
               <img
                 loading="lazy"
