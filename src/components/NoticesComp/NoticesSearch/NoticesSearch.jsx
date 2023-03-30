@@ -28,6 +28,7 @@ export const NoticesSearch = () => {
             actions.setSubmitting(false);
           } else {
             dispatch(addQuery(values.search));
+            dispatch(addPage(1));
             actions.setSubmitting(false);
           }
         }}
@@ -46,7 +47,10 @@ export const NoticesSearch = () => {
                   document
                     .querySelector('#search')
                     .addEventListener('input', e => {
-                    if(e.target.value === '') {dispatch(addPage(1)); dispatch(addQuery(''));}
+                      if (e.target.value === '') {
+                        dispatch(addPage(1));
+                        dispatch(addQuery(''));
+                      }
                     });
                 }}
               />

@@ -8,7 +8,7 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 import { NewsList } from 'components/NewsComp/NewsList/NewsList';
 import { NewsSearch } from 'components/NewsComp/NewsSearch/NewsSearch';
-import { fetchData } from '../services/APIservice';
+import { fetchData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
@@ -68,7 +68,7 @@ const News = () => {
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch />
-          {!news && !isLoading && (
+          {(!news || (news?.length === 0)) && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
             </Title>

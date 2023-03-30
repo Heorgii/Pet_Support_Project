@@ -353,22 +353,32 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                               <Error>{errors.location}</Error>
                             ) : null}
                           </LabelItem>
-
-                          <FieldItem
-                            type="text"
-                            id="location"
-                            name="location"
-                            placeholder="Type location"
-                            value={values.location}
-                            disabled={!ready}
-                            onChange={e => {
-                              handleChange(e);
-                              handleInput(e);
-                            }}
-                          />
-                          {status === 'OK' && (
-                            <ul>{renderSuggestions(setFieldValue)}</ul>
-                          )}
+                          <div style={{ position: 'relative' }}>
+                            <FieldItem
+                              type="text"
+                              id="location"
+                              name="location"
+                              placeholder="Type location"
+                              value={values.location}
+                              disabled={!ready}
+                              onChange={e => {
+                                handleChange(e);
+                                handleInput(e);
+                              }}
+                            />
+                            {status === 'OK' && (
+                              <ul
+                                style={{
+                                  position: 'absolute',
+                                  top: '100%',
+                                  left: '0px',
+                                  zIndex: '999',
+                                }}
+                              >
+                                {renderSuggestions(setFieldValue)}
+                              </ul>
+                            )}
+                          </div>
                           {values.category === 'sell' ? (
                             <div>
                               <LabelItem htmlFor="price">
@@ -405,6 +415,7 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                             onChange={e => {
                               handleChange(e);
                               setImage(e);
+                              // e.target.setAttribute('value', e.target.files[0]);
                             }}
                           />
                           <LabelItemTextArea htmlFor="comments">

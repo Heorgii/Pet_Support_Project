@@ -47,6 +47,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  padding-top: 100px;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
@@ -56,6 +57,12 @@ export const Overlay = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -319,9 +326,6 @@ export const FieldItem = styled(Field)`
 
   margin-bottom: 16px;
 
-  &:last-child {
-    margin-bottom: 40px;
-  }
 
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
@@ -362,10 +366,6 @@ export const LabelItem = styled.label`
   text-align: left;
 
   color: ${baseColor.colors.inpText};
-
-  &:first-child {
-    margin-top: 20px;
-  }
 
   & span {
     display: block;
@@ -562,7 +562,6 @@ export const LabelItemTextArea = styled.label`
 
   color: ${baseColor.colors.inpText};
 
-  margin-top: 20px;
 
   & span {
     display: block;
@@ -583,7 +582,6 @@ export const LabelItemTextArea = styled.label`
   @media screen and (min-width: 768px) {
     font-size: 24px;
 
-    margin-top: 28px;
 
     & span {
       display: block;
@@ -649,7 +647,7 @@ export const FieldItemTextArea = styled(Field)`
 
 export const Error = styled.span`
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 0px;
 
   z-index: 99;
@@ -671,6 +669,8 @@ export const Error = styled.span`
 export const Li = styled.li`
   cursor: pointer;
 
+width: 100%;
+
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -681,13 +681,9 @@ export const Li = styled.li`
   color: ${baseColor.colors.inpText};
 
   padding: 10px 15px 10px 15px;
-  width: 100%;
 
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 
-  &:last-child {
-    margin-bottom: 40px;
-  }
 
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
@@ -704,7 +700,7 @@ export const Li = styled.li`
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
   }
 `;
 

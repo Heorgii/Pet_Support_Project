@@ -15,6 +15,7 @@ import {
   ContainerInfo,
   ContainerPositionForCloseModal,
   ErrBox,
+  // ErrBoxImage,
   FieldItemFile,
   FormDiv,
   ImgTitle,
@@ -26,18 +27,64 @@ import {
   InfoListTextArea,
   PetsItemTitle,
   UserPetContainerItem,
-  ErrBoxImage,
   Option,
   OptionFirst,
 } from './ModalAddsPet.styled';
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
 import schemas from 'components/Schemas/schemas';
-import { setImage } from 'utils/setimage';
+// import { setImage } from 'utils/setimage';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
 import { breedsValue } from 'redux/breeds/selectors';
+import React from 'react';
+
+class Thumb extends React.Component {
+  state = {
+    loading: false,
+    thumb: this.props.value,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.file) {
+      return;
+    }
+
+    this.setState({ loading: true }, () => {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.setState({ loading: false, thumb: reader.result });
+      };
+
+      reader.readAsDataURL(nextProps.file);
+    });
+  }
+
+  render() {
+    const { file } = this.props;
+    const { loading, thumb } = this.state;
+
+    if (!file) {
+      return null;
+    }
+
+    if (loading) {
+      return <p>loading...</p>;
+    }
+
+    return (
+      <img
+        src={thumb}
+        alt={file.name}
+        className="img-thumbnail mt-2"
+        height={200}
+        width={200}
+      />
+    );
+  }
+}
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();
@@ -49,6 +96,7 @@ export const ModalAddsPet = () => {
     e.stopPropagation();
     dispatch(cleanModal());
     closeModalWindow();
+    formik.resetForm();
   };
 
   function toggleForm() {
@@ -56,7 +104,7 @@ export const ModalAddsPet = () => {
   }
 
   const [isLoading, setIsLoading] = useState(false);
-  const [setError] = useState(null);
+  const [ setError] = useState(null);//error,
   const [isShown, setIsShown] = useState(true);
 
   const showForm = () => {
@@ -109,11 +157,11 @@ export const ModalAddsPet = () => {
         {isLoading ? onLoading() : onLoaded()}
         <div onClick={e => e.stopPropagation()}>
           <Formik
-            initialValues={{
-              imageUrl: '',
-            }}
+          // initialValues={{
+          //   imageUrl: '',
+          // }}
           >
-            {({ handleChange }) => (
+            {({ handleChange, values, errors, touched }) => (
               <UserPetContainerItem onSubmit={formik.handleSubmit}>
                 <ContainerPositionForCloseModal>
                   <ContainerCloseModal onClick={e => onClickBackdrop(e)}>
@@ -123,10 +171,9 @@ export const ModalAddsPet = () => {
 
                 <ContainerInfo>
                   <PetsItemTitle>Add pet</PetsItemTitle>
-
-                  <>
-                    <InfoList>
-                      {isShown && (
+                  {isShown && (
+                    <>
+                      <InfoList>
                         <InfoListLable>
                           <InfoListText>Name pet</InfoListText>
                           <InfoListInput
@@ -142,9 +189,7 @@ export const ModalAddsPet = () => {
                             <ErrBox>{formik.errors.name}</ErrBox>
                           ) : null}
                         </InfoListLable>
-                      )}
 
-                      {isShown && (
                         <InfoListLable>
                           <InfoListText>Date of birth</InfoListText>
                           <InfoListInput
@@ -166,18 +211,19 @@ export const ModalAddsPet = () => {
                             <ErrBox>{formik.errors.data}</ErrBox>
                           ) : null}
                         </InfoListLable>
-                      )}
 
-                      {isShown && (
-                        // <InfoListLable>
-                        <>
+                        <InfoListLable>
                           <InfoListText>Breed</InfoListText>
-                          <InfoListInput>
-                            type="text" id="breed" name="breed" onChange=
-                            {formik.handleChange}
+                          <InfoListInput
+                            as="select"
+                            type="text"
+                            id="breed"
+                            name="breed"
+                            onChange={formik.handleChange}
                             value={formik.values.breed}
                             onBlur={formik.handleBlur}
                             placeholder="Type breed"
+                          >
                             {
                               <OptionFirst first value="unselected">
                                 Select breed type
@@ -193,84 +239,82 @@ export const ModalAddsPet = () => {
                           {formik.errors.breed || formik.touched.breed ? (
                             <ErrBox>{formik.errors.breed}</ErrBox>
                           ) : null}
-                        </>
-                        // </InfoListLable>
-                      )}
-                    </InfoList>
+                        </InfoListLable>
+                      </InfoList>
 
-                    <ButtonBox>
-                      {isShown && (
+                      <ButtonBox>
                         <ButtonFirst type="button" onClick={showForm}>
                           <ButtonText>Next</ButtonText>
                         </ButtonFirst>
-                      )}
 
-                      {isShown && (
                         <ButtonSecond
                           type="button"
                           onClick={e => onClickBackdrop(e)}
                         >
                           <ButtonText2>Cancel</ButtonText2>
                         </ButtonSecond>
-                      )}
-                    </ButtonBox>
-                  </>
+                      </ButtonBox>
+                    </>
+                  )}
 
-                  <InfoList2>
-                    {!isShown && (
-                      // <InfoListLable>
-                      <>
-                        <ImgTitle>Add petAdd photo and some comments</ImgTitle>
+                  {!isShown && (
+                    <>
+                      <InfoList2>
+                        <>
+                          <ImgTitle>
+                            Add petAdd photo and some comments
+                          </ImgTitle>
 
-                        <FieldItemFile
-                          className="file"
-                          type="file"
-                          id="imageUrl"
-                          name="imageUrl"
-                          value={formik.values.imageUrl}
-                          accept=".jpeg,.jpg,.png,.gif"
-                          onChange={e => {
-                            handleChange(e);
-                            setImage(e);
-                          }}
-                        />
+                          <FieldItemFile
+                            className="file"
+                            type="file"
+                            id="imageUrl"
+                            name="imageUrl"
+                            // value={values.imageUrl}
+                            // style={formik.values.prev}
+                            accept=".jpeg,.jpg,.png,.gif"
+                            onChange={e => {
+                              // handleChange(e);
+                              formik.setFieldValue(
+                                'imageUrl',
+                                e.currentTarget.files[0],
+                              );
+                              // setImage(e, formik.setFieldValue);
+                            }}
+                          />
+                          <Thumb file={formik.values.imageUrl} />
 
-                        {formik.errors.imageUrl || formik.touched.imageUrl ? (
+                          {/* {formik.errors.imageUrl || formik.touched.imageUrl ? (
                           <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>
-                        ) : null}
-                      </>
-                      //  </InfoListLable>
-                    )}
+                        ) : null} */}
+                        </>
 
-                    {!isShown && (
-                      <InfoListLable>
-                        <InfoListText>Comments</InfoListText>
-                        <InfoListTextArea
-                          onChange={formik.handleChange}
-                          value={formik.values.comments}
-                          onBlur={formik.handleBlur}
-                          name="comments"
-                          placeholder="Type comments"
-                        />
-                        {formik.errors.comments || formik.touched.comments ? (
-                          <ErrBox>{formik.errors.comments}</ErrBox>
-                        ) : null}
-                      </InfoListLable>
-                    )}
-                  </InfoList2>
+                        <InfoListLable>
+                          <InfoListText>Comments</InfoListText>
+                          <InfoListTextArea
+                            onChange={formik.handleChange}
+                            value={formik.values.comments}
+                            onBlur={formik.handleBlur}
+                            name="comments"
+                            placeholder="Type comments"
+                          />
+                          {formik.errors.comments || formik.touched.comments ? (
+                            <ErrBox>{formik.errors.comments}</ErrBox>
+                          ) : null}
+                        </InfoListLable>
+                      </InfoList2>
 
-                  <ButtonBox>
-                    {!isShown && (
-                      <ButtonFirst type="submit">
-                        <ButtonText>Done</ButtonText>
-                      </ButtonFirst>
-                    )}
-                    {!isShown && (
-                      <ButtonSecond type="button" onClick={hideForm}>
-                        <ButtonBackText>Back</ButtonBackText>
-                      </ButtonSecond>
-                    )}
-                  </ButtonBox>
+                      <ButtonBox>
+                        <ButtonFirst type="submit">
+                          <ButtonText>Done</ButtonText>
+                        </ButtonFirst>
+
+                        <ButtonSecond type="button" onClick={hideForm}>
+                          <ButtonBackText>Back</ButtonBackText>
+                        </ButtonSecond>
+                      </ButtonBox>
+                    </>
+                  )}
                 </ContainerInfo>
               </UserPetContainerItem>
             )}
