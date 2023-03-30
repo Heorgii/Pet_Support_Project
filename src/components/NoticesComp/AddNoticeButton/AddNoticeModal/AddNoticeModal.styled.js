@@ -15,6 +15,7 @@ export const ModalAddNoticeStyled = styled.div`
 
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
@@ -37,12 +38,15 @@ export const ModalAddNoticeStyled = styled.div`
 `;
 
 export const Overlay = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding-top: 160px;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
@@ -52,14 +56,6 @@ export const Overlay = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding-top: 260px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    padding-top: 340px;
   }
 `;
 
