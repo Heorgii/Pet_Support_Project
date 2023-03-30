@@ -27,7 +27,7 @@ export const NewsSearch = () => {
           }, 100);
           setTimeout(() => {
             dispatch(addQuery(values.search));
-          }, 100);
+          }, 150);
           setSubmitting(false);
         }
       }}
@@ -49,8 +49,10 @@ export const NewsSearch = () => {
                     if (e.target.value === '') {
                       setTimeout(() => {
                         dispatch(addPage(1));
-                        dispatch(addQuery(''));
                       }, 100);
+                      setTimeout(() => {
+                        dispatch(addQuery(''));
+                      }, 150);
                     }
                   });
               }}
