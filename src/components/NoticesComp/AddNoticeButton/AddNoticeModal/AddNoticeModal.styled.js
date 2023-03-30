@@ -15,6 +15,7 @@ export const ModalAddNoticeStyled = styled.div`
 
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
@@ -37,6 +38,10 @@ export const ModalAddNoticeStyled = styled.div`
 `;
 
 export const Overlay = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
   position: fixed;
   top: 0;
   left: 0;
