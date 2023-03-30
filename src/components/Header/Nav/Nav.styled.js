@@ -66,7 +66,7 @@ const NavItem = styled(NavLink)`
   }
 
   color: ${baseColor.colors.textUserNav};
-
+  transition: all 0.25s ease-in;
   :focus,
   :hover {
     color: ${baseColor.colors.orangeLight};

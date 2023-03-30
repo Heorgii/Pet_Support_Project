@@ -121,6 +121,7 @@ export const ButtonClose = styled.button`
   height: 34px;
 
   background-color: ${baseColor.colors.mainBg};
+  transition: all 0.25s ease-in;
 
   &:hover,
   &:focus {
@@ -174,7 +175,7 @@ export const ButtonFirst = styled.button`
 
   background: ${baseColor.colors.orangeLight};
   border-radius: 40px;
-
+  transition: all 0.25s ease-in;
   &:hover,
   &:focus {
     outline: 2px solid ${baseColor.colors.orangeLight};
@@ -221,7 +222,7 @@ export const ButtonSecond = styled.button`
   background: ${baseColor.colors.white};
   border: 2px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
-
+  transition: all 0.25s ease-in;
   &:hover,
   &:focus {
     outline: 2px solid ${baseColor.colors.orangeLight};
@@ -277,7 +278,7 @@ export const LabelRadio = styled.label`
   padding: 8px 28px 8px 28px;
 
   background: ${baseColor.colors.white};
-
+  transition: all 0.25s ease-in;
   &:not(:last-child) {
     margin-right: 8px;
   }
@@ -326,12 +327,11 @@ export const FieldItem = styled(Field)`
 
   margin-bottom: 16px;
 
-
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
   outline: none;
-
+  transition: all 0.25s ease-in;
   &:hover {
     outline: 2px solid ${baseColor.colors.orangeLight};
   }
@@ -477,7 +477,7 @@ export const LabelRadioSex = styled.label`
   &:not(:last-child) {
     margin-right: 40px;
   }
-
+  transition: all 0.25s ease-in;
   &:hover,
   &:focus {
     color: ${baseColor.colors.orangeLight};
@@ -562,7 +562,6 @@ export const LabelItemTextArea = styled.label`
 
   color: ${baseColor.colors.inpText};
 
-
   & span {
     display: block;
     margin-bottom: 8px;
@@ -581,7 +580,6 @@ export const LabelItemTextArea = styled.label`
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
-
 
     & span {
       display: block;
@@ -618,7 +616,7 @@ export const FieldItemTextArea = styled(Field)`
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
   outline: none;
-
+  transition: all 0.25s ease-in;
   &:hover {
     outline: 2px solid ${baseColor.colors.orangeLight};
   }
@@ -669,7 +667,7 @@ export const Error = styled.span`
 export const Li = styled.li`
   cursor: pointer;
 
-width: 100%;
+  width: 100%;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -684,12 +682,11 @@ width: 100%;
 
   margin-bottom: 2px;
 
-
   background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 40px;
   outline: none;
-
+  transition: all 0.25s ease-in;
   &:hover {
     outline: 2px solid ${baseColor.colors.orangeLight};
   }

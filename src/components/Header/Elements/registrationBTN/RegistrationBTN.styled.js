@@ -21,7 +21,7 @@ const RegistrationButton = styled(NavLink)`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
-
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     background-color: ${baseColor.colors.orangeLight};

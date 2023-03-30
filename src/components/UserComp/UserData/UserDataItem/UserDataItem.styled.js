@@ -109,7 +109,7 @@ export const UserDataItemBtn = styled.button`
   margin-left: 9px;
   cursor: pointer;
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   :hover svg {
     fill: ${p =>
       p.disabled
@@ -147,7 +147,7 @@ export const CheckMarkStyle = styled(CheckMark)`
   height: 14px;
   fill: ${baseColor.colors.orangeLight};
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   &:hover,
   :focus {
     fill: ${baseColor.colors.orange};

@@ -11,7 +11,7 @@ export const LogoutBtn = styled.button`
   margin-left: auto;
   padding-right: 12px;
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   :hover svg {
     stroke: ${baseColor.colors.orange};
   }
