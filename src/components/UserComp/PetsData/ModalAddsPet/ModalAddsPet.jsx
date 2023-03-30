@@ -39,6 +39,8 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
 import { breedsValue } from 'redux/breeds/selectors';
 import React from 'react';
+import { addReload } from 'redux/reload/slice';
+
 
 // class ThumbClass extends React.Component {
 //   state = {
@@ -103,9 +105,9 @@ export const ModalAddsPet = () => {
   const [setError] = useState(null); //error,
   const [isShown, setIsShown] = useState(true);
 
-  const closeForm = () =>{
-    window.location.reload();
-  }
+  // const closeForm = () =>{
+  //   window.location.reload();
+  // }
 
   const showForm = () => {
     setIsShown(false);
@@ -123,7 +125,8 @@ export const ModalAddsPet = () => {
       if (code && code !== 204) {
         return onFetchError('Whoops, something went wrong');
       }
-      closeForm();
+      // closeForm();
+      dispatch(addReload(true));
       onClickBackdrop();
     } catch (error) {
       setError(error);
