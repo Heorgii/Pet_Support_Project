@@ -18,6 +18,7 @@ import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addPage } from 'redux/pagination/slice';
 import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export const NoticesCategoriesList = () => {
   const perPage = useSelector(paginationPerPage);
 
   function changePage(newPage) {
-    dispatch(addPage((newPage)));
+    dispatch(addPage(newPage));
   }
 
   const routeParams = useParams();
@@ -82,13 +83,12 @@ export const NoticesCategoriesList = () => {
       } finally {
         setIsLoading(false);
       }
-
     }
     fetchNoticesList();
     if (total === 0) {
-      setTimeout(() => fetchNoticesList(), 500);
+      setTimeout(() => fetchNoticesList(), 100);
     }
-  }, [itemForFetch, page, perPage, query, setSearchParams, total]);  
+  }, [itemForFetch, page, perPage, query, setSearchParams, total]);
 
   return (
     <>
@@ -102,7 +102,9 @@ export const NoticesCategoriesList = () => {
       >
         <ContainerStatus>
           {listItem?.length === 0 ? (
-            <h3>Ups Can't find anything..</h3>
+            <Title as="h3" size="20px">
+              Whoops! Can't find anything...
+            </Title>
           ) : (
             listItem.map(value => (
               <NoticesCategoriesItem

@@ -1,15 +1,11 @@
-import { Helmet } from 'react-helmet-async';
 import React from 'react';
 import { Hero } from '../components/Hero/Hero';
-// import { Container } from 'components/baseStyles/CommonStyle.styled';
+import { SEO } from 'utils/SEO';
 
 const HomePage = () => {
   return (
     <>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
-
+      <SEO title="Home" description="Take good care of your small pets" />
       <Hero />
     </>
   );

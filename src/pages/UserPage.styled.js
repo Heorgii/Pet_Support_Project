@@ -38,9 +38,11 @@ export const UserDataContainer = styled.div`
   margin-top: 18px;
   padding-top: 20px;
   padding-bottom: 20px;
+  width: calc(100vw - 32px);
 
   @media screen and (min-width: 768px) {
     position: relative;
+    margin-left: -32px;
     margin-bottom: 40px;
     margin-top: 40px;
     padding-right: 40px;

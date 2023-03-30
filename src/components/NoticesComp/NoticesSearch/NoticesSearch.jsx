@@ -54,15 +54,13 @@ export const NoticesSearch = () => {
                     });
                 }}
               />
-              <div>
-                <ButtonStyled
-                  type="submit"
-                  disabled={isSubmitting}
-                  onSubmit={handleSubmit}
-                >
-                  <IconSearch />
-                </ButtonStyled>
-              </div>
+              <ButtonStyled
+                type="submit"
+                disabled={isSubmitting}
+                onSubmit={handleSubmit}
+              >
+                <IconSearch />
+              </ButtonStyled>
             </LabelStyled>
           </FormStyled>
         )}

@@ -15,30 +15,29 @@ export const NewsListItem = ({ newsItem }) => {
 
   return (
     <Item key={_id} id={_id}>
-      <TextWrapper>
-        <Ractangle />
-        <Title>
-          <EllipsisText text={title} length={38} />
-        </Title>
-        <Text>
-          <EllipsisText text={description} length={200} />
-        </Text>
-        {date !== null ? (
-          <Dates>
-            {new Date(date).toLocaleDateString()}
-            <Link target="_blank" href={url}>
-              Read More
-            </Link>
-          </Dates>
-        ) : (
-          <Dates>
-            -------/----/----
-            <Link target="_blank" href={url}>
-              Read More
-            </Link>
-          </Dates>
-        )}
-      </TextWrapper>
+      <Ractangle />
+      <Title>
+        <EllipsisText text={title} length={38} />
+      </Title>
+      <Text>
+        <EllipsisText text={description} length={200} />
+      </Text>
+
+      {date !== null ? (
+        <TextWrapper>
+          <Dates>{new Date(date).toLocaleDateString()}</Dates>
+          <Link target="_blank" href={url}>
+            Read More
+          </Link>
+        </TextWrapper>
+      ) : (
+        <TextWrapper>
+          <Dates>----/----/-------</Dates>
+          <Link target="_blank" href={url}>
+            Read More
+          </Link>
+        </TextWrapper>
+      )}
     </Item>
   );
 };

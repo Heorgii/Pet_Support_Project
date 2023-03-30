@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { SEO } from 'utils/SEO';
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { UserDataTitle } from 'components/UserComp/UserDataTitle/UserDataTitle';
@@ -12,9 +14,7 @@ import {
   UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
-
-import axios from 'axios';
-// import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
+import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const UserPage = () => {
   const [petsList, setPetsList] = useState([]);
@@ -44,26 +44,30 @@ const UserPage = () => {
 
   return (
     <>
-      {/* <Section> */}
-      {/* <Container> */}
-      <UserPageWrapper>
-        <UserDataWrapper>
-          <UserDataTitle title="My information:" />
-          <UserDataContainer>
-            <UserData />
-            <Logout />
-          </UserDataContainer>
-        </UserDataWrapper>
-        <UserAboutWrapper>
-          <TopContainer>
-            <MyPetTitle>My pets:</MyPetTitle>
-            <AddPetButton />
-          </TopContainer>
-          <PetsData petsList={petsList} removePetList={removePetList} />
-        </UserAboutWrapper>
-      </UserPageWrapper>
-      {/* </Container> */}
-      {/* </Section> */}
+      <SEO
+        title="User"
+        description="Your account. You can add your pets or edit your information"
+      />
+      <Section>
+        <Container>
+          {/* <UserPageWrapper> */}
+          <UserDataWrapper>
+            <UserDataTitle title="My information:" />
+            <UserDataContainer>
+              <UserData />
+              <Logout />
+            </UserDataContainer>
+          </UserDataWrapper>
+          <UserAboutWrapper>
+            <TopContainer>
+              <MyPetTitle>My pets:</MyPetTitle>
+              <AddPetButton />
+            </TopContainer>
+            <PetsData petsList={petsList} removePetList={removePetList} />
+          </UserAboutWrapper>
+          {/* </UserPageWrapper> */}
+        </Container>
+      </Section>
     </>
   );
 };

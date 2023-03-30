@@ -23,12 +23,6 @@ const Item = styled.li`
     max-width: 395px;
   }
 `;
-
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Title = styled.h2`
   margin-bottom: 12px;
   font-family: 'Manrope';
@@ -46,10 +40,18 @@ const Text = styled.span`
   color: ${baseColor.colors.blackText};
 `;
 
-const Dates = styled.span`
+const TextWrapper = styled.div`
   display: flex;
-  margin-top: 40px;
+  flex-direction: row;
   justify-content: space-between;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+`;
+
+const Dates = styled.span`
   font-family: 'Manrope';
   font-weight: 400;
   font-size: 16px;
@@ -65,16 +67,6 @@ const Link = styled.a`
   line-height: 1.375;
   color: ${baseColor.colors.orangeLight};
   cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.357;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 16px;
-    line-height: 1.375;
-  }
 
   &:hover,
   &:focus {
