@@ -124,6 +124,8 @@ justify-content: center;
   width: 30px;
   height: 30px;
 
+  transition: all .25s ease-in;
+
 
   &:hover, &:focus {
     border: 3px solid rgba(253, 247, 242, 0.3);

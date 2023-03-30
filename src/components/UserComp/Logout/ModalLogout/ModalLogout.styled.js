@@ -44,7 +44,7 @@ export const ModalCloseBtn = styled.button`
   height: 34px;
   cursor: pointer;
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   :hover svg {
     fill: ${baseColor.colors.orange};
   }
@@ -61,7 +61,7 @@ export const CloseIcon = styled(Close)`
   height: 16px;
   fill: ${baseColor.colors.black};
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   &:hover,
   :focus {
     fill: ${baseColor.colors.orange};
@@ -111,7 +111,7 @@ export const ModalButton = styled.button`
   border-color: ${baseColor.colors.orangeLight};
   cursor: pointer;
   transform: all 150ms linear;
-
+  transition: all 0.25s ease-in;
   &:hover,
   :focus {
     background: ${baseColor.colors.orangeLight};

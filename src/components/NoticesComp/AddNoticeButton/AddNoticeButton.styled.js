@@ -42,7 +42,7 @@ export const ButtonStyled = styled.button`
 
   stroke: ${baseColor.colors.white};
   fill: ${baseColor.colors.white};
-
+  transition: all 0.25s ease-in;
   &:hover {
     transition: all 500ms ease;
 
@@ -72,7 +72,7 @@ export const ButtonStyled = styled.button`
     box-shadow: none;
 
     color: ${baseColor.colors.inpText};
-
+    transition: all 0.25s ease-in;
     &:hover {
       color: ${baseColor.colors.inpText};
       background: transparent;
@@ -96,6 +96,7 @@ export const ButtonStyled = styled.button`
       border-radius: 50%;
 
       background-color: ${baseColor.colors.orangeLight};
+      transition: all 0.25s ease-in;
       &:hover {
         fill: ${baseColor.colors.orangeLight};
         stroke: ${baseColor.colors.orangeLight};

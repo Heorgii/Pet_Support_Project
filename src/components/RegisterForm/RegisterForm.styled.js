@@ -165,7 +165,7 @@ export const LocationItem = styled.li`
   text-align: left;
   color: ${baseColor.colors.inpText};
   background: ${baseColor.colors.mainBg};
-
+  transition: all 0.25s ease-in;
   &:hover {
     color: ${baseColor.colors.orangeLight};
   }
@@ -188,6 +188,7 @@ export const Input = styled(Field)`
   background: ${baseColor.colors.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+  transition: all 0.25s ease-in;
   &:focus,
   &:hover {
     border-color: ${baseColor.colors.orange};
@@ -209,6 +210,7 @@ export const PhoneInput = styled.div`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
+  transition: all 0.25s ease-in;
   &:focus,
   &:hover {
     border-color: ${baseColor.colors.orange};
@@ -238,6 +240,7 @@ export const Button = styled.button`
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -285,6 +288,7 @@ export const BackButton = styled.button`
   transition: transform 0.5s;
   overflow-x: hidden;
   overflow-y: hidden;
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -334,6 +338,7 @@ export const Div = styled.div`
 export const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     color: ${baseColor.colors.orangeLight};

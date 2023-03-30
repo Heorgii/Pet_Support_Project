@@ -74,7 +74,7 @@ const Link = styled.a`
   line-height: 1.375;
   color: ${baseColor.colors.orangeLight};
   cursor: pointer;
-
+  transition: all 0.25s ease-in;
   &:hover,
   &:focus {
     color: ${baseColor.colors.orangeLight};

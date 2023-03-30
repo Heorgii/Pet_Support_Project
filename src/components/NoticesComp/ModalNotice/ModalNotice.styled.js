@@ -124,7 +124,7 @@ const BtnContact = styled.button`
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
   margin: 40px 0 12px;
-
+  transition: all 0.25s ease-in;
   &:hover {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
@@ -155,7 +155,7 @@ const BtnAddFavorits = styled.button`
   & > svg {
     color: ${baseColor.colors.orangeLight};
   }
-
+  transition: all 0.25s ease-in;
   &:hover {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
