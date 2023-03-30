@@ -27,6 +27,8 @@ import {
   PetsItemTitle,
   UserPetContainerItem,
   ErrBoxImage,
+  Option,
+  OptionFirst,
 } from './ModalAddsPet.styled';
 import { MdClose } from 'react-icons/md';
 import { Formik, useFormik } from 'formik';
@@ -35,10 +37,12 @@ import { setImage } from 'utils/setimage';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
+import { breedsValue } from 'redux/breeds/selectors';
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
+  const breeds = useSelector(breedsValue);
 
   const onClickBackdrop = e => {
     e.preventDefault();
@@ -147,9 +151,9 @@ export const ModalAddsPet = () => {
                             onFocus={e => {
                               e.target.setAttribute('type', 'date');
                             }}
-                            onBlur={e => {
-                              e.target.setAttribute('type', 'text');
-                            }}
+                            // onBlur={e => {
+                            //   e.target.setAttribute('type', 'text');
+                            // }}
                             type="text"
                             id="data"
                             name="data"
@@ -165,22 +169,32 @@ export const ModalAddsPet = () => {
                       )}
 
                       {isShown && (
-                        <InfoListLable>
+                        // <InfoListLable>
+                        <>
                           <InfoListText>Breed</InfoListText>
-                          <InfoListInput
-                            type="text"
-                            id="breed"
-                            name="breed"
-                            onChange={formik.handleChange}
+                          <InfoListInput>
+                            type="text" id="breed" name="breed" onChange=
+                            {formik.handleChange}
                             value={formik.values.breed}
                             onBlur={formik.handleBlur}
                             placeholder="Type breed"
-                          />
+                            {
+                              <OptionFirst first value="unselected">
+                                Select breed type
+                              </OptionFirst>
+                            }
+                            {breeds.map(breed => (
+                              <Option key={breed._id} value={breed['name-en']}>
+                                {breed['name-en']}
+                              </Option>
+                            ))}
+                          </InfoListInput>
 
                           {formik.errors.breed || formik.touched.breed ? (
                             <ErrBox>{formik.errors.breed}</ErrBox>
                           ) : null}
-                        </InfoListLable>
+                        </>
+                        // </InfoListLable>
                       )}
                     </InfoList>
 

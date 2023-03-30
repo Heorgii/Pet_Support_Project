@@ -8,6 +8,8 @@ import {
   AddPetBtn,
   PlusIcon,
 } from './AddPetButton.styled';
+import { fetchData } from 'services/APIservice';
+import { addBreeds } from 'redux/breeds/slice';
 
 export const AddPetButton = () => {
   const dispatch = useDispatch();
@@ -25,6 +27,18 @@ export const AddPetButton = () => {
     }
   };
 
+  async function getData() {
+    try {
+      const { data } = await fetchData('/breeds');
+      dispatch(addBreeds(data));
+      if (!data) {
+        return alert('Whoops, something went wrong');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <AddPetWrapper>
       <AddPetDesc>Add pet</AddPetDesc>
@@ -32,6 +46,7 @@ export const AddPetButton = () => {
         type="button"
         onClick={e => {
           toggleModalAddUserPets(e);
+          getData();
         }}
         data-modal="formAddPets"
       >

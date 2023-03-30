@@ -343,6 +343,40 @@ const ButtonBackText = styled.p`
   }
 `;
 
+const Option = styled.option`
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.inpText};
+
+  background: ${baseColor.colors.mainBg};
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
+const OptionFirst = styled.option`
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: rgba(27, 27, 27, 0.6);
+
+  background: ${baseColor.colors.mainBg};
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+`;
+
 export {
   UserPetContainerItem,
   ContainerCloseModal,
@@ -360,4 +394,6 @@ export {
   ButtonText,
   ButtonText2,
   ButtonBackText,
+  Option,
+  OptionFirst,
 };
