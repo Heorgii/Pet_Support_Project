@@ -25,7 +25,6 @@ const MobileAccountButton = styled(NavLink)`
 
   @media screen and (min-width: 768px) {
     margin-top: 0px;
-    width: 164px;
     height: 44px;
     display: none;
   }
@@ -37,7 +36,6 @@ const AccountButton = styled(MobileAccountButton)`
   @media screen and (min-width: 768px) {
     padding: 8px 28px;
     display: flex;
-    width: 164px;
     height: 44px;
     font-size: 20px;
     line-height: 27px;

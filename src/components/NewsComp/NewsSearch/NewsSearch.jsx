@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Formik } from 'formik';
 import {
   ButtonStyled,
@@ -8,9 +7,12 @@ import {
   IconSearch,
 } from './NewsSearch.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
+import { useDispatch } from 'react-redux';
+import { addQuery } from 'redux/query/slice';
+import { addPage } from 'redux/pagination/slice';
 
-export const NewsSearch = ({ sendSearch, reset }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+export const NewsSearch = () => {
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -19,10 +21,8 @@ export const NewsSearch = ({ sendSearch, reset }) => {
         if (values.search === '') {
           onInfo('Fill the field!');
           setSubmitting(false);
-          reset();
         } else {
-          setSearchQuery(values.search);
-          sendSearch(searchQuery);
+          dispatch(addQuery(values.search));
           setSubmitting(false);
         }
       }}
@@ -41,7 +41,7 @@ export const NewsSearch = ({ sendSearch, reset }) => {
                 document
                   .querySelector('#search')
                   .addEventListener('input', e => {
-                    e.target.value === '' && sendSearch('');
+                    if(e.target.value === '') {dispatch(addPage(1)); dispatch(addQuery(''));}
                   });
               }}
             />

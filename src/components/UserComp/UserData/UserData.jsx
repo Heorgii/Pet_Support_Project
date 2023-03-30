@@ -30,7 +30,9 @@ export const UserData = () => {
     dispatch(authOperations.update(data));
   };
 
-  const birthday = new Date(user.birthday).toISOString().slice(0, 10);
+  const birthday = user.birthday
+    ? new Date(user.birthday).toISOString().slice(0, 10)
+    : '';
 
   return (
     <>
