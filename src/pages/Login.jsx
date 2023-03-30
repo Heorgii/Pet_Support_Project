@@ -1,12 +1,10 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from 'utils/SEO';
 
 const Login = () => {
   return (
     <>
-      <Helmet>
-        <title>Log in</title>
-      </Helmet>
+      <SEO title="Log in" description="Log in to your account" />
       <LoginForm />
     </>
   );

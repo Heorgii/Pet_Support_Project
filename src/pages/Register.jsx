@@ -1,12 +1,10 @@
 import RegisterForm from 'components/RegisterForm/RegisterForm';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from 'utils/SEO';
 
 const Register = () => {
   return (
     <>
-      <Helmet>
-        <title>Register</title>
-      </Helmet>
+      <SEO title="Register" description="Register your account" />
       <RegisterForm />
     </>
   );
