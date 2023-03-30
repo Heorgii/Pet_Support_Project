@@ -88,7 +88,7 @@ export const NoticesCategoriesList = () => {
     }
     fetchNoticesList();
     if (total === 0) {
-      setTimeout(() => fetchNoticesList(), 500);
+      setTimeout(() => fetchNoticesList(), 200);
     }
   }, [itemForFetch, page, perPage, query, setSearchParams, total]);
 
