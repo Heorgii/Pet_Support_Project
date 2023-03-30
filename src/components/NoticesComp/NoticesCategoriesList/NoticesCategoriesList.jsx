@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { addFavorite, removeFavorite } from 'redux/auth/operations';
+import { addFavorite, removeFavorite } from 'services/auth';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addPage } from 'redux/pagination/slice';
