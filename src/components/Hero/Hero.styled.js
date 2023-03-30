@@ -49,7 +49,7 @@ const HeartContainer = styled.div`
   @media screen and (min-width: 1280px) {
     position: absolute;
     top: 60px;
-    left: 680px;
+    left: 650px;
     height: 89px;
     width: 91px;
     background-image: url(${heart});
