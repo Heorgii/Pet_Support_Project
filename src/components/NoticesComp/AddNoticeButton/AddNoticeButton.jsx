@@ -8,7 +8,7 @@ import { fetchData } from 'services/APIservice';
 import { addBreeds } from 'redux/breeds/slice';
 import { useAuth } from 'hooks/useAuth';
 
-export const AddNoticeButton = () => {
+export const AddNoticeButton = ({ setTotal }) => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
@@ -28,27 +28,33 @@ export const AddNoticeButton = () => {
     }
   };
 
-async function getData() {
-      try {
-        const { data } = await fetchData('/breeds');
-        dispatch(addBreeds(data));
-        if (!data) {
-          return alert('Whoops, something went wrong');
-        }
-      } catch (error) {
-        alert(error.message);
+  async function getData() {
+    try {
+      const { data } = await fetchData('/breeds');
+      dispatch(addBreeds(data));
+      if (!data) {
+        return alert('Whoops, something went wrong');
       }
+    } catch (error) {
+      alert(error.message);
     }
+  }
 
   return (
     <div style={{ marginLeft: 'auto', position: 'relative' }}>
-      <ButtonStyled onClick={(e) => {toggleModalAddNotice(e); getData();}} data-modal="formSell">
+      <ButtonStyled
+        onClick={e => {
+          toggleModalAddNotice(e);
+          getData();
+        }}
+        data-modal="formSell"
+      >
         <div>
           <PlusIcon />
         </div>
         Add pet
       </ButtonStyled>
-      {isLoggedIn && <AddNoticeModal />}
+      {isLoggedIn && <AddNoticeModal setTotal={setTotal} />}
     </div>
   );
 };

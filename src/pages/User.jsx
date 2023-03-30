@@ -17,10 +17,17 @@ import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAdd
 import axios from 'axios';
 // import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
-export const UserPage = () => {
+const UserPage = () => {
   const [petsList, setPetsList] = useState([]);
 
-  const removePetList = _id => {
+  const removePetList = async _id => {
+    try {
+      const result = await axios.delete(`/pets/${_id}`);
+      return { result, _id };
+    } catch ({ response }) {
+      console.log(response);
+      // return thunkAPI.rejectWithValue(response.data.message);
+    }
     setPetsList(petsList.filter(pet => pet._id !== _id));
   };
 

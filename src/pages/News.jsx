@@ -12,30 +12,28 @@ import { fetchData } from '../services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { queryValue } from 'redux/query/selectors';
+import { addPage } from 'redux/pagination/slice';
+import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
 const News = () => {
+  const dispatch = useDispatch();
+
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [totalPage, setTotalPage] = useState(0);
-  const [page, setPage] = useState(1);
-
-  const perPage = 10;
+  const page = useSelector(paginationPage);
+  const perPage = useSelector(paginationPerPage);
 
   function changePage(newPage) {
-    setPage(newPage);
+    dispatch(addPage((newPage)));
   }
 
-  const [search, setSearch] = useState('');
-  const handleFormSubmit = searchQuery => {
-    setPage(1);
-    setSearch(searchQuery);
-  };
-
-  const [searchParams, setSearchParams] = useSearchParams(
-    `perPage=${perPage}&page=${page}`,
-  );
+  const [searchParams, setSearchParams] = useSearchParams(`perPage=${perPage}&page=${page}`);
+  const search = useSelector(queryValue);
 
   useEffect(() => {
     setSearchParams(
@@ -58,12 +56,7 @@ const News = () => {
         setIsLoading(false);
       }
     })();
-  }, [page, search, searchParams, setSearchParams]);
-
-  const reset = () => {
-    setError(null);
-    setIsLoading(false);
-  };
+  }, [page, perPage, search, searchParams, setSearchParams]);
 
   return (
     <>
@@ -74,7 +67,7 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch sendSearch={handleFormSubmit} reset={reset} />
+          <NewsSearch />
           {!news && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...

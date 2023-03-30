@@ -16,25 +16,26 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
+import { addPage } from 'redux/pagination/slice';
+import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
 
 export const NoticesCategoriesList = () => {
+  const dispatch = useDispatch();
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [totalPage, setTotalPage] = useState(0);
-  const [page, setPage] = useState(1);
-
-  const perPage = 3;
+  const [total, setTotal] = useState(0);
+  const page = useSelector(paginationPage);
+  const perPage = useSelector(paginationPerPage);
 
   function changePage(newPage) {
-    setPage(newPage);
+    dispatch(addPage((newPage)));
   }
 
   const routeParams = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useSelector(queryValue);
-  const dispatch = useDispatch();
 
   const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
 
@@ -62,14 +63,17 @@ export const NoticesCategoriesList = () => {
   };
 
   useEffect(() => {
-    query !== '' ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`) : setSearchParams(`perPage=${perPage}&page=${page}`);
+    query !== ''
+      ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`)
+      : setSearchParams(`perPage=${perPage}&page=${page}`);
 
-    (async function fetchNoticesList() {
+    async function fetchNoticesList() {
       setIsLoading(true);
       try {
         const { data } = await fetchData(itemForFetch);
         setListItem(data.data);
         setTotalPage(data.totalPage);
+        setTotal(data.total);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -78,8 +82,13 @@ export const NoticesCategoriesList = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [itemForFetch, page, query, setSearchParams]);
+
+    }
+    fetchNoticesList();
+    if (total === 0) {
+      setTimeout(() => fetchNoticesList(), 500);
+    }
+  }, [itemForFetch, page, perPage, query, setSearchParams, total]);  
 
   return (
     <>
@@ -101,18 +110,15 @@ export const NoticesCategoriesList = () => {
                 isInFavorite={favorites ? favorites.includes(value._id) : false}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
+                setTotal={setTotal}
               />
             ))
           )}
         </ContainerStatus>
-
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-              <Pagination
-                totalPage={totalPage}
-                changePage={changePage}
-              />
+      <Pagination totalPage={totalPage} changePage={changePage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );

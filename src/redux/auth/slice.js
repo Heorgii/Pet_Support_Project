@@ -16,6 +16,7 @@ const initialState = {
     phone: null,
     favorites: null,
     _id: null,
+    birthday: null,
   },
   token: null,
   isLoggedIn: false,

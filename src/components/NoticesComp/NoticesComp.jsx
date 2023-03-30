@@ -3,16 +3,19 @@ import { NoticesCategoriesNav } from './NoticesCategoriesNav/NoticesCategoriesNa
 import { AddNoticeButton } from './AddNoticeButton/AddNoticeButton';
 import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 import { Wrapper, WrapperNav } from './NoticesComp.styled';
+import { useState } from 'react';
 
 export const NoticesComp = () => {
+  const [total, setTotal] = useState(0);
+
   return (
     <Wrapper>
       <NoticesSearch />
       <WrapperNav>
         <NoticesCategoriesNav />
-        <AddNoticeButton />
+        <AddNoticeButton setTotal={setTotal} />
       </WrapperNav>
-      <NoticesCategoriesList />
+      <NoticesCategoriesList total={total} setTotal={setTotal} />
     </Wrapper>
   );
 };
