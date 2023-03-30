@@ -22,6 +22,7 @@ export const NewsSearch = () => {
           onInfo('Fill the field!');
           setSubmitting(false);
         } else {
+          dispatch(addPage(1));
           dispatch(addQuery(values.search));
           setSubmitting(false);
         }
@@ -41,7 +42,12 @@ export const NewsSearch = () => {
                 document
                   .querySelector('#search')
                   .addEventListener('input', e => {
-                    if(e.target.value === '') {dispatch(addPage(1)); dispatch(addQuery(''));}
+                    if (e.target.value === '') {
+                      setTimeout(() => {
+                        dispatch(addPage(1));
+                        dispatch(addQuery(''));
+                      }, 500);
+                    }
                   });
               }}
             />
