@@ -161,9 +161,7 @@ export const AddNoticeModal = () => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?perPage=${perPage}&page=${page}`);
-                  setTimeout(() => {
-                    dispatch(addReload(true));
-                  }, 500);
+                  dispatch(addReload(true));
                 } else {
                   toggleForm();
                 }

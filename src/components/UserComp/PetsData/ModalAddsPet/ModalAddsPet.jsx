@@ -125,7 +125,6 @@ export const ModalAddsPet = () => {
       if (code && code !== 204) {
         return onFetchError('Whoops, something went wrong');
       }
-      // closeForm();
       dispatch(addReload(true));
       onClickBackdrop();
     } catch (error) {
