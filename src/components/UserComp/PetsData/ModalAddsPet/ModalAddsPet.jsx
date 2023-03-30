@@ -39,52 +39,53 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { fetchPetsUser } from 'services/APIservice';
 import { breedsValue } from 'redux/breeds/selectors';
 import React from 'react';
+import { addReload } from 'redux/reload/slice';
 
-class Thumb extends React.Component {
-  state = {
-    loading: false,
-    thumb: this.props.value,
-  };
+// class ThumbClass extends React.Component {
+//   state = {
+//     loading: false,
+//     thumb: this.props.value,
+//   };
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.file) {
-      return;
-    }
+//   componentWillReceiveProps(nextProps) {
+//     if (!nextProps.file) {
+//       return;
+//     }
 
-    this.setState({ loading: true }, () => {
-      let reader = new FileReader();
+//     this.setState({ loading: true }, () => {
+//       let reader = new FileReader();
 
-      reader.onloadend = () => {
-        this.setState({ loading: false, thumb: reader.result });
-      };
+//       reader.onloadend = () => {
+//         this.setState({ loading: false, thumb: reader.result });
+//       };
 
-      reader.readAsDataURL(nextProps.file);
-    });
-  }
+//       reader.readAsDataURL(nextProps.file);
+//     });
+//   }
 
-  render() {
-    const { file } = this.props;
-    const { loading, thumb } = this.state;
+//   render() {
+//     const { file } = this.props;
+//     const { loading, thumb } = this.state;
 
-    if (!file) {
-      return null;
-    }
+//     if (!file) {
+//       return null;
+//     }
 
-    if (loading) {
-      return <p>loading...</p>;
-    }
+//     if (loading) {
+//       return <p>loading...</p>;
+//     }
 
-    return (
-      <img
-        src={thumb}
-        alt={file.name}
-        className="img-thumbnail mt-2"
-        height={200}
-        width={200}
-      />
-    );
-  }
-}
+//     return (
+//       <img
+//         src={thumb}
+//         alt={file.name}
+//         className="img-thumbnail mt-2"
+//         height={200}
+//         width={200}
+//       />
+//     );
+//   }
+// }
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();
@@ -99,13 +100,13 @@ export const ModalAddsPet = () => {
     formik.resetForm();
   };
 
-  function toggleForm() {
-    window.location.reload();
-  }
-
   const [isLoading, setIsLoading] = useState(false);
-  const [ setError] = useState(null);//error,
+  const [setError] = useState(null); //error,
   const [isShown, setIsShown] = useState(true);
+
+  // const closeForm = () =>{
+  //   window.location.reload();
+  // }
 
   const showForm = () => {
     setIsShown(false);
@@ -123,7 +124,8 @@ export const ModalAddsPet = () => {
       if (code && code !== 204) {
         return onFetchError('Whoops, something went wrong');
       }
-      toggleForm();
+      // closeForm();
+      dispatch(addReload(true));
       onClickBackdrop();
     } catch (error) {
       setError(error);
@@ -150,6 +152,26 @@ export const ModalAddsPet = () => {
       onSubmit({ values, action });
     },
   });
+
+  // const Thumb = ({ value }) => {
+  //   // this.setState({ loading: true }, () => {
+  //   let reader = new FileReader();
+  //   let file = null;
+  //   // reader.onloadend = () => {
+  //   //   this.setState({ loading: false, thumb: reader.result });
+  //   // };
+  //   reader.onLoaded = () => {
+  //     file = reader.result;
+  //     console.log(file);
+  //   };
+
+  // return (
+  //   <img
+  //     src="https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/udHvbKwV-IMG-Dubai-UAE-1.jpg"
+  //     alt=""
+  //   />
+  // );
+  // };
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formAddPets' && (
@@ -199,6 +221,7 @@ export const ModalAddsPet = () => {
                             // onBlur={e => {
                             //   e.target.setAttribute('type', 'text');
                             // }}
+                            onBlur={formik.handleBlur}
                             type="text"
                             id="data"
                             name="data"
@@ -282,7 +305,8 @@ export const ModalAddsPet = () => {
                               // setImage(e, formik.setFieldValue);
                             }}
                           />
-                          <Thumb file={formik.values.imageUrl} />
+                          {/* <Thumb value={formik.values.imageUrl} /> */}
+                          {/* <Thumb file={formik.values.imageUrl} /> */}
 
                           {/* {formik.errors.imageUrl || formik.touched.imageUrl ? (
                           <ErrBoxImage>{formik.errors.imageUrl}</ErrBoxImage>

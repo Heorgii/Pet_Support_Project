@@ -7,13 +7,15 @@ export const UserPageWrapper = styled.div`
     padding-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
-  }
+    margin-top: 60px;
+  }*/
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 100px;
+    /* padding-bottom: 100px;
     padding-left: 0px;
-    padding-right: 32px;
-  } */
+    padding-right: 32px; 
+    margin-top: 90px; */
+  }
 
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -26,6 +28,11 @@ export const UserPageWrapper = styled.div`
 `;
 
 export const UserDataWrapper = styled.div`
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+  }
+
   @media screen and (min-width: 1280px) {
     margin-right: 32px;
   }
@@ -35,7 +42,7 @@ export const UserDataContainer = styled.div`
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  margin-bottom: 40px;
+
   margin-top: 18px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -44,7 +51,6 @@ export const UserDataContainer = styled.div`
   @media screen and (min-width: 768px) {
     position: relative;
     margin-left: -32px;
-    margin-bottom: 40px;
     margin-top: 40px;
     padding-right: 40px;
     padding-top: 24px;

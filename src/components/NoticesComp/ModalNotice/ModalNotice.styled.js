@@ -47,7 +47,7 @@ const ContainerCloseModal = styled.div`
 
 const ContainerStatus = styled.div`
   position: absolute;
-  top: 77px;
+  top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

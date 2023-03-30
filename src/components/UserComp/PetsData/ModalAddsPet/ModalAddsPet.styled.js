@@ -136,7 +136,6 @@ const InfoListInput = styled(Field)`
   border-radius: 40px;
   width: 100%;
   padding: 11px 20px 11px 14px;
-  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;

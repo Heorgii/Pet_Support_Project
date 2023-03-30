@@ -63,7 +63,7 @@ export const NoticesCategoriesList = () => {
     e.preventDefault();
     e.stopPropagation();
     if (routeParams.id === 'favorite') {
-      setTotalPage(0);
+      dispatch(addReload(true));
     }
     !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
   };
