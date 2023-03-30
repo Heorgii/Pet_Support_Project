@@ -12,14 +12,7 @@ const MobileHeader = styled.header`
   }
 `;
 const IconClose = styled(iconClose)`
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // @media screen and (max-width: 1279px) {
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  // }
+  cursor: pointer;
 `;
 
 export { MobileHeader, IconClose };
