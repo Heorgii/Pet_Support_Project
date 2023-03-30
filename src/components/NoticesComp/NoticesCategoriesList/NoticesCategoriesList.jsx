@@ -24,11 +24,9 @@ export const NoticesCategoriesList = () => {
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [totalPage, setTotalPage] = useState(0);
-  const page = useSelector(paginationPage);
-  const perPage = useSelector(paginationPerPage);
 
+  const [page, setPage] = useState(1);
   function changePage(newPage) {
     dispatch(addPage((newPage)));
   }
@@ -63,14 +61,17 @@ export const NoticesCategoriesList = () => {
   };
 
   useEffect(() => {
-    query !== '' ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`) : setSearchParams(`perPage=${perPage}&page=${page}`);
+    query !== ''
+      ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`)
+      : setSearchParams(`perPage=${perPage}&page=${page}`);
 
-    (async function fetchNoticesList() {
+    async function fetchNoticesList() {
       setIsLoading(true);
       try {
         const { data } = await fetchData(itemForFetch);
         setListItem(data.data);
         setTotalPage(data.totalPage);
+        setTotal(data.total);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -79,8 +80,13 @@ export const NoticesCategoriesList = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [itemForFetch, page, perPage, query, setSearchParams]);
+
+    }
+    fetchNoticesList();
+    if (total === 0) {
+      setTimeout(() => fetchNoticesList(), 500);
+    }
+  }, [itemForFetch, total, page, query, setSearchParams, setTotal]);  
 
   return (
     <>
@@ -102,18 +108,15 @@ export const NoticesCategoriesList = () => {
                 isInFavorite={favorites ? favorites.includes(value._id) : false}
                 addToFavoriteFunction={handleFavoriteBtnClick}
                 key={value._id}
+                setTotal={setTotal}
               />
             ))
           )}
         </ContainerStatus>
-
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-              <Pagination
-                totalPage={totalPage}
-                changePage={changePage}
-              />
+      <Pagination totalPage={totalPage} changePage={changePage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );

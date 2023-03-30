@@ -70,7 +70,6 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
       fetchNoticesList();
     }
   }, [itemForFetch, modal.id]);
-  console.log(data);
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -150,18 +149,6 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <Link style={{ textDecoration: 'none' }} to={`tel:${data.phone}`}>
               <BtnContact>Contacts</BtnContact>
             </Link>
-            {/* <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
-              {isInFavorite ? `Remove from ${' '}` : `Add to${' '}`}
-              {isInFavorite ? (
-                <AiOutlineHeart
-                  size={22}
-                  color={baseColor.colors.orangeLight}
-                />
-              ) : (
-                <AiFillHeart size={22} color={baseColor.colors.white} />
-              )}
-            </BtnAddFavorits> */}
-
             {isInFavorite ? (
               <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
                 Remove from

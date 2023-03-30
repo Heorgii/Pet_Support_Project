@@ -46,8 +46,17 @@ async function fetchPetsUser(pathParams, body, file) {
   });
 }
 
+async function deleteNoticeUser(pathParams) {
+  const formData = new FormData();
+  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice, fetchPetsUser };
+export { fetchData, fetchNotice, fetchPetsUser, deleteNoticeUser };
