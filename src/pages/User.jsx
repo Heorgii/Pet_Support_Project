@@ -13,7 +13,6 @@ import {
   MyPetTitle,
 } from './UserPage.styled';
 
-import { ModalAddsPet } from 'components/UserComp/PetsData/ModalAddsPet/ModalAddsPet';
 import axios from 'axios';
 // import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
@@ -23,12 +22,12 @@ const UserPage = () => {
   const removePetList = async _id => {
     try {
       const result = await axios.delete(`/pets/${_id}`);
+      setPetsList(petsList.filter(pet => pet._id !== _id));
       return { result, _id };
     } catch ({ response }) {
       console.log(response);
       // return thunkAPI.rejectWithValue(response.data.message);
     }
-    setPetsList(petsList.filter(pet => pet._id !== _id));
   };
 
   useEffect(() => {
@@ -63,7 +62,6 @@ const UserPage = () => {
           <PetsData petsList={petsList} removePetList={removePetList} />
         </UserAboutWrapper>
       </UserPageWrapper>
-      <ModalAddsPet />
       {/* </Container> */}
       {/* </Section> */}
     </>

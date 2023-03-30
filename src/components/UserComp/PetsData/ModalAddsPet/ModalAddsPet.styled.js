@@ -22,16 +22,12 @@ export const FormDiv = styled.div`
 export const ErrBox = styled.div`
   position: absolute;
   margin-left: 16px;
-  /* margin-bottom: -16px; */
   color: #e53e3e;
   font-family: 'Manrope';
   font-size: 12px;
   font-style: normal;
   line-height: 1.4;
   letter-spacing: 0.03em;
-  @media screen and (min-width: 768px) {
-    left: 32px;
-  }
 `;
 
 const UserPetContainerItem = styled(Form)`
