@@ -653,7 +653,7 @@ export const FieldItemTextArea = styled(Field)`
 
 export const Error = styled.span`
   position: absolute;
-  top: 20px;
+  top: 15px;
   right: 0px;
 
   z-index: 99;
@@ -674,6 +674,8 @@ export const Error = styled.span`
 
 export const Li = styled.li`
   cursor: pointer;
+
+
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
