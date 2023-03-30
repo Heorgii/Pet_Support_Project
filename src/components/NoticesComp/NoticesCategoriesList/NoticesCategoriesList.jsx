@@ -25,6 +25,7 @@ export const NoticesCategoriesList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
+  const [total, setTotal] = useState(0);
   const page = useSelector(paginationPage);
   const perPage = useSelector(paginationPerPage);
 
@@ -87,7 +88,7 @@ export const NoticesCategoriesList = () => {
     if (total === 0) {
       setTimeout(() => fetchNoticesList(), 500);
     }
-  }, [itemForFetch, page, query, setSearchParams]);  
+  }, [itemForFetch, page, perPage, query, setSearchParams, total]);  
 
   return (
     <>

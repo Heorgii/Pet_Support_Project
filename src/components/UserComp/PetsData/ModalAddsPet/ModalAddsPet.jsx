@@ -157,7 +157,6 @@ export const ModalAddsPet = () => {
                             type="text"
                             id="data"
                             name="data"
-                            lang="en"
                             onChange={formik.handleChange}
                             value={formik.values.data}
                             placeholder="Type date of birth"

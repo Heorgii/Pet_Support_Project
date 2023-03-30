@@ -278,7 +278,6 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                             //   e.target.setAttribute('type', 'text');
                             // }}
                             type="text"
-                            lang="en"
                             id="birthday"
                             name="birthday"
                             placeholder="Type day of birth"
