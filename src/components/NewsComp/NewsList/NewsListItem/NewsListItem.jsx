@@ -4,6 +4,7 @@ import {
   Item,
   Title,
   TextWrapper,
+  DateWrapper,
   Text,
   Link,
   Ractangle,
@@ -15,29 +16,31 @@ export const NewsListItem = ({ newsItem }) => {
 
   return (
     <Item key={_id} id={_id}>
-      <Ractangle />
-      <Title>
-        <EllipsisText text={title} length={38} />
-      </Title>
-      <Text>
-        <EllipsisText text={description} length={200} />
-      </Text>
+      <TextWrapper>
+        <Ractangle />
+        <Title>
+          <EllipsisText text={title} length={38} />
+        </Title>
+        <Text>
+          <EllipsisText text={description} length={200} />
+        </Text>
 
-      {date !== null ? (
-        <TextWrapper>
-          <Dates>{new Date(date).toLocaleDateString()}</Dates>
-          <Link target="_blank" href={url}>
-            Read More
-          </Link>
-        </TextWrapper>
-      ) : (
-        <TextWrapper>
-          <Dates>----/----/-------</Dates>
-          <Link target="_blank" href={url}>
-            Read More
-          </Link>
-        </TextWrapper>
-      )}
+        {date !== null ? (
+          <DateWrapper>
+            <Dates>{new Date(date).toLocaleDateString()}</Dates>
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </DateWrapper>
+        ) : (
+          <DateWrapper>
+            <Dates>----/----/-------</Dates>
+            <Link target="_blank" href={url}>
+              Read More
+            </Link>
+          </DateWrapper>
+        )}
+      </TextWrapper>
     </Item>
   );
 };

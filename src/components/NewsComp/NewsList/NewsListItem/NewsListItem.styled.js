@@ -23,6 +23,12 @@ const Item = styled.li`
     max-width: 395px;
   }
 `;
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const Title = styled.h2`
   margin-bottom: 12px;
   font-family: 'Manrope';
@@ -40,7 +46,7 @@ const Text = styled.span`
   color: ${baseColor.colors.blackText};
 `;
 
-const TextWrapper = styled.div`
+const DateWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -93,4 +99,4 @@ const Ractangle = styled.span`
   }
 `;
 
-export { Item, Title, TextWrapper, Text, Link, Ractangle, Dates };
+export { Item, Title, TextWrapper, Text, Link, Ractangle, Dates, DateWrapper };

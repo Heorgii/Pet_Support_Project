@@ -11,7 +11,7 @@ import {
   UserAboutWrapper,
   UserDataContainer,
   UserDataWrapper,
-  UserPageWrapper,
+  // UserPageWrapper,
   MyPetTitle,
 } from './UserPage.styled';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
