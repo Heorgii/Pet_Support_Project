@@ -6,7 +6,7 @@ const Item = styled.li`
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
-  padding: 12px 0;
+  padding: 0;
 
   border-radius: 20px;
 
