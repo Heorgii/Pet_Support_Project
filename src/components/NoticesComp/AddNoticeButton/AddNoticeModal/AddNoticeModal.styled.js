@@ -42,7 +42,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding-top: 160px;
+  padding-top: 100px;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
@@ -55,11 +55,9 @@ export const Overlay = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    padding-top: 260px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 340px;
   }
 `;
 
