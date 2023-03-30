@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { Formik } from 'formik';
 import ReactDOM from 'react-dom';
 import {
@@ -51,6 +51,7 @@ export const AddNoticeModal = ({ setTotal, total }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
@@ -162,6 +163,7 @@ export const AddNoticeModal = ({ setTotal, total }) => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?perPage=${perPage}&page=${page}`);
+                  location.reload();
                 } else {
                   toggleForm();
                   values.imageUrl = '';
