@@ -7,12 +7,14 @@ export const UserPageWrapper = styled.div`
     padding-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 60px;
   }
 
   @media screen and (min-width: 768px) {
     padding-bottom: 100px;
     padding-left: 0px;
     padding-right: 32px;
+    margin-top: 90px;
   }
 
   @media screen and (min-width: 1280px) {
