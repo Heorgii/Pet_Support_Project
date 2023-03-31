@@ -53,7 +53,7 @@ export const UserData = () => {
               name="edit photo"
               id="user_photo"
               onChange={changeAvatar}
-              accept=".gif,.jpg,.jpeg,.webp"
+              accept=".gif,.jpg,.jpeg,.webp,.png"
             />
           </EditCameraForm>
         </UserDataImgWrapper>
