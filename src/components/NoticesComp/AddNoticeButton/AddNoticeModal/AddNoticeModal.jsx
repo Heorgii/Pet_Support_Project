@@ -56,7 +56,7 @@ export const AddNoticeModal = () => {
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
   const [searchParams] = useSearchParams();
-  searchParams.set('perPage', 10);
+  searchParams.set('perPage', 12);
   searchParams.set('page', 1);
 
   const onClickBackdrop = e => {
