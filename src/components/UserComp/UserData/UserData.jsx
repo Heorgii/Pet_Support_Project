@@ -27,9 +27,6 @@ export const UserData = () => {
     const data = new FormData();
     data.append('avatar', e.target.files[0]);
     dispatch(update(data));
-    // setTimeout(() => {
-    //   dispatch(authOperations.getUsers(data));
-    // }, 200);
   };
 
   const birthday = userIn.birthday

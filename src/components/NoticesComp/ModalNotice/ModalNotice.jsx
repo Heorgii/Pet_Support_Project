@@ -5,7 +5,7 @@ import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
@@ -72,6 +72,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
       fetchNoticesList();
     }
   }, [itemForFetch, modal.id]);
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -167,7 +168,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                 {isInFavorite ? (
                   <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
                     Remove from
-                    <AiOutlineHeart size={22} style={{ marginLeft: '5px' }} />
+                    <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
                   </BtnAddFavorits>
                 ) : (
                   <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
@@ -178,7 +179,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
               </NoticeContainerButtom>
             </>
           ) : (
-            <h1>"Ups... Don't have information about this pet"</h1>
+            <h2>"Whoops... Don't have information about this pet"</h2>
           )}
         </NoticesContainerItem>
       </BackDrop>
