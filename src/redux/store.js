@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { querySlice } from './query/slice';
 import { reloadSlice } from './reload/slice';
-import { paginationSlice } from './pagination/slice';
 import { breedsSlice } from './breeds/slice';
 import { authReducer } from './auth/slice';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -18,11 +16,9 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    query: querySlice.reducer,
     reload: reloadSlice.reducer,
     modal: modalReducer,
     breeds: breedsSlice.reducer,
-    pagination: paginationSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

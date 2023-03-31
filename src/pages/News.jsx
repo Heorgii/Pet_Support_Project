@@ -14,8 +14,8 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
-let page = null;
-let perPage = 20;
+let page = 1;
+let perPage = 12;
 
 const News = () => {
   const [news, setNews] = useState([]);

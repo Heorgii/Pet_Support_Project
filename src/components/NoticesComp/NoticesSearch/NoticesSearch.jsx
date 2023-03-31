@@ -7,31 +7,34 @@ import {
   LabelStyled,
   IconSearch,
 } from './NoticesSearch.styled';
-
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
-import { useDispatch } from 'react-redux';
-import { addQuery } from 'redux/query/slice';
-import { addPage } from 'redux/pagination/slice';
+import { useSearchParams } from 'react-router-dom';
 
 export const NoticesSearch = () => {
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+const setParams = search => {
+    const params = getParams();
+    params.page = 1;
+    if (!search) {
+      !params.findtext && onInfo('Fill the field!');
+      delete params.findtext;
+      setSearchParams(params);
+      return;
+    }
+    params.findtext = search;
+    setSearchParams(params);
+  };
 
+  const getParams = () => {
+    const params = Object.fromEntries(searchParams);
+    return params;
+  };
   return (
     <Formik
       initialValues={{ search: '' }}
       onSubmit={(values, actions) => {
-        if (values.search === '') {
-          onInfo('Fill the field!');
-          actions.setSubmitting(false);
-        } else {
-          setTimeout(() => {
-            dispatch(addPage(1));
-          }, 100);
-          setTimeout(() => {
-            dispatch(addQuery(values.search));
-          }, 150);
-          actions.setSubmitting(false);
-        }
+        actions.setSubmitting(false);
+        setParams(values.search);
       }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
@@ -45,26 +48,13 @@ export const NoticesSearch = () => {
               value={values.search}
               onChange={e => {
                 handleChange(e);
-                document
-                  .querySelector('#search')
-                  .addEventListener('input', e => {
-                    if (e.target.value === '') {
-                      setTimeout(() => {
-                        dispatch(addPage(1));
-                      }, 100);
-                      setTimeout(() => {
-                        dispatch(addQuery(''));
-                      }, 150);
-                    }
-                  });
+                if (e.target.value === '') {
+                  setParams(null);
+                }
               }}
             />
             <div>
-              <ButtonStyled
-                type="submit"
-                disabled={isSubmitting}
-                onSubmit={handleSubmit}
-              >
+              <ButtonStyled type="submit" disabled={isSubmitting}>
                 <IconSearch />
               </ButtonStyled>
             </div>
