@@ -1,9 +1,5 @@
 import { useAuth } from 'hooks/useAuth';
-import { useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addPage } from 'redux/pagination/slice';
-import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   BtnCategory,
@@ -13,11 +9,7 @@ import {
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
-  const page = useSelector(paginationPage);
-  const perPage = useSelector(paginationPerPage);
-  const dispatch = useDispatch();
-  const ref = useRef(null);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, ] = useSearchParams();
 
 searchParams.set('page', 1)
 
@@ -49,7 +41,7 @@ searchParams.set('page', 1)
   // }, [dispatch]);
 
   return (
-    <ContainerCategoryBtn ref={ref}>
+    <ContainerCategoryBtn >
       {navItemsPublick.map(({ href, text }) => (
         <StyledLi key={href}>
           <BtnCategory to={href}>{text}</BtnCategory>
