@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import delBack from 'images/svg/icon_delete.svg';
 import {
   NoticesContainerItem,
   ContainerInfo,
