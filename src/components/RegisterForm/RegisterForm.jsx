@@ -4,7 +4,7 @@ import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
-import { register } from 'redux/auth/operations';
+import { register } from 'services/auth';
 import {
   FormRegister,
   FormContainer,

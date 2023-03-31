@@ -141,7 +141,7 @@ const Input = styled.input`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   // margin-bottom: 16px;
-
+  transition: all 0.25s ease-in;
   &:focus,
   &:hover {
     border-color: ${baseColor.colors.orange};
@@ -171,6 +171,7 @@ const Button = styled.button`
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     transform: scale(1.05);
@@ -228,6 +229,7 @@ const Div = styled.div`
 const StyledLink = styled(Link)`
   color: ${baseColor.colors.blue};
   margin-left: 4px;
+  transition: all 0.25s ease-in;
   :hover,
   :focus {
     color: ${baseColor.colors.orangeLight};

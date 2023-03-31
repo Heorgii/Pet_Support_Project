@@ -17,6 +17,3 @@ export const baseColor = {
     logout: '#707070',
   },
 };
-
-//import { baseColor } from 'components/baseStyles/Variables.styled';
-// ${baseColor.colors.white}

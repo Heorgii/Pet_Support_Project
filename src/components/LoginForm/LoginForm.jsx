@@ -21,7 +21,7 @@ import {
   ErrorBox,
   Div,
 } from './LoginForm.styled';
-import { logIn } from 'redux/auth/operations';
+import { logIn } from 'services/auth';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //

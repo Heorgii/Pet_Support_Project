@@ -6,7 +6,7 @@ import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { ApiDocs } from '../ApiDocs/ApiDocs';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshUser } from 'redux/auth/operations';
+import { refreshUser } from 'services/auth';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 // import initAxios from 'utils/initAxios';
 

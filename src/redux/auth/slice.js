@@ -6,7 +6,7 @@ import {
   refreshUser,
   addFavorite,
   removeFavorite,
-} from './operations';
+} from '../../services/auth';
 
 const initialState = {
   user: {

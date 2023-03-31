@@ -105,7 +105,7 @@ export const DeleteIcon = styled(Delete)`
     width: 24px;
     height: 24px;
   }
-
+  transition: all 0.25s ease-in;
   &:hover,
   :focus {
     fill: ${baseColor.colors.orange};

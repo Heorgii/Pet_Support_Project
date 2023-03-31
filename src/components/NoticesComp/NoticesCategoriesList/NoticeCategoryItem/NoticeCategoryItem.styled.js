@@ -23,6 +23,7 @@ const NoticesContainerItem = styled.div`
   border-radius: 0px 0px 20px 20px;
   transition: box-shadow 250ms linear;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
     box-shadow: 0 1px 4px ${baseColor.colors.orange},
@@ -70,6 +71,7 @@ const BtnForFavorite = styled.button`
   border: none;
   top: 12px;
   right: 12px;
+  transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
     transform: scale(1.6);
@@ -124,7 +126,7 @@ const BtnLearnMore = styled.button`
   background-color: ${baseColor.colors.white};
   color: ${baseColor.colors.blackText};
   margin: 40px 0 12px;
-
+  transition: all 0.25s ease-in;
   &:hover {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
@@ -147,7 +149,7 @@ const BtnDelete = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
     color: ${baseColor.colors.white};

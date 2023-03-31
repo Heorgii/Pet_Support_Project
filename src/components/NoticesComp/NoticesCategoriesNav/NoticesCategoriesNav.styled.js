@@ -47,7 +47,7 @@ const StyledLi = styled.li`
   /* border: 2px solid ${baseColor.colors.orangeLight};
   background-color: ${baseColor.colors.white}; */
   margin: 6px 12px 6px 0;
-
+  transition: all 0.25s ease-in;
   &:hover,
   &:focus {
     color: ${baseColor.colors.white};
