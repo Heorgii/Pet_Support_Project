@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { addFavorite, removeFavorite } from 'services/auth';
+import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addPage } from 'redux/pagination/slice';
@@ -89,7 +89,7 @@ export const NoticesCategoriesList = () => {
     }
     fetchNoticesList();
     if (reload) {
-      setTimeout(() => fetchNoticesList(), 200);
+      setTimeout(() => fetchNoticesList(), 100);
       dispatch(addReload(false));
     }
   }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);

@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
-// import { authOperations } from 'redux/UserPage/auth';
-import { logOut } from 'services/auth';
+import { logOut } from 'redux/auth/operations';
 import {
   ModalWrapper,
   CloseBtnWrapper,

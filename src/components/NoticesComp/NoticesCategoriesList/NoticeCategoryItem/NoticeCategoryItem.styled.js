@@ -77,7 +77,7 @@ const BtnForFavorite = styled.button`
   &:hover,
   &:focus {
     cursor: pointer;
-    transform: scale(1.3);
+    transform: scale(1.4);
 
     & > svg {
       transition: all 0.25s ease-in;

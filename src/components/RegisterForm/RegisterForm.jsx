@@ -4,7 +4,7 @@ import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
-import { register } from 'services/auth';
+import { register } from 'redux/auth/operations';
 import {
   FormRegister,
   FormContainer,
@@ -130,15 +130,9 @@ const RegisterForm = () => {
 
   return (
     <FormSection>
-      {/* {loading ? (
-        <SpinerWrapper>
-          {/* <Spinner /> */}
-      {/* </SpinerWrapper> */}
-      {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <Div>
@@ -325,9 +319,7 @@ const RegisterForm = () => {
             </BoxText>
           </FormRegister>
         </Formik>
-        {/* <Background></Background> */}
       </FormContainer>
-      {/*  )} */}
     </FormSection>
   );
 };

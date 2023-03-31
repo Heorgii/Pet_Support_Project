@@ -243,25 +243,6 @@ const BoxText = styled.div`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
 `;
-// const Background = styled.div`
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: -100;
-//   background-image: url(${mobileBackground});
-//   background-position: center bottom;
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   height: 100vh;
-//   @media screen and (min-width: 768px) {
-//     background-image: url(${tabletBackground});
-//   }
-//   @media screen and (min-width: 1280px) {
-//     background-image: url(${desktopBackground});
-//   }
-// `;
 
 export {
   FormSection,

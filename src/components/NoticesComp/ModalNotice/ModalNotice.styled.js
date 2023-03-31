@@ -212,6 +212,17 @@ const TdTable2 = styled.td`
     line-height: 22px;
   }
 `;
+const LinkStyle = styled.div`
+  color: ${baseColor.colors.orangeLight};
+  text-decoration: none;
+  transition: all 0.25s ease-in;
+
+  &:hover,
+  &:focus {
+    color: ${baseColor.colors.success};
+    transform: scale(1.03);
+  }
+`;
 const Table = styled.table`
   min-width: 240px;
   display: flex;
@@ -252,4 +263,5 @@ export {
   MainComments,
   ContainerComments,
   NoticeContainerButtom,
+  LinkStyle,
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'; //useSelector
+import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'components/Schemas/schemas';
@@ -15,13 +15,12 @@ import {
   Button,
   StyledLink,
   BoxText,
-  // Background,
   IconValid,
   IconInValid,
   ErrorBox,
   Div,
 } from './LoginForm.styled';
-import { logIn } from 'services/auth';
+import { logIn } from 'redux/auth/operations';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
@@ -138,7 +137,6 @@ export const LoginForm = () => {
             </BoxText>
           </FormLogin>
         </Formik>
-        {/* <Background></Background> */}
       </FormContainer>
     </FormSection>
   );
