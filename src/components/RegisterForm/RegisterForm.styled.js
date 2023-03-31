@@ -2,15 +2,10 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-// import MaskedInput from 'react-text-mask';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-
-// import mobileBackground from '../../images/register/bg-register-mobile.png';
-// import tabletBackground from '../../images/register/bg-register-tablet.png';
-// import desktopBackground from '../../images/register/bg-register-desktop.png';
-import BackgroundImage from 'images/register/bgForm.png';
-import waveMobile from 'images/hero/waveMobileFull.png';
-import waveTab from 'images/register/BGFornTab.png';
+import BackgroundImage from 'images/register/bgForm.webp';
+import waveMobile from 'images/hero/waveMobileFull.webp';
+import waveTab from 'images/register/BGFornTab.webp';
 
 export const FormSection = styled.section`
   height: 100%;

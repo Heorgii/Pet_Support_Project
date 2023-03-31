@@ -12,7 +12,7 @@ import {
   Link,
   Image,
 } from './OurFriendsItem.styled';
-import defaultImg from 'images/defaultPets.png';
+import defaultImg from 'images/defaultPets.webp';
 
 export const OurFriendsItem = ({ friend }) => {
   const {
