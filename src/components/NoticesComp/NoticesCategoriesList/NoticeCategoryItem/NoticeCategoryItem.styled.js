@@ -74,7 +74,7 @@ const BtnForFavorite = styled.button`
   transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
-    transform: scale(1.6);
+    transform: scale(1.4);
   }
 `;
 const ContainerInfo = styled.div`
