@@ -24,13 +24,13 @@ export const MobileNav = ({ toggleMenu }) => {
 
 export const Nav = () => {
   const [searchParams] = useSearchParams();
-
+  searchParams.set('perPage', 10);
   searchParams.set('page', 1);
 
   return (
     <NavList>
       <NavItem to={`/news?${searchParams}`}>News</NavItem>
-      <NavItem to={`/notices/sell${searchParams}`}>
+      <NavItem to={`/notices/sell?${searchParams}`}>
         Find pet
       </NavItem>
       <NavItem to="/friends">Our friends</NavItem>
