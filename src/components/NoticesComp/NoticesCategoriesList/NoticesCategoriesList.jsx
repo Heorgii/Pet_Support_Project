@@ -12,7 +12,7 @@ import { fetchData } from 'services/APIservice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { addFavorite, removeFavorite } from 'services/auth';
+import { addFavorite, removeFavorite } from 'redux/auth/operations';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addReload } from 'redux/reload/slice';
