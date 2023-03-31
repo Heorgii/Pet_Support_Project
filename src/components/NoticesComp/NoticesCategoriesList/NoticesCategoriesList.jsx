@@ -19,7 +19,7 @@ import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 
 let page = null;
-let perPage = 5;
+let perPage = 10;
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();

@@ -15,7 +15,7 @@ import { Pagination } from 'utils/pagination';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 let page = null;
-let perPage = 20;
+let perPage = 10;
 
 const News = () => {
   const [news, setNews] = useState([]);
