@@ -126,7 +126,6 @@ const BallContainer = styled.div`
     width: 64px;
     background-image: url(${ball});
     background-repeat: no-repeat;
-    /* animation: bounce-in-top 6s both; */
     animation: bounce-in-top 4s both;
   }
   @keyframes bounce-in-top {
@@ -134,9 +133,13 @@ const BallContainer = styled.div`
       transform: translateY(-700px);
       animation-timing-function: ease-in;
     }
-    60% {
+    40% {
       transform: translateY(300px);
       animation-timing-function: ease-out;
+    }
+    70% {
+      transform: translateY(-200px);
+      animation-timing-function: ease-in;
     }
     100% {
       transform: translateY(0px);
