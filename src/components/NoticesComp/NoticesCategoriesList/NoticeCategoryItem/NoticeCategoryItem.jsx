@@ -86,39 +86,37 @@ export const NoticesCategoriesItem = ({
             }
             loading="lazy"
           />
-          <div>
-            <NoticeItemTitle>{data.title}</NoticeItemTitle>
-            <Table>
-              <TBody>
+          <NoticeItemTitle>{data.title}</NoticeItemTitle>
+          <Table>
+            <TBody>
+              <tr>
+                <TdTable>Breed:</TdTable>
+                <TdTable2>{data.breed}</TdTable2>
+              </tr>
+              <tr>
+                <TdTable>Place:</TdTable>
+                <TdTable2>{data.location}</TdTable2>
+              </tr>
+              <tr>
+                <TdTable>Age:</TdTable>
+                <TdTable2>
+                  {data.birthday
+                    ? Math.round(
+                        (Date.now() - Date.parse(data.birthday)) /
+                          31536000 /
+                          1000,
+                      ) + ' years'
+                    : 'no info'}
+                </TdTable2>
+              </tr>
+              {data.price && (
                 <tr>
-                  <TdTable>Breed:</TdTable>
-                  <TdTable2>{data.breed}</TdTable2>
+                  <TdTable>Price:</TdTable>
+                  <TdTable2>{data.price}</TdTable2>
                 </tr>
-                <tr>
-                  <TdTable>Place:</TdTable>
-                  <TdTable2>{data.location}</TdTable2>
-                </tr>
-                <tr>
-                  <TdTable>Age:</TdTable>
-                  <TdTable2>
-                    {data.birthday
-                      ? Math.round(
-                          (Date.now() - Date.parse(data.birthday)) /
-                            31536000 /
-                            1000,
-                        ) + ' years'
-                      : 'no info'}
-                  </TdTable2>
-                </tr>
-                {data.price && (
-                  <tr>
-                    <TdTable>Price:</TdTable>
-                    <TdTable2>{data.price}</TdTable2>
-                  </tr>
-                )}
-              </TBody>
-            </Table>
-          </div>
+              )}
+            </TBody>
+          </Table>
         </ContainerInfo>
         <NoticeContainerButton>
           <BtnLearnMore
