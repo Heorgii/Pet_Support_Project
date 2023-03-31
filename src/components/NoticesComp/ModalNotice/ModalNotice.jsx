@@ -25,6 +25,7 @@ import {
   MainComments,
   ContainerComments,
   NoticeContainerButtom,
+  LinkStyle,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 import { Link } from 'react-router-dom';
@@ -135,23 +136,17 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                       <tr>
                         <TdTable>Email:</TdTable>
                         <TdTable2>
-                          <a
-                            style={{ textDecoration: 'none' }}
-                            href={`mailto: ${data.email}`}
-                          >
+                          <LinkStyle href={`mailto: ${data.email}`}>
                             {data.email}
-                          </a>
+                          </LinkStyle>
                         </TdTable2>
                       </tr>
                       <tr>
                         <TdTable>Phone:</TdTable>
                         <TdTable2>
-                          <a
-                            style={{ textDecoration: 'none' }}
-                            href={`tel:${data.phone}`}
-                          >
+                          <LinkStyle href={`tel:${data.phone}`}>
                             {data.phone}
-                          </a>
+                          </LinkStyle>
                         </TdTable2>
                       </tr>
                     </tbody>
