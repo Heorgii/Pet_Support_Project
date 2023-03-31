@@ -102,7 +102,7 @@ const ImgItem = styled.img`
     object-fit: contain;
   }
 `;
-const NoticeItemTitle = styled.div`
+const NoticeItemTitle = styled.h2`
   display: flex;
   justify-content: start;
   align-items: center;
