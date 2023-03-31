@@ -103,6 +103,9 @@ const ImgItem = styled.img`
   }
 `;
 const NoticeItemTitle = styled.h2`
+  display: flex;
+  justify-content: start;
+  align-items: center;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;

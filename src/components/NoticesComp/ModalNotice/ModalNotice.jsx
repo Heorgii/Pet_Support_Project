@@ -5,7 +5,7 @@ import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
