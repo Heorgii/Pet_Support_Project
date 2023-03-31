@@ -30,8 +30,7 @@ const UserPage = () => {
       setPetsList(petsList.filter(pet => pet._id !== _id));
       return { result, _id };
     } catch ({ response }) {
-      console.log(response);
-      // return thunkAPI.rejectWithValue(response.data.message);
+      return response.data.message;
     }
   };
 

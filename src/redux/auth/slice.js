@@ -33,7 +33,11 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
+        if (action.payload.data.authToken) {
+          state.user = action.payload.data;
+          state.token = action.payload.data.authToken;
+          state.isLoggedIn = true;
+        }
       })
       .addCase(register.rejected, (state, action) => {
         state.user = initialState.user;
@@ -62,8 +66,9 @@ export const authSlice = createSlice({
       })
       .addCase(update.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user[Object.keys(payload)[0]] = Object.values( //user
-        payload,
+        state.user[Object.keys(payload)[0]] = Object.values(
+          //user
+          payload,
         )[0];
         state.isError = null;
       })
