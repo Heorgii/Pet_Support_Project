@@ -10,16 +10,16 @@ import {
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 import { fetchData } from 'services/APIservice';
 import { useDispatch, useSelector } from 'react-redux';
-import { queryValue } from 'redux/query/selectors';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { addFavorite, removeFavorite } from 'redux/auth/operations';
+import { addFavorite, removeFavorite } from 'services/auth';
 import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
-import { addPage } from 'redux/pagination/slice';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
-import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
+
+let page = null;
+let perPage = 5;
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
@@ -27,19 +27,17 @@ export const NoticesCategoriesList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
-  const page = useSelector(paginationPage);
-  const perPage = useSelector(paginationPerPage);
-
-  function changePage(newPage) {
-    dispatch(addPage(newPage));
-  }
-
   const routeParams = useParams();
+//   const [route, setRoute] = useState(routeParams.id)
+// console.log(routeParams)
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = useSelector(queryValue);
   const reload = useSelector(reloadValue);
 
-  const itemForFetch = `/notices/${routeParams.id}?${searchParams}`;
+
+  const setPage = toPage => {
+    searchParams.set('page', toPage);
+    setSearchParams(searchParams);
+  };
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(selectFavorites);
@@ -67,15 +65,18 @@ export const NoticesCategoriesList = () => {
     !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
   };
 
+
   useEffect(() => {
-    query !== ''
-      ? setSearchParams(`findtext=${query}&perPage=${perPage}&page=${page}`)
-      : setSearchParams(`perPage=${perPage}&page=${page}`);
+    if (!page && !perPage) {
+      const params = { page: 1, perPage };
+      setSearchParams(params);
+    }
+
 
     async function fetchNoticesList() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(itemForFetch);
+        const { data } = await fetchData(`/notices/${routeParams.id}?${searchParams}`);
         setListItem(data.data);
         setTotalPage(data.totalPage);
         if (!data) {
@@ -89,10 +90,10 @@ export const NoticesCategoriesList = () => {
     }
     fetchNoticesList();
     if (reload) {
-      setTimeout(() => fetchNoticesList(), 100);
+      setTimeout(() => fetchNoticesList(), 200);
       dispatch(addReload(false));
     }
-  }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);
+  }, [dispatch, reload, routeParams.id, searchParams, setSearchParams]);
 
   return (
     <>
@@ -123,7 +124,8 @@ export const NoticesCategoriesList = () => {
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-      <Pagination totalPage={totalPage} changePage={changePage} />
+      <Pagination totalPage={totalPage} changePage={setPage} 
+ />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );
