@@ -28,11 +28,10 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
   const routeParams = useParams();
-//   const [route, setRoute] = useState(routeParams.id)
-// console.log(routeParams)
+  //   const [route, setRoute] = useState(routeParams.id)
+  // console.log(routeParams)
   const [searchParams, setSearchParams] = useSearchParams();
   const reload = useSelector(reloadValue);
-
 
   const setPage = toPage => {
     searchParams.set('page', toPage);
@@ -65,18 +64,18 @@ export const NoticesCategoriesList = () => {
     !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
   };
 
-
   useEffect(() => {
     if (!page && !perPage) {
       const params = { page: 1, perPage };
       setSearchParams(params);
     }
 
-
     async function fetchNoticesList() {
       setIsLoading(true);
       try {
-        const { data } = await fetchData(`/notices/${routeParams.id}?${searchParams}`);
+        const { data } = await fetchData(
+          `/notices/${routeParams.id}?${searchParams}`,
+        );
         setListItem(data.data);
         setTotalPage(data.totalPage);
         if (!data) {
@@ -124,8 +123,7 @@ export const NoticesCategoriesList = () => {
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-      <Pagination totalPage={totalPage} changePage={setPage} 
- />
+      <Pagination totalPage={totalPage} changePage={setPage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );

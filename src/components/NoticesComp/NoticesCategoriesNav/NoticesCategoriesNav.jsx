@@ -9,9 +9,9 @@ import {
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
-  const [searchParams, ] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-searchParams.set('page', 1)
+  searchParams.set('page', 1);
 
   const navItemsPublick = [
     {
@@ -41,7 +41,7 @@ searchParams.set('page', 1)
   // }, [dispatch]);
 
   return (
-    <ContainerCategoryBtn >
+    <ContainerCategoryBtn>
       {navItemsPublick.map(({ href, text }) => (
         <StyledLi key={href}>
           <BtnCategory to={href}>{text}</BtnCategory>

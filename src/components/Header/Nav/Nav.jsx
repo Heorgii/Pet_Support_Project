@@ -1,17 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { MobileNavList, NavList, NavItem } from './Nav.styled';
-import { paginationPage, paginationPerPage } from 'redux/pagination/selectors'; 
+import { useSearchParams } from 'react-router-dom';
 
 export const MobileNav = ({ toggleMenu }) => {
-const page = useSelector(paginationPage);
-const perPage = useSelector(paginationPerPage);
+  const [searchParams] = useSearchParams();
+
+  searchParams.set('page', 1);
+
   return (
     <MobileNavList>
-      <NavItem to={`/news?perPage=${perPage}&page=${page}`} onClick={toggleMenu}>
+      <NavItem to={`/news?${searchParams}`} onClick={toggleMenu}>
         News
       </NavItem>
-      <NavItem to={`/notices/sell?perPage=${perPage}&page=${page}`} onClick={toggleMenu}>
+      <NavItem to={`/notices/sell?${searchParams}`} onClick={toggleMenu}>
         Find pet
       </NavItem>
       <NavItem to="/friends" onClick={toggleMenu}>
@@ -22,12 +23,16 @@ const perPage = useSelector(paginationPerPage);
 };
 
 export const Nav = () => {
-const page = useSelector(paginationPage);
-const perPage = useSelector(paginationPerPage);
+  const [searchParams] = useSearchParams();
+
+  searchParams.set('page', 1);
+
   return (
     <NavList>
-      <NavItem to={`/news?perPage=${perPage}&page=${page}`}>News</NavItem>
-      <NavItem to={`/notices/sell?perPage=${perPage}&page=${page}`}>Find pet</NavItem>
+      <NavItem to={`/news?${searchParams}`}>News</NavItem>
+      <NavItem to={`/notices/sell${searchParams}`}>
+        Find pet
+      </NavItem>
       <NavItem to="/friends">Our friends</NavItem>
     </NavList>
   );

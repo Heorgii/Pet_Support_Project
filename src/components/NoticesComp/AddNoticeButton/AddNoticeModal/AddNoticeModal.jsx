@@ -55,10 +55,9 @@ export const AddNoticeModal = () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
-  const [searchParams, ] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  searchParams.set('page', 1)
-
+  searchParams.set('page', 1);
 
   const onClickBackdrop = e => {
     setFormQueue(true);
@@ -164,7 +163,7 @@ export const AddNoticeModal = () => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?${searchParams}`);
-      dispatch(addReload(false));
+                  dispatch(addReload(false));
                 } else {
                   toggleForm();
                 }
