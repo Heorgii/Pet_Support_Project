@@ -90,7 +90,7 @@ export const NoticesCategoriesList = () => {
     }
     fetchNoticesList();
     if (reload) {
-      setTimeout(() => fetchNoticesList(), 200);
+      fetchNoticesList();
       dispatch(addReload(false));
     }
   }, [dispatch, reload, routeParams.id, searchParams, setSearchParams]);

@@ -164,7 +164,7 @@ export const AddNoticeModal = () => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?${searchParams}`);
-                  // dispatch(addReload(true));
+      dispatch(addReload(false));
                 } else {
                   toggleForm();
                 }
