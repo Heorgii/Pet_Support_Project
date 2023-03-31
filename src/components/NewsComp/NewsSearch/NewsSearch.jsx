@@ -6,26 +6,14 @@ import {
   LabelStyled,
   IconSearch,
 } from './NewsSearch.styled';
-import { onInfo } from 'components/helpers/Messages/NotifyMessages';
-import { useDispatch } from 'react-redux';
-import { addQuery } from 'redux/query/slice';
-import { addPage } from 'redux/pagination/slice';
 
-export const NewsSearch = () => {
-  const dispatch = useDispatch();
-
+export const NewsSearch = ({ setParams }) => {
   return (
     <Formik
       initialValues={{ search: '' }}
       onSubmit={(values, { setSubmitting }) => {
-        if (values.search === '') {
-          onInfo('Fill the field!');
-          setSubmitting(false);
-        } else {
-          dispatch(addPage(1));
-          dispatch(addQuery(values.search));
-          setSubmitting(false);
-        }
+        setSubmitting(false);
+        setParams(values.search);
       }}
     >
       {({ isSubmitting, values, handleSubmit, handleChange }) => (
@@ -39,23 +27,12 @@ export const NewsSearch = () => {
               value={values.search}
               onChange={e => {
                 handleChange(e);
-                document
-                  .querySelector('#search')
-                  .addEventListener('input', e => {
-                    if (e.target.value === '') {
-                      setTimeout(() => {
-                        dispatch(addPage(1));
-                        dispatch(addQuery(''));
-                      }, 100);
-                    }
-                  });
+                if (e.target.value === '') {
+                  setParams(null);
+                }
               }}
             />
-            <ButtonStyled
-              type="submit"
-              disabled={isSubmitting}
-              onSubmit={handleSubmit}
-            >
+            <ButtonStyled type="submit" disabled={isSubmitting}>
               <IconSearch />
             </ButtonStyled>
           </LabelStyled>

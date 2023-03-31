@@ -12,35 +12,46 @@ import { fetchData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
-import { useDispatch, useSelector } from 'react-redux';
-import { queryValue } from 'redux/query/selectors';
-import { addPage } from 'redux/pagination/slice';
-import { paginationPage, paginationPerPage } from 'redux/pagination/selectors';
+import { onInfo } from 'components/helpers/Messages/NotifyMessages';
+
+let page = null;
+let perPage = 20;
 
 const News = () => {
-  const dispatch = useDispatch();
-
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [totalPage, setTotalPage] = useState(0);
-  const page = useSelector(paginationPage);
-  const perPage = useSelector(paginationPerPage);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  function changePage(newPage) {
-    dispatch(addPage((newPage)));
-  }
+  const setPage = toPage => {
+    searchParams.set('page', toPage);
+    setSearchParams(searchParams);
+  };
 
-  const [searchParams, setSearchParams] = useSearchParams(`perPage=${perPage}&page=${page}`);
-  const search = useSelector(queryValue);
+  const setParams = search => {
+    const params = getParams();
+    params.page = 1;
+    if (!search) {
+      !params.search && onInfo('Fill the field!');
+      delete params.search;
+      setSearchParams(params);
+      return;
+    }
+    params.search = search;
+    setSearchParams(params);
+  };
+
+  const getParams = () => {
+    const params = Object.fromEntries(searchParams);
+    return params;
+  };
 
   useEffect(() => {
-    setSearchParams(
-      search.trim() !== ''
-        ? `search=${search}&perPage=${perPage}&page=${page}`
-        : `perPage=${perPage}&page=${page}`,
-    );
+    if (!page && !perPage) {
+      const params = { page: 1, perPage };
+      setSearchParams(params);
+    }
 
     (async () => {
       try {
@@ -48,7 +59,7 @@ const News = () => {
         setNews(data.data);
         setTotalPage(data.totalPage);
         if (!data) {
-          return onFetchError('Whoops, something went wrong');
+          return onFetchError('Whoops, something went wrong 404');
         }
       } catch (error) {
         setError(error);
@@ -56,7 +67,7 @@ const News = () => {
         setIsLoading(false);
       }
     })();
-  }, [page, perPage, search, searchParams, setSearchParams]);
+  }, [searchParams, setSearchParams]);
 
   return (
     <>
@@ -67,8 +78,8 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch />
-          {(!news || (news?.length === 0)) && !isLoading && (
+          <NewsSearch setParams={setParams} />
+          {(!news || news?.length === 0) && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
             </Title>
@@ -76,7 +87,11 @@ const News = () => {
           {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
-              <Pagination totalPage={totalPage} changePage={changePage} />
+              <Pagination
+                totalPage={totalPage}
+                changePage={setPage}
+                page={searchParams.get('page')}
+              />
             </>
           )}
         </Container>
