@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import authOperations from 'redux/UserPage/auth/authOperations';
+import { update } from 'redux/auth/operations';
+// import authOperations from 'redux/UserPage/auth/authOperations';
 import {
   CheckMarkStyle,
   Error,
@@ -71,7 +72,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ userName: inputValue }));
+      dispatch(update({ userName: inputValue }));
     } else if (name === 'email') {
       setActive('email');
       if (!inputValue.match(emailRegExp)) {
@@ -80,7 +81,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ email: inputValue }));
+      dispatch(update({ email: inputValue }));
     } else if (name === 'birthday') {
       setActive('birthday');
       if (inputValue > dayToday) {
@@ -94,7 +95,7 @@ export const UserDataItem = ({
       setIsError('');
       setActive('');
       dispatch(
-        authOperations.update({
+        update({
           birthday: inputValue,
         }),
       );
@@ -118,7 +119,7 @@ export const UserDataItem = ({
       // }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ phone: inputValue }));
+      dispatch(update({ phone: inputValue }));
     } else if (name === 'location') {
       setActive('location');
       if (!inputValue.match(cityRegex)) {
@@ -127,7 +128,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ location: inputValue }));
+      dispatch(update({ location: inputValue }));
     }
   };
 

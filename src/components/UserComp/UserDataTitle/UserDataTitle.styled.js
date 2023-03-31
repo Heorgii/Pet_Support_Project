@@ -11,10 +11,10 @@ export const UserDataTitleStyle = styled.h2`
   @media screen and (min-width: 768px) {
     font-size: 28px;
     letter-spacing: 0;
-    padding-left: 32px;
+    margin-left: 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-left: 16px;
+    margin-left: 16px;
   }
 `;
