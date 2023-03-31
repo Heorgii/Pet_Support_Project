@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Container } from 'components/baseStyles/CommonStyle.styled';
-import waveMobile from 'images/hero/waveMobileFull.png';
-import DogMobile from 'images/hero/dogMobile-X1.png';
-import DogTab from 'images/hero/dogTab-X1.png';
-import DogDesk from 'images/hero/dogDesk-X1.png';
-import waveTabFull from 'images/hero/waveTabFull.png';
-import waveLeftDesk from 'images/hero/wave1-desk.png';
-import waveRightDesk from 'images/hero/wave2Full.png';
-import heart from 'images/hero/heart.png';
-import ball from 'images/hero/ball.png';
-import animalPaw from 'images/hero/animalPaw2.png';
-
+import waveMobile from 'images/hero/waveMobileFull.webp';
+import DogMobile from 'images/hero/dogMobile-X1.webp';
+import DogTab from 'images/hero/dogTab-X1.webp';
+import DogDesk from 'images/hero/dogDesk-X1.webp';
+import waveTabFull from 'images/hero/waveTabFull.webp';
+import waveLeftDesk from 'images/hero/wave1-desk.webp';
+import waveRightDesk from 'images/hero/wave2Full.webp';
+import heart from 'images/hero/heart.webp';
+import ball from 'images/hero/ball.webp';
+import animalPaw from 'images/hero/animalPaw.png';
 
 const HeroSection = styled.section`
   height: 100%;
