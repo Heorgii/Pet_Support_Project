@@ -28,8 +28,6 @@ export const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
   const routeParams = useParams();
-  //   const [route, setRoute] = useState(routeParams.id)
-  // console.log(routeParams)
   const [searchParams, setSearchParams] = useSearchParams();
   const reload = useSelector(reloadValue);
 

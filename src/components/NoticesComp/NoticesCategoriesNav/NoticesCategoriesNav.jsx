@@ -10,7 +10,7 @@ import {
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
-
+  searchParams.set('perPage', 10);
   searchParams.set('page', 1);
 
   const navItemsPublick = [

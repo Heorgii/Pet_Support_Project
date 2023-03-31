@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export const MobileNav = ({ toggleMenu }) => {
   const [searchParams] = useSearchParams();
-
+  searchParams.set('perPage', 10);
   searchParams.set('page', 1);
 
   return (
