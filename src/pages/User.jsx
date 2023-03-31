@@ -47,10 +47,10 @@ const UserPage = () => {
       setPetsList(pets);
     }
     fetchPets();
-    if(reload) {
-setTimeout(() => fetchPets(), 200);
-dispatch(addReload(false))
-} 
+    if (reload) {
+      setTimeout(() => fetchPets(), 200);
+      dispatch(addReload(false));
+    }
   }, [dispatch, reload]);
 
   return (

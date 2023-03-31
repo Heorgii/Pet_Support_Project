@@ -86,6 +86,7 @@ export const AddNoticeModal = () => {
       setError(error);
     } finally {
       setIsLoading(false);
+      dispatch(addReload(true));
     }
   }
 
@@ -161,7 +162,7 @@ export const AddNoticeModal = () => {
                   setFormQueue(true);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?perPage=${perPage}&page=${page}`);
-                  dispatch(addReload(true));
+                  // dispatch(addReload(true));
                 } else {
                   toggleForm();
                 }
