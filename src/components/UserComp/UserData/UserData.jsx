@@ -1,4 +1,4 @@
-import { useState } from 'react'; //useEffect
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.webp';

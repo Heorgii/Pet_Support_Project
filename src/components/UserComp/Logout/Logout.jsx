@@ -6,7 +6,6 @@ import {
   Modal,
 } from './Logout.styled';
 import { ModalLogout } from './ModalLogout/ModalLogout';
-// import { cleanModal } from 'redux/modal/operation';
 export const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);

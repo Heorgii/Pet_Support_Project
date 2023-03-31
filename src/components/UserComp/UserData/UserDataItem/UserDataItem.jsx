@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { update } from 'redux/auth/operations';
-// import authOperations from 'redux/UserPage/auth/authOperations';
 import {
   CheckMarkStyle,
   Error,
@@ -23,7 +22,6 @@ export const UserDataItem = ({
   setActive,
   profile,
 }) => {
-  // const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
   const emailRegExp = /^.+@.+\..+$/;
   const cityRegex = /^[a-zA-Z\s,'-]+$/;
   const phoneRegExp = /^\+380\d{9}$/;
@@ -34,14 +32,6 @@ export const UserDataItem = ({
 
   const [inputValue, setInputValue] = useState(defaultValue ?? '');
   const [isError, setIsError] = useState('');
-
-  // const userData = useSelector(state => state.userData);
-
-  // useEffect(() => {
-  //   if (userData[name]) {
-  //     setInputValue(userData[name]);
-  //   }
-  // }, [userData, name]);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -109,14 +99,6 @@ export const UserDataItem = ({
         setIsError('phone number should contain 13 digits');
         return;
       }
-      // if (inputValue.slice(0, 4) !== '+380') {
-      //   setIsError('phone should start +380');
-      //   return;
-      // }
-      // if (inputValue.length < 13) {
-      //   setIsError('please type 13 signs');
-      //   return;
-      // }
       setIsError('');
       setActive('');
       dispatch(update({ phone: inputValue }));

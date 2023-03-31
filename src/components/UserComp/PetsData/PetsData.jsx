@@ -8,13 +8,6 @@ import {
 } from './PetsData.styled';
 
 export const PetsData = ({ petsList, removePetList }) => {
-  // let { pets } = useAuth();
-  // let profile = false;
-  // if (props && props.pets) {
-  //   pets = props.pets;
-  //   profile = true;
-  // }
-
   return (
     <>
       <AddPetWrapper>

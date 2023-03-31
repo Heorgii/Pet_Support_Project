@@ -130,15 +130,9 @@ const RegisterForm = () => {
 
   return (
     <FormSection>
-      {/* {loading ? (
-        <SpinerWrapper>
-          {/* <Spinner /> */}
-      {/* </SpinerWrapper> */}
-      {/* ) : (  */}
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            {/* formik. */}
             <Title>Register</Title>
             {isShown && (
               <Div>
@@ -325,9 +319,7 @@ const RegisterForm = () => {
             </BoxText>
           </FormRegister>
         </Formik>
-        {/* <Background></Background> */}
       </FormContainer>
-      {/*  )} */}
     </FormSection>
   );
 };
