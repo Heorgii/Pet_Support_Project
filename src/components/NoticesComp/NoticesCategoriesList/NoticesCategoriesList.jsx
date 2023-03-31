@@ -18,7 +18,7 @@ import { Pagination } from 'utils/pagination';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 
-let page = null;
+let page = 1;
 let perPage = 10;
 
 export const NoticesCategoriesList = () => {
