@@ -10,6 +10,7 @@ import waveLeftDesk from 'images/hero/wave1-desk.png';
 import waveRightDesk from 'images/hero/wave2Full.png';
 import heart from 'images/hero/heart.png';
 import ball from 'images/hero/ball.png';
+import animalPaw from 'images/hero/animalPaw2.png';
 
 const HeroSection = styled.section`
   height: 100%;
@@ -36,6 +37,7 @@ const HeroContainer = styled(Container)`
   justify-content: start;
   align-items: start;
   @media screen and (min-width: 1280px) {
+    overflow: hidden;
     background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk});
     background-repeat: no-repeat;
@@ -54,8 +56,6 @@ const HeartContainer = styled.div`
     width: 91px;
     background-image: url(${heart});
     background-repeat: no-repeat;
-    /* background-size: 91px 89px; */
-    /* background-position: top 127px left 685px; */
     animation: heartbeat 1.5s ease-in-out infinite both;
     @keyframes heartbeat {
       from {
@@ -83,6 +83,40 @@ const HeartContainer = styled.div`
   }
 `;
 
+const AnimalPaw = styled.div`
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    bottom: -240px;
+    left: 450px;
+    height: 500px;
+    width: 100px;
+    background-image: url(${animalPaw});
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    animation: bounce-in-bottom 3s both;
+    animation-delay: 3s;
+  }
+  @keyframes bounce-in-bottom {
+    0% {
+      transform: translateY(280px);
+      animation-timing-function: ease-in;
+    }
+    30% {
+      transform: translateY(0);
+      animation-timing-function: ease-in;
+    }
+    70% {
+      transform: translateY(0);
+      animation-timing-function: ease-in;
+    }
+    100% {
+      transform: translateY(280px);
+      animation-timing-function: ease-in;
+    }
+  }
+`;
+
 const BallContainer = styled.div`
   @media screen and (min-width: 1280px) {
     position: absolute;
@@ -92,10 +126,25 @@ const BallContainer = styled.div`
     width: 64px;
     background-image: url(${ball});
     background-repeat: no-repeat;
-    animation: bounce-in-top 7s both;
+    /* animation: bounce-in-top 6s both; */
+    animation: bounce-in-top 4s both;
+  }
+  @keyframes bounce-in-top {
+    0% {
+      transform: translateY(-700px);
+      animation-timing-function: ease-in;
+    }
+    60% {
+      transform: translateY(300px);
+      animation-timing-function: ease-out;
+    }
+    100% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
+    }
   }
 
-  @keyframes bounce-in-top {
+  /* @keyframes bounce-in-top {
     0% {
       transform: translateY(-700px);
       animation-timing-function: ease-in;
@@ -136,7 +185,7 @@ const BallContainer = styled.div`
       transform: translateY(0);
       animation-timing-function: ease-out;
     }
-  }
+  } */
   /* @keyframes bounce-in-top {
     0% {
       transform: translateY(-500px);
@@ -195,4 +244,11 @@ const HeroTitle = styled.h1`
     max-width: 630px;
   }
 `;
-export { HeroSection, HeroContainer, HeroTitle, HeartContainer, BallContainer };
+export {
+  HeroSection,
+  HeroContainer,
+  HeroTitle,
+  HeartContainer,
+  BallContainer,
+  AnimalPaw,
+};
