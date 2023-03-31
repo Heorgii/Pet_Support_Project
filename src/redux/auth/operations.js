@@ -55,14 +55,17 @@ export const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const update = createAsyncThunk('/update', async (updateData, thunkAPI) => {
-  try {
-    const result = await updateUserData(updateData);
-    return result;
-  } catch ({ response }) {
-    return thunkAPI.rejectWithValue(response.data.message);
-  }
-});
+export const update = createAsyncThunk(
+  '/update',
+  async (updateData, thunkAPI) => {
+    try {
+      const result = await updateUserData(updateData);
+      return result;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
+    }
+  },
+);
 
 export const refreshUser = createAsyncThunk(
   '/auth/refresh',
@@ -88,7 +91,7 @@ export const addFavorite = createAsyncThunk(
   '/auth/addFavorite',
   async (id, thunkAPI) => {
     try {
-      await addToFavorite(`/${id}`);//notices/favorites/
+      await addToFavorite(`/${id}`); //notices/favorites/
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
