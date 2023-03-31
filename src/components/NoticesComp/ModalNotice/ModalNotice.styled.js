@@ -38,6 +38,8 @@ const ContainerCloseModal = styled.div`
   backdrop-filter: blur(2px);
   margin-bottom: 6px;
   z-index: 99;
+  cursor: pointer;
+
   @media screen and (min-width: 768px) {
     position: absolute;
     top: 12px;
@@ -153,13 +155,16 @@ const BtnAddFavorits = styled.button`
   color: ${baseColor.colors.blackText};
 
   & > svg {
+    transition: all 0.3s ease-in;
     color: ${baseColor.colors.orangeLight};
   }
+
   transition: all 0.25s ease-in;
   &:hover {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     & > svg {
+      transition: all 0.3s ease-in;
       color: ${baseColor.colors.white};
     }
   }

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
+import { ReactComponent as delBack } from 'images/svg/icon_delete.svg';
 
 const ItemContainer = styled.li`
   display: flex;
@@ -72,9 +73,16 @@ const BtnForFavorite = styled.button`
   top: 12px;
   right: 12px;
   transition: all 0.25s ease-in;
-  &:hover {
+
+  &:hover,
+  &:focus {
     cursor: pointer;
-    transform: scale(1.6);
+    transform: scale(1.3);
+
+    & > svg {
+      transition: all 0.25s ease-in;
+      color: ${baseColor.colors.orangeLight};
+    }
   }
 `;
 const ContainerInfo = styled.div`
@@ -154,13 +162,30 @@ const BtnDelete = styled.button`
     cursor: pointer;
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
+
+    & > svg {
+      transition: all 0.3s ease-in;
+      fill: ${baseColor.colors.white};
+    }
   }
   &:focus {
     color: ${baseColor.colors.white};
     background-color: ${baseColor.colors.orangeLight};
     outline: none;
+
+    & > svg {
+      transition: all 0.3s ease-in;
+      fill: ${baseColor.colors.white};
+    }
   }
 `;
+const DeleteIcon = styled(delBack)`
+  margin-left: 12px;
+  width: 18px;
+  height: 18px;
+  fill: ${baseColor.colors.orangeLight};
+`;
+
 const TBody = styled.tbody`
   width: 100%;
 `;
@@ -210,6 +235,7 @@ export {
   NoticeItemTitle,
   BtnLearnMore,
   BtnDelete,
+  DeleteIcon,
   ItemContainer,
   Table,
   TdTable,

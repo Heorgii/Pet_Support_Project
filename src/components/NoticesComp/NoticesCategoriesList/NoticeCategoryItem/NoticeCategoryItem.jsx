@@ -20,6 +20,7 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
   TBody,
+  DeleteIcon,
 } from './NoticeCategoryItem.styled';
 import { selecId } from 'redux/auth/selectors';
 import { useState } from 'react';
@@ -128,13 +129,8 @@ export const NoticesCategoriesItem = ({
           </BtnLearnMore>
           {data.owner === id && (
             <BtnDelete onClick={e => deleteNotice(data._id)}>
-              Delete{' '}
-              <img
-                loading="lazy"
-                src={delBack}
-                alt="delete button"
-                style={{ marginLeft: '12px' }}
-              />
+              Delete
+              <DeleteIcon />
             </BtnDelete>
           )}
         </NoticeContainerButton>
