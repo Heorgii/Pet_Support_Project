@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import delBack from 'images/svg/icon_delete.svg';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -20,6 +19,7 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
   TBody,
+  DeleteIcon,
 } from './NoticeCategoryItem.styled';
 import { selecId } from 'redux/auth/selectors';
 import { useState } from 'react';
@@ -128,13 +128,8 @@ export const NoticesCategoriesItem = ({
           </BtnLearnMore>
           {data.owner === id && (
             <BtnDelete onClick={e => deleteNotice(data._id)}>
-              Delete{' '}
-              <img
-                loading="lazy"
-                src={delBack}
-                alt="delete button"
-                style={{ marginLeft: '12px' }}
-              />
+              Delete
+              <DeleteIcon />
             </BtnDelete>
           )}
         </NoticeContainerButton>
