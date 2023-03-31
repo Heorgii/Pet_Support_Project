@@ -10,7 +10,7 @@ import waveLeftDesk from 'images/hero/wave1-desk.webp';
 import waveRightDesk from 'images/hero/wave2Full.webp';
 import heart from 'images/hero/heart.webp';
 import ball from 'images/hero/ball.webp';
-import animalPaw from 'images/hero/animalPaw.png';
+import animalPaw from 'images/hero/animalPow.png';
 
 const HeroSection = styled.section`
   height: 100%;
