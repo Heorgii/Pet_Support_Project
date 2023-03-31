@@ -93,7 +93,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                       : data.imageUrl
                   }
                 />
-                <>
+                <div>
                   <NoticeItemTitle>{data.title}</NoticeItemTitle>
                   <Table>
                     <tbody>
@@ -152,7 +152,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                       </tr>
                     </tbody>
                   </Table>
-                </>
+                </div>
               </ContainerInfo>
               <ContainerComments>
                 <MainComments>Comments: </MainComments>

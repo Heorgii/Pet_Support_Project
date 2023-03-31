@@ -88,7 +88,7 @@ const ImgItem = styled.img`
     margin-right: 20px;
   }
 `;
-const NoticeItemTitle = styled.div`
+const NoticeItemTitle = styled.h2`
   display: flex;
   justify-content: start;
   align-items: center;
