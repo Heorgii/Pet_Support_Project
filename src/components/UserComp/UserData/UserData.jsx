@@ -1,10 +1,9 @@
 import { useState } from 'react'; //useEffect
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
-// import { useAuth } from 'hooks/useAuth';
 import { useAuth } from 'redux/UserPage/auth/useAuth';
 import { authOperations } from 'redux/UserPage/auth';
-import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.png';
+import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.webp';
 import {
   EditCameraForm,
   EditCameraStyle,
@@ -54,7 +53,7 @@ export const UserData = () => {
               name="edit photo"
               id="user_photo"
               onChange={changeAvatar}
-              accept=".gif,.jpg,.jpeg,.png"
+              accept=".gif,.jpg,.jpeg,.webp"
             />
           </EditCameraForm>
         </UserDataImgWrapper>
