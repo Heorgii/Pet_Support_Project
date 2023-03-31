@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import authOperations from 'redux/UserPage/auth/authOperations';
+import { update } from 'redux/auth/operations';
 import {
   CheckMarkStyle,
   Error,
@@ -22,7 +22,6 @@ export const UserDataItem = ({
   setActive,
   profile,
 }) => {
-  // const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
   const emailRegExp = /^.+@.+\..+$/;
   const cityRegex = /^[a-zA-Z\s,'-]+$/;
   const phoneRegExp = /^\+380\d{9}$/;
@@ -33,14 +32,6 @@ export const UserDataItem = ({
 
   const [inputValue, setInputValue] = useState(defaultValue ?? '');
   const [isError, setIsError] = useState('');
-
-  // const userData = useSelector(state => state.userData);
-
-  // useEffect(() => {
-  //   if (userData[name]) {
-  //     setInputValue(userData[name]);
-  //   }
-  // }, [userData, name]);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -71,7 +62,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ userName: inputValue }));
+      dispatch(update({ userName: inputValue }));
     } else if (name === 'email') {
       setActive('email');
       if (!inputValue.match(emailRegExp)) {
@@ -80,7 +71,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ email: inputValue }));
+      dispatch(update({ email: inputValue }));
     } else if (name === 'birthday') {
       setActive('birthday');
       if (inputValue > dayToday) {
@@ -94,7 +85,7 @@ export const UserDataItem = ({
       setIsError('');
       setActive('');
       dispatch(
-        authOperations.update({
+        update({
           birthday: inputValue,
         }),
       );
@@ -108,17 +99,9 @@ export const UserDataItem = ({
         setIsError('phone number should contain 13 digits');
         return;
       }
-      // if (inputValue.slice(0, 4) !== '+380') {
-      //   setIsError('phone should start +380');
-      //   return;
-      // }
-      // if (inputValue.length < 13) {
-      //   setIsError('please type 13 signs');
-      //   return;
-      // }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ phone: inputValue }));
+      dispatch(update({ phone: inputValue }));
     } else if (name === 'location') {
       setActive('location');
       if (!inputValue.match(cityRegex)) {
@@ -127,7 +110,7 @@ export const UserDataItem = ({
       }
       setIsError('');
       setActive('');
-      dispatch(authOperations.update({ location: inputValue }));
+      dispatch(update({ location: inputValue }));
     }
   };
 

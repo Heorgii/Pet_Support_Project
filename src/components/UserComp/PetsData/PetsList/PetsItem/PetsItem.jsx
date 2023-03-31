@@ -1,5 +1,3 @@
-// import { useDispatch } from 'react-redux';
-// import authOperations from '../../../../../redux/UserPage/auth/authOperations';
 import {
   DeleteIcon,
   PetsItemDeleteBtn,
@@ -11,7 +9,6 @@ import {
 } from './PetsItem.styled';
 
 export const PetsItem = ({ pet, profile, removePetList }) => {
-  // const dispatch = useDispatch();
   const { name, _id, date, breed, imageUrl, comments } = pet;
 
   return (
@@ -23,7 +20,6 @@ export const PetsItem = ({ pet, profile, removePetList }) => {
             <PetsItemDeleteBtn
               type="submit"
               onClick={() => {
-                // dispatch(authOperations.removePet(_id));
                 removePetList(_id);
               }}
             >

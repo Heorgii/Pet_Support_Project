@@ -12,7 +12,7 @@ import {
   Link,
   Image,
 } from './OurFriendsItem.styled';
-import defaultImg from 'images/defaultPets.png';
+import defaultImg from 'images/defaultPets.webp';
 
 export const OurFriendsItem = ({ friend }) => {
   const {
@@ -28,6 +28,7 @@ export const OurFriendsItem = ({ friend }) => {
   } = friend;
   const [workTime, setWorkTime] = useState('');
   const [dayClosed, setDayClosed] = useState(null);
+  const [error, setError] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(state => !state);
@@ -61,9 +62,9 @@ export const OurFriendsItem = ({ friend }) => {
       if (!day.isOpen) return setWorkTime('not working today');
       return;
     } catch (e) {
-      console.log(`Error message: ${e.message}`);
+      setError(error);
     }
-  }, [userDay, userHours, workDays]);
+  }, [error, userDay, userHours, workDays]);
 
   return (
     <Item key={_id} id={_id}>
@@ -91,7 +92,7 @@ export const OurFriendsItem = ({ friend }) => {
         <InfoWrapper>
           <TextWrapper>
             <Text>Time:</Text>
-            {workDays !== null && workDays ? (
+            {workDays !== null && !error && workDays?.length !== 0 ? (
               <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
               </Link>

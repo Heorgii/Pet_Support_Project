@@ -51,25 +51,11 @@ export const GlobalStyle = createGlobalStyle`
 }
 #popup-root.is-hide{
   pointer-events: none;
-  /* display: none; */
   opacity: 0;
   visibility: hidden;
   width: 0;
   height: 0;
 }
-  /* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
 
  //-----pagination-----//
 .paginate__container {

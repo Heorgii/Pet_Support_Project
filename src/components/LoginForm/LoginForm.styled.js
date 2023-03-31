@@ -3,13 +3,9 @@ import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-
-// import mobileBackground from '../../images/register/bg-register-mobile.png';
-// import tabletBackground from '../../images/register/bg-register-tablet.png';
-// import desktopBackground from '../../images/register/bg-register-desktop.png';
-import BackgroundImage from 'images/register/bgForm.png';
-import waveMobile from 'images/hero/waveMobileFull.png';
-import waveTab from 'images/register/BGFornTab.png';
+import BackgroundImage from 'images/register/bgForm.webp';
+import waveMobile from 'images/hero/waveMobileFull.webp';
+import waveTab from 'images/register/BGFornTab.webp';
 
 const FormSection = styled.section`
   height: 100%;
@@ -247,25 +243,6 @@ const BoxText = styled.div`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
 `;
-// const Background = styled.div`
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: -100;
-//   background-image: url(${mobileBackground});
-//   background-position: center bottom;
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   height: 100vh;
-//   @media screen and (min-width: 768px) {
-//     background-image: url(${tabletBackground});
-//   }
-//   @media screen and (min-width: 1280px) {
-//     background-image: url(${desktopBackground});
-//   }
-// `;
 
 export {
   FormSection,

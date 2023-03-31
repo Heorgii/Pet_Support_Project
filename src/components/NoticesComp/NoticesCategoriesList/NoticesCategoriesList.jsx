@@ -89,7 +89,7 @@ export const NoticesCategoriesList = () => {
     }
     fetchNoticesList();
     if (reload) {
-      setTimeout(() => fetchNoticesList(), 500);
+      setTimeout(() => fetchNoticesList(), 100);
       dispatch(addReload(false));
     }
   }, [dispatch, itemForFetch, page, perPage, query, reload, setSearchParams]);

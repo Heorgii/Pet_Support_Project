@@ -6,6 +6,7 @@ import {
   refreshUser,
   addFavorite,
   removeFavorite,
+  update,
 } from './operations';
 
 const initialState = {
@@ -17,9 +18,12 @@ const initialState = {
     favorites: null,
     _id: null,
     birthday: null,
+    avatarUrl: null,
   },
   token: null,
   isLoggedIn: false,
+  isLoading: false,
+  isError: null,
   isRefreshing: true,
 };
 
@@ -29,8 +33,6 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        // state.user = action.payload.data.user;
-        // state.token = action.payload.data.user.authToken;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
@@ -39,27 +41,6 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        // const {
-        //   userName,
-        //   email,
-        //   location,
-        //   phone,
-        //   birthday,
-        //   avatarUrl,
-        //   favorites,
-        //   _id,
-        // } = action.payload.data;
-
-        // const user = {
-        //   userName,
-        //   email,
-        //   location,
-        //   phone,
-        //   favorites,
-        //   birthday,
-        //   _id,
-        //   avatarUrl,
-        // };
         state.user = action.payload.data;
         state.token = action.payload.data.authToken;
         state.isLoggedIn = true;
@@ -75,23 +56,26 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
+      .addCase(update.pending, state => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(update.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user[Object.keys(payload)[0]] = Object.values( //user
+        payload,
+        )[0];
+        state.isError = null;
+      })
+      .addCase(update.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = payload;
+      })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        // const { userName, email, location, birthday, phone, favorites, _id } =
-        //   action.payload.data.user;
-
-        // const user = {
-        //   userName,
-        //   email,
-        //   location,
-        //   phone,
-        //   birthday,
-        //   favorites,
-        //   _id,
-        // };
-        state.user = action.payload.data.user;
+        state.user = action.payload.user; //data
 
         state.isLoggedIn = true;
         state.isRefreshing = false;

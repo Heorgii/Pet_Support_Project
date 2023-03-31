@@ -24,8 +24,12 @@ export const NoticesSearch = () => {
           onInfo('Fill the field!');
           actions.setSubmitting(false);
         } else {
-          dispatch(addQuery(values.search));
-          dispatch(addPage(1));
+          setTimeout(() => {
+            dispatch(addPage(1));
+          }, 100);
+          setTimeout(() => {
+            dispatch(addQuery(values.search));
+          }, 150);
           actions.setSubmitting(false);
         }
       }}
@@ -45,8 +49,12 @@ export const NoticesSearch = () => {
                   .querySelector('#search')
                   .addEventListener('input', e => {
                     if (e.target.value === '') {
-                      dispatch(addPage(1));
-                      dispatch(addQuery(''));
+                      setTimeout(() => {
+                        dispatch(addPage(1));
+                      }, 100);
+                      setTimeout(() => {
+                        dispatch(addQuery(''));
+                      }, 150);
                     }
                   });
               }}

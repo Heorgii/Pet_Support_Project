@@ -1,10 +1,7 @@
-import { useState } from 'react'; //useEffect
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserDataItem } from './UserDataItem/UserDataItem';
-// import { useAuth } from 'hooks/useAuth';
-import { useAuth } from 'redux/UserPage/auth/useAuth';
-import { authOperations } from 'redux/UserPage/auth';
-import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.png';
+import defaultUserPhoto from '../../../images/UserData/defaultUserPhoto.webp';
 import {
   EditCameraForm,
   EditCameraStyle,
@@ -16,22 +13,27 @@ import {
   UserDataImgWrapper,
   UserDataList,
 } from './UserData.styled';
+import { useAuth } from 'hooks/useAuth';
+import { update } from 'redux/auth/operations';
 
 export const UserData = () => {
   const [active, setActive] = useState('');
   const dispatch = useDispatch();
 
-  let { user } = useAuth();
+  let { userIn } = useAuth();
   let profile = false;
 
   const changeAvatar = e => {
     const data = new FormData();
     data.append('avatar', e.target.files[0]);
-    dispatch(authOperations.update(data));
+    dispatch(update(data));
+    // setTimeout(() => {
+    //   dispatch(authOperations.getUsers(data));
+    // }, 200);
   };
 
-  const birthday = user.birthday
-    ? new Date(user.birthday).toISOString().slice(0, 10)
+  const birthday = userIn.birthday
+    ? new Date(userIn.birthday).toISOString().slice(0, 10)
     : '';
 
   return (
@@ -39,7 +41,7 @@ export const UserData = () => {
       <UserDataContainer>
         <UserDataImgWrapper>
           <UserDataImg
-            src={user.avatar ? user.avatar : defaultUserPhoto}
+            src={userIn.avatar ? userIn.avatar : defaultUserPhoto}
             alt="User"
           />
           <EditCameraForm>
@@ -54,7 +56,7 @@ export const UserData = () => {
               name="edit photo"
               id="user_photo"
               onChange={changeAvatar}
-              accept=".gif,.jpg,.jpeg,.png"
+              accept=".gif,.jpg,.jpeg,.webp,.png"
             />
           </EditCameraForm>
         </UserDataImgWrapper>
@@ -63,7 +65,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'Name:'}
-            defaultValue={user.userName}
+            defaultValue={userIn.userName}
             type="text"
             name="userName"
             active={active}
@@ -74,7 +76,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'Email:'}
-            defaultValue={user.email}
+            defaultValue={userIn.email}
             type="email"
             name="email"
             active={active}
@@ -96,7 +98,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'Phone:'}
-            defaultValue={user.phone}
+            defaultValue={userIn.phone}
             type="tel"
             name="phone"
             active={active}
@@ -107,7 +109,7 @@ export const UserData = () => {
           <UserDataItem
             profile={profile}
             label={'City:'}
-            defaultValue={user.location}
+            defaultValue={userIn.location}
             type="text"
             name="location"
             active={active}

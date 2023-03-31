@@ -12,6 +12,7 @@ import heart from 'images/hero/heart.png';
 import ball from 'images/hero/ball.png';
 import animalPaw from 'images/hero/animalPaw2.png';
 
+
 const HeroSection = styled.section`
   height: 100%;
   min-height: 720px;
