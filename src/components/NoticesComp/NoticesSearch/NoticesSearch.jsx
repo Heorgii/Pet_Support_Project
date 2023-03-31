@@ -16,12 +16,12 @@ const setParams = search => {
     const params = getParams();
     params.page = 1;
     if (!search) {
-      !params.findto && onInfo('Fill the field!');
-      delete params.findto;
+      !params.findtext && onInfo('Fill the field!');
+      delete params.findtext;
       setSearchParams(params);
       return;
     }
-    params.findto = search;
+    params.findtext = search;
     setSearchParams(params);
   };
 
