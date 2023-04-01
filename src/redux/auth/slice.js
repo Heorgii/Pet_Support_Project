@@ -64,12 +64,9 @@ export const authSlice = createSlice({
         state.isLoading = true;
         state.isError = null;
       })
-      .addCase(update.fulfilled, (state, { payload }) => {
+      .addCase(update.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user[Object.keys(payload)[0]] = Object.values(
-          //user
-          payload,
-        )[0];
+        state.user = action.payload.data;
         state.isError = null;
       })
       .addCase(update.rejected, (state, { payload }) => {

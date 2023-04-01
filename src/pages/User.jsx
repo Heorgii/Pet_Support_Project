@@ -17,7 +17,7 @@ import axios from 'axios';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
+import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -54,26 +54,26 @@ const UserPage = () => {
 
   return (
     <>
-      {/* <Section> */}
-      {/* <Container> */}
-      <UserPageWrapper>
-        <UserDataWrapper>
-          <UserDataTitle title="My information:" />
-          <UserDataContainer>
-            <UserData />
-            <Logout />
-          </UserDataContainer>
-        </UserDataWrapper>
-        <UserAboutWrapper>
-          <TopContainer>
-            <MyPetTitle>My pets:</MyPetTitle>
-            <AddPetButton />
-          </TopContainer>
-          <PetsData petsList={petsList} removePetList={removePetList} />
-        </UserAboutWrapper>
-      </UserPageWrapper>
-      {/* </Container> */}
-      {/* </Section> */}
+      <Section>
+        <Container>
+          <UserPageWrapper>
+            <UserDataWrapper>
+              <UserDataTitle title="My information:" />
+              <UserDataContainer>
+                <UserData />
+                <Logout />
+              </UserDataContainer>
+            </UserDataWrapper>
+            <UserAboutWrapper>
+              <TopContainer>
+                <MyPetTitle>My pets:</MyPetTitle>
+                <AddPetButton />
+              </TopContainer>
+              <PetsData petsList={petsList} removePetList={removePetList} />
+            </UserAboutWrapper>
+          </UserPageWrapper>
+        </Container>
+      </Section>
     </>
   );
 };
