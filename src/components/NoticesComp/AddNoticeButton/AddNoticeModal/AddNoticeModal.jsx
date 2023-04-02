@@ -277,9 +277,6 @@ export const AddNoticeModal = () => {
                           onFocus={e => {
                             e.target.setAttribute('type', 'date');
                           }}
-                          // onBlur={e => {
-                          //   e.target.setAttribute('type', 'text');
-                          // }}
                           type="text"
                           id="birthday"
                           name="birthday"

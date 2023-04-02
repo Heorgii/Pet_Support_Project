@@ -4,10 +4,11 @@ export function Pagination({ totalPage, changePage, page }) {
   const handlePageClick = event => {
     changePage(event.selected + 1);
   };
-  
+  console.log(page);
   return (
     <ReactPaginate
       breakLabel="..."
+      forcePage={page - 1}
       nextLabel=">"
       onPageChange={handlePageClick}
       pageRangeDisplayed={5}
@@ -15,7 +16,6 @@ export function Pagination({ totalPage, changePage, page }) {
       previousLabel="<"
       renderOnZeroPageCount={null}
       initialPage={page - 1}
-      // forcePage={page}
       containerClassName="paginate__container"
       pageClassName="paginate__page"
       pageLinkClassName="paginate__link"

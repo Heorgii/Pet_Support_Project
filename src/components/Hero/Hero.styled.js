@@ -10,7 +10,6 @@ import waveLeftDesk from 'images/hero/wave1-desk.webp';
 import waveRightDesk from 'images/hero/wave2Full.webp';
 import heart from 'images/hero/heart.webp';
 import ball from 'images/hero/ball.webp';
-import animalPaw from 'images/hero/animalPow.png';
 
 const HeroSection = styled.section`
   height: 100%;
@@ -79,40 +78,6 @@ const HeartContainer = styled.div`
         transform: scale(1);
         animation-timing-function: ease-out;
       }
-    }
-  }
-`;
-
-const AnimalPaw = styled.div`
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    bottom: -240px;
-    left: 450px;
-    height: 500px;
-    width: 100px;
-    background-image: url(${animalPaw});
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    animation: bounce-in-bottom 3s both;
-    animation-delay: 3s;
-  }
-  @keyframes bounce-in-bottom {
-    0% {
-      transform: translateY(280px);
-      animation-timing-function: ease-in;
-    }
-    30% {
-      transform: translateY(0);
-      animation-timing-function: ease-in;
-    }
-    70% {
-      transform: translateY(0);
-      animation-timing-function: ease-in;
-    }
-    100% {
-      transform: translateY(280px);
-      animation-timing-function: ease-in;
     }
   }
 `;
@@ -253,5 +218,5 @@ export {
   HeroTitle,
   HeartContainer,
   BallContainer,
-  AnimalPaw,
+  // AnimalPaw,
 };
